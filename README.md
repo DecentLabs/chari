@@ -30,7 +30,10 @@ An initial sponsor deposits funds for the matching budget, specifies the recipie
 ### campaign widget
  * embededd into an `iframe` into various sites
  * shows basic campaign info (sponsor matching amount, donations, time until expiration)
- * aft
+ * has a "contribute to campaign" button that leads into the payment scenario, which could be:
+   * if we detect a web3 wallet, unlock and create transaction
+   * if not in a web3 browser, use portis.io
+   * or just show a transfer address / QR code
 
 ### additional functions after expiration
  * button to disburse funds to the recipient
