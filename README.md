@@ -1,4 +1,4 @@
-# 💸 Charity Donation Matching
+# 💸 Charity Donation Matching on Ethereum
 
 UI components and an Ethereum smart contract to support donation matching. A charity could easily embed this as a widget into their sites.
 
