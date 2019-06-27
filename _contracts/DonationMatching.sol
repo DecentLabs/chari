@@ -1,20 +1,27 @@
 pragma solidity 0.5.1;
 
+import "https://github.com/OpenZeppelin/openzeppelin-solidity/blob/master/contracts/token/ERC20/IERC20.sol";
+
 contract DonationMatching {
+
+    struct Grant {
+        uint amount;
+        uint refundDue;
+        bool tallied;
+    }
     
     address payable public sponsor;
     address payable public recipient;
     uint public expiration;
-    uint public sponsoredAmount;
-    uint public refundDueAmount;
-    bool public paymentStarted;
 
-    constructor(address payable _recipient, uint _expiration) public payable {
-        require(msg.value > 0);
+    address[] public tokens;
+
+    mapping (address => Grant) public grantsByToken;
+
+    constructor(address payable _recipient, uint _expiration) public {
         require(_expiration > now);
         require(_expiration < now + 365 days);
         sponsor = msg.sender;
-        sponsoredAmount = msg.value;
         recipient = _recipient;
         expiration = _expiration;
     }
@@ -23,36 +30,73 @@ contract DonationMatching {
     function() external payable {
         require(msg.data.length == 0); // only allow plain transfers
     }
-    
-    function isExpired() public view returns (bool) {
-        return now >= expiration;
+
+    function sponsorEther() external payable {
+        storeGrant(address(0x0), msg.value);
     }
-    
-    function disburseDonation() public {
-        require(isExpired());
-        tally();
-        recipient.transfer(address(this).balance - refundDueAmount);
+
+    function sponsorTokens(address token, uint amount) external {
+        require(token != address(0x0));
+        storeGrant(token, amount);
+        IERC20(token).transferFrom(msg.sender, address(this), amount);
     }
-    
-    function refundSponsor() public {
-        require(isExpired());
-        tally();
-        refundDueAmount = 0;
-        sponsor.transfer(refundDueAmount);
-    }
-    
-    function tally() private {
-        if (!paymentStarted) {
-            uint total = address(this).balance;
-            uint donations = total - sponsoredAmount;
-            uint disbursement = min(donations * 2, total);
-            refundDueAmount = total - disbursement;   
-            paymentStarted = true;
+
+    function storeGrant(address token, uint amount) private {
+        require(amount > 0);
+        require(sponsor == msg.sender);
+        require(!hasExpired());
+        Grant storage grant = grantsByToken[token];
+        if (grant.amount == 0) {
+            tokens.push(token);
         }
+        grant.amount += amount;
+    }
+
+    function tally(address token) private returns (Grant storage) {
+        require(hasExpired());
+        Grant storage grant = grantsByToken[token];
+        require(grant.amount > 0);
+        if (!grant.tallied) {
+            uint total;
+            if (token == address(0x0)) {
+                total = address(this).balance;   
+            } else {
+                total = IERC20(token).balanceOf(address(this));
+            }
+            uint contrib = total - grant.amount;
+            uint donation = min(contrib * 2, total);
+            grant.refundDue = total - donation;   
+            grant.tallied = true;
+        }
+        return grant;
+    }
+
+    function disburseDonation(address token) external {
+        uint refundDue = tally(token).refundDue;
+        if (token == address(0x0)) {
+            recipient.transfer(address(this).balance - refundDue);
+        } else {
+            uint total = IERC20(token).balanceOf(address(this));
+            IERC20(token).transfer(recipient, total - refundDue);
+        }
+    }
+
+    function refundSponsor(address token) external {
+        Grant storage grant = tally(token);
+        uint refundDue = grant.refundDue;
+        grant.refundDue = 0;
+        if (token == address(0x0)) {
+            sponsor.transfer(refundDue);   
+        } else {
+            IERC20(token).transfer(sponsor, refundDue);
+        }
+    }
+    
+    function hasExpired() public view returns (bool) {
+        return now >= expiration;
     }
     
     function min(uint a, uint b) private pure returns (uint) {
         return a < b ? a : b;
     }
-
 }
