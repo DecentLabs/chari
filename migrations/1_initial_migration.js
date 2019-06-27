@@ -1,5 +1,5 @@
-const DonationMatching = artifacts.require("DonationMatching");
+var Migrations = artifacts.require("./Migrations.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(DonationMatching);
+  deployer.deploy(Migrations);
 };
