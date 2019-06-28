@@ -55,7 +55,6 @@ contract DonationMatching {
     function tally(address token) private returns (Grant storage) {
         require(hasExpired());
         Grant storage grant = grantsByToken[token];
-        require(grant.amount > 0);
         if (!grant.tallied) {
             uint total;
             if (token == address(0x0)) {
