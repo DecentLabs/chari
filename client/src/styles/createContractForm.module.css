@@ -1,0 +1,5 @@
+.createContractForm {
+  display: inline-flex;
+  flex-direction: column;
+  margin: 80px 40px;
+}

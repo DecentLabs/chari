@@ -1,5 +1,16 @@
+html, body, .App, #root {
+  width: 100%;
+  height: 100%;
+}
+html, body, #root, .App, .App * {
+  box-sizing: border-box;
+}
 .App {
   text-align: center;
+  background: linear-gradient(237.99deg, #BE7BF2 0%, #735FEC 17.19%, #00BCD4 100%), #FFFFFF;
+  color: white;
+  padding: 20px;
+  font-family: 'Roboto';
 }
 
 .App-logo {
@@ -8,14 +19,12 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
+  margin-top: 80px;
+}
+
+.App-section {
+  text-align: center;
 }
 
 .App-link {
