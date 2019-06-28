@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
 import getWeb3 from './utils/getWeb3';
+
 import DeployButton from './components/DeployButton';
 import Navigation from './components/navigation.js'
 import CreateContractForm from './components/createContractForm.js'
 
 import "./App.css";
-
 
 const DURATION = 7 * 24 * 60 * 60
 
@@ -63,4 +64,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+    web3Connect: state.web3Connect
+});
+
+export default App
+
+// export default connect(mapStateToProps)(App);

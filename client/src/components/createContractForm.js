@@ -10,7 +10,6 @@ export default function CreateContractForm () {
     <form className={styles.createContractForm}>
       <Input name="to" label="to" placeHolder="address"></Input>
       <Input name="lorem" label="lorem" placeHolder="Ipsum"></Input>
-      <Button>Deploy</Button>
     </form>
   )
 }
