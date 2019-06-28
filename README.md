@@ -17,15 +17,32 @@ An initial sponsor deposits funds for the matching budget, specifies the recipie
 
 ## Basic UI elements 
 
-### create new campaign form
- * set up the campaign after entering the basic info (recipient address, expiration time)
- * sponsor deposits the funds (this could be a separate step if we support multiple sponsors)
- * the result is the address of the deployed contract, proceeding to the...
+### create new campaign
 
-### campaign widget designer
+#### Step 1
+ * set up the campaign by entering basic information: recipient (charity) address, expiration time
+ * sign the transaction with your wallet
+ * wait for transaction confirmation
+
+### Step 2
+ * enter amount
+ * select a currency you want to sponsor in (ETH and a predefined list of ERC20 tokens)
+ * inform the user if the currency needs authorizaton (most ERC20 tokens will). user signs tx, waits for confirmation.
+ * after authorization, call the sponsorship transaction (transfering the funds). user signs tx, wiats for confirmation.
+
+### Step 3
+ * The campaign is ready to launch. We go to the administration page, that the user should bookmark.
+
+### campaign adminstrator page: new campaign
+ * for a new campaign, show the widget designer (and the actual widget)
  * set up a campaign widget that can be embedded into various sites (landing pages at the charity or sponsor, or others promoting it)
  * create a customized widget based on the contract address and some additional branding info (e.g. theme, localized labels, etc)
  * generates an embed code that can be pasted into the landing page
+
+### campaign administrator page: completed
+ * after expiration date, show this variant
+ * button to disburse funds to the recipient
+ * button to refund the sponsor (if budget is unused)
 
 ### campaign widget
  * embededd into an `iframe` into various sites
@@ -35,8 +52,5 @@ An initial sponsor deposits funds for the matching budget, specifies the recipie
    * if not in a web3 browser, use portis.io
    * or just show a transfer address / QR code
 
-### additional functions after expiration
- * button to disburse funds to the recipient
- * button to refund the sponsor (if budget is unused)
 
 
