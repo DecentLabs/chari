@@ -7,7 +7,7 @@ import CreateContractForm from './components/createContractForm.js'
 import "./App.css";
 
 
-const DURATION = 7 * 24 * 60 * 60
+const DURATION = 7 * 24 * 60 * 60;
 
 class App extends Component {
     state = {
