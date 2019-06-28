@@ -2,10 +2,6 @@ import React from 'react'
 import styles from './../styles/input.module.css'
 
 class Input extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   render () {
     console.log(this.props, 'p');
     const {label, placeHolder, name} = this.props
