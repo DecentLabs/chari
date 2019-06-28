@@ -3,6 +3,7 @@ import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import getWeb3 from "./utils/getWeb3";
 
 import Navigation from './components/navigation.js'
+import CreateContractForm from './components/createContractForm.js'
 
 import "./App.css";
 
@@ -57,6 +58,15 @@ class App extends Component {
     return (
       <div className="App">
         <Navigation></Navigation>
+        <header className="App-header">
+          <h1>Donation Matching</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, ut labore et dolore magna aliqua.</p>
+          <p>Condimentum lacinia quis vel eros donec ac odio.  <br/>Enim lobortis scelerisque fermentum dui faucibus in ornare. </p>
+        </header>
+
+        <section className="App-section">
+          <CreateContractForm></CreateContractForm>
+        </section>
       </div>
     );
   }

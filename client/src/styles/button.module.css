@@ -1,0 +1,23 @@
+.button {
+  width: 330px;
+  height: 56px;
+  color: white;
+  background: #9332F4;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 21px;
+  text-transform: uppercase;
+  margin-top: 40px;
+  cursor: pointer;
+}
+
+.button:hover {
+
+}
+
+.button:active {
+
+}
