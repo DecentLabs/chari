@@ -54,4 +54,23 @@ An initial sponsor deposits funds for the matching budget, specifies the recipie
  * we could show a "powered by Chari" tag
 
 
+# Development
 
+[![Build Status](https://travis-ci.org/DecentLabs/DonationMatching.svg?branch=master)](https://travis-ci.org/DecentLabs/DonationMatching)
+
+## Contracts
+
+```
+npm install truffle -g
+npm install
+truffle test
+```
+
+## Frontend
+
+```
+truffle compile
+cd client
+yarn install
+yarn start
+```
