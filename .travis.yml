@@ -14,11 +14,12 @@ install:
 script:
   - yarn compile
   - yarn build
+  - echo 'chari.io' >./build/CNAME
 deploy:
   provider: pages
   local_dir: ./client/build
   skip-cleanup: true
   github-token: $GH_TOKEN
-  keep_history: true
+  keep_history: false
   on:
     branch: master
