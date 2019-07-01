@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import getWeb3 from './utils/getWeb3';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 
 import DeployButton from './components/DeployButton';
 import Navigation from './components/navigation.js'
