@@ -7,7 +7,7 @@ export const WEB3_SETUP_ERROR = "WEB3_SETUP_ERROR";
 export const WEB3_ACCOUNT_CHANGE = "WEB3_ACCOUNT_CHANGE";
 
 
-const DURATION = 7 * 24 * 60 * 60
+const DURATION = 7 * 24 * 60 * 60;
 
 const initialState = {
     error: null,
@@ -15,6 +15,7 @@ const initialState = {
     web3: null,
     accounts: null,
     contract: null,
+    networkId: null,
     recipient: '0x76E7a0aEc3E43211395bBBB6Fa059bD6750F83c3',
     expDate: Math.floor(Date.now() / 1000) + DURATION,
     isLoading: false,
@@ -32,12 +33,12 @@ export default (state = initialState, action) => {
             };
 
         case WEB3_SETUP_SUCCESS:
-            console.log("succes");
+            console.log("success");
             return {
                 ...state,
                 isLoading: false,
                 isConnected: true,
-
+                ...action
             };
 
         case WEB3_SETUP_ERROR:

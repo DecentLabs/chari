@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import getWeb3 from './utils/getWeb3';
+import store from "./store.js";
+import { setupWeb3 } from "./reducers/web3Connect";
 
 import DeployButton from './components/DeployButton';
 import Navigation from './components/navigation.js'
@@ -22,13 +23,12 @@ class App extends Component {
 
   componentDidMount = async () => {
     try {
-      const web3 = await getWeb3();
+        store.dispatch(setupWeb3())
+      // const web3 = await getWeb3();
+      // const accounts = await web3.eth.getAccounts();
+      // const networkId = await web3.eth.net.getId();
+      // this.setState({ web3, accounts, networkId });
 
-      const accounts = await web3.eth.getAccounts();
-
-      const networkId = await web3.eth.net.getId();
-
-      this.setState({ web3, accounts, networkId });
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -39,7 +39,7 @@ class App extends Component {
   };
 
   render() {
-    if (!this.state.web3) {
+    if (!this.props.web3Connect.web3) {
       return <div>Loading Web3, accounts, and contract...</div>;
     }
     return (
@@ -53,12 +53,12 @@ class App extends Component {
         <section className="App-section">
           <CreateContractForm></CreateContractForm>
         </section>
-          <DeployButton
-              web3={this.state.web3}
-              account={this.state.accounts[0]}
-              recipient={this.state.recipient}
-              expiration={this.state.expDate}
-          />
+          {/*<DeployButton*/}
+          {/*    web3={this.state.web3}*/}
+          {/*    account={this.state.accounts[0]}*/}
+          {/*    recipient={this.state.recipient}*/}
+          {/*    expiration={this.state.expDate}*/}
+          {/*/>*/}
       </div>
     );
   }
@@ -68,6 +68,6 @@ const mapStateToProps = state => ({
     web3Connect: state.web3Connect
 });
 
-export default App
+// export default App
 
-// export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(App);
