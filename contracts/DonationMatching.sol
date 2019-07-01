@@ -16,11 +16,11 @@ contract Fundable {
         }
     }
    
-   function send(address payable destionation, address token, uint amount) internal {
+   function send(address payable to, address token, uint amount) internal {
        if (token == address(0x0)) {
-           destionation.transfer(amount);
+           to.transfer(amount);
        } else {
-           IERC20(token).transfer(destionation, amount);
+           IERC20(token).transfer(to, amount);
        }
    }
 }
@@ -43,7 +43,6 @@ contract DonationMatching is Fundable {
     }
 
     function disburse(address token) public {
-        require(hasExpired());
         grant.tally(token);
         send(recipient, token, tokenBalance(token));
     }
@@ -60,7 +59,6 @@ contract Grant is Fundable {
     }
     
     function refund(address token) public {
-        require(donationMatching.hasExpired());
         tally(token);
         send(sponsor, token, tokenBalance(token));
     }
