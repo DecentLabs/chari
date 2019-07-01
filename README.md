@@ -23,15 +23,15 @@ An initial sponsor deposits funds for the matching budget, specifies the recipie
  * set up the campaign by entering basic information: recipient (charity) address, expiration time
  * sign the transaction with your wallet
  * wait for transaction confirmation
+ * the transaction created a grant and a donation contract; 
 
 ### Step 2
- * enter amount
- * select a currency you want to sponsor in (ETH and a predefined list of ERC20 tokens)
- * inform the user if the currency needs authorizaton (most ERC20 tokens will). user signs tx, waits for confirmation.
- * after authorization, call the sponsorship transaction (transfering the funds). user signs tx, waits for confirmation.
+ * transfer the sponsored amount (ETH or a supported list of ERC20) to the grant contract created by Step1;
+ * remind the sponsor, where the sponsored amount may be refunded;
 
 ### Step 3
  * The campaign is ready to launch. We go to the administration page, that the user should bookmark.
+ * Donations are expected to be sent to the donation contract;
 
 ### campaign adminstrator page: new campaign
  * for a new campaign, show the widget designer (and the actual widget)
