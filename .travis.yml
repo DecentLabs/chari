@@ -8,6 +8,7 @@ cache:
 sudo: false
 before_install:
   - npm install -g yarn
+  - npm install
   - cd client
 install:
   - yarn
