@@ -1,5 +1,7 @@
 .home header {
   color: white;
+  max-width: 70%;
+  margin: 60px auto;
 }
 
 .home section {

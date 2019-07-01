@@ -8,6 +8,43 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1.title {
+  font-family: big-caslon-fb, serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 62px;
+}
+h1, h2, h3, h4, h5, h6, p, a {
+  font-family: 'Inter var', sans-serif
+}
+
+h1 {
+  font-size: 36px;
+}
+h2 {
+  font-size: 24px;
+}
+h3 {
+  font-size: 20px;
+}
+h4 {
+  font-size: 16px;
+}
+h5 {
+  font-size: 20px;
+}
+h6 {
+  font-size: 20px;
+}
+p {
+  font-size: 14px;
+
+}
+p.big {
+  font-size: 20px;
+}
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
