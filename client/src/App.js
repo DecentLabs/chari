@@ -1,34 +1,17 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux'
 import store from "./store.js";
 import { setupWeb3 } from "./reducers/web3Connect";
 
-import DeployButton from './components/DeployButton';
 import Navigation from './components/navigation.js'
 import CreateContractForm from './components/createContractForm.js'
 
 import "./App.css";
 
-const DURATION = 7 * 24 * 60 * 60
-
 class App extends Component {
-    state = {
-        storageValue: 0,
-        web3: null,
-        accounts: null,
-        contract: null,
-        recipient: '0x76E7a0aEc3E43211395bBBB6Fa059bD6750F83c3',
-        expDate: Math.floor(Date.now() / 1000) + DURATION,
-    };
 
   componentDidMount = async () => {
     try {
         store.dispatch(setupWeb3())
-      // const web3 = await getWeb3();
-      // const accounts = await web3.eth.getAccounts();
-      // const networkId = await web3.eth.net.getId();
-      // this.setState({ web3, accounts, networkId });
-
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -39,9 +22,7 @@ class App extends Component {
   };
 
   render() {
-    if (!this.props.web3Connect.web3) {
-      return <div>Loading Web3, accounts, and contract...</div>;
-    }
+
     return (
       <div className="App">
         <Navigation></Navigation>
@@ -53,21 +34,9 @@ class App extends Component {
         <section className="App-section">
           <CreateContractForm></CreateContractForm>
         </section>
-          {/*<DeployButton*/}
-          {/*    web3={this.state.web3}*/}
-          {/*    account={this.state.accounts[0]}*/}
-          {/*    recipient={this.state.recipient}*/}
-          {/*    expiration={this.state.expDate}*/}
-          {/*/>*/}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-    web3Connect: state.web3Connect
-});
-
-// export default App
-
-export default connect(mapStateToProps)(App);
+export default App
