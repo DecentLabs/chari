@@ -4,11 +4,11 @@ import styles from './../styles/input.module.css'
 class Input extends React.Component {
   render () {
     console.log(this.props, 'p');
-    const {label, placeHolder, name} = this.props
+    const {label, placeHolder, name, onChange} = this.props
     return (
       <div className={styles.inputWrapper}>
         <label className={styles.label}>{label}</label>
-        <input className={styles.input} name={name} placeholder={placeHolder}/>
+        <input className={styles.input} name={name} placeholder={placeHolder} onChange={onChange}/>
       </div>
     )
   }
