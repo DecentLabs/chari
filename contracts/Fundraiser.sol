@@ -1,6 +1,6 @@
 pragma solidity 0.5.1;
 
-import "https://github.com/OpenZeppelin/openzeppelin-solidity/blob/master/contracts/token/ERC20/IERC20.sol";
+import "openzeppelin-solidity/blob/master/contracts/token/ERC20/IERC20.sol";
 
 contract Fundable {
     
@@ -25,7 +25,7 @@ contract Fundable {
    }
 }
 
-contract Fundraiser is Fundable {
+contract DonationMatching is Fundable {
     address payable public recipient;
     uint public expiration;
     Grant public grant;
@@ -50,28 +50,28 @@ contract Fundraiser is Fundable {
 }
 
 contract Grant is Fundable {
-    Fundraiser public fundraiser;
+    DonationMatching public donation_matching;
     address payable public sponsor; 
     mapping (address => bool) public tallied;
     
-    constructor(Fundraiser _fundraiser, address payable _sponsor) public {
-        fundraiser = _fundraiser;
+    constructor(DonationMatching _donation_matching, address payable _sponsor) public {
+        donation_matching = _donation_matching;
         sponsor = _sponsor;
     }
     
     function refund(address token) public {
-        require(fundraiser.hasExpired());
+        require(donation_matching.hasExpired());
         tally(token);
         send(sponsor, token, tokenBalance(token));
     }
 
     function tally(address token) public {
-        require(fundraiser.hasExpired());
+        require(donation_matching.hasExpired());
         if (!tallied[token]) {
-            uint raised = fundraiser.tokenBalance(token);
+            uint raised = donation_matching.tokenBalance(token);
             uint grant = tokenBalance(token);
             tallied[token] = true;
-            send(address(fundraiser), token, raised > grant ? grant : raised);
+            send(address(donation_matching), token, raised > grant ? grant : raised);
         }
     }
 }
