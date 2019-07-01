@@ -9,6 +9,9 @@ import Home from './views/Home.js'
 import Featured from './views/Featured.js'
 import LearnMore from './views/LearnMore.js'
 import Contact from './views/Contact.js'
+import NewCampaign from './views/NewCampaign.js'
+import WidgetEditor from './views/WidgetEditor.js'
+import AddFund from './views/AddFund.js'
 
 import "./App.css";
 
@@ -35,6 +38,9 @@ class App extends Component {
             <Route path="/featured" exact component={Featured} />
             <Route path="/learn-more" exact component={LearnMore} />
             <Route path="/contact" exact component={Contact} />
+            <Route path="/new" exact component={NewCampaign} />
+            <Route path="/new/widget/:contract" component={WidgetEditor} />
+            <Route path="/new/fund/:contract" component={AddFund} />
           </Switch>
       </div>
     );

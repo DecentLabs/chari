@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './../styles/Home.module.css'
-import CreateContractForm from './../components/createContractForm.js'
 
 export default function Home () {
   return (
@@ -10,9 +9,6 @@ export default function Home () {
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, ut labore et dolore magna aliqua.</p>
         <p>Condimentum lacinia quis vel eros donec ac odio.  <br/>Enim lobortis scelerisque fermentum dui faucibus in ornare. </p>
       </header>
-      <section>
-        <CreateContractForm></CreateContractForm>
-      </section>
     </div>
   )
 }
