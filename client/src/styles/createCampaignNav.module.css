@@ -1,0 +1,16 @@
+.createCampaignNav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 20px auto;
+  width: 400px;
+}
+
+.createCampaignNav li {
+  list-style-type: none;
+  width: auto;
+}
+
+.createCampaignNav li a:active {
+  text-decoration: underline;
+}
