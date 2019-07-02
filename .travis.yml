@@ -1,0 +1,26 @@
+if: branch = master
+language: node_js
+node_js:
+  - '8.10'
+cache:
+  directories:
+    - "node_modules"
+sudo: false
+before_install:
+  - npm install -g yarn
+  - npm install
+  - cd client
+install:
+  - yarn
+script:
+  - yarn compile
+  - yarn build
+  - echo 'chari.io' >./build/CNAME
+deploy:
+  provider: pages
+  local_dir: ./client/build
+  skip-cleanup: true
+  github-token: $GH_TOKEN
+  keep_history: false
+  on:
+    branch: master
