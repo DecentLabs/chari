@@ -16,16 +16,16 @@ contract Fundable {
         }
     }
    
-   function send(address payable to, address token, uint amount) internal {
-       if (token == address(0x0)) {
-           to.transfer(amount);
-       } else {
-           IERC20(token).transfer(to, amount);
-       }
-   }
+    function send(address payable to, address token, uint amount) internal {
+        if (token == address(0x0)) {
+            to.transfer(amount);
+        } else {
+            IERC20(token).transfer(to, amount);
+        }
+    }
 }
 
-contract DonationMatching is Fundable {
+contract Fundraiser is Fundable {
     address payable public recipient;
     uint public expiration;
     Grant public grant;
@@ -49,12 +49,12 @@ contract DonationMatching is Fundable {
 }
 
 contract Grant is Fundable {
-    DonationMatching public donationMatching;
+    Fundraiser public fundraiser;
     address payable public sponsor; 
     mapping (address => bool) public tallied;
     
-    constructor(DonationMatching _donationMatching, address payable _sponsor) public {
-        donationMatching = _donationMatching;
+    constructor(Fundraiser _fundraiser, address payable _sponsor) public {
+        fundraiser = _fundraiser;
         sponsor = _sponsor;
     }
     
@@ -64,12 +64,12 @@ contract Grant is Fundable {
     }
 
     function tally(address token) public {
-        require(donationMatching.hasExpired());
+        require(fundraiser.hasExpired());
         if (!tallied[token]) {
-            uint raised = donationMatching.tokenBalance(token);
+            uint raised = fundraiser.tokenBalance(token);
             uint grant = tokenBalance(token);
             tallied[token] = true;
-            send(address(donationMatching), token, raised > grant ? grant : raised);
+            send(address(fundraiser), token, raised > grant ? grant : raised);
         }
     }
 }

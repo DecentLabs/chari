@@ -1,18 +1,18 @@
-const DonationMatching = artifacts.require("./DonationMatching.sol");
+const Fundraiser = artifacts.require("./Fundraiser.sol");
 
-contract("DonationMatching", accounts => {
+contract("Fundraiser", accounts => {
   it("should deploy", async () => {
 
   	const sponsor = accounts[0];
   	const recipient = accounts[1];
 
-    const contract = new web3.eth.Contract(DonationMatching.abi);
+    const contract = new web3.eth.Contract(Fundraiser.abi);
 
     const now = Math.round(new Date().getTime() / 1000);
     const expiration = now + 120;
 
     const tx = contract.deploy({
-    	data: DonationMatching.bytecode,
+    	data: Fundraiser.bytecode,
     	arguments: [recipient, expiration]
     }).send({
         from: sponsor,
