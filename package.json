@@ -1,0 +1,7 @@
+{
+  "name": "chari",
+  "version": "0.0.1",
+  "dependencies": {
+    "openzeppelin-solidity": "^2.3.0"
+  }
+}

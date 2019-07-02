@@ -17,15 +17,32 @@ An initial sponsor deposits funds for the matching budget, specifies the recipie
 
 ## Basic UI elements 
 
-### create new campaign form
- * set up the campaign after entering the basic info (recipient address, expiration time)
- * sponsor deposits the funds (this could be a separate step if we support multiple sponsors)
- * the result is the address of the deployed contract, proceeding to the...
+### create new campaign
 
-### campaign widget designer
+#### Step 1
+ * set up the campaign by entering basic information: recipient (charity) address, expiration time
+ * sign the transaction with your wallet
+ * wait for transaction confirmation
+ * the transaction created a grant and a donation contract; 
+
+### Step 2
+ * transfer the sponsored amount (ETH or a supported list of ERC20) to the grant contract created by Step1;
+ * remind the sponsor, where the sponsored amount may be refunded;
+
+### Step 3
+ * The campaign is ready to launch. We go to the administration page, that the user should bookmark.
+ * Donations are expected to be sent to the donation contract;
+
+### campaign adminstrator page: new campaign
+ * for a new campaign, show the widget designer (and the actual widget)
  * set up a campaign widget that can be embedded into various sites (landing pages at the charity or sponsor, or others promoting it)
  * create a customized widget based on the contract address and some additional branding info (e.g. theme, localized labels, etc)
  * generates an embed code that can be pasted into the landing page
+
+### campaign administrator page: completed
+ * after expiration date, show this variant
+ * button to disburse funds to the recipient
+ * button to refund the sponsor (if budget is unused)
 
 ### campaign widget
  * embededd into an `iframe` into various sites
@@ -34,9 +51,26 @@ An initial sponsor deposits funds for the matching budget, specifies the recipie
    * if we detect a web3 wallet, unlock and create transaction
    * if not in a web3 browser, use portis.io
    * or just show a transfer address / QR code
-
-### additional functions after expiration
- * button to disburse funds to the recipient
- * button to refund the sponsor (if budget is unused)
+ * we could show a "powered by Chari" tag
 
 
+# Development
+
+[![Build Status](https://travis-ci.org/DecentLabs/DonationMatching.svg?branch=master)](https://travis-ci.org/DecentLabs/DonationMatching)
+
+## Contracts
+
+```
+npm install truffle -g
+npm install
+truffle test
+```
+
+## Frontend
+
+```
+truffle compile
+cd client
+yarn install
+yarn start
+```
