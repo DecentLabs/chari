@@ -1,5 +1,5 @@
 import React from 'react';
-import Fundraiser from '../contracts/Fundraiser.json'
+import Fundraiser from '../../../deployments/Fundraiser.json'
 
 
 export default class DeployButton extends React.Component {

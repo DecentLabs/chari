@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Widget Template</title>
+
+  <style>
+    .preview {
+      width: 100%;
+      max-width: 1100px;
+      margin: 80px auto;
+      border: 1px dashed rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .preview::before {
+      content: 'WIDGET PREVIEW';
+      position: absolute;
+      display: block;
+      top: -18px;
+      font-size: 11px;
+      color: rgba(0, 0, 0, 0.5);
+    }
+  </style>
+
+</head>
+
+<body>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras laoreet turpis vitae nibh pretium, volutpat venenatis erat rhoncus. Nullam non nibh tortor. Nulla sed nisi sed sapien accumsan vulputate. Nulla vitae eleifend lacus, eget pulvinar ante. Nullam quis orci ac felis tempus vulputate. Cras ultricies elementum semper. In ut molestie elit. Sed in augue at est tristique imperdiet vel porttitor risus. Aenean in metus quis ipsum ultrices mattis. Sed ut risus sit amet velit aliquam aliquam at sed velit. Aliquam erat volutpat.</p>
+  <div data-widget-host="habitat" class="preview">
+    <script type="text/props">
+      { "fundraiser": "0xB5E5F24b659bC8872c4f89b127C685b7FC641862",
+        "network": "4"}
+    </script>
+  </div>
+  <p>Sed faucibus, augue in molestie iaculis, neque elit mattis nunc, ut sodales justo tellus a sem. Donec ac diam eget lectus porta semper quis euismod eros. Nulla ligula urna, gravida id metus eget, mollis aliquet est. Donec at elit eget lorem ornare ornare. Aliquam mattis enim id ipsum posuere rutrum. Cras luctus tellus molestie, aliquet enim non, sagittis ex. Praesent nulla erat, porttitor et accumsan quis, sollicitudin ut dui. Aenean volutpat, orci ac molestie scelerisque, lorem felis consectetur dui, a tristique lacus eros quis nibh. Suspendisse congue tortor in metus aliquam tempus. Vivamus eu ligula id orci aliquam tempor. Pellentesque at velit tempus, tempor lacus et, sodales tortor.</p>
+  <script async src="/bundle.js"></script>
+</body>
+
+</html>
