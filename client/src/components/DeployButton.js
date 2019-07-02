@@ -1,9 +1,11 @@
 import React from 'react';
 import DonationMatchingJSON from '../contracts/DonationMatching.json'
+import { connect } from 'react-redux'
 
 import styles from './../styles/button.module.css'
+import Button from './button.js'
 
-export default class DeployButton extends React.Component {
+class DeployButton extends React.Component {
     constructor (props) {
         super(props);
         this.state = {contract: null};
@@ -11,19 +13,18 @@ export default class DeployButton extends React.Component {
     }
 
     deploy(e) {
+        // todo move to store
         e.preventDefault()
         const abi = DonationMatchingJSON.abi;
         const byteCode = DonationMatchingJSON.bytecode;
-        const web3 = this.props.web3;
+        const {web3, recipient, expiration} = this.props.web3Connect
+
         const contract = new web3.eth.Contract(abi);
-        const {recipient, expiration} = this.props;
         const tx = contract.deploy({data: byteCode, arguments: [recipient, expiration]}).send({
             from: this.props.account,
             gas: 2000000
         });
         tx.then((newContractInstance) => {
-            console.log(newContractInstance)
-
             this.setState({
                 contract: newContractInstance
             })
@@ -32,12 +33,19 @@ export default class DeployButton extends React.Component {
 
     render() {
         const {contract} = this.state
+        const disabled = !this.props.web3Connect.web3
 
         return (<div>
-            <button className={styles.button} onClick={this.deploy} disabled={this.props.disabled}>Create</button>
+            <Button onClick={this.deploy} disabled={disabled}>Yes, let's do it!</Button>
             {contract && (<p>
                 {contract.options.address}
             </p>)}
         </div>)
     }
 }
+
+const mapStateToProps = state => ({
+    web3Connect: state.web3Connect
+});
+
+export default connect(mapStateToProps)(DeployButton);

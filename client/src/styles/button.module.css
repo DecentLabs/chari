@@ -12,6 +12,17 @@
   margin-top: 40px;
   cursor: pointer;
   padding: 0 40px;
+  display: inline-block;
+}
+.button.naked {
+  height: auto;
+  color: black;
+  border-radius: 0;
+  line-height: 100%;
+  background: none;
+  border-bottom: 1px solid black;
+  font-size: 12px;
+  padding: 0;
 }
 
 .button:hover {

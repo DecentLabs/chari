@@ -1,52 +1,64 @@
-import React from 'react';
-import styles from './../styles/createContractForm.module.css';
+import React from 'react'
+import styles from './../styles/createContractForm.module.css'
+import { connect } from 'react-redux'
+import {updateExpDate, updateRecipient} from './../reducers/web3Connect.js'
 
-import Input from './input.js';
-import DeployButton from './DeployButton';
-import { connect } from 'react-redux';
+import Input from './input.js'
+import Button from './button.js'
+import ConfirmDeploy from './confirmDeploy.js'
 
-const DURATION = 7 * 24 * 60 * 60;
+
+const DURATION = 7 * 24 * 60 * 60
 
 
 class CreateContractForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // recipient: '0x76E7a0aEc3E43211395bBBB6Fa059bD6750F83c3',
-            recipient: null,
-            expDate: Math.floor(Date.now() / 1000) + DURATION,
+            showConfirm: false
         };
         this.onAddressChange = this.onAddressChange.bind(this)
+        this.confirmDeploy = this.confirmDeploy.bind(this)
+        this.onExpDateChange = this.onExpDateChange.bind(this)
+        this.hide = this.hide.bind(this)
     }
 
     onAddressChange(e) {
-        this.setState({recipient: e.target.value});
-        console.log(this.state.recipient)
+        const val = e.target.value
+        this.props.dispatch(updateRecipient(val))
+    }
+
+    onExpDateChange(e) {
+      const val = e.target.value
+      this.props.dispatch(updateExpDate(val))
+    }
+
+    confirmDeploy () {
+      this.setState({
+        showConfirm: true
+      })
+    }
+
+    hide () {
+      this.setState({
+        showConfirm: false
+      })
     }
 
     render() {
-        const {web3Connect} = this.props;
-
+        const placeholderAddress = '0x76E7a0aEc3E43211395bBBB6Fa059bD6750F83c3'
         return (
-            web3Connect.web3 && (<form className={styles.createContractForm}>
-                <Input name="to" label="Enter charity address" placeHolder="address" onChange={this.onAddressChange}/>
-                <Input name="expiration" label="Choose expiration date" placeHolder="Day / Month / Year"/>
-                <DeployButton
-                    disabled={!web3Connect.web3}
-                    web3={web3Connect.web3}
-                    account={web3Connect.accounts[0]}
-                    recipient={this.state.recipient}
-                    expiration={this.state.expDate}
-                />
-            </form>)
+          <div className={styles.createContractForm}>
+            <h1>Hi! You are creating a new campaign as the Sponsor</h1>
+            <form>
+              <Input name="address" label="Enter charity address" placeHolder={placeholderAddress} onChange={this.onAddressChange}/>
+              <Input name="expiration" label="Choose expiration date" placeHolder="Day / Month / Year" onChange={this.onExpDateChange}/>
+            </form>
+            <Button onClick={this.confirmDeploy}>Create</Button>
+            {this.state.showConfirm && <ConfirmDeploy hide={this.hide}></ConfirmDeploy> }
+          </div>
         );
     }
 }
 
-
-const mapStateToProps = state => ({
-    web3Connect: state.web3Connect
-});
-
-
-export default connect(mapStateToProps)(CreateContractForm);
+export default connect()(CreateContractForm);

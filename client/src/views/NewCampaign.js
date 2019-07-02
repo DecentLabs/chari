@@ -6,7 +6,7 @@ import CreateCampaignNav from './../components/createCampaignNav.js'
 
 import WidgetEditor from './WidgetEditor.js'
 import AddFund from './AddFund.js'
-import DeployCampaign from './DeployCampaign.js'
+import CreateContractForm from './../components/createContractForm.js'
 
 function NewCampaign () {
 
@@ -14,7 +14,7 @@ function NewCampaign () {
     <div className={styles.newCampaign}>
       <CreateCampaignNav></CreateCampaignNav>
       <Switch>
-        <Route path="/new/deploy" component={DeployCampaign} />
+        <Route path="/new/deploy" component={CreateContractForm} />
         <Route path="/new/widget" component={WidgetEditor} />
         <Route path="/new/fund" component={AddFund} />
       </Switch>

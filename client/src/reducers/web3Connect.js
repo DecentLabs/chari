@@ -1,10 +1,12 @@
 import { default as Web3 } from "web3";
 import getWeb3 from './../utils/getWeb3';
 
-export const WEB3_SETUP_REQUESTED = "WEB3_SETUP_REQUESTED";
-export const WEB3_SETUP_SUCCESS = "WEB3_SETUP_SUCCESS";
-export const WEB3_SETUP_ERROR = "WEB3_SETUP_ERROR";
-export const WEB3_ACCOUNT_CHANGE = "WEB3_ACCOUNT_CHANGE";
+const WEB3_SETUP_REQUESTED = "WEB3_SETUP_REQUESTED";
+const WEB3_SETUP_SUCCESS = "WEB3_SETUP_SUCCESS";
+const WEB3_SETUP_ERROR = "WEB3_SETUP_ERROR";
+const WEB3_ACCOUNT_CHANGE = "WEB3_ACCOUNT_CHANGE";
+const UPDATE_EXPDATE = "UPDATE_EXPDATE"
+const UPDATE_RECIPIENT = "UPDATE_RECIPIENT"
 
 
 const DURATION = 7 * 24 * 60 * 60;
@@ -52,13 +54,36 @@ export default (state = initialState, action) => {
         case WEB3_ACCOUNT_CHANGE:
             return {
                 ...state,
-
             };
+        case UPDATE_EXPDATE:
+            return {
+              ...state,
+              expDate: action.expDate
+            }
+        case UPDATE_RECIPIENT:
+            return {
+              ...state,
+              recipient: action.recipient
+            }
 
         default:
             return state;
     }
 };
+
+export const updateRecipient = (recipient) => {
+  return {
+    type: UPDATE_RECIPIENT,
+    recipient: recipient
+  }
+}
+
+export const updateExpDate = (expDate) => {
+  return {
+    type: UPDATE_EXPDATE,
+    expDate: expDate
+  }
+}
 
 export const setupWeb3 = () => {
     return async dispatch => {
