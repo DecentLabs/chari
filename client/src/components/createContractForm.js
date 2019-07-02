@@ -29,8 +29,8 @@ class CreateContractForm extends React.Component {
 
         return (
             web3Connect.web3 && (<form className={styles.createContractForm}>
-                <Input name="to" label="to" placeHolder="address" onChange={this.onAddressChange}/>
-                <Input name="expiration" label="expiration date" placeHolder="date"/>
+                <Input name="to" label="Enter charity address" placeHolder="address" onChange={this.onAddressChange}/>
+                <Input name="expiration" label="Choose expiration date" placeHolder="Day / Month / Year"/>
                 <DeployButton
                     disabled={!web3Connect.web3}
                     web3={web3Connect.web3}
@@ -50,6 +50,3 @@ const mapStateToProps = state => ({
 
 
 export default connect(mapStateToProps)(CreateContractForm);
-
-
-

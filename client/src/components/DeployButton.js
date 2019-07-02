@@ -34,7 +34,7 @@ export default class DeployButton extends React.Component {
         const {contract} = this.state
 
         return (<div>
-            <button className={styles.button} onClick={this.deploy} disabled={this.props.disabled}>Deploy Contract</button>
+            <button className={styles.button} onClick={this.deploy} disabled={this.props.disabled}>Create</button>
             {contract && (<p>
                 {contract.options.address}
             </p>)}

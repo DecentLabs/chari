@@ -11,8 +11,6 @@ import LearnMore from './views/LearnMore.js'
 import Contact from './views/Contact.js'
 import NewCampaign from './views/NewCampaign.js'
 
-import "./App.css";
-
 class App extends Component {
 
   componentDidMount = async () => {

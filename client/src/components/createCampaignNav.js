@@ -8,15 +8,15 @@ const WIDGET = 'widget'
 const steps = [DEPLOY, FUND, WIDGET]
 
 const uiSteps = {
-  deploy: 'Deploy contract',
-  fund: 'Add fund',
-  widget: 'Edit & share widget'
+  deploy: '1. Deploy contract',
+  fund: '2. Add fund',
+  widget: '3. Edit & share widget'
 }
 
 function CreateCampaignNav () {
   return (
     <ul className={styles.createCampaignNav}>
-      {steps.map(step => (
+      {steps.map((step, i) => (
         <li key={step}>
           <NavLink to={`/new/${step}`}>{uiSteps[step]}</NavLink>
         </li>)
