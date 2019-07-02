@@ -1,29 +1,43 @@
 import React from 'react';
-import Fundraiser from '../contracts/Fundraiser.json'
+import FundraiserFactory from '../contracts/FundraiserFactory.json'
 
 
 export default class DeployButton extends React.Component {
     constructor (props) {
         super(props);
-        this.state = {contract: null};
+        this.state = {
+            deployer: null,
+            recipient: null,
+            sponsor: null,
+            fundraiser: null,
+            grant: null
+        };
         this.deploy = this.deploy.bind(this);
     }
 
     deploy() {
-        const abi = Fundraiser.abi;
-        const byteCode = Fundraiser.bytecode;
+        const abi = FundraiserFactory.abi;
+        const contractAddress = FundraiserFactory.networks['4'].address;
         const web3 = this.props.web3;
-        const contract = new web3.eth.Contract(abi);
-        const {recipient, expiration} = this.props;
+        const contract = new web3.eth.Contract(abi, contractAddress);
+        const {recipient, expiration, account} = this.props;
 
         if (web3.utils.isAddress(recipient) && typeof expiration === 'number' && expiration % 1 === 0) {
-            const tx = contract.deploy({data: byteCode, arguments: [recipient, expiration]}).send({
-                from: this.props.account,
+            const tx = contract.methods.deploy(recipient, account, expiration).send({
+                from: account,
                 gas: 2000000
             });
-            tx.then((newContractInstance) => {
+
+            tx.on('confirmation', (num, receipt) => {
+                console.log(num, receipt)
+            }).then((receipt) => {
+                const result = receipt.events.NewFundraiser.returnValues;
                 this.setState({
-                    contract: newContractInstance
+                    deployer: result[0],
+                    recipient: result[1],
+                    sponsor: result[2],
+                    fundraiser: result[3],
+                    grant: result[4]
                 })
             })
         } else {
@@ -33,13 +47,11 @@ export default class DeployButton extends React.Component {
     }
 
     render() {
-        const {contract} = this.state;
+        const {fundraiser} = this.state;
 
         return (<div>
             <button onClick={this.deploy}>Deploy Contract</button>
-            {contract && (<p>
-                {contract.options.address}
-            </p>)}
+            {<p>{fundraiser}</p>}
         </div>)
     }
 }
