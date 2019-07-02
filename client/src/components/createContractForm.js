@@ -8,9 +8,6 @@ import Button from './button.js'
 import ConfirmDeploy from './confirmDeploy.js'
 
 
-const DURATION = 7 * 24 * 60 * 60
-
-
 class CreateContractForm extends React.Component {
     constructor(props) {
         super(props);

@@ -1,5 +1,4 @@
 import React from 'react';
-import DonationMatchingJSON from '../contracts/DonationMatching.json'
 import { connect } from 'react-redux'
 import FundraiserFactory from '../contracts/FundraiserFactory.json'
 
@@ -49,8 +48,8 @@ class DeployButton extends React.Component {
         const {fundraiser} = this.state;
 
         return (<div>
-            <button onClick={this.deploy}>Deploy Contract</button>
-            {<p>{fundraiser}</p>}
+            <Button onClick={this.deploy} disabled={disabled}>Yes, let's do it!</Button>
+            <p>{fundraiser}</p>
         </div>)
     }
 }
