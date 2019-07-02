@@ -21,7 +21,9 @@ contract("FundraiserFactory", accounts => {
 	const event = {
 		deployer: log[0],
 		recipient: log[1],
-		sponsor: log[2]
+		sponsor: log[2],
+		fundraiser: log[3],
+		grant: log[4]
 	};
 
     console.log("Deployed", event);
