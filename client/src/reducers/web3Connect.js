@@ -5,9 +5,11 @@ const WEB3_SETUP_REQUESTED = "WEB3_SETUP_REQUESTED";
 const WEB3_SETUP_SUCCESS = "WEB3_SETUP_SUCCESS";
 const WEB3_SETUP_ERROR = "WEB3_SETUP_ERROR";
 const WEB3_ACCOUNT_CHANGE = "WEB3_ACCOUNT_CHANGE";
-const UPDATE_EXPDATE = "UPDATE_EXPDATE"
-const UPDATE_RECIPIENT = "UPDATE_RECIPIENT"
-
+const UPDATE_EXPDATE = "UPDATE_EXPDATE";
+const UPDATE_RECIPIENT = "UPDATE_RECIPIENT";
+const UPDATE_ADDRESSES = "UPDATE_ADDRESSES";
+const UPDATE_CONTRACT = "UPDATE_CONTRACT";
+const UPDATE_DEPLOYING = "UPDATE_DEPLOYING";
 
 const DURATION = 7 * 24 * 60 * 60;
 
@@ -21,7 +23,12 @@ const initialState = {
     recipient: '0x76E7a0aEc3E43211395bBBB6Fa059bD6750F83c3',
     expDate: Math.floor(Date.now() / 1000) + DURATION,
     isLoading: false,
-    isConnected: false
+    isConnected: false,
+    deployer: null,
+    sponsor: null,
+    fundraiser: null,
+    grant: null,
+    isDeploying: false,
 };
 
 
@@ -55,6 +62,16 @@ export default (state = initialState, action) => {
             return {
                 ...state,
             };
+        case UPDATE_DEPLOYING:
+            return {
+                ...state,
+                isDeploying: action.isDeploying
+            }
+        case UPDATE_CONTRACT:
+            return {
+                ...state,
+                contract: action.contract
+            }
         case UPDATE_EXPDATE:
             return {
               ...state,
@@ -65,11 +82,27 @@ export default (state = initialState, action) => {
               ...state,
               recipient: action.recipient
             }
-
+        case UPDATE_ADDRESSES:
+            return {
+                ...state,
+                deployer: action.addresses.deployer,
+                recipient: action.addresses.recipient,
+                sponsor: action.addresses.sponsor,
+                fundraiser: action.addresses.fundraiser,
+                grant: action.addresses.grant,
+                isDeploying: false
+            }
         default:
             return state;
     }
 };
+
+export const updateContract = (contract) => {
+    return {
+        type: UPDATE_RECIPIENT,
+        contract
+    }
+}
 
 export const updateRecipient = (recipient) => {
   return {
@@ -84,6 +117,21 @@ export const updateExpDate = (expDate) => {
     expDate: expDate
   }
 }
+
+export const updateAddresses = (addresses) => {
+    return {
+        type: UPDATE_ADDRESSES,
+        addresses
+    }
+}
+
+export const updateDeploying = (isDeploying) => {
+    return {
+        type: UPDATE_ADDRESSES,
+        isDeploying
+    }
+}
+
 
 export const setupWeb3 = () => {
     return async dispatch => {

@@ -51,7 +51,7 @@ class CreateContractForm extends React.Component {
               <Input name="address" label="Enter charity address" placeHolder={placeholderAddress} onChange={this.onAddressChange}/>
               <Input name="expiration" label="Choose expiration date" placeHolder="Day / Month / Year" onChange={this.onExpDateChange}/>
             </form>
-            <Button onClick={this.confirmDeploy}>Create</Button>
+            <Button onClick={this.confirmDeploy} hide={this.hide}>Create</Button>
             {this.state.showConfirm && <ConfirmDeploy hide={this.hide}></ConfirmDeploy> }
           </div>
         );
