@@ -14,9 +14,9 @@ export default class DeployButton extends React.Component {
         const byteCode = Fundraiser.bytecode;
         const web3 = this.props.web3;
         const contract = new web3.eth.Contract(abi);
-        const {recipient, expiration} = this.props
-        const tx = contract.deploy({data: byteCode, arguments: [recipient, expiration]}).send({
-            from: this.props.account,
+        const {account, recipient, expiration} = this.props
+        const tx = contract.deploy({data: byteCode, arguments: [recipient, account, expiration]}).send({
+            from: account,
             gas: 2000000
         });
         tx.then((newContractInstance) => {

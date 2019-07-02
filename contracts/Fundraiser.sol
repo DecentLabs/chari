@@ -30,12 +30,12 @@ contract Fundraiser is Fundable {
     uint public expiration;
     Grant public grant;
 
-    constructor(address payable _recipient, uint _expiration) public {
+    constructor(address payable _recipient, address payable _sponsor, uint _expiration) public {
         require(_expiration > now);
         require(_expiration < now + 365 days);
         recipient = _recipient;
         expiration = _expiration;
-        grant = new Grant(this, msg.sender);
+        grant = new Grant(this, _sponsor);
     }
 
     function hasExpired() public view returns (bool) {

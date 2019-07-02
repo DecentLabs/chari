@@ -3,8 +3,9 @@ const Fundraiser = artifacts.require("./Fundraiser.sol");
 contract("Fundraiser", accounts => {
   it("should deploy", async () => {
 
-  	const sponsor = accounts[0];
-  	const recipient = accounts[1];
+    const deployer = accounts[0];
+  	const sponsor = accounts[1];
+  	const recipient = accounts[2];
 
     const contract = new web3.eth.Contract(Fundraiser.abi);
 
@@ -13,9 +14,9 @@ contract("Fundraiser", accounts => {
 
     const tx = contract.deploy({
     	data: Fundraiser.bytecode,
-    	arguments: [recipient, expiration]
+    	arguments: [recipient, sponsor, expiration]
     }).send({
-        from: sponsor,
+        from: deployer,
         gas: 2000000
     });
 
