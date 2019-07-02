@@ -1,0 +1,21 @@
+import React from 'react'
+import styles from './../styles/loaderComp.module.css'
+
+import loader from './../assets/loader.svg'
+
+function LoaderComp (props) {
+  const subtitle = props.subtitle ? props.subtitle : "Please wait and follow the instructions in your wallet."
+  return (
+    <div className={styles.loader}>
+      <h1>{props.children}</h1>
+      {subtitle && (
+        <p>{subtitle}</p>
+      )}
+      <div className={styles.loaderIcon}>
+        <img src={loader} alt="loader"/>
+      </div>
+    </div>
+  )
+}
+
+export default LoaderComp

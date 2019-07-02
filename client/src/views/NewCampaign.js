@@ -9,6 +9,11 @@ import CreateCampaignNav from './../components/createCampaignNav.js'
 import WidgetEditor from './WidgetEditor.js'
 import AddFund from './AddFund.js'
 import CreateContractForm from './../components/createContractForm.js'
+import LoaderComp from './../components/loaderComp.js'
+
+// <LoaderComp>
+//   Your campaign is currently being created
+// </LoaderComp>
 
 class NewCampaign extends React.Component {
   componentDidMount () {
@@ -32,7 +37,9 @@ class NewCampaign extends React.Component {
         )}
 
         {!this.props.isConnected && (
-          <p style={{margin: '100px'}}>LOADING ...</p>
+          <LoaderComp>
+            Connecting to your wallet
+          </LoaderComp>
         )}
       </div>
     )
