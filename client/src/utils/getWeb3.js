@@ -30,6 +30,7 @@ const getWeb3 = () =>
         const portis = new Portis(PORTIS_APP, PORTIS_NETWORK)
         portis.provider.enable()
         const web3 = new Web3(portis.provider);
+
         resolve(web3);
       }
   });
