@@ -126,7 +126,7 @@ export const updateAddresses = (addresses) => {
 
 export const updateDeploying = (isDeploying) => {
     return {
-        type: UPDATE_ADDRESSES,
+        type: UPDATE_DEPLOYING,
         isDeploying
     }
 }

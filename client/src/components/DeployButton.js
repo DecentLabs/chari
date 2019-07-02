@@ -1,4 +1,5 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom'
 import { connect } from 'react-redux'
 import FundraiserFactory from '../contracts/FundraiserFactory.json'
 import {updateAddresses, updateContract, updateDeploying} from './../reducers/web3Connect.js'
@@ -51,6 +52,9 @@ class DeployButton extends React.Component {
 
         return (<div>
             <Button onClick={this.deploy} disabled={disabled}>Yes, let's do it!</Button>
+            {this.props.isDeploying === true && (
+                <Redirect to='/new/fund' />
+            )}
         </div>)
     }
 }
@@ -60,7 +64,8 @@ const mapStateToProps = state => ({
     recipient: state.web3Connect.recipient,
     expiration: state.web3Connect.expDate,
     account: state.web3Connect.accounts[0],
-    fundraiser: state.web3Connect.fundraiser
+    fundraiser: state.web3Connect.fundraiser,
+    isDeploying: state.web3Connect.isDeploying
 });
 
 export default connect(mapStateToProps)(DeployButton);

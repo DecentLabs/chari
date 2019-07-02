@@ -11,9 +11,6 @@ import AddFund from './AddFund.js'
 import CreateContractForm from './../components/createContractForm.js'
 import LoaderComp from './../components/loaderComp.js'
 
-// <LoaderComp>
-//   Your campaign is currently being created
-// </LoaderComp>
 
 class NewCampaign extends React.Component {
   componentDidMount () {
@@ -41,6 +38,12 @@ class NewCampaign extends React.Component {
             Connecting to your wallet
           </LoaderComp>
         )}
+
+        {this.props.isDeploying && (
+          <LoaderComp>
+            Your campaign is currently being created
+          </LoaderComp>
+        )}
       </div>
     )
   }
@@ -49,7 +52,8 @@ class NewCampaign extends React.Component {
 const mapStateToProps = (state) => {
   return {
     isConnected: state.web3Connect.isConnected,
-    isLoading: state.web3Connect.isLoading
+    isLoading: state.web3Connect.isLoading,
+    isDeploying: state.web3Connect.isDeploying
   }
 }
 
