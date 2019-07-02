@@ -4,14 +4,10 @@ import FundraiserFactory from '../contracts/FundraiserFactory.json'
 import {updateAddresses, updateContract, updateDeploying} from './../reducers/web3Connect.js'
 
 import Button from './button.js'
-import { updateDeploying } from './../reducers/web3Connect';
 
 class DeployButton extends React.Component {
     constructor (props) {
         super(props);
-        this.state = {
-            isDeploying: false
-        };
         this.deploy = this.deploy.bind(this);
     }
 
@@ -21,7 +17,7 @@ class DeployButton extends React.Component {
         const contractAddress = FundraiserFactory.networks['4'].address;
         const contract = new web3.eth.Contract(abi, contractAddress);
 
-        this.props.dispatch(updateContract(contract))
+        this.props.dispatch(updateContract(contract));
 
         if (web3.utils.isAddress(recipient) && typeof expiration === 'number' && expiration % 1 === 0) {
             const tx = contract.methods.deploy(recipient, account, expiration).send({
@@ -31,7 +27,7 @@ class DeployButton extends React.Component {
 
 
             tx.on('transactionHash', () => {
-                this.props.dispatch(updateDeploying(true))
+                this.props.dispatch(updateDeploying(true));
             })
             .then((receipt) => {
                 const result = receipt.events.NewFundraiser.returnValues;
@@ -42,7 +38,7 @@ class DeployButton extends React.Component {
                     fundraiser: result[3],
                     grant: result[4]
                 };
-                this.props.dispatch(updateAddresses(addresses))
+                this.props.dispatch(updateAddresses(addresses));
             })
         } else {
             throw "error: invalid recipient or expiration date"
@@ -55,7 +51,6 @@ class DeployButton extends React.Component {
 
         return (<div>
             <Button onClick={this.deploy} disabled={disabled}>Yes, let's do it!</Button>
-            {this.state.isDeploying && (<p>deploying...</p>)}
         </div>)
     }
 }
