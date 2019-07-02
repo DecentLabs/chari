@@ -1,4 +1,3 @@
-import { default as Web3 } from "web3";
 import getWeb3 from './../utils/getWeb3';
 
 const WEB3_SETUP_REQUESTED = "WEB3_SETUP_REQUESTED";

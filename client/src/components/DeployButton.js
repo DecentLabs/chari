@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux'
 import FundraiserFactory from '../contracts/FundraiserFactory.json'
 
-import styles from './../styles/button.module.css'
 import Button from './button.js'
 
 class DeployButton extends React.Component {

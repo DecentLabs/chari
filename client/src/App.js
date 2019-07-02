@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import store from "./store.js";
-import { setupWeb3 } from "./reducers/web3Connect";
 import  { Route, Switch, withRouter} from "react-router-dom"
 
 import Navigation from './components/navigation.js'
-
 import Home from './views/Home.js'
 import Featured from './views/Featured.js'
 import LearnMore from './views/LearnMore.js'
@@ -12,19 +9,6 @@ import Contact from './views/Contact.js'
 import NewCampaign from './views/NewCampaign.js'
 
 class App extends Component {
-
-  componentDidMount = async () => {
-    try {
-        store.dispatch(setupWeb3())
-    } catch (error) {
-      // Catch any errors for any of the above operations.
-      alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`,
-      );
-      console.error(error);
-    }
-  };
-
   render() {
     return (
       <div className="App">
@@ -37,7 +21,7 @@ class App extends Component {
             <Route path="/new" component={NewCampaign} />
           </Switch>
       </div>
-    );
+    )
   }
 }
 
