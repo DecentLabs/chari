@@ -6,8 +6,6 @@ export default class DeployButton extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            deployer: null,
-            recipient: null,
             sponsor: null,
             fundraiser: null,
             grant: null
@@ -28,13 +26,9 @@ export default class DeployButton extends React.Component {
                 gas: 2000000
             });
 
-            tx.on('confirmation', (num, receipt) => {
-                console.log(num, receipt)
-            }).then((receipt) => {
+            tx.then((receipt) => {
                 const result = receipt.events.NewFundraiser.returnValues;
                 this.setState({
-                    deployer: result[0],
-                    recipient: result[1],
                     sponsor: result[2],
                     fundraiser: result[3],
                     grant: result[4]
