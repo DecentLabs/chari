@@ -13,7 +13,6 @@ before_install:
 install:
   - yarn
 script:
-  - yarn compile
   - yarn build
   - echo 'chari.io' >./build/CNAME
 deploy:
