@@ -1,4 +1,5 @@
 .newCampaign {
   text-align: left;
   padding-left: 220px;
+  height: calc(100vh - 100px);
 }

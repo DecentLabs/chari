@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import FundraiserFactory from '../contracts/FundraiserFactory.json'
 import {updateAddresses, updateContract, updateDeploying} from './../reducers/web3Connect.js'
 
-import styles from './../styles/button.module.css'
 import Button from './button.js'
 import { updateDeploying } from './../reducers/web3Connect';
 
