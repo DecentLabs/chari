@@ -31,6 +31,7 @@ const getWeb3 = () =>
       else {
         const portis = new Portis(PORTIS_APP, PORTIS_NETWORK)
         const web3 = new Web3(portis.provider);
+
         resolve(web3);
       }
     });

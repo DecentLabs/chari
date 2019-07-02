@@ -17,17 +17,20 @@ class DeployButton extends React.Component {
     }
 
     deploy() {
+        const {web3, recipient, expiration, account} = this.props;
         const abi = FundraiserFactory.abi;
         const contractAddress = FundraiserFactory.networks['4'].address;
-        const web3 = this.props.web3;
         const contract = new web3.eth.Contract(abi, contractAddress);
-        const {recipient, expiration, account} = this.props;
+
+        console.log(recipient, expiration)
 
         if (web3.utils.isAddress(recipient) && typeof expiration === 'number' && expiration % 1 === 0) {
             const tx = contract.methods.deploy(recipient, account, expiration).send({
                 from: account,
                 gas: 2000000
             });
+
+            console.log(tx)
 
             tx.then((receipt) => {
                 const result = receipt.events.NewFundraiser.returnValues;
@@ -44,7 +47,7 @@ class DeployButton extends React.Component {
     }
 
     render() {
-        const disabled = !this.props.web3Connect.web3
+        const disabled = !this.props.web3
         const {fundraiser} = this.state;
 
         return (<div>
@@ -55,7 +58,10 @@ class DeployButton extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    web3Connect: state.web3Connect
+    web3: state.web3Connect.web3,
+    recipient: state.web3Connect.recipient,
+    expiration: state.web3Connect.expDate,
+    account: state.web3Connect.accounts[0]
 });
 
 export default connect(mapStateToProps)(DeployButton);
