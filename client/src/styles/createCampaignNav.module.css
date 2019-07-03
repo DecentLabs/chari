@@ -1,0 +1,21 @@
+.createCampaignNav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 20px auto;
+  padding: 0;
+}
+
+.createCampaignNav li {
+  list-style-type: none;
+  width: auto;
+  margin: 0 20px;
+  display: inline-block;
+}
+.createCampaignNav li a{
+  color: #001A12;
+  text-decoration: none;
+}
+.createCampaignNav li a.active {
+  text-decoration: underline;
+}

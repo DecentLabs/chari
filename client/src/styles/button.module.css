@@ -1,17 +1,28 @@
 .button {
-  width: 330px;
-  height: 56px;
+  width: auto;
+  height: 44px;
   color: white;
-  background: #9332F4;
-  border-radius: 4px;
+  background: #02DB96;
+  border-radius: 40px;
   border: none;
   outline: none;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 16px;
+  font-weight: normal;
   line-height: 21px;
-  text-transform: uppercase;
   margin-top: 40px;
   cursor: pointer;
+  padding: 0 40px;
+  display: inline-block;
+}
+.button.naked {
+  height: auto;
+  color: black;
+  border-radius: 0;
+  line-height: 100%;
+  background: none;
+  border-bottom: 1px solid black;
+  font-size: 12px;
+  padding: 0;
 }
 
 .button:hover {
