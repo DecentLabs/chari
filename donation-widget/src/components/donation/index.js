@@ -5,6 +5,7 @@ import Web3 from 'Web3'
 import Fundraiser from '../../../../deployments/Fundraiser.json'
 import Grant from '../../../../deployments/Grant.json'
 import Balance from '../balance'
+import Expiration from '../expiration'
 
 export default class Donation extends Component {
   state = {
@@ -14,7 +15,8 @@ export default class Donation extends Component {
     grantContract: null,
     donations: null,
     grants: null,
-    tokens: []
+    tokens: [],
+    expiration: 0
   }
 
   componentDidMount () {
@@ -31,13 +33,17 @@ export default class Donation extends Component {
         this.setState({grantContract})
       })
 
+      fundraiserContract.methods.expiration().call().then(expiration =>{
+        this.setState({expiration: expiration.toNumber()})
+      })
+
       this.setState({web3, fundraiserContract, tokens})
     }
   }
 
-  render (props, {fundraiserContract, grantContract, tokens}) {
+  render (props, {fundraiserContract, grantContract, tokens, expiration}) {
     return (
-      <div className={donation}>
+      <div class={donation}>
         <h1>fundraiser contract address: {fundraiserContract && fundraiserContract.address}</h1>
         <ul>{tokens.map(tokenInfo => (
           <Balance contract={fundraiserContract} token={tokenInfo.token} tokenAddress={tokenInfo.tokenAddress} decimals={tokenInfo.decimals}/>
@@ -46,6 +52,7 @@ export default class Donation extends Component {
         <ul>{tokens.map(tokenInfo => (
           <Balance contract={grantContract} token={tokenInfo.token} tokenAddress={tokenInfo.tokenAddress} decimals={tokenInfo.decimals}/>
         ))}</ul>
+        <Expiration at={expiration}/>
       </div>
     )
   }
