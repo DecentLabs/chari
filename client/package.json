@@ -4,7 +4,10 @@
   "private": true,
   "dependencies": {
     "@portis/web3": "^2.0.0-beta.31",
+    "classnames": "^2.2.6",
     "react": "^16.6.3",
+    "react-date-picker": "^7.5.1",
+    "react-datepicker": "^2.7.0",
     "react-dom": "^16.6.3",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
@@ -12,8 +15,7 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "web3": "^1.0.0-beta.37",
-    "classnames": "^2.2.6"
+    "web3": "^1.0.0-beta.37"
   },
   "scripts": {
     "start": "react-scripts start",

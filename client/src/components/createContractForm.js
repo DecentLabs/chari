@@ -5,14 +5,17 @@ import {updateExpDate, updateRecipient} from './../reducers/web3Connect.js'
 
 import Input from './input.js'
 import Button from './button.js'
+import DatePicker from 'react-datepicker';
 import ConfirmDeploy from './confirmDeploy.js'
+import "react-datepicker/dist/react-datepicker.css";
 
 
 class CreateContractForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showConfirm: false
+            showConfirm: false,
+            date: new Date()
         };
         this.onAddressChange = this.onAddressChange.bind(this)
         this.confirmDeploy = this.confirmDeploy.bind(this)
@@ -20,14 +23,20 @@ class CreateContractForm extends React.Component {
         this.hide = this.hide.bind(this)
     }
 
+    componentDidMount() {
+        const timestamp = Math.floor(this.state.date / 1000)
+        this.props.dispatch(updateExpDate(timestamp))
+    }
+
     onAddressChange(e) {
-        const val = e.target.value
+        const val = e.target.value;
         this.props.dispatch(updateRecipient(val))
     }
 
-    onExpDateChange(e) {
-      const val = e.target.value
-      this.props.dispatch(updateExpDate(val))
+    onExpDateChange(date) {
+      const timestamp = Math.floor(date.getTime() / 1000)
+      this.setState({date})
+      this.props.dispatch(updateExpDate(timestamp))
     }
 
     confirmDeploy () {
@@ -43,13 +52,24 @@ class CreateContractForm extends React.Component {
     }
 
     render() {
-        const placeholderAddress = '0x76E7a0aEc3E43211395bBBB6Fa059bD6750F83c3'
         return (
           <div className={styles.createContractForm}>
             <h1>Hi! You are creating a new campaign as the Sponsor</h1>
             <form>
-              <Input name="address" label="Enter charity address" placeHolder={placeholderAddress} onChange={this.onAddressChange}/>
-              <Input name="expiration" label="Choose expiration date" placeHolder="Day / Month / Year" onChange={this.onExpDateChange}/>
+              <Input name="address" label="Enter charity address" placeHolder="0x..." onChange={this.onAddressChange}/>
+              <DatePicker onChange={this.onExpDateChange}
+                          selected={this.state.date}
+                          showTimeSelect
+                          timeFormat="HH:mm"
+                          timeIntervals={60}
+                          timeCaption="time"
+                          dateFormat="dd/MM/yyyy hh:mm aa"
+                          customInput={<Input name="expiration"
+                                              label="Choose expiration date"
+                                              value={this.state.date}
+                          />}
+
+              />
             </form>
             <Button onClick={this.confirmDeploy} hide={this.hide}>Create</Button>
             {this.state.showConfirm && <ConfirmDeploy hide={this.hide}></ConfirmDeploy> }
