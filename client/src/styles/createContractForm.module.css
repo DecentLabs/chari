@@ -1,5 +1,19 @@
-.createContractForm {
-  display: inline-flex;
+.createContractForm form {
+  display: flex;
   flex-direction: column;
-  margin: 80px 40px;
+  margin-top: 100px;
+}
+
+.createContractForm h1 {
+  margin-top: 100px;
+}
+
+.datepicker {
+  width: 100%;
+}
+
+.datepicker .react-date-picker__wrapper {
+  width: 640px;
+  border: none;
+  border-bottom: 1px solid #000;
 }

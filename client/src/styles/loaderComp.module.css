@@ -1,0 +1,29 @@
+.loader {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 200px;
+  align-items: center;
+}
+
+.loaderIcon {
+  width: 64px;
+  height: 64px;
+  margin-top: 40px;
+}
+
+.loaderIcon img {
+  transform-origin: center center;
+  animation: rotating 2s linear infinite;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
