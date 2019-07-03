@@ -1,6 +1,6 @@
 import getWeb3 from './../utils/getWeb3';
 import {steps} from './../components/createCampaignNav.js'
-import FundraiserFactory from '../contracts/FundraiserFactory.json'
+import FundraiserFactory from '../../../deployments/FundraiserFactory.json'
 // import store from './../store.js'
 
 const WEB3_SETUP_REQUESTED = "WEB3_SETUP_REQUESTED";
