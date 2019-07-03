@@ -20,7 +20,7 @@ function Home (props) {
         <p className="big">Chari offers a completely new way to raise funds and run <br/>fundraising campaigns</p>
       </header>
 
-      <NavLink to="/new/deploy">
+      <NavLink to="/campaign/deploy">
         <Button onClick={connectWeb3}>Create Your Campaign</Button>
       </NavLink>
     </div>

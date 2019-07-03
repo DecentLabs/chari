@@ -6,7 +6,6 @@ import {connect} from 'react-redux'
 // import CreateCampaignNav from './../components/createCampaignNav.js'
 
 import WidgetEditor from './WidgetEditor.js'
-import AddFund from './AddFund.js'
 import CreateContractForm from './../components/createContractForm.js'
 import LoaderComp from './../components/loaderComp.js'
 
@@ -18,15 +17,14 @@ class NewCampaign extends React.Component {
           <div>
             {!this.props.isLoading && !this.props.isDeploying && (
               <Switch>
-                <Route path="/new/deploy" component={CreateContractForm} />
-                <Route path="/new/widget" component={WidgetEditor} />
-                <Route path="/new/fund" component={AddFund} />
+                <Route path="/campaign/deploy" component={CreateContractForm} />
+                <Route path="/campaign/admin" component={WidgetEditor} />
               </Switch>
             )}
           </div>
 
         {this.props.isDeployed && (
-            <Redirect to='/new/fund' />
+            <Redirect to='/campaign/admin' />
         )}
 
         {this.props.isLoading && (
