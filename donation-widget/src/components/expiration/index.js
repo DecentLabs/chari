@@ -1,6 +1,6 @@
 import { h, Component } from 'preact'
 import moment from 'moment'
-import {Ticker} from '../ticker'
+import { Ticker } from '../ticker'
 
 export default class Expiration extends Component {
   state = {time: null}
@@ -26,7 +26,7 @@ export default class Expiration extends Component {
     return (
       <div>
         <Ticker duration={duration}/>
-        <div></div>
+        <div>Campaign ends {moment(at * 1000).format("Do MMMM, YYYY h:mm a")}</div>
       </div>)
   }
 }
