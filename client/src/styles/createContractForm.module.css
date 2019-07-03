@@ -17,3 +17,8 @@
   border: none;
   border-bottom: 1px solid #000;
 }
+
+.field {
+  display: flex;
+  align-items: center;
+}

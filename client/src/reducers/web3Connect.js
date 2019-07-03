@@ -6,11 +6,9 @@ import FundraiserFactory from '../contracts/FundraiserFactory.json'
 const WEB3_SETUP_REQUESTED = "WEB3_SETUP_REQUESTED";
 const WEB3_SETUP_SUCCESS = "WEB3_SETUP_SUCCESS";
 const WEB3_SETUP_ERROR = "WEB3_SETUP_ERROR";
-const WEB3_ACCOUNT_CHANGE = "WEB3_ACCOUNT_CHANGE";
 const UPDATE_EXPDATE = "UPDATE_EXPDATE";
 const UPDATE_RECIPIENT = "UPDATE_RECIPIENT";
-const UPDATE_ADDRESSES = "UPDATE_ADDRESSES";
-const UPDATE_CONTRACT = "UPDATE_CONTRACT";
+const UPDATE_SPONSOR = "UPDATE_SPONSOR"
 
 const DEPLOY_REQUESTED = "DEPLOY_REQUESTED"
 const DEPLOY_SUCCESS = "DEPLOY_SUCCESS"
@@ -64,10 +62,6 @@ export default (state = initialState, action) => {
                 error: action.error
             };
 
-        // case WEB3_ACCOUNT_CHANGE:
-        //     return {
-        //         ...state,
-        //     };
         case UPDATE_EXPDATE:
             return {
               ...state,
@@ -77,6 +71,11 @@ export default (state = initialState, action) => {
             return {
               ...state,
               recipient: action.recipient
+            }
+        case UPDATE_SPONSOR:
+            return {
+                ...state,
+                sponsor: action.sponsor
             }
         case DEPLOY_REQUESTED:
             return {
@@ -107,18 +106,18 @@ export default (state = initialState, action) => {
     }
 };
 
-export const updateContract = (contract) => {
-    return {
-        type: UPDATE_CONTRACT,
-        contract
-    }
-}
-
 export const updateRecipient = (recipient) => {
   return {
     type: UPDATE_RECIPIENT,
     recipient: recipient
   }
+}
+
+export const updateSponsor = (sponsor) => {
+    return {
+        type: UPDATE_SPONSOR,
+        sponsor
+    }
 }
 
 export const updateExpDate = (expDate) => {
@@ -161,21 +160,19 @@ export const deploy = () => {
       });
 
       try {
-        const web3Connect = getState().web3Connect
-        const recipient = web3Connect.recipient
-        const expiration = web3Connect.expDate
-        const account = web3Connect.accounts[0]
-        const web3 = web3Connect.web3
+        const web3Connect = getState().web3Connect;
+        const recipient = web3Connect.recipient;
+        const sponsor = web3Connect.sponsor;
+        const expiration = web3Connect.expDate;
+        const web3 = web3Connect.web3;
 
         const abi = FundraiserFactory.abi;
         const contractAddress = FundraiserFactory.networks['4'].address;
         const contract = new web3.eth.Contract(abi, contractAddress);
 
-        console.log(expiration, 'exp')
-
         if (web3.utils.isAddress(recipient) && typeof expiration === 'number' && expiration % 1 === 0) {
-            const tx = contract.methods.deploy(recipient, account, expiration).send({
-                from: account,
+            const tx = contract.methods.deploy(recipient, sponsor, expiration).send({
+                from: sponsor,
                 gas: 2000000
             });
 
