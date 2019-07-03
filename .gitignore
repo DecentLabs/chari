@@ -1,2 +1,3 @@
 .idea/
 node_modules/
+/donation-widget/stats.json

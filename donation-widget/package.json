@@ -9,7 +9,7 @@
   "scripts": {
     "test": "NODE_ENV=test jest",
     "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
-    "build": "preact build --no-prerender --clean --template src/index.ejs --service-worker false",
+    "build": "preact build --no-prerender --clean --template src/index.ejs --service-worker false --json",
     "serve": "npm run build && preact serve",
     "dev": "preact watch --template src/index.ejs",
     "dist": "microbundle --entry src/components/hello-world/index.js"
@@ -25,7 +25,7 @@
     "microbundle": "^0.6.0",
     "node-sass": "^4.5.3",
     "preact-cli": "^2.0.2",
-    "preact-render-to-string": "^3.7.0",
+    "preact-render-to-string": "^4.1.0",
     "preact-widget-scripts": "^0.6.0",
     "sass-loader": "^6.0.6"
   },
