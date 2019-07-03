@@ -20,12 +20,12 @@ class NewCampaign extends React.Component {
   }
 
   render () {
-    console.log(this.props);
+    const show = this.props.isConnected && !this.props.isLoading && !this.props.isDeploying
     return (
       <div className={styles.newCampaign}>
-        {this.props.isConnected && !this.props.isLoading && !this.props.isDeploying && (
+        { show && (
           <div>
-            <CreateCampaignNav></CreateCampaignNav>
+            <CreateCampaignNav deployed={this.props.isDeployed}></CreateCampaignNav>
             <Switch>
               <Route path="/new/deploy" component={CreateContractForm} />
               <Route path="/new/widget" component={WidgetEditor} />

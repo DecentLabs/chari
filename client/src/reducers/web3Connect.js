@@ -1,12 +1,10 @@
 import getWeb3 from './../utils/getWeb3';
-import {steps} from './../components/createCampaignNav.js'
 import FundraiserFactory from '../contracts/FundraiserFactory.json'
-// import store from './../store.js'
 
 const WEB3_SETUP_REQUESTED = "WEB3_SETUP_REQUESTED";
 const WEB3_SETUP_SUCCESS = "WEB3_SETUP_SUCCESS";
 const WEB3_SETUP_ERROR = "WEB3_SETUP_ERROR";
-const WEB3_ACCOUNT_CHANGE = "WEB3_ACCOUNT_CHANGE";
+// const WEB3_ACCOUNT_CHANGE = "WEB3_ACCOUNT_CHANGE";
 const UPDATE_EXPDATE = "UPDATE_EXPDATE";
 const UPDATE_RECIPIENT = "UPDATE_RECIPIENT";
 const UPDATE_ADDRESSES = "UPDATE_ADDRESSES";
@@ -179,16 +177,14 @@ export const deploy = () => {
         const contractAddress = FundraiserFactory.networks['4'].address;
         const contract = new web3.eth.Contract(abi, contractAddress);
 
-        console.log(contract, 'c');
-
         if (web3.utils.isAddress(recipient) && typeof expiration === 'number' && expiration % 1 === 0) {
             const tx = contract.methods.deploy(recipient, account, expiration).send({
                 from: account,
                 gas: 2000000
             });
 
-            tx.on('error', () => {
-              dispatch({type: DEPLOY_ERROR});
+            tx.on('error', (error) => {
+              dispatch({type: DEPLOY_ERROR, error: error});
             })
             .then((receipt) => {
                 const result = receipt.events.NewFundraiser.returnValues;
