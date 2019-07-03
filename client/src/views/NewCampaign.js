@@ -2,9 +2,8 @@ import React from "react"
 import  { Route, Switch, Redirect} from "react-router-dom"
 import styles from './../styles/NewCampaign.module.css'
 import {connect} from 'react-redux'
-import {setupWeb3} from './../reducers/web3Connect.js'
 
-import CreateCampaignNav from './../components/createCampaignNav.js'
+// import CreateCampaignNav from './../components/createCampaignNav.js'
 
 import WidgetEditor from './WidgetEditor.js'
 import AddFund from './AddFund.js'
@@ -13,32 +12,24 @@ import LoaderComp from './../components/loaderComp.js'
 
 
 class NewCampaign extends React.Component {
-  componentDidMount () {
-    if (!this.props.isLoading && !this.props.isConnected) {
-      this.props.dispatch(setupWeb3())
-    }
-  }
-
   render () {
-    const show = this.props.isConnected && !this.props.isLoading && !this.props.isDeploying
     return (
       <div className={styles.newCampaign}>
-        { show && (
           <div>
-            <CreateCampaignNav deployed={this.props.isDeployed}></CreateCampaignNav>
-            <Switch>
-              <Route path="/new/deploy" component={CreateContractForm} />
-              <Route path="/new/widget" component={WidgetEditor} />
-              <Route path="/new/fund" component={AddFund} />
-            </Switch>
+            {!this.props.isLoading && !this.props.isDeploying && (
+              <Switch>
+                <Route path="/new/deploy" component={CreateContractForm} />
+                <Route path="/new/widget" component={WidgetEditor} />
+                <Route path="/new/fund" component={AddFund} />
+              </Switch>
+            )}
           </div>
-        )}
 
         {this.props.isDeployed && (
             <Redirect to='/new/fund' />
         )}
 
-        {!this.props.isConnected && (
+        {this.props.isLoading && (
           <LoaderComp>
             Connecting to your wallet
           </LoaderComp>
@@ -58,7 +49,8 @@ const mapStateToProps = (state) => {
   return {
     isConnected: state.web3Connect.isConnected,
     isLoading: state.web3Connect.isLoading,
-    isDeploying: state.web3Connect.isDeploying
+    isDeploying: state.web3Connect.isDeploying,
+    isDeployed: state.web3Connect.isDeployed
   }
 }
 
