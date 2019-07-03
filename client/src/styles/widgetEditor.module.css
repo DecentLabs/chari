@@ -1,0 +1,33 @@
+.widgetEditor {
+  display: flex;
+  flex-direction: column;
+}
+
+.widgetEditor header {
+  margin-bottom: 40px;
+}
+
+.widgetEditor .widget {
+  display: flex;
+  flex-direction: row;
+  margin: 20px auto;
+  width: 100%;
+}
+
+.widgetEditor .widget iframe {
+  width: 50%;
+  height: 350px;
+  margin-right: 40px;
+}
+
+.widgetEditor .widget .settings {
+  width: 50%;
+}
+
+.widgetEditor textarea {
+  width: 100%;
+  height: 200px;
+  border: 1px solid gray;
+  margin: 20px auto;
+  padding: 20px;
+}
