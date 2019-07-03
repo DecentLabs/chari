@@ -1,5 +1,5 @@
 import React from "react"
-import  { Route, Switch} from "react-router-dom"
+import  { Route, Switch, Redirect} from "react-router-dom"
 import styles from './../styles/NewCampaign.module.css'
 import {connect} from 'react-redux'
 import {setupWeb3} from './../reducers/web3Connect.js'
@@ -20,9 +20,10 @@ class NewCampaign extends React.Component {
   }
 
   render () {
+    console.log(this.props);
     return (
       <div className={styles.newCampaign}>
-        {this.props.isConnected  && (
+        {this.props.isConnected && !this.props.isLoading && !this.props.isDeploying && (
           <div>
             <CreateCampaignNav></CreateCampaignNav>
             <Switch>
@@ -31,6 +32,10 @@ class NewCampaign extends React.Component {
               <Route path="/new/fund" component={AddFund} />
             </Switch>
           </div>
+        )}
+
+        {this.props.isDeployed && (
+            <Redirect to='/new/fund' />
         )}
 
         {!this.props.isConnected && (

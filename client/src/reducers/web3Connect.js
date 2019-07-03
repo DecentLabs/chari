@@ -1,4 +1,7 @@
 import getWeb3 from './../utils/getWeb3';
+import {steps} from './../components/createCampaignNav.js'
+import FundraiserFactory from '../contracts/FundraiserFactory.json'
+// import store from './../store.js'
 
 const WEB3_SETUP_REQUESTED = "WEB3_SETUP_REQUESTED";
 const WEB3_SETUP_SUCCESS = "WEB3_SETUP_SUCCESS";
@@ -8,7 +11,10 @@ const UPDATE_EXPDATE = "UPDATE_EXPDATE";
 const UPDATE_RECIPIENT = "UPDATE_RECIPIENT";
 const UPDATE_ADDRESSES = "UPDATE_ADDRESSES";
 const UPDATE_CONTRACT = "UPDATE_CONTRACT";
-const UPDATE_DEPLOYING = "UPDATE_DEPLOYING";
+
+const DEPLOY_REQUESTED = "DEPLOY_REQUESTED"
+const DEPLOY_SUCCESS = "DEPLOY_SUCCESS"
+const DEPLOY_ERROR = "DEPLOY_ERROR"
 
 const DURATION = 7 * 24 * 60 * 60;
 
@@ -28,6 +34,7 @@ const initialState = {
     fundraiser: null,
     grant: null,
     isDeploying: false,
+    isDeployed: false
 };
 
 
@@ -57,20 +64,10 @@ export default (state = initialState, action) => {
                 error: action.error
             };
 
-        case WEB3_ACCOUNT_CHANGE:
-            return {
-                ...state,
-            };
-        case UPDATE_DEPLOYING:
-            return {
-                ...state,
-                isDeploying: action.isDeploying
-            }
-        case UPDATE_CONTRACT:
-            return {
-                ...state,
-                contract: action.contract
-            }
+        // case WEB3_ACCOUNT_CHANGE:
+        //     return {
+        //         ...state,
+        //     };
         case UPDATE_EXPDATE:
             return {
               ...state,
@@ -81,15 +78,29 @@ export default (state = initialState, action) => {
               ...state,
               recipient: action.recipient
             }
-        case UPDATE_ADDRESSES:
+        case DEPLOY_REQUESTED:
             return {
-                ...state,
-                deployer: action.addresses.deployer,
-                recipient: action.addresses.recipient,
-                sponsor: action.addresses.sponsor,
-                fundraiser: action.addresses.fundraiser,
-                grant: action.addresses.grant,
-                isDeploying: false
+              ...state,
+              isDeploying: true
+            }
+        case DEPLOY_SUCCESS:
+            return {
+              ...state,
+              deployer: action.addresses.deployer,
+              recipient: action.addresses.recipient,
+              sponsor: action.addresses.sponsor,
+              fundraiser: action.addresses.fundraiser,
+              grant: action.addresses.grant,
+              contract: action.contract,
+              isDeploying: false,
+              isDeployed: true
+            }
+        case DEPLOY_ERROR:
+            return {
+              ...state,
+              error: action.error,
+              isDeploying: false,
+              isDeployed: false
             }
         default:
             return state;
@@ -98,7 +109,7 @@ export default (state = initialState, action) => {
 
 export const updateContract = (contract) => {
     return {
-        type: UPDATE_RECIPIENT,
+        type: UPDATE_CONTRACT,
         contract
     }
 }
@@ -121,13 +132,6 @@ export const updateAddresses = (addresses) => {
     return {
         type: UPDATE_ADDRESSES,
         addresses
-    }
-}
-
-export const updateDeploying = (isDeploying) => {
-    return {
-        type: UPDATE_DEPLOYING,
-        isDeploying
     }
 }
 
@@ -157,3 +161,56 @@ export const setupWeb3 = () => {
         }
     };
 };
+
+export const deploy = () => {
+  return async (dispatch, getState) => {
+      dispatch({
+          type: DEPLOY_REQUESTED
+      });
+
+      try {
+        const web3Connect = getState().web3Connect
+        const recipient = web3Connect.recipient
+        const expiration = web3Connect.expDate
+        const account = web3Connect.accounts[0]
+        const web3 = web3Connect.web3
+
+        const abi = FundraiserFactory.abi;
+        const contractAddress = FundraiserFactory.networks['4'].address;
+        const contract = new web3.eth.Contract(abi, contractAddress);
+
+        console.log(contract, 'c');
+
+        if (web3.utils.isAddress(recipient) && typeof expiration === 'number' && expiration % 1 === 0) {
+            const tx = contract.methods.deploy(recipient, account, expiration).send({
+                from: account,
+                gas: 2000000
+            });
+
+            tx.on('error', () => {
+              dispatch({type: DEPLOY_ERROR});
+            })
+            .then((receipt) => {
+                const result = receipt.events.NewFundraiser.returnValues;
+                const addresses = {
+                    deployer: result[0],
+                    recipient: result[1],
+                    sponsor: result[2],
+                    fundraiser: result[3],
+                    grant: result[4]
+                };
+                dispatch({
+                  type: DEPLOY_SUCCESS,
+                  addresses,
+                  contract: contract
+                });
+            })
+        }
+      } catch (error) {
+          return dispatch({
+              type: DEPLOY_ERROR,
+              error: error
+          });
+      }
+  };
+}

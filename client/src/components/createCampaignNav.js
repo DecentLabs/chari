@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom"
 const DEPLOY = 'deploy'
 const FUND = 'fund'
 const WIDGET = 'widget'
-const steps = [DEPLOY, FUND, WIDGET]
+export const steps = [DEPLOY, FUND, WIDGET]
 
 const uiSteps = {
   deploy: '1. Deploy contract',
