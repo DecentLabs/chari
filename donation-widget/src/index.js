@@ -1,13 +1,12 @@
 let poly = require("preact-cli/lib/lib/webpack/polyfills");
 
-import { h } from "preact";
-import habitat from "preact-habitat";
+import Donation from "./components/donation";
 
-import Widget from "./components/donation";
+var searchParams = new URLSearchParams(location.search);
 
-let _habitat = habitat(Widget);
+const App = () => (
+  <Donation fundraiser={searchParams.get('address')}
+            network={searchParams.get('network')} />
+);
 
-_habitat.render({
-  selector: '[data-widget-host="habitat"]',
-  clean: true
-});
+export default App
