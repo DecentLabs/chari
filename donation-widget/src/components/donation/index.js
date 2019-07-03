@@ -51,15 +51,17 @@ export default class Donation extends Component {
   render (props, {fundraiserContract, grantContract, tokens, expiration}) {
     return (
       <div class={donation} id="DonationWidget">
-        <h1>fundraiser contract address: {fundraiserContract && fundraiserContract.address}</h1>
+        <label>Current balance:</label>
         <ul>{tokens.map(tokenInfo => (
           <Balance contract={fundraiserContract} token={tokenInfo.token} tokenAddress={tokenInfo.tokenAddress} decimals={tokenInfo.decimals}/>
         ))}</ul>
-        <h1>grant contract address: {grantContract && grantContract.address}</h1>
+        <label>Sponsor balance:</label>
         <ul>{tokens.map(tokenInfo => (
           <Balance contract={grantContract} token={tokenInfo.token} tokenAddress={tokenInfo.tokenAddress} decimals={tokenInfo.decimals}/>
         ))}</ul>
         <Expiration at={expiration}/>
+        <hr />
+        {fundraiserContract && (<button>DONAT!</button>)}
       </div>
     )
   }
