@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 // import CreateCampaignNav from './../components/createCampaignNav.js'
 
 import WidgetEditor from './WidgetEditor.js'
-import CreateContractForm from './../components/createContractForm.js'
+import CreateContractForm from './createContractForm.js'
 import LoaderComp from './../components/loaderComp.js'
 
 
@@ -23,10 +23,6 @@ class NewCampaign extends React.Component {
             )}
           </div>
 
-        {this.props.isDeployed && (
-            <Redirect to='/campaign/admin' />
-        )}
-
         {this.props.isLoading && (
           <LoaderComp>
             Connecting to your wallet
@@ -37,6 +33,10 @@ class NewCampaign extends React.Component {
           <LoaderComp>
             Your campaign is currently being created
           </LoaderComp>
+        )}
+
+        {this.props.isDeployed && (
+            <Redirect to='/campaign/admin' />
         )}
       </div>
     )

@@ -2,12 +2,13 @@ import React from 'react'
 import styles from './../styles/createContractForm.module.css'
 import { connect } from 'react-redux'
 import {updateExpDate, updateRecipient, setupWeb3} from './../reducers/web3Connect.js'
-
-import Input from './input.js'
-import Button from './button.js'
-import DatePicker from 'react-datepicker';
-import ConfirmDeploy from './confirmDeploy.js'
 import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from 'react-datepicker';
+
+import Input from './../components/input.js'
+import Button from './../components/button.js'
+import ConfirmDeploy from './../components/confirmDeploy.js'
+
 
 
 class CreateContractForm extends React.Component {
