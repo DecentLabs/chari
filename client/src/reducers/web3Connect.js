@@ -128,14 +128,6 @@ export const updateExpDate = (expDate) => {
   }
 }
 
-export const updateAddresses = (addresses) => {
-    return {
-        type: UPDATE_ADDRESSES,
-        addresses
-    }
-}
-
-
 export const setupWeb3 = () => {
     return async dispatch => {
         dispatch({
@@ -179,7 +171,7 @@ export const deploy = () => {
         const contractAddress = FundraiserFactory.networks['4'].address;
         const contract = new web3.eth.Contract(abi, contractAddress);
 
-        console.log(contract, 'c');
+        console.log(expiration, 'exp')
 
         if (web3.utils.isAddress(recipient) && typeof expiration === 'number' && expiration % 1 === 0) {
             const tx = contract.methods.deploy(recipient, account, expiration).send({
@@ -187,9 +179,10 @@ export const deploy = () => {
                 gas: 2000000
             });
 
-            tx.on('error', () => {
+            tx.on('error', (e) => {
+              console.log(e)
               dispatch({type: DEPLOY_ERROR});
-            })
+            }).on('confirmation', (n,r) => console.log(n,r, 'conf'))
             .then((receipt) => {
                 const result = receipt.events.NewFundraiser.returnValues;
                 const addresses = {

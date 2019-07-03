@@ -23,11 +23,6 @@ class CreateContractForm extends React.Component {
         this.hide = this.hide.bind(this)
     }
 
-    componentDidMount() {
-        const timestamp = Math.floor(this.state.date / 1000)
-        this.props.dispatch(updateExpDate(timestamp))
-    }
-
     onAddressChange(e) {
         const val = e.target.value;
         this.props.dispatch(updateRecipient(val))
