@@ -1,12 +1,42 @@
-let poly = require("preact-cli/lib/lib/webpack/polyfills");
+import { h, Component } from 'preact'
+import Donation from './components/donation'
+import Contribution from './components/contribution'
+import { Router, route } from 'preact-router'
+import { Provider, connect } from 'unistore/preact'
+import { store, init } from './store.js'
+import { createHashHistory } from 'history';
 
-import Donation from "./components/donation";
+let poly = require('preact-cli/lib/lib/webpack/polyfills')
 
-var searchParams = new URLSearchParams(location.search);
+class App extends Component {
 
-const App = () => (
-  <Donation fundraiser={searchParams.get('address')}
-            network={searchParams.get('network')} />
-);
+  /** Gets fired when the route changes.
+   *  @param {Object} event    "change" event from [preact-router](http://git.io/preact-router)
+   *  @param {string} event.url  The newly routed URL
+   */
+  handleRoute = () => {
+    if(location.search) {
+      const searchParams = new URLSearchParams(location.search);
+      const address = searchParams.get('address')
+      const network = searchParams.get('network')
+      init(address, network);
+    }
+  }
 
-export default App
+  render () {
+    return (
+      <div id="app">
+        <Router onChange={this.handleRoute} history={createHashHistory()}>
+          <Donation path="/"/>
+          <Contribution path="/contribution/"/>
+        </Router>
+      </div>
+    )
+  }
+}
+
+export default () => (
+  <Provider store={store}>
+    <App/>
+  </Provider>
+)
