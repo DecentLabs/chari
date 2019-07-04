@@ -9,7 +9,6 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 21px;
-  margin-top: 40px;
   cursor: pointer;
   padding: 0 40px;
   display: inline-block;
@@ -26,10 +25,27 @@
   padding: 0;
 }
 
+.button.copy {
+  width: 44px;
+  height: 44px;
+  padding: 11px;
+  border-radius: 4px;
+}
+.button.copy img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
 .button:hover {
 
 }
 
 .button:active {
 
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
