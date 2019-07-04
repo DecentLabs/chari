@@ -19,6 +19,22 @@ module.exports = {
       network_id: 4,
       gas: 3000000,
       gasPrice: 10000000000
+    },
+    mainnet: {
+      provider: () => new HDWalletProvider(DEPLOYER_MNEMONIC, "https://mainnet.infura.io/v3/" + INFURA_API_KEY),
+      network_id: 1,
+      gas: 3000000,
+      gasPrice: 10000000000
+    }
+  },
+  compilers: {
+    solc: {
+      settings: {
+        optimizer: {
+          enabled: true, 
+          runs: 200    
+        }
+      }
     }
   }
 };
