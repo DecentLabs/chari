@@ -1,5 +1,5 @@
 import getWeb3 from './../utils/getWeb3';
-import FundraiserFactory from '../../../deployments/FundraiserFactory.json'
+import FundraiserFactory from '../deployments/FundraiserFactory.json'
 
 const WEB3_SETUP_REQUESTED = "WEB3_SETUP_REQUESTED";
 const WEB3_SETUP_SUCCESS = "WEB3_SETUP_SUCCESS";

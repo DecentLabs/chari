@@ -18,7 +18,7 @@ function Home (props) {
       <header>
         <h1 className="title">A match made in crypto</h1>
         <p className="big">
-          Chari makes donation matching campaigns easy 
+          Chari makes donation matching campaigns easy
           <br/>
           and secure with cryptocurrencies.
         </p>
@@ -53,6 +53,7 @@ function Home (props) {
           Easily embed a Chari donation component into the landing page of your fundraiser campaign.
         </dd>
       </dl>
+      <iframe src="/widget/?address=0xB5E5F24b659bC8872c4f89b127C685b7FC641862&network=4"></iframe>
 
     </div>
   )
