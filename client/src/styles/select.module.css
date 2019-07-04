@@ -15,7 +15,8 @@
   -webkit-appearance: none;
   appearance: none;
   font-size: 24px;
-  background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat calc(100% - 16px) white;
+  background: url('./../assets/down-arrow.svg') no-repeat calc(100% - 16px) white;
+  background-size: 16px 16px;
 }
 .select option {
   color: #797E7C;

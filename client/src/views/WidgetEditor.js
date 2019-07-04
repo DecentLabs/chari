@@ -11,7 +11,6 @@ function WidgetEditor () {
     {value: 'light', name: 'Light theme'}
   ]
   const colorOptions = [{value: 'purple', name: 'purple'}, {value: 'green', name: 'green'}] // todo
-  const options = [{value: 1, name: 1}, {value: 2, name: 2}] // todo
 
   const copyCode = () => {
     const toCopy = document.querySelector('textarea#widget-code')
@@ -30,7 +29,6 @@ function WidgetEditor () {
         <div className={styles.settings}>
           <Select options={themeOptions} label="Please select widget theme"></Select>
           <Select options={colorOptions} label="Please select color"></Select>
-          <Select options={options}></Select>
 
           <div className={styles.codeContainer}>
             <textarea readOnly value="code here2" id="widget-code"></textarea>
