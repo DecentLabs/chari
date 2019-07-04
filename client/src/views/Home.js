@@ -16,12 +16,12 @@ function Home (props) {
   return (
     <div className={styles.home}>
       <header>
-        <h1 className="title">A new class of potential <br/>matching sponsors and donors</h1>
-        <p className="big">Chari offers a completely new way to raise funds and run <br/>fundraising campaigns</p>
+        <h1 className="title">A match made in crypto</h1>
+        <p className="big">Chari makes donation matching campaigns easy and secure.</p>
       </header>
 
       <NavLink to="/campaign/deploy">
-        <Button onClick={connectWeb3}>Create Your Campaign</Button>
+        <Button onClick={connectWeb3}>Create a fundraising campaign</Button>
       </NavLink>
     </div>
   )
