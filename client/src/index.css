@@ -57,6 +57,7 @@ p.big {
 
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: 'Inter var', sans-serif;
+  font-size: 12px;
+  color: #797E7C;
 }

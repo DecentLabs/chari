@@ -12,12 +12,13 @@
   flex-direction: row;
   margin: 20px auto;
   width: 100%;
+  justify-content: space-between;
 }
 
 .widgetEditor .widget iframe {
-  width: 50%;
-  height: 350px;
-  margin-right: 40px;
+  width: 350px;
+  height: 400px;
+  border-radius: 4px;
 }
 
 .widgetEditor .widget .settings {
@@ -28,6 +29,23 @@
   width: 100%;
   height: 200px;
   border: 1px solid gray;
-  margin: 20px auto;
   padding: 20px;
+  background: #F8F9FA;
+  border: 1px solid #D5DAE2;
+  border-radius: 4px;
+  display: inline-block;
+  border-top-left-radius: 0;
+}
+
+.widgetEditor .codeContainer {
+  position: relative;
+  margin: 20px auto;
+}
+
+.widgetEditor .codeContainer button {
+  position: absolute;
+  top: 0;
+  left: -44px;
+  background-color: #BCBCBC;
+  border-radius: 0;
 }

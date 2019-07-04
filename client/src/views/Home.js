@@ -18,7 +18,7 @@ function Home (props) {
       <header>
         <h1 className="title">A match made in crypto</h1>
         <p className="big">
-          Chari makes donation matching campaigns easy 
+          Chari makes donation matching campaigns easy
           <br/>
           and secure with cryptocurrencies.
         </p>
@@ -31,7 +31,7 @@ function Home (props) {
       <dl>
         <dt>What is donation matching?</dt>
         <dd>
-          <a target="_blank" href="https://en.wikipedia.org/wiki/Matching_funds">
+          <a rel="noopener noreferrer" target="_blank" href="https://en.wikipedia.org/wiki/Matching_funds">
           Matching grants</a> are a great way to raise funds for a charitable cause.
           A sponsor deposits a budget to match donations 1:1.
           Thus <strong>donors double the impact</strong> of their contributions.
@@ -43,7 +43,7 @@ function Home (props) {
         <dd>
           <strong>A smart contract</strong>.
           The Chari smart contract manages the sponsor grant and donations on
-          the <a target="_blank" href="https://en.wikipedia.org/wiki/Ethereum">Ethereum blockchain</a>.
+          the <a rel="noopener noreferrer" target="_blank" href="https://en.wikipedia.org/wiki/Ethereum">Ethereum blockchain</a>.
           This means there is no need for a trusted third party to coordinate the fundraising
           and each participant can be certain their funds are managed safely.
         </dd>

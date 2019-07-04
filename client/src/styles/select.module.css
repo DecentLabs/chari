@@ -1,11 +1,33 @@
 .selectWrapper {
   width: 100%;
-  padding: 10px;
+  padding: 10px 0;
 }
 
 .select {
-  padding: 10px;
-  border: 1px solid gray;
+  padding: 7px;
+  border: none;
+  border-bottom: 1px solid #BCBCBC;
+  color: #797E7C;
+  border-radius: 0;
+  background: white;
   width: 100%;
-  max-width: 300px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  font-size: 24px;
+  background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat calc(100% - 16px) white;
+}
+.select option {
+  color: #797E7C;
+}
+.select:placeholder {
+  color: #BCBCBC;
+}
+.select:focus {
+  outline: none;
+  border-bottom: 2px solid #02DB96;
+}
+
+.select-css::-ms-expand {
+    display: none;
 }
