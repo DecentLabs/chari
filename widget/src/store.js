@@ -1,5 +1,5 @@
 import createStore from 'unistore'
-import { NETWORKS } from './constants.js'
+import { NETWORKS } from '../../shared/constants.js'
 import Fundraiser from '../../deployments/Fundraiser.json'
 import Grant from '../../deployments/Grant.json'
 import Web3 from 'Web3'
