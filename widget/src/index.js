@@ -25,12 +25,10 @@ class App extends Component {
 
   render () {
     return (
-      <div id="app">
         <Router onChange={this.handleRoute} history={createHashHistory()}>
           <Donation path="/"/>
           <Contribution path="/contribution/"/>
         </Router>
-      </div>
     )
   }
 }

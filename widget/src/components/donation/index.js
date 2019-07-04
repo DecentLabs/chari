@@ -6,7 +6,7 @@ import BalanceList from '../balanceList'
 import Expiration from '../expiration'
 
 export default connect(['fundraiserContract','fundraiserBalance', 'grantBalance', 'expiration'])(({fundraiserContract, fundraiserBalance, grantBalance, expiration}) => (
-  <div className={donation} id="DonationWidget">
+  <div className={donation} id="DonationWidget" data-view="donation">
     <label>Current balance:</label>
     <BalanceList balanceList={fundraiserBalance}/>
     <label>Sponsor balance:</label>

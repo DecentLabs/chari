@@ -68,6 +68,6 @@ function getBalance(contract, tokenInfo) {
       }
       balance = balance.toNumber() / Math.pow(10, DEC_DIV)
     }
-    return {value: balance.toString(), token: token}
+    return {value: balance, token: token}
   })
 }

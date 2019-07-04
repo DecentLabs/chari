@@ -1,10 +1,12 @@
 import { h } from 'preact'
 import { connect } from 'unistore/preact'
 import { Link } from 'preact-router/match'
-
+import { contribution } from './style.css'
 export default connect(['fundraiserAddress'])(({fundraiserAddress}) => (
-  <div>
-    <div>Contribute to: {fundraiserAddress}</div>
+  <div class={contribution} data-view="donation">
+    <div>Contribute to:</div>
+    <div>{fundraiserAddress}</div>
+    <hr/>
     <Link href="/">Back</Link>
   </div>
 ))
