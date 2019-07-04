@@ -2,7 +2,7 @@ import React from "react"
 import styles from './../styles/widgetEditor.module.css'
 
 import Button from './../components/button.js'
-import Input from './../components/input.js'
+// import Input from './../components/input.js'
 import Select from './../components/select.js'
 
 function WidgetEditor () {
@@ -20,7 +20,7 @@ function WidgetEditor () {
       </header>
 
       <div className={styles.widget}>
-        <iframe src=""></iframe>
+        <iframe title="Widget" src=""></iframe>
         <div className={styles.settings}>
           <Select options={options}></Select>
           <Select options={options} defaultValue="2"></Select>
