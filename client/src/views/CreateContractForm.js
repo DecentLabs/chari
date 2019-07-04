@@ -7,7 +7,7 @@ import DatePicker from 'react-datepicker';
 
 import Input from './../components/input.js';
 import Button from './../components/button.js';
-import MeCheckbox from '../components/meCheckbox.js'
+import MeCheckbox from '../components/meCheckbox.js';
 import ConfirmDeploy from './../components/confirmDeploy.js';
 
 class CreateContractForm extends React.Component {
@@ -15,9 +15,12 @@ class CreateContractForm extends React.Component {
         super(props);
         this.state = {
             showConfirm: false,
-            date: new Date(),
+            date: '',
             sponsor: '',
             recipient: '',
+            dateError: false,
+            sponsorError: false,
+            recipientError: false,
         };
         this.onCharityAddressChange = this.onCharityAddressChange.bind(this);
         this.onSponsorAddressChange = this.onSponsorAddressChange.bind(this);
@@ -35,39 +38,73 @@ class CreateContractForm extends React.Component {
     }
 
     onCharityAddressChange (e) {
-        const val = e.target.value;
+        const val = e.target ? e.target.value : e;
         this.props.dispatch(updateRecipient(val));
-        this.setState({recipient: val})
+        this.setState({recipient: val});
+        this.validateCharityAddress(val);
     }
 
     onSponsorAddressChange (e) {
-        const val = e.target.value;
+        const val = e.target ? e.target.value : e;
         this.props.dispatch(updateSponsor(val));
-        this.setState({sponsor: val})
+        this.setState({sponsor: val});
+        this.validateSponsorAddress(val);
     }
 
     onSponsorMe (e) {
         const value = e.target.checked ? this.props.account : '';
-        this.setState({sponsor: value});
         this.props.dispatch(updateSponsor(value));
+        this.onSponsorAddressChange(value);
     }
 
     onCharityMe (e) {
         const value = e.target.checked ? this.props.account : '';
-        this.setState({recipient: value});
         this.props.dispatch(updateRecipient(value));
+        this.onCharityAddressChange(value);
     }
 
     onExpDateChange (date) {
+        if (!date) {
+            this.setState({dateError: true});
+            return;
+        }
         const timestamp = Math.floor(date.getTime() / 1000);
         this.setState({date});
         this.props.dispatch(updateExpDate(timestamp));
+        this.validateDate(date);
     }
 
     confirmDeploy () {
         this.setState({
             showConfirm: true,
         });
+    }
+
+    validateDate (date) {
+        const currentDate = Date.now();
+        const selectedDate = date.getTime();
+
+        if (selectedDate < currentDate) {
+            this.setState({dateError: true});
+        } else {
+            this.setState({dateError: false});
+        }
+    }
+
+    validateSponsorAddress (address) {
+        if (!this.props.web3.utils.isAddress(address)) {
+            this.setState({sponsorError: true});
+        } else {
+            this.setState({sponsorError: false});
+        }
+    }
+
+    validateCharityAddress (address) {
+        if (!this.props.web3.utils.isAddress(address)) {
+            this.setState({recipientError: true});
+        } else {
+            this.setState({recipientError: false});
+        }
     }
 
     hide () {
@@ -77,6 +114,13 @@ class CreateContractForm extends React.Component {
     }
 
     render () {
+        const isValid = this.state.recipient === '' ||
+            this.state.sponsor === '' ||
+            this.state.date === '' ||
+            this.state.dateError ||
+            this.state.sponsorError ||
+            this.state.recipientError;
+
         return (
             this.props.isConnected && (
                 <div className={styles.createContractForm}>
@@ -84,12 +128,16 @@ class CreateContractForm extends React.Component {
                     <form>
                         <div className={styles.field}>
                             <Input name="sponsorAddress" label="Enter sponsor address" placeHolder="0x..."
-                                   value={this.state.sponsor} onChange={this.onSponsorAddressChange}/>
+                                   value={this.state.sponsor} onChange={this.onSponsorAddressChange}
+                                   error={this.state.sponsorError} errorLabel="please add a valid address"
+                            />
                             <MeCheckbox id="sponsorMe" onChange={this.onSponsorMe}/>
                         </div>
                         <div className={styles.field}>
                             <Input name="charityAddress" label="Enter charity address" placeHolder="0x..."
-                                   value={this.state.recipient} onChange={this.onCharityAddressChange}/>
+                                   value={this.state.recipient} onChange={this.onCharityAddressChange}
+                                   error={this.state.recipientError} errorLabel="please add a valid address"
+                            />
                             <MeCheckbox id="charityMe" onChange={this.onCharityMe}/>
                         </div>
                         <DatePicker onChange={this.onExpDateChange}
@@ -102,11 +150,14 @@ class CreateContractForm extends React.Component {
                                     customInput={<Input name="expiration"
                                                         label="Choose expiration date"
                                                         value={this.state.date}
+                                                        placeHolder="Day/Month/Year"
+                                                        error={this.state.dateError}
+                                                        errorLabel="please select a day in the future"
                                     />}
 
                         />
                     </form>
-                    <Button onClick={this.confirmDeploy} hide={this.hide}>Create</Button>
+                    <Button onClick={this.confirmDeploy} hide={this.hide} disabled={isValid}>Create</Button>
                     {this.state.showConfirm && <ConfirmDeploy hide={this.hide}></ConfirmDeploy>}
                 </div>
             )
@@ -115,6 +166,7 @@ class CreateContractForm extends React.Component {
 }
 
 const mapStateToProps = state => ({
+    web3: state.web3Connect.web3,
     isConnected: state.web3Connect.isConnected,
     account: state.web3Connect.accounts && state.web3Connect.accounts[0],
 });

@@ -7,6 +7,6 @@ export default function Button (props) {
   const copy = props.copy ? styles.copy : null
 
   return (
-    <button className={classnames(styles.button, naked, copy)} onClick={props.onClick}>{props.children}</button>
+    <button className={classnames(styles.button, naked, copy)} onClick={props.onClick} disabled={props.disabled}>{props.children}</button>
   )
 }
