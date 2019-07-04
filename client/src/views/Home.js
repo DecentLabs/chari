@@ -17,12 +17,42 @@ function Home (props) {
     <div className={styles.home}>
       <header>
         <h1 className="title">A match made in crypto</h1>
-        <p className="big">Chari makes donation matching campaigns easy and secure.</p>
+        <p className="big">
+          Chari makes donation matching campaigns easy 
+          <br/>
+          and secure with cryptocurrencies.
+        </p>
       </header>
 
       <NavLink to="/campaign/deploy">
         <Button onClick={connectWeb3}>Create a fundraising campaign</Button>
       </NavLink>
+
+      <dl>
+        <dt>What is donation matching?</dt>
+        <dd>
+          <a target="_blank" href="https://en.wikipedia.org/wiki/Matching_funds">
+          Matching grants</a> are a great way to raise funds for a charitable cause.
+          A sponsor deposits a budget to match donations 1:1.
+          Thus <strong>donors double the impact</strong> of their contributions.
+          When the fundraiser ends, the charity gets twice the donations
+          and any remaining budget is returned to the sponsor.
+        </dd>
+
+        <dt>What is Chari?</dt>
+        <dd>
+          <strong>A smart contract</strong>.
+          The Chari smart contract manages the sponsor grant and donations on
+          the <a target="_blank" href="https://en.wikipedia.org/wiki/Ethereum">Ethereum blockchain</a>.
+          This means there is no need for a trusted third party to coordinate the fundraising
+          and each participant can be certain their funds are managed safely.
+        </dd>
+        <dd>
+          <strong>A donation widget</strong>.
+          Easily embed a Chari donation component into the landing page of your fundraiser campaign.
+        </dd>
+      </dl>
+
     </div>
   )
 }
