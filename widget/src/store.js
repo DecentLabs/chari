@@ -2,7 +2,7 @@ import createStore from 'unistore'
 import { NETWORKS } from '../../client/src/shared/constants.js'
 import Fundraiser from '../../client/src/deployments/Fundraiser.json'
 import Grant from '../../client/src/deployments/Grant.json'
-import Web3 from 'Web3'
+import Web3 from 'web3'
 
 export const store = createStore({
   fundraiserAddress: null,

@@ -52,7 +52,7 @@ function Home (props) {
           Easily embed a Chari donation component into the landing page of your fundraiser campaign.
         </dd>
       </dl>
-      <iframe src="/widget/?address=0xB5E5F24b659bC8872c4f89b127C685b7FC641862&network=4"></iframe>
+      <iframe src="/widget/?address=0xB5E5F24b659bC8872c4f89b127C685b7FC641862&network=4" title="Chari-widget-demo"></iframe>
 
     </div>
   )
