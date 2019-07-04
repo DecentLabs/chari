@@ -18,7 +18,7 @@ class App extends Component {
             <Route path="/featured" exact component={Featured} />
             <Route path="/learn-more" exact component={LearnMore} />
             <Route path="/contact" exact component={Contact} />
-            <Route path="/new" component={NewCampaign} />
+            <Route path="/campaign" component={NewCampaign} />
           </Switch>
       </div>
     )

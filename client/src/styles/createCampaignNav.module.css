@@ -12,10 +12,18 @@
   margin: 0 20px;
   display: inline-block;
 }
-.createCampaignNav li a{
+.createCampaignNav li a {
   color: #001A12;
   text-decoration: none;
 }
 .createCampaignNav li a.active {
-  text-decoration: underline;
+  background: #02DB96;
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: white;
+}
+
+.createCampaignNav li a.disabled {
+  color: gray;
+  cursor: default;
 }

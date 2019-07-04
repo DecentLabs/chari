@@ -1,0 +1,19 @@
+.meField {
+  display: flex;
+  margin-left: 20px;
+  padding-bottom: 20px;
+}
+
+.meCheckbox {
+  appearance: initial;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  border: 1px solid #797E7C;
+  margin-right: 10px;
+}
+
+.meCheckbox:checked {
+  background: #02DB96;
+  border-color: #02DB96;
+}

@@ -1,0 +1,11 @@
+.selectWrapper {
+  width: 100%;
+  padding: 10px;
+}
+
+.select {
+  padding: 10px;
+  border: 1px solid gray;
+  width: 100%;
+  max-width: 300px;
+}
