@@ -4,8 +4,10 @@ export default (config, env, helpers) => {
   config.output.publicPath = "/widget/"
   config.node.process = true
   config.node.Buffer = true
-  config.devServer.clientLogLevel='info'
-  config.devServer.publicPath = '/widget/'
+
+  if(config.devServer) {
+    config.devServer.publicPath = '/widget/'
+  }
 
   let { plugin } = helpers.getPluginsByName(config, "ExtractTextPlugin")[0];
   plugin.options.disable = true;
