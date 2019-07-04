@@ -37,11 +37,13 @@ class CreateContractForm extends React.Component {
     onCharityAddressChange (e) {
         const val = e.target.value;
         this.props.dispatch(updateRecipient(val));
+        this.setState({recipient: val})
     }
 
     onSponsorAddressChange (e) {
         const val = e.target.value;
         this.props.dispatch(updateSponsor(val));
+        this.setState({sponsor: val})
     }
 
     onSponsorMe (e) {
