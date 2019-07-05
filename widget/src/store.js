@@ -2,7 +2,7 @@ import createStore from 'unistore'
 import { NETWORKS } from 'shared/constants.js'
 import Fundraiser from 'shared/abis/Fundraiser_ABI_97a43d1a19a9dc40580696887486437d.json'
 import Grant from 'shared/abis/Grant_ABI_abe03ad4ff197414ebc39eb6d0a03042.json'
-import Web3 from 'web3'
+import Eth from 'ethjs'
 
 export const store = createStore({
   fundraiserAddress: null,
@@ -31,17 +31,19 @@ export const init = store.action((state, fundraiserAddress, networkId) => {
   const network = parseInt(networkId, 10)
   if (NETWORKS.has(network)) {
     const {url, tokens} = NETWORKS.get(network)
-    const provider = new Web3.providers.HttpProvider(url)
-    const web3 = new Web3(provider)
-    const fundraiserContract = new web3.eth.Contract(Fundraiser.abi, fundraiserAddress)
+    const provider = new Eth.HttpProvider(url)
+    const eth = new Eth(provider)
+    const fundraiserContract = new eth.contract(Fundraiser.abi).at(fundraiserAddress)
 
-    fundraiserContract.methods.grant().call().then(grantAddress => {
-      const grantContract = new web3.eth.Contract(Grant.abi, grantAddress)
+    fundraiserContract.grant().then(result => {
+      const grantAddress = result[0]
+      const grantContract = new eth.contract(Grant.abi).at(grantAddress)
       store.setState({grantContract});
       refreshBalance()
     })
 
-    fundraiserContract.methods.expiration().call().then(expiration => {
+    fundraiserContract.expiration().then(result => {
+      const expiration = result[0]
       store.setState({expiration: expiration.toNumber()})
     })
     return {
@@ -58,12 +60,12 @@ export const init = store.action((state, fundraiserAddress, networkId) => {
 function getBalance(contract, tokenInfo) {
   const {token, tokenAddress, decimals} = tokenInfo
 
-  return contract.methods.tokenBalance(tokenAddress).call().then(result => {
-    let balance = result
+  return contract.tokenBalance(tokenAddress).then(result => {
+    let balance = result[0]
     if (decimals) {
       let DEC_DIV = decimals
       if (decimals > 5) {
-        balance = balance.div(Math.pow(10, decimals - 5))
+        balance = balance.div(new Eth.BN(Math.pow(10, decimals - 5)))
         DEC_DIV = 5
       }
       balance = balance.toNumber() / Math.pow(10, DEC_DIV)

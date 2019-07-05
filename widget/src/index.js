@@ -1,8 +1,8 @@
 import { h, Component } from 'preact'
 import Donation from './components/donation'
 import Contribution from './components/contribution'
-import { Router, route } from 'preact-router'
-import { Provider, connect } from 'unistore/preact'
+import { Router } from 'preact-router'
+import { Provider } from 'unistore/preact'
 import { store, init } from './store.js'
 import { createHashHistory } from 'history';
 
