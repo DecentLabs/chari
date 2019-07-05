@@ -180,7 +180,7 @@ export const deploy = () => {
         const contract = new web3.eth.Contract(abi, contractAddress);
 
         if (web3.utils.isAddress(recipient) && typeof expiration === 'number' && expiration % 1 === 0) {
-            const tx = contract.methods.deploy(recipient, sponsor, expiration).send({
+            const tx = contract.methods.newFundraiser(recipient, sponsor, expiration).send({
                 from: sponsor,
                 gas: 1000000
             });
