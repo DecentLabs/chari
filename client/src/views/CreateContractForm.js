@@ -124,7 +124,7 @@ class CreateContractForm extends React.Component {
         return (
             this.props.isConnected && (
                 <div className={styles.createContractForm}>
-                    <h1>Hi! You are creating a new campaign</h1>
+                    <h1 className="subtitle">Hi! You are creating a new campaign</h1>
                     <form>
                         <div className={styles.field}>
                             <Input name="sponsorAddress" label="Enter sponsor address" placeHolder="0x..."

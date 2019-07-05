@@ -21,7 +21,7 @@ function WidgetEditor () {
   return (
     <div className={styles.widgetEditor}>
       <header>
-        <h1>Welcome in campaign editor page!</h1>
+        <h1 className="subtitle">Welcome in campaign editor page!</h1>
         <p>You can manage your campaign widget from here, customize it and also copy the code necessary to embed it on your website.</p>
       </header>
 

@@ -17,11 +17,10 @@ class AddFund extends React.Component {
             sponsor: null,
             grant: null
         };
-        this.sponsorSend = this.sponsorSend.bind(this)
+        // this.sponsorSend = this.sponsorSend.bind(this)
     }
 
     componentDidMount () {
-        console.log('didmount')
         this.getGrantContract()
     }
 
@@ -32,25 +31,19 @@ class AddFund extends React.Component {
 
         this.props.dispatch({type: 'WEB3_SETUP_SUCCESS'});
 
-        fundraiserContract.methods.grant().call().then(grantAddress => {
-            const grantContract = new web3.eth.Contract(Grant.abi, grantAddress)
-            this.setState({grant: grantAddress})
-            // store.setState({grantContract});
-        })
-    }
-
-    sponsorSend() {
-
+        const grantAddress = await fundraiserContract.methods.grant().call()
+        this.setState({grant: grantAddress})
     }
 
     render () {
         return (
             this.props.isConnected && (
                 <div>
-                    <h1>Sponsors,</h1>
-                    <p>please send here your grant:
+                    <h1 className="subtitle">Sponsors,</h1>
+                    <p className="big">you can send grant to this address:
                         <br/>
-                        {this.state.grant}
+                        <br/>
+                        <span className="strong">{this.state.grant}</span>
                     </p>
                 </div>
             )

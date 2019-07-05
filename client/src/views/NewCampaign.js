@@ -22,7 +22,6 @@ class NewCampaign extends React.Component {
                 <Route path="/campaign/admin" component={WidgetEditor} />
                 <Route path="/campaign/addfund" component={AddFund} />
               </Switch>
-            )}
           </div>
         )}
 
