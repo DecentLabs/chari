@@ -40,11 +40,8 @@ class AddFund extends React.Component {
             this.props.isConnected && (
                 <div>
                     <h1 className="subtitle">Sponsors,</h1>
-                    <p className="big">you can send grant to this address:
-                        <br/>
-                        <br/>
-                        <span className="strong">{this.state.grant}</span>
-                    </p>
+                    <p className="big">you can send grant to this address:</p>
+                    <p className="big strong">{this.state.grant}</p>
                 </div>
             )
         );
