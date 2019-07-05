@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 // import CreateCampaignNav from './../components/createCampaignNav.js'
 
 import WidgetEditor from './WidgetEditor.js'
-import CreateContractForm from './createContractForm.js'
+import CreateContractForm from './CreateContractForm.js'
 import LoaderComp from './../components/loaderComp.js'
 
 
