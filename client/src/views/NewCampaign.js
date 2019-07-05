@@ -12,13 +12,11 @@ import LoaderComp from './../components/loaderComp.js'
 
 
 class NewCampaign extends React.Component {
-
   render () {
     return (
       <div className={styles.newCampaign}>
         {!this.props.isLoading && !this.props.isDeploying && (
           <div>
-            {!this.props.isLoading && !this.props.isDeploying && (
               <Switch>
                 <Route path="/campaign/deploy" component={CreateContractForm} />
                 <Route path="/campaign/admin" component={WidgetEditor} />
