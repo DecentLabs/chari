@@ -1,10 +1,9 @@
 import { h } from 'preact'
-import { ticker, label, value,tickerItem } from './style.scss'
+import { ticker, label, value, tickerItem } from './style.scss'
 
-export const Ticker = ({children, ...props}) => {
-  const {duration} = props
+export const Ticker = ({children, duration}) => {
   if (duration) {
-    const days = Math.floor(duration.asDays())
+    const {days, hours, minutes, seconds} = duration;
     return (
       <div class={ticker}>
         {days > 0 ? (
@@ -13,16 +12,16 @@ export const Ticker = ({children, ...props}) => {
             <figcaption class={label}>Days</figcaption>
           </figure>) : ''}
         <figure class={tickerItem}>
-          <div class={value}>{duration.hours()}</div>
+          <div class={value}>{hours}</div>
           <figcaption class={label}>Hours</figcaption>
         </figure>
         <figure class={tickerItem}>
-          <div class={value}>{duration.minutes()}</div>
+          <div class={value}>{minutes}</div>
           <figcaption class={label}>Minutes</figcaption>
         </figure>
         {days === 0 ? (
           <figure class={tickerItem}>
-            <div class={value}>{duration.seconds()}</div>
+            <div class={value}>{seconds}</div>
             <figcaption class={label}>Seconds</figcaption>
           </figure>) : ''}
       </div>)
