@@ -5,7 +5,9 @@ import Button from './../components/button.js'
 import Select from './../components/select.js'
 import copy from './../assets/copy.svg'
 
-function WidgetEditor () {
+function WidgetEditor (props) {
+  const fundraiserAddress = props.match.params.address
+
   const themeOptions = [
     {value: 'dark', name: 'Dark theme'},
     {value: 'light', name: 'Light theme'}
@@ -21,7 +23,7 @@ function WidgetEditor () {
   return (
     <div className={styles.widgetEditor}>
       <header>
-        <h1>Welcome in campaign editor page!</h1>
+        <h1 className="subtitle">Welcome in campaign editor page!</h1>
         <p>You can manage your campaign widget from here, customize it and also copy the code necessary to embed it on your website.</p>
       </header>
 
@@ -38,8 +40,6 @@ function WidgetEditor () {
 
         <iframe src="" title="Chari-widget"></iframe>
       </div>
-
-      <Button>Add fund</Button>
     </div>
   )
 }
