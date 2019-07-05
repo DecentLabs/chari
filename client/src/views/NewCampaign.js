@@ -12,10 +12,11 @@ import LoaderComp from './../components/loaderComp.js'
 
 
 class NewCampaign extends React.Component {
+
   render () {
     return (
       <div className={styles.newCampaign}>
-        {this.props.isConnected && !this.props.isLoading && !this.props.isDeploying && (
+        {!this.props.isLoading && !this.props.isDeploying && (
           <div>
             {!this.props.isLoading && !this.props.isDeploying && (
               <Switch>
@@ -27,7 +28,7 @@ class NewCampaign extends React.Component {
           </div>
         )}
 
-        {!this.props.isLoading && (
+        {this.props.isLoading && (
           <LoaderComp>
             Connecting to your wallet
           </LoaderComp>

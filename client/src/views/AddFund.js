@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setupWeb3 } from '../reducers/web3Connect';
+import getWeb3 from './../utils/getWeb3';
 
 import Input from './../components/input.js';
 import Button from './../components/button.js';
 import Fundraiser from '../contracts/Fundraiser.json'
+import Grant from '../contracts/Grant.json'
 
 
 class AddFund extends React.Component {
@@ -15,24 +16,27 @@ class AddFund extends React.Component {
             fundraiser: null,
             sponsor: null,
             grant: null
-        }
+        };
         this.sponsorSend = this.sponsorSend.bind(this)
     }
 
     componentDidMount () {
-        console.log(this.props.isConnected)
-        if (!this.props.isConnected) {
-            this.props.dispatch(setupWeb3());
-        }
-        //
-        // const web3Connect = this.props.web3Connect;
-        // const web3 = web3Connect.web3;
-        //
-        // const abi = Fundraiser.abi;
-        // const contractAddress = this.props.deployedContract;
-        // const contract = new web3.eth.Contract(abi, contractAddress);
-        //
-        // console.log(contract)
+        console.log('didmount')
+        this.getGrantContract()
+    }
+
+    async getGrantContract() {
+        const web3 = await getWeb3();
+        const fundraiserAddress = this.props.fundraiser;
+        const fundraiserContract = new web3.eth.Contract(Fundraiser.abi, fundraiserAddress)
+
+        this.props.dispatch({type: 'WEB3_SETUP_SUCCESS'});
+
+        fundraiserContract.methods.grant().call().then(grantAddress => {
+            const grantContract = new web3.eth.Contract(Grant.abi, grantAddress)
+            this.setState({grant: grantAddress})
+            // store.setState({grantContract});
+        })
     }
 
     sponsorSend() {
@@ -43,15 +47,11 @@ class AddFund extends React.Component {
         return (
             this.props.isConnected && (
                 <div>
-                    <form>
-                        <p>for sponsors</p>
-                        <select>
-                            <option>ETH</option>
-                            <option>AEUR</option>
-                        </select>
-                        <Input placeholder="ETH" label="send amount to grant"/>
-                    </form>
-                    <Button onClick={this.sponsorSend}>Send</Button>
+                    <h1>Sponsors,</h1>
+                    <p>please send here your grant:
+                        <br/>
+                        {this.state.grant}
+                    </p>
                 </div>
             )
         );
@@ -61,10 +61,7 @@ class AddFund extends React.Component {
 const mapStateToProps = state => ({
     isConnected: state.web3Connect.isConnected,
     account: state.web3Connect.accounts && state.web3Connect.accounts[0],
-    donor: state.web3Connect.donor,
     fundraiser: state.web3Connect.fundraiser,
-    sponsor: state.web3Connect.sponsor,
-    grant: state.web3Connect.grant,
     deployedContract: state.web3Connect.deployedContract
 });
 
