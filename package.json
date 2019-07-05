@@ -2,7 +2,9 @@
   "name": "chari",
   "version": "0.0.1",
   "scripts": {
-    "build": "truffle compile && abiniser generate -i ./deployments -a ./shared/abis -d ./shared/deployments"
+    "test": "truffle test",
+    "build": "truffle compile && abiniser generate -i ./deployments -a ./shared/abis -d ./shared/deployments",
+    "update": ". scripts/update.sh"
   },
   "dependencies": {
     "dotenv": "^8.0.0",
