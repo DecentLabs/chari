@@ -5,6 +5,8 @@ import { Router, route } from 'preact-router'
 import { Provider, connect } from 'unistore/preact'
 import { store, init } from './store.js'
 import { createHashHistory } from 'history';
+import "./index.css"
+import "./styles.scss"
 
 let poly = require('preact-cli/lib/lib/webpack/polyfills')
 
@@ -19,7 +21,9 @@ class App extends Component {
       const searchParams = new URLSearchParams(location.search);
       const address = searchParams.get('address')
       const network = searchParams.get('network')
-      init(address, network);
+      const color = searchParams.get('color')
+      const theme = searchParams.get('theme')
+      init(address, network, color, theme);
     }
   }
 

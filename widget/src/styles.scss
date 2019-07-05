@@ -1,0 +1,77 @@
+@import 'themes.scss';
+
+$base-color: pink;
+
+$fontColor: #000000;
+$baseColor: rgba(0, 0, 0, 0.07);
+$lightColor: white;
+$midGray: rgba(0, 0, 0, 0.5);
+$lightGray: rgba(0, 0, 0, 0.2);
+
+[data-theme="theme-dark"] {
+  $fontColor: #ffffff;
+  $baseColor: rgba(0, 0, 0, 0.8);
+  $lightColor: rgba(50, 50, 50, 1);
+  $midGray: rgba(100, 100, 100, 1);
+  $lightGray: rgba(170, 170, 170, 1);
+}
+
+#DonationWidget {
+  .expiration {
+    margin-bottom: 2em;
+
+    .campaignEnds {
+      margin-top: 1em;
+    }
+
+    .ticker {
+      display: flex;
+      text-align:center;
+      justify-content: space-between;
+      width: 100%;
+      overflow: auto;
+
+      .value {
+        font-size: 3em;
+        display:block;
+        font-weight: bold;
+      }
+
+      .label {
+        display:block;
+      }
+
+      .tickerItem {
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        padding: 1em;
+        width: 64px;
+        height: 56px;
+        margin: 0;
+      }
+    }
+  }
+
+  .balanceList {
+
+  }
+
+  label {
+    margin-top: 0.5em;
+  }
+
+  a {
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    font-size: 20px;
+    display: block;
+    background-color: black;
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+    line-height: 22px;
+    padding: 9px 20px;
+    text-decoration: none;
+  }
+}

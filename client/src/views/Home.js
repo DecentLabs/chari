@@ -3,6 +3,7 @@ import styles from './../styles/Home.module.css'
 import {connect} from 'react-redux'
 import {setupWeb3} from './../reducers/web3Connect.js'
 import {NavLink} from "react-router-dom"
+import cfg from './../shared/cfg.js'
 
 import Button from './../components/button.js'
 
@@ -52,7 +53,7 @@ function Home (props) {
           Easily embed a Chari donation component into the landing page of your fundraiser campaign.
         </dd>
       </dl>
-      <iframe src="/widget/?address=0xB5E5F24b659bC8872c4f89b127C685b7FC641862&network=4" title="Chari-widget-demo"></iframe>
+      <iframe src={`${cfg.WIDGET_BASE_URL}?address=0xB5E5F24b659bC8872c4f89b127C685b7FC641862&network=4`} title="Chari-widget-demo"></iframe>
 
     </div>
   )

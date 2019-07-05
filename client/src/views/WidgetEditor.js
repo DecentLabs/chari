@@ -1,5 +1,6 @@
 import React from "react"
 import styles from './../styles/widgetEditor.module.css'
+import cfg from './../shared/cfg.js'
 
 import Button from './../components/button.js'
 import Select from './../components/select.js'
@@ -36,7 +37,7 @@ function WidgetEditor () {
           </div>
         </div>
 
-        <iframe src="" title="Chari-widget"></iframe>
+        <iframe title="Chari-widget" src={`${cfg.WIDGET_BASE_URL}?address=0xB5E5F24b659bC8872c4f89b127C685b7FC641862&network=4`}></iframe>
       </div>
 
       <Button>Add fund</Button>

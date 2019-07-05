@@ -12,7 +12,9 @@ export const store = createStore({
   expiration: 0,
   tokens: [],
   fundraiserBalance: [],
-  grantBalance: []
+  grantBalance: [],
+  color: 'pink',
+  theme: 'theme-light'
 })
 
 export const refreshBalance = store.action((state) => {
@@ -27,8 +29,14 @@ export const refreshBalance = store.action((state) => {
   }
 })
 
-export const init = store.action((state, fundraiserAddress, networkId) => {
+export const init = store.action((state, fundraiserAddress, networkId, color, theme) => {
   const network = parseInt(networkId, 10)
+  if (color) {
+    store.setState({color: color})
+  }
+  if (theme) {
+    store.setState({theme: theme})
+  }
   if (NETWORKS.has(network)) {
     const {url, tokens} = NETWORKS.get(network)
     const provider = new Web3.providers.HttpProvider(url)

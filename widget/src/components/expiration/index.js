@@ -24,9 +24,9 @@ export default class Expiration extends Component {
       }
     }
     return (
-      <div>
+      <div class="expiration">
         <Ticker duration={duration}/>
-        <div>Campaign ends {moment(at * 1000).format("Do MMMM, YYYY h:mm a")}</div>
+        <div class="campaignEnds">Campaign ends {moment(at * 1000).format("Do MMMM, YYYY h:mm a")}</div>
       </div>)
   }
 }
