@@ -3,7 +3,7 @@ import Donation from './components/donation'
 import Contribution from './components/contribution'
 import { Router, route } from 'preact-router'
 import { Provider, connect } from 'unistore/preact'
-import { store, init } from './store.js'
+import { store, init, setTheme } from './store.js'
 import { createHashHistory } from 'history';
 import "./index.css"
 import "./styles.scss"
@@ -23,7 +23,8 @@ class App extends Component {
       const network = searchParams.get('network')
       const color = searchParams.get('color')
       const theme = searchParams.get('theme')
-      init(address, network, color, theme);
+      setTheme(color, theme)
+      init(address, network);
     }
   }
 

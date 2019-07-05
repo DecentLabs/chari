@@ -29,8 +29,7 @@ export const refreshBalance = store.action((state) => {
   }
 })
 
-export const init = store.action((state, fundraiserAddress, networkId, color, theme) => {
-  const network = parseInt(networkId, 10)
+export const setTheme = store.action((state, color, theme) => {
   if (color) {
     store.setState({color: color})
     const root = document.documentElement;
@@ -39,7 +38,10 @@ export const init = store.action((state, fundraiserAddress, networkId, color, th
   if (theme) {
     store.setState({theme: theme})
   }
+})
 
+export const init = store.action((state, fundraiserAddress, networkId) => {
+  const network = parseInt(networkId, 10)
   if (NETWORKS.has(network)) {
     const {url, tokens} = NETWORKS.get(network)
     const provider = new Web3.providers.HttpProvider(url)
