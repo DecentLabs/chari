@@ -11,7 +11,6 @@ import AddFund from './AddFund.js'
 import Congrats from './Congrats.js'
 import LoaderComp from './../components/loaderComp.js'
 
-
 class NewCampaign extends React.Component {
   render () {
     return (
@@ -20,9 +19,9 @@ class NewCampaign extends React.Component {
           <div>
               <Switch>
               <Route path="/campaign/deploy" component={CreateContractForm} />
-              <Route path="/campaign/congrats" component={Congrats} />
-              <Route path="/campaign/admin" component={WidgetEditor} />
-              <Route path="/campaign/addfund" component={AddFund} />
+              <Route path="/campaign/congrats/:address" component={Congrats} />
+              <Route path="/campaign/admin/:address" component={WidgetEditor} />
+              <Route path="/campaign/addfund/:address" component={AddFund} />
               </Switch>
           </div>
         )}
@@ -40,7 +39,7 @@ class NewCampaign extends React.Component {
         )}
 
         {this.props.isDeployed && (
-            <Redirect to='/campaign/congrats' />
+            <Redirect to={`/campaign/congrats/${this.props.fundraiser}`} />
         )}
       </div>
     )
@@ -52,7 +51,8 @@ const mapStateToProps = (state) => {
     isConnected: state.web3Connect.isConnected,
     isLoading: state.web3Connect.isLoading,
     isDeploying: state.web3Connect.isDeploying,
-    isDeployed: state.web3Connect.isDeployed
+    isDeployed: state.web3Connect.isDeployed,
+    fundraiser: state.web3Connect.fundraiser
   }
 }
 

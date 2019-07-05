@@ -5,7 +5,9 @@ import Button from './../components/button.js'
 import Select from './../components/select.js'
 import copy from './../assets/copy.svg'
 
-function WidgetEditor () {
+function WidgetEditor (props) {
+  const fundraiserAddress = props.match.params.address
+
   const themeOptions = [
     {value: 'dark', name: 'Dark theme'},
     {value: 'light', name: 'Light theme'}
@@ -38,8 +40,6 @@ function WidgetEditor () {
 
         <iframe src="" title="chari-widget"></iframe>
       </div>
-
-      <Button>Add fund</Button>
     </div>
   )
 }
