@@ -9,6 +9,7 @@ sudo: false
 before_install:
   - npm install -g yarn
   - npm install
+  - npm run build
 install: skip
 script:
   - cd client
