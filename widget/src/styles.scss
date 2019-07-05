@@ -1,28 +1,30 @@
 :root {
   --widget-color: pink;
 
-  --fontColor: #000000;
-  --baseColor: rgba(0, 0, 0, 0.07);
+  --fontColor: rgba(0, 0, 0, 0.87);
+  --baseColor: #E5E5E5;
   --lightColor: white;
   --midGray: rgba(0, 0, 0, 0.5);
-  --lightGray: rgba(0, 0, 0, 0.2);
+  --lightGray: rgba(0, 0, 0, 0.4);
 }
 
 [data-theme="dark"] {
   --fontColor: #ffffff;
-  --baseColor: rgba(0, 0, 0, 0.8);
-  --lightColor: rgba(50, 50, 50, 1);
+  --baseColor: #343434;
+  --lightColor: rgba(255, 255, 255, 0.1);
   --midGray: rgba(100, 100, 100, 1);
-  --lightGray: rgba(170, 170, 170, 1);
+  --lightGray: rgba(255, 255, 255, 0.7);
 }
 
 #DonationWidget {
   background-color: var(--baseColor);
+  color: var(--fontColor);
   .expiration {
     margin-bottom: 2em;
 
     .campaignEnds {
-      margin-top: 1em;
+      margin-top: 0.5em;
+      color: var(--lightGray);
     }
 
     .ticker {
@@ -40,10 +42,11 @@
 
       .label {
         display:block;
+        color: var(--lightGray);
       }
 
       .tickerItem {
-        background-color: rgba(0, 0, 0, 0.1);
+        background-color: var(--lightColor);
         border-radius: 4px;
         padding: 1em;
         width: 64px;
@@ -64,15 +67,16 @@
   a {
     box-sizing: border-box;
     width: 100%;
-    height: 40px;
-    font-size: 20px;
+    height: 56px;
+    font-size: 18px;
     display: block;
     background-color: var(--widget-color);
     border-radius: 4px;
     color: white;
     text-align: center;
-    line-height: 22px;
-    padding: 9px 20px;
+    line-height: 18px;
+    padding: 19px 20px;
     text-decoration: none;
+    font-weight: bold;
   }
 }
