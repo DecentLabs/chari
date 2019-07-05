@@ -22,7 +22,7 @@ const initialState = {
     accounts: null,
     contract: null,
     networkId: null,
-    recipient: '0x76E7a0aEc3E43211395bBBB6Fa059bD6750F83c3',
+    recipient: null,
     expDate: Math.floor(Date.now() / 1000) + DURATION,
     isLoading: false,
     isConnected: false,
