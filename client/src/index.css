@@ -21,12 +21,21 @@ html, body, #root, .App, .App * {
   text-align: center;
 }
 
-h1.title {
+h1.title,
+h1.subtitle {
   font-family: big-caslon-fb, serif;
   font-weight: 400;
   font-style: normal;
+}
+
+h1.title {
   font-size: 62px;
 }
+
+h1.subtitle {
+  font-size: 48px;
+}
+
 h1, h2, h3, h4, h5, h6, p, a {
   font-family: 'Inter var', sans-serif;
   text-align: center;
@@ -56,6 +65,10 @@ p {
 }
 p.big {
   font-size: 20px;
+}
+
+.strong {
+  font-weight: 700;
 }
 
 
