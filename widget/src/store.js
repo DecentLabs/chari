@@ -12,7 +12,9 @@ export const store = createStore({
   expiration: 0,
   tokens: [],
   fundraiserBalance: [],
-  grantBalance: []
+  grantBalance: [],
+  color: 'pink',
+  theme: 'theme-light'
 })
 
 export const refreshBalance = store.action((state) => {
@@ -24,6 +26,17 @@ export const refreshBalance = store.action((state) => {
     Promise.all(tokens.map(token => getBalance(grantContract, token))).then(balances => store.setState({
       grantBalance: balances
     }))
+  }
+})
+
+export const setTheme = store.action((state, color, theme) => {
+  if (color) {
+    store.setState({color: color})
+    const root = document.documentElement;
+    root.style.setProperty('--widget-color', color);
+  }
+  if (theme) {
+    store.setState({theme: theme})
   }
 })
 

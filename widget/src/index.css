@@ -1,0 +1,19 @@
+html, body {
+  font-family: 'Inter var', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin:0;
+  padding:0;
+  height:100%;
+  font-size:12px;
+}
+
+[data-view] {
+  position: absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  margin:0;
+  padding:1em;
+}
