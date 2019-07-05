@@ -1,7 +1,7 @@
 import createStore from 'unistore'
-import { NETWORKS } from '../../client/src/shared/constants.js'
-import Fundraiser from '../../client/src/deployments/Fundraiser.json'
-import Grant from '../../client/src/deployments/Grant.json'
+import { NETWORKS } from 'shared/constants.js'
+import Fundraiser from 'shared/abis/Fundraiser_ABI_97a43d1a19a9dc40580696887486437d.json'
+import Grant from 'shared/abis/Grant_ABI_abe03ad4ff197414ebc39eb6d0a03042.json'
 import Web3 from 'web3'
 
 export const store = createStore({

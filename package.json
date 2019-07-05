@@ -1,9 +1,16 @@
 {
   "name": "chari",
   "version": "0.0.1",
+  "scripts": {
+    "build": "truffle compile && abiniser generate -i ./deployments -a ./shared/abis -d ./shared/deployments"
+  },
   "dependencies": {
     "dotenv": "^8.0.0",
     "openzeppelin-solidity": "^2.3.0",
     "truffle-hdwallet-provider": "^1.0.12"
+  },
+  "devDependencies": {
+    "abiniser": "^0.5.1",
+    "truffle": "^5.0.26"
   }
 }
