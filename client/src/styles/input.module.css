@@ -25,3 +25,15 @@
   padding-top: 10px;
   padding-bottom: 5px;
 }
+
+.input:focus {
+  border-bottom: 2px solid #02DB96;
+  outline: none;
+}
+
+.error {
+  position: absolute;
+  bottom: -20px;
+  font-size: 14px;
+  margin: 0;
+}

@@ -4,7 +4,6 @@ body {
   font-family: 'Inter var', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   background: white;
   color: #001A12;
   padding:100px 20px 20px 20px;
@@ -16,6 +15,10 @@ html, body, .App, #root {
 }
 html, body, #root, .App, .App * {
   box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
 }
 
 h1.title {
@@ -57,6 +60,7 @@ p.big {
 
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: 'Inter var', sans-serif;
+  font-size: 12px;
+  color: #797E7C;
 }

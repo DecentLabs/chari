@@ -1,6 +1,18 @@
+.home {
+  background-image: url('./../assets/home-bg.svg');
+  background-attachment: fixed;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center 50%;
+  min-height: 100%;
+  padding-top: 40px;
+}
 .home header {
   max-width: 70%;
-  margin: 60px auto;
+  margin: auto;
+}
+.home header h1{
+  margin-top: 0;
 }
 
 .home header p,
@@ -16,10 +28,13 @@
 
 .home dl {
   text-align: left;
-  max-width: 30em;
+  max-width: 60%;
   margin: 60px auto;
-
   line-height: 1.4em;
+}
+
+.home button {
+  margin-top: 40px;
 }
 
 

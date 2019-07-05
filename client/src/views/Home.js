@@ -18,7 +18,7 @@ function Home (props) {
       <header>
         <h1 className="title">A match made in crypto</h1>
         <p className="big">
-          Chari makes donation matching campaigns easy 
+          Chari makes donation matching campaigns easy
           <br/>
           and secure with cryptocurrencies.
         </p>
