@@ -7,13 +7,13 @@ const WEB3_SETUP_ERROR = "WEB3_SETUP_ERROR";
 
 const UPDATE_EXPDATE = "UPDATE_EXPDATE";
 const UPDATE_RECIPIENT = "UPDATE_RECIPIENT";
-const UPDATE_SPONSOR = "UPDATE_SPONSOR"
+const UPDATE_SPONSOR = "UPDATE_SPONSOR";
 
-const DEPLOY_REQUESTED = "DEPLOY_REQUESTED"
-const DEPLOY_SUCCESS = "DEPLOY_SUCCESS"
-const DEPLOY_ERROR = "DEPLOY_ERROR"
+const DEPLOY_REQUESTED = "DEPLOY_REQUESTED";
+const DEPLOY_SUCCESS = "DEPLOY_SUCCESS";
+const DEPLOY_ERROR = "DEPLOY_ERROR";
 
-const DURATION = 7 * 24 * 60 * 60;
+const RESET_STORE = "RESET_STORE";
 
 const initialState = {
     error: null,
@@ -23,7 +23,7 @@ const initialState = {
     contract: null,
     networkId: null,
     recipient: null,
-    expDate: Math.floor(Date.now() / 1000) + DURATION,
+    expDate: null,
     isLoading: false,
     isConnected: false,
     deployer: null,
@@ -99,6 +99,17 @@ export default (state = initialState, action) => {
               isDeploying: false,
               isDeployed: false
             }
+        case RESET_STORE:
+            return {
+                ...state,
+                deployer: null,
+                recipient: null,
+                sponsor: null,
+                fundraiser: null,
+                grant: null,
+                contract: null,
+                isDeployed: false
+            }
         default:
             return state;
     }
@@ -107,7 +118,7 @@ export default (state = initialState, action) => {
 export const updateRecipient = (recipient) => {
   return {
     type: UPDATE_RECIPIENT,
-    recipient: recipient
+    recipient
   }
 }
 
@@ -121,7 +132,7 @@ export const updateSponsor = (sponsor) => {
 export const updateExpDate = (expDate) => {
   return {
     type: UPDATE_EXPDATE,
-    expDate: expDate
+    expDate
   }
 }
 
@@ -138,14 +149,14 @@ export const setupWeb3 = () => {
 
             return dispatch({
                 type: WEB3_SETUP_SUCCESS,
-                web3: web3,
-                accounts: accounts,
-                networkId: networkId,
+                web3,
+                accounts,
+                networkId,
             });
         } catch (error) {
             return dispatch({
                 type: WEB3_SETUP_ERROR,
-                error: error
+                error
             });
         }
     };
@@ -189,14 +200,14 @@ export const deploy = () => {
                 dispatch({
                   type: DEPLOY_SUCCESS,
                   addresses,
-                  contract: contract
+                  contract
                 });
             })
         }
       } catch (error) {
           return dispatch({
               type: DEPLOY_ERROR,
-              error: error
+              error
           });
       }
   };
