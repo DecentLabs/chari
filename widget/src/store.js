@@ -33,10 +33,13 @@ export const init = store.action((state, fundraiserAddress, networkId, color, th
   const network = parseInt(networkId, 10)
   if (color) {
     store.setState({color: color})
+    const root = document.documentElement;
+    root.style.setProperty('--widget-color', color);
   }
   if (theme) {
     store.setState({theme: theme})
   }
+
   if (NETWORKS.has(network)) {
     const {url, tokens} = NETWORKS.get(network)
     const provider = new Web3.providers.HttpProvider(url)

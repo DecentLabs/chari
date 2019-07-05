@@ -1,6 +1,6 @@
-@import 'themes.scss';
-
-$base-color: pink;
+:root {
+  --widget-color: pink;
+}
 
 $fontColor: #000000;
 $baseColor: rgba(0, 0, 0, 0.07);
@@ -8,7 +8,7 @@ $lightColor: white;
 $midGray: rgba(0, 0, 0, 0.5);
 $lightGray: rgba(0, 0, 0, 0.2);
 
-[data-theme="theme-dark"] {
+[data-theme="dark"] {
   $fontColor: #ffffff;
   $baseColor: rgba(0, 0, 0, 0.8);
   $lightColor: rgba(50, 50, 50, 1);
@@ -66,7 +66,7 @@ $lightGray: rgba(0, 0, 0, 0.2);
     height: 40px;
     font-size: 20px;
     display: block;
-    background-color: black;
+    background-color: var(--widget-color);
     border-radius: 4px;
     color: white;
     text-align: center;
