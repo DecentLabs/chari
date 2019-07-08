@@ -1,4 +1,5 @@
 import React from "react"
+import { SketchPicker } from 'react-color';
 import styles from './../styles/widgetEditor.module.css'
 import cfg from './../shared/cfg.js'
 
@@ -15,7 +16,7 @@ class WidgetEditor extends React.Component {
     this.iframeLoaded = this.iframeLoaded.bind(this)
 
     this.state = {
-      color: 'purple',
+      color: '#fff',
       theme: 'light',
       address: '0xB5E5F24b659bC8872c4f89b127C685b7FC641862',
       network: 4,
@@ -30,9 +31,10 @@ class WidgetEditor extends React.Component {
     })
   }
 
-  selectColor (e) {
+  selectColor (color) {
+    console.log(color.hex);
     this.setState({
-      color: e.target.value,
+      color: color.hex,
       iframeLoading: true
     })
   }
@@ -50,7 +52,8 @@ class WidgetEditor extends React.Component {
   }
 
   render () {
-    const iframeUrl = `${cfg.WIDGET_BASE_URL}?address=${this.state.address}&network=${this.state.network}&color=${this.state.color}&theme=${this.state.theme}` // todo
+    const color = this.state.color.split('#')[1]
+    const iframeUrl = `${cfg.WIDGET_BASE_URL}?address=${this.state.address}&network=${this.state.network}&color=${color}&theme=${this.state.theme}` // todo
 
     const themeOptions = [
       {value: 'dark', name: 'Dark theme'},
@@ -69,6 +72,10 @@ class WidgetEditor extends React.Component {
           <div className={styles.settings}>
             <Select options={themeOptions} label="Please select widget theme" onChange={this.selectTheme}></Select>
             <Select options={colorOptions} label="Please select color" onChange={this.selectColor}></Select>
+              <SketchPicker
+                color={ this.state.color }
+                onChangeComplete={ this.selectColor }
+              />
 
             <div className={styles.codeContainer}>
               <textarea readOnly value="code here2" id="widget-code"></textarea>
