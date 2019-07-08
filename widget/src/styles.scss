@@ -2,7 +2,7 @@
   --widget-color: pink;
 
   --fontColor: rgba(0, 0, 0, 0.87);
-  --baseColor: #E5E5E5;
+  --baseColor: #F5F6F7;
   --lightColor: white;
   --midGray: rgba(0, 0, 0, 0.5);
   --lightGray: rgba(0, 0, 0, 0.4);
@@ -19,6 +19,7 @@
 #DonationWidget {
   background-color: var(--baseColor);
   color: var(--fontColor);
+  padding: 2em;
   .expiration {
     margin-bottom: 2em;
 
@@ -54,6 +55,13 @@
         margin: 0;
       }
     }
+  }
+
+  .raised {
+    font-size: 4em;
+    text-align: center;
+    font-weight: bold;
+    color: var(--widget-color);
   }
 
   .balanceList {

@@ -14,7 +14,9 @@ export const store = createStore({
   fundraiserBalance: [],
   grantBalance: [],
   color: 'pink',
-  theme: 'theme-light'
+  theme: 'theme-light',
+  raised: null,
+  hasExpired: false
 })
 
 export const refreshBalance = store.action((state) => {
@@ -59,6 +61,16 @@ export const init = store.action((state, fundraiserAddress, networkId) => {
     fundraiserContract.expiration().then(result => {
       const expiration = result[0]
       store.setState({expiration: expiration.toNumber()})
+    })
+    fundraiserContract.raised(fundraiserAddress).then((res) => {
+      store.setState({
+        raised: res[0].toNumber()
+      })
+    })
+    fundraiserContract.hasExpired().then((res) => {
+      store.setState({
+        hasExpired: res[0]
+      })
     })
     return {
       fundraiserAddress,

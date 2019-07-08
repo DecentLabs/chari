@@ -6,16 +6,32 @@ import Expiration from '../expiration'
 
 const THEMES = ['light', 'dark']
 
-export default connect(['fundraiserContract','fundraiserBalance', 'grantBalance', 'expiration', 'theme'])(({fundraiserContract, fundraiserBalance, grantBalance, expiration, theme}) => {
+export default connect([
+  'fundraiserContract',
+  'fundraiserBalance',
+  'grantBalance',
+  'expiration',
+  'theme',
+  'fundraiserAddress',
+  'hasExpired',
+  'raised'
+])(({
+  fundraiserContract,
+  fundraiserBalance,
+  grantBalance,
+  expiration,
+  theme,
+  fundraiserAddress,
+  hasExpired,
+  raised
+}) => {
   const widgetTheme = THEMES.includes(theme) ? theme : 'light'
+
   return (
     <div class="donation" id="DonationWidget" data-theme={widgetTheme} data-view="donation">
       <Expiration at={expiration}/>
 
-      <label>Current balance:</label>
-      <BalanceList balanceList={fundraiserBalance}/>
-      <label>Sponsor balance:</label>
-      <BalanceList balanceList={grantBalance}/>
+      <div class="raised">{raised} ETH</div>
       <hr/>
       {fundraiserContract && (
         <Link href="/contribution/">DONATE!</Link>

@@ -33,7 +33,7 @@ export default class Expiration extends Component {
     return (
       <div class="expiration">
         <Ticker duration={duration}/>
-        <div>Campaign ends {(new Date(at * 1000)).toLocaleString('en-US',{timeZone:'UTC',timeZoneName:'short', year:'numeric', month:'long', day:'numeric', hour:'numeric', minute:'numeric'})}</div>
+        <div class="campaignEnds">Campaign ends {(new Date(at * 1000)).toLocaleString('en-US',{timeZone:'UTC',timeZoneName:'short', year:'numeric', month:'long', day:'numeric', hour:'numeric', minute:'numeric'})}</div>
       </div>)
   }
 }
