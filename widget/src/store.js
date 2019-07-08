@@ -16,7 +16,8 @@ export const store = createStore({
   color: 'pink',
   theme: 'theme-light',
   raised: null,
-  hasExpired: false
+  hasExpired: false,
+  matched: null
 })
 
 export const refreshBalance = store.action((state) => {
@@ -54,7 +55,12 @@ export const init = store.action((state, fundraiserAddress, networkId) => {
     fundraiserContract.grant().then(result => {
       const grantAddress = result[0]
       const grantContract = new eth.contract(Grant).at(grantAddress)
-      store.setState({grantContract});
+      grantContract.matched(grantAddress).then((res) => {
+        store.setState({
+          grantContract: grantContract,
+          matched: res[0].toNumber()
+        });
+      })
       refreshBalance()
     })
 
