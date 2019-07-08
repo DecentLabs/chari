@@ -31,9 +31,10 @@ export const refreshBalance = store.action((state) => {
 
 export const setTheme = store.action((state, color, theme) => {
   if (color) {
-    store.setState({color: color})
+    const c = `#${color}`
+    store.setState({color: c})
     const root = document.documentElement;
-    root.style.setProperty('--widget-color', color);
+    root.style.setProperty('--widget-color', c);
   }
   if (theme) {
     store.setState({theme: theme})
