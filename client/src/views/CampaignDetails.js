@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 
 import buttonStyles from '../styles/button.module.css'
 import congratsStyles from '../styles/Congrats.module.css'
-import Fundraiser from '../contracts/Fundraiser.json'
+import Fundraiser from 'shared/abis/Fundraiser.json'
 
 import tick from '../assets/tick.svg'
 import { setupWeb3 } from './../reducers/web3Connect.js';
@@ -27,7 +27,7 @@ class CampaignDetails extends React.Component {
     async getExpiration() {
         const web3 = await getWeb3();
 
-        const fundraiserContract = new web3.eth.Contract(Fundraiser.abi, this.fundraiserAddress)
+        const fundraiserContract = new web3.eth.Contract(Fundraiser, this.fundraiserAddress)
         const hasExpired = await fundraiserContract.methods.hasExpired().call()
         this.setState({hasExpired})
     }
@@ -35,6 +35,9 @@ class CampaignDetails extends React.Component {
     render() {
         return (
             <div>
+                {this.state.hasExpired && ({
+
+                })}
                 <div className={congratsStyles.imgWrapper}><img src={tick}/></div>
                 <h1 className="subtitle">Congrats!</h1>
                 <p className="big">Your campaign has been successfully created on blockchain.</p>
