@@ -58,12 +58,13 @@ An initial sponsor deposits funds for the matching budget, specifies the recipie
 
 [![Build Status](https://travis-ci.org/DecentLabs/DonationMatching.svg?branch=master)](https://travis-ci.org/DecentLabs/DonationMatching)
 
-Always stay in the root of the repository!
+If it's not stated otherwise, these commands should run in the repository root.
 
 ## install everything
 ```
 yarn install
 ```
+
 
 ## build everything
 ```
@@ -81,8 +82,11 @@ yarn clean
 yarn build:contracts
 ```
 
-## Frontend client
+## Frontend
 
+You should run `yarn build:contracts` to generate the contract abis!
+
+### client
 ```
 yarn run:widget
 ```
@@ -91,12 +95,12 @@ in another terminal:
 yarn run:client
 ```
 
-## Widget
+### Widget
 ```
 yarn run:widget
 ```
 
-
+---
 The repository is using the workspace feature of yarn. 
 You can find more information here:
 
