@@ -69,13 +69,13 @@ yarn run update
 yarn run test
 ```
 
-If you change anything here or in the "shared" package, you should run ```npm run update```!
+If you change anything here or in the "shared" package, you should run ```yarn run update```!
 
 
 ## Frontend client
 
 ```
-npm run update
+yarn run update
 cd widget
 yarn dev
 ```
@@ -87,7 +87,7 @@ yarn start
 
 ## Widget
 ```
-npm run update
+yarn run update
 cd widget
 yarn dev
 ```

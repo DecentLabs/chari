@@ -19,7 +19,6 @@ class WidgetEditor extends React.Component {
     this.state = {
       color: '#02DB96',
       theme: 'light',
-      address: '0xB5E5F24b659bC8872c4f89b127C685b7FC641862',
       network: 4,
       iframeLoading: true,
       showColorSelector: false
@@ -61,8 +60,9 @@ class WidgetEditor extends React.Component {
   }
 
   render () {
+    const address = this.props.match.params.address
     const color = this.state.color.split('#')[1]
-    const iframeUrl = `${cfg.WIDGET_BASE_URL}?address=${this.state.address}&network=${this.state.network}&color=${color}&theme=${this.state.theme}` // todo
+    const iframeUrl = `${cfg.WIDGET_BASE_URL}?address=${address}&network=${this.state.network}&color=${color}&theme=${this.state.theme}` // todo
 
     const themeOptions = [
       {value: 'dark', name: 'Dark theme'},

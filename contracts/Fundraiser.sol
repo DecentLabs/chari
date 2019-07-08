@@ -44,12 +44,7 @@ contract Fundraiser is Fundable {
     }
     
     function raised(address token) external view returns (uint) {
-        uint balance = tokenBalance(token);
-        uint paid = disbursed[token];
-        if (paid != 0) {
-            return balance + paid;
-        }
-        return balance + grant.matched(token);
+        return tokenBalance(token) + disbursed[token] + grant.tokenBalance(token) - grant.refundable(token);
     }
 
     function disburse(address token) external {
