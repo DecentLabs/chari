@@ -10,6 +10,7 @@ import CreateContractForm from './CreateContractForm.js'
 import AddFund from './AddFund.js'
 import Congrats from './Congrats.js'
 import LoaderComp from './../components/loaderComp.js'
+import CampaignDetails from './CampaignDetails.js'
 
 class NewCampaign extends React.Component {
   render () {
@@ -21,7 +22,8 @@ class NewCampaign extends React.Component {
               <Route path="/campaign/deploy" component={CreateContractForm} />
               <Route path="/campaign/congrats/:address" component={Congrats} />
               <Route path="/campaign/admin/:address" component={WidgetEditor} />
-              <Route path="/campaign/addfund/:address" component={AddFund} />
+                <Route path="/campaign/addfund/:address" component={AddFund} />
+                <Route path="/campaign/details/:address" component={CampaignDetails} />
               </Switch>
           </div>
         )}
