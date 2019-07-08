@@ -37,6 +37,20 @@
   object-fit: contain;
 }
 
+.button.colorBtn {
+  display: block;
+  width: 100%;
+  border-radius: 0;
+  color: #797E7C;
+  text-align: left;
+  font-size: 24px;
+  font-weight: normal;
+  padding: 7px;
+  background-color: rgba(0, 0, 0, 0);
+  /* background: url('./../assets/down-arrow.svg') no-repeat calc(100% - 16px) white;
+  background-size: 16px 16px; */
+}
+
 .button:hover {
 
 }

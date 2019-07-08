@@ -1,5 +1,5 @@
 import React from "react"
-import { SketchPicker } from 'react-color';
+import {TwitterPicker} from 'react-color';
 import styles from './../styles/widgetEditor.module.css'
 import cfg from './../shared/cfg.js'
 
@@ -14,13 +14,15 @@ class WidgetEditor extends React.Component {
     this.selectTheme = this.selectTheme.bind(this)
     this.selectColor = this.selectColor.bind(this)
     this.iframeLoaded = this.iframeLoaded.bind(this)
+    this.toggleColorSelector = this.toggleColorSelector.bind(this)
 
     this.state = {
-      color: '#fff',
+      color: '#02DB96',
       theme: 'light',
       address: '0xB5E5F24b659bC8872c4f89b127C685b7FC641862',
       network: 4,
-      iframeLoading: true
+      iframeLoading: true,
+      showColorSelector: false
     }
   }
 
@@ -36,6 +38,13 @@ class WidgetEditor extends React.Component {
     this.setState({
       color: color.hex,
       iframeLoading: true
+    })
+  }
+
+  toggleColorSelector () {
+    const newState = !this.state.showColorSelector
+    this.setState({
+      showColorSelector: newState
     })
   }
 
@@ -59,7 +68,6 @@ class WidgetEditor extends React.Component {
       {value: 'dark', name: 'Dark theme'},
       {value: 'light', name: 'Light theme'}
     ]
-    const colorOptions = [{value: 'purple', name: 'purple'}, {value: 'green', name: 'green'}] // todo
 
     return (
       <div className={styles.widgetEditor}>
@@ -71,11 +79,16 @@ class WidgetEditor extends React.Component {
         <div className={styles.widget}>
           <div className={styles.settings}>
             <Select options={themeOptions} label="Please select widget theme" onChange={this.selectTheme}></Select>
-            <Select options={colorOptions} label="Please select color" onChange={this.selectColor}></Select>
-              <SketchPicker
-                color={ this.state.color }
-                onChangeComplete={ this.selectColor }
-              />
+            <div className={styles.colorPickerCont}>
+              <Button onClick={this.toggleColorSelector} colorSelector colorData={this.state.color}>Please select color</Button>
+              {this.state.showColorSelector && (
+                <TwitterPicker
+                  className={styles.picker}
+                  color={ this.state.color }
+                  onChangeComplete={ this.selectColor }
+                />
+              )}
+            </div>
 
             <div className={styles.codeContainer}>
               <textarea readOnly value="code here2" id="widget-code"></textarea>

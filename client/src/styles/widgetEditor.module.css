@@ -72,3 +72,14 @@
   background-color: #BCBCBC;
   border-radius: 0;
 }
+
+.widgetEditor .colorPickerCont {
+  position: relative;
+}
+
+.widgetEditor .colorPickerCont .picker {
+  position: absolute !important;
+  z-index: 10;
+  left: calc((100% - 276px) / 2);
+  top: 60px;
+}
