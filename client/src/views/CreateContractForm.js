@@ -32,14 +32,11 @@ class CreateContractForm extends React.Component {
     }
 
     componentDidMount () {
+        this.props.dispatch({type: 'RESET_STORE'})
+
         if (!this.props.isConnected) {
             this.props.dispatch(setupWeb3());
         }
-    }
-
-    componentWillUpdate () {
-        console.log('create will mount')
-        this.props.dispatch({type: 'RESET_STORE'})
     }
 
     onCharityAddressChange (e) {
