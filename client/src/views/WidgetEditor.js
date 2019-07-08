@@ -80,7 +80,7 @@ class WidgetEditor extends React.Component {
           <div className={styles.settings}>
             <Select options={themeOptions} label="Please select widget theme" onChange={this.selectTheme}></Select>
             <div className={styles.colorPickerCont}>
-              <Button onClick={this.toggleColorSelector} colorSelector colorData={this.state.color}>Please select color</Button>
+              <Button state={this.state.showColorSelector ? 'close' : 'open'} onClick={this.toggleColorSelector} colorSelector colorData={this.state.color}>Please select color</Button>
               {this.state.showColorSelector && (
                 <TwitterPicker
                   className={styles.picker}

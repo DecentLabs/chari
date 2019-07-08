@@ -8,6 +8,10 @@ export default function Button (props) {
   const color = props.colorSelector ? styles.colorBtn : null
 
   return (
-    <button style={{borderBottom: `2px solid ${props.colorData}`}} data-color={props.colorData} className={classnames(styles.button, naked, copy, color)} onClick={props.onClick} disabled={props.disabled}>{props.children}</button>
+    <button style={{borderBottom: `2px solid ${props.colorData}`}}
+            data-color={props.colorData}
+            className={classnames(styles.button, styles[props.state], naked, copy, color)}
+            onClick={props.onClick}
+            disabled={props.disabled}>{props.children}</button>
   )
 }

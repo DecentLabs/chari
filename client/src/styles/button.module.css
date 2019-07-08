@@ -47,8 +47,10 @@
   font-weight: normal;
   padding: 7px;
   background-color: rgba(0, 0, 0, 0);
-  /* background: url('./../assets/down-arrow.svg') no-repeat calc(100% - 16px) white;
-  background-size: 16px 16px; */
+}
+.button.colorBtn.close {
+  background: url('./../assets/close-button.svg') no-repeat calc(100% - 16px) white;
+  background-size: 14px 14px;
 }
 
 .button:hover {
