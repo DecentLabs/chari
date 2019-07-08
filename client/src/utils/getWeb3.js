@@ -1,7 +1,7 @@
 import Web3 from "web3";
 import Portis from '@portis/web3';
 
-const PORTIS_APP = 'e6abccd4-951c-42b8-9ca1-57108cc64f7d'
+const PORTIS_APP = '98a39edb-e9d0-4b58-96b6-89227c762f7a'
 const PORTIS_NETWORK = 'rinkeby'
 
 const getWeb3 = () =>

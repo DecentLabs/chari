@@ -6,7 +6,7 @@ const ETH = {
   decimals: 18
 }
 
-const AEUR_RINKEBY = {
+const AEUR_TEST = {
   token: 'AEUR',
   tokenAddress: '0x79065a165Ec09E6A89D584a14872802717FE12a3',
   decimals: 2
@@ -20,19 +20,11 @@ const AEUR_MAIN = {
 }
 
 NETWORKS.set(1, {
-  url: 'https://mainnet.infura.io/v3/0aac55d3d6bb4b3498e97cbcf7112f6b',
-  tokens: [ETH, AEUR_MAIN],
-  factory: null
-})
-
-NETWORKS.set(3, {
-  url: 'https://ropsten.infura.io/v3/0aac55d3d6bb4b3498e97cbcf7112f6b',
-  tokens: [ETH],
-  factory: '0xB473fA524067efBaACA1bD0AdBF72743133Af5c1'
+  url: 'https://mainnet.infura.io/v3/',
+  tokens: [ETH, AEUR_MAIN]
 })
 
 NETWORKS.set(4, {
   url: 'https://rinkeby.infura.io/v3/0aac55d3d6bb4b3498e97cbcf7112f6b',
-  tokens: [ETH, AEUR_RINKEBY],
-  factory: '0xd8ED77de4E0CC1b39674896a0cE40A76D0aDA968'
+  tokens: [ETH, AEUR_TEST]
 })

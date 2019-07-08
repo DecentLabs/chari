@@ -12,19 +12,19 @@ contract("FundraiserFactory", accounts => {
     const now = Math.round(new Date().getTime() / 1000);
     const expiration = now + 120;
 
-    const result = await factory.deploy(recipient, sponsor, expiration, {
+    const result = await factory.newFundraiser(recipient, sponsor, expiration, {
         from: deployer,
         gas: 2000000
     });
 
     const log = result.logs[0].args;
-	const event = {
-		deployer: log[0],
-		recipient: log[1],
-		sponsor: log[2],
-		fundraiser: log[3],
-		grant: log[4]
-	};
+  	const event = {
+  		deployer: log[0],
+  		recipient: log[1],
+  		sponsor: log[2],
+  		fundraiser: log[3],
+  		grant: log[4]
+  	};
 
     console.log("Deployed", event);
 

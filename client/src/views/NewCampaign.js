@@ -3,8 +3,6 @@ import  { Route, Switch, Redirect} from "react-router-dom"
 import styles from './../styles/NewCampaign.module.css'
 import {connect} from 'react-redux'
 
-// import CreateCampaignNav from './../components/createCampaignNav.js'
-
 import WidgetEditor from './WidgetEditor.js'
 import CreateContractForm from './CreateContractForm.js'
 import AddFund from './AddFund.js'

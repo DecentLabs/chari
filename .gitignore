@@ -1,2 +1,6 @@
 .idea/
 node_modules/
+/donation-widget/stats.json
+stats.json
+deployments
+shared/abis

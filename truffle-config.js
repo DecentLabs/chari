@@ -9,7 +9,7 @@ const INFURA_API_KEY = process.env.INFURA_API_KEY;
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
   // to customize your Truffle configuration!
-  contracts_build_directory: path.join(__dirname, "client/src/contracts"),
+  contracts_build_directory: path.join(__dirname, "deployments"),
   networks: {
     develop: {
       port: 8545
@@ -17,6 +17,12 @@ module.exports = {
     rinkeby: {
       provider: () => new HDWalletProvider(DEPLOYER_MNEMONIC, "https://rinkeby.infura.io/v3/" + INFURA_API_KEY),
       network_id: 4,
+      gas: 3000000,
+      gasPrice: 10000000000
+    },
+    ropsten: {
+      provider: () => new HDWalletProvider(DEPLOYER_MNEMONIC, "https://ropsten.infura.io/v3/" + INFURA_API_KEY),
+      network_id: 3,
       gas: 3000000,
       gasPrice: 10000000000
     },
@@ -31,8 +37,8 @@ module.exports = {
     solc: {
       settings: {
         optimizer: {
-          enabled: true, 
-          runs: 200    
+          enabled: true,
+          runs: 200
         }
       }
     }

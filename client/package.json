@@ -15,7 +15,11 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "shared": "../shared",
     "web3": "^1.0.0-beta.37"
+  },
+  "resolutions": {
+    "sha3": "2.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -34,6 +38,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "truffle": "^5.0.25"
+    "http-proxy-middleware": "^0.19.1"
   }
 }

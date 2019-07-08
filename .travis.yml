@@ -9,12 +9,16 @@ sudo: false
 before_install:
   - npm install -g yarn
   - npm install
-  - cd client
-install:
-  - yarn
+  - npm run build
+install: skip
 script:
+  - cd client
+  - yarn
   - yarn build
   - echo 'chari.io' >./build/CNAME
+  - cd ../widget
+  - yarn
+  - yarn build
 deploy:
   provider: pages
   local_dir: ./client/build
