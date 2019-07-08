@@ -8,17 +8,11 @@ cache:
 sudo: false
 before_install:
   - npm install -g yarn
-  - npm install
-  - npm run build
-install: skip
+install:
+  - yarn install
 script:
-  - cd client
-  - yarn
   - yarn build
-  - echo 'chari.io' >./build/CNAME
-  - cd ../widget
-  - yarn
-  - yarn build
+  - echo 'chari.io' >./client/build/CNAME
 deploy:
   provider: pages
   local_dir: ./client/build
