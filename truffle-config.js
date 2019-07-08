@@ -20,6 +20,12 @@ module.exports = {
       gas: 3000000,
       gasPrice: 10000000000
     },
+    ropsten: {
+      provider: () => new HDWalletProvider(DEPLOYER_MNEMONIC, "https://ropsten.infura.io/v3/" + INFURA_API_KEY),
+      network_id: 3,
+      gas: 3000000,
+      gasPrice: 10000000000
+    },
     mainnet: {
       provider: () => new HDWalletProvider(DEPLOYER_MNEMONIC, "https://mainnet.infura.io/v3/" + INFURA_API_KEY),
       network_id: 1,
