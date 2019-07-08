@@ -1,7 +1,7 @@
 import React from 'react';
 import getWeb3 from './../utils/getWeb3';
 
-import Fundraiser from '../contracts/Fundraiser.json'
+import Fundraiser from 'shared/abis/Fundraiser.json'
 
 
 class AddFund extends React.Component {
@@ -19,7 +19,7 @@ class AddFund extends React.Component {
     async getGrantContract() {
         const web3 = await getWeb3();
         const fundraiserAddress = this.props.match.params.address;
-        const fundraiserContract = new web3.eth.Contract(Fundraiser.abi, fundraiserAddress);
+        const fundraiserContract = new web3.eth.Contract(Fundraiser, fundraiserAddress);
         const grantAddress = await fundraiserContract.methods.grant().call();
 
         this.setState({grant: grantAddress});

@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "test": "truffle test",
-    "build": "truffle compile && abiniser generate -i ./deployments -a ./shared/abis -d ./shared/deployments",
+    "build": "truffle compile && . scripts/extract-abi.sh",
     "update": ". scripts/update.sh"
   },
   "dependencies": {
@@ -12,7 +12,7 @@
     "truffle-hdwallet-provider": "^1.0.12"
   },
   "devDependencies": {
-    "abiniser": "^0.5.1",
+    "node-jq": "^1.9.0",
     "truffle": "^5.0.26"
   }
 }

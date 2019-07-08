@@ -1,5 +1,6 @@
 import getWeb3 from './../utils/getWeb3';
-import FundraiserFactory from 'shared/abis/FundraiserFactory_ABI_0eed366049eb65e672810222ee8bf46a.json'
+import FundraiserFactory from 'shared/abis/FundraiserFactory.json'
+import {NETWORKS} from 'shared/constants.js'
 
 const WEB3_SETUP_REQUESTED = "WEB3_SETUP_REQUESTED";
 const WEB3_SETUP_SUCCESS = "WEB3_SETUP_SUCCESS";
@@ -175,9 +176,8 @@ export const deploy = () => {
         const expiration = web3Connect.expDate;
         const web3 = web3Connect.web3;
 
-        const abi = FundraiserFactory.abi;
-        const contractAddress = FundraiserFactory.networks['4'].address;
-        const contract = new web3.eth.Contract(abi, contractAddress);
+        const contractAddress = NETWORKS.get(4).factory;
+        const contract = new web3.eth.Contract(FundraiserFactory, contractAddress);
 
         if (web3.utils.isAddress(recipient) && typeof expiration === 'number' && expiration % 1 === 0) {
             const tx = contract.methods.newFundraiser(recipient, sponsor, expiration).send({

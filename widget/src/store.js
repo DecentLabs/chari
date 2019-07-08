@@ -1,7 +1,7 @@
 import createStore from 'unistore'
 import { NETWORKS } from 'shared/constants.js'
-import Fundraiser from 'shared/abis/Fundraiser_ABI_97a43d1a19a9dc40580696887486437d.json'
-import Grant from 'shared/abis/Grant_ABI_abe03ad4ff197414ebc39eb6d0a03042.json'
+import Fundraiser from 'shared/abis/Fundraiser.json'
+import Grant from 'shared/abis/Grant.json'
 import Eth from 'ethjs'
 
 export const store = createStore({
@@ -46,11 +46,11 @@ export const init = store.action((state, fundraiserAddress, networkId) => {
     const {url, tokens} = NETWORKS.get(network)
     const provider = new Eth.HttpProvider(url)
     const eth = new Eth(provider)
-    const fundraiserContract = new eth.contract(Fundraiser.abi).at(fundraiserAddress)
+    const fundraiserContract = new eth.contract(Fundraiser).at(fundraiserAddress)
 
     fundraiserContract.grant().then(result => {
       const grantAddress = result[0]
-      const grantContract = new eth.contract(Grant.abi).at(grantAddress)
+      const grantContract = new eth.contract(Grant).at(grantAddress)
       store.setState({grantContract});
       refreshBalance()
     })
