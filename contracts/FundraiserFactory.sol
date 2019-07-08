@@ -12,7 +12,7 @@ contract FundraiserFactory {
 		Grant grant,
 		uint expiration);
     
-    function deploy(address payable _recipient, address payable _sponsor, uint _expiration) public returns (Fundraiser fundraiser, Grant grant) {
+    function newFundraiser(address payable _recipient, address payable _sponsor, uint _expiration) public returns (Fundraiser fundraiser, Grant grant) {
         fundraiser = new Fundraiser(_recipient, _sponsor, _expiration);
         grant = fundraiser.grant();
         emit NewFundraiser(msg.sender, _recipient, _sponsor, fundraiser, grant, _expiration);

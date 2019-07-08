@@ -1,9 +1,8 @@
 import { h } from 'preact'
 
-export const Ticker = ({children, ...props}) => {
-  const {duration} = props
+export const Ticker = ({children, duration}) => {
   if (duration) {
-    const days = Math.floor(duration.asDays())
+    const {days, hours, minutes, seconds} = duration;
     return (
       <div class="ticker">
         {days > 0 ? (
@@ -11,19 +10,19 @@ export const Ticker = ({children, ...props}) => {
             <div class="value">{days}</div>
             <figcaption class="label">Days</figcaption>
           </figure>) : ''}
+        <figure class="tickerItem">
+          <div class="value">{hours}</div>
+          <figcaption class="label">Hours</figcaption>
+        </figure>
+        <figure class="tickerItem">
+          <div class="value">{minutes}</div>
+          <figcaption class="label">Minutes</figcaption>
+        </figure>
+        {days === 0 ? (
           <figure class="tickerItem">
-            <div class="value">{duration.hours()}</div>
-            <figcaption class="label">Hours</figcaption>
-          </figure>
-          <figure class="tickerItem">
-            <div class="value">{duration.minutes()}</div>
-            <figcaption class="label">Minutes</figcaption>
-          </figure>
-          {days === 0 ? (
-            <figure class="tickerItem">
-              <div class="value">{duration.seconds()}</div>
-              <figcaption class="label">Seconds</figcaption>
-            </figure>) : ''}
+            <div class="value">{seconds}</div>
+            <figcaption class="label">Seconds</figcaption>
+          </figure>) : ''}
       </div>)
   }
 }

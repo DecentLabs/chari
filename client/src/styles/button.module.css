@@ -65,3 +65,12 @@
   opacity: 0.5;
   cursor: default;
 }
+
+a.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 240px;
+  text-decoration: none;
+  margin: 30px;
+}

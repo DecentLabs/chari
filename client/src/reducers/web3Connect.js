@@ -1,5 +1,6 @@
 import getWeb3 from './../utils/getWeb3';
-import FundraiserFactory from '../deployments/FundraiserFactory.json'
+import FundraiserFactory from 'shared/abis/FundraiserFactory.json'
+import {NETWORKS} from 'shared/constants.js'
 
 const WEB3_SETUP_REQUESTED = "WEB3_SETUP_REQUESTED";
 const WEB3_SETUP_SUCCESS = "WEB3_SETUP_SUCCESS";
@@ -7,13 +8,13 @@ const WEB3_SETUP_ERROR = "WEB3_SETUP_ERROR";
 
 const UPDATE_EXPDATE = "UPDATE_EXPDATE";
 const UPDATE_RECIPIENT = "UPDATE_RECIPIENT";
-const UPDATE_SPONSOR = "UPDATE_SPONSOR"
+const UPDATE_SPONSOR = "UPDATE_SPONSOR";
 
-const DEPLOY_REQUESTED = "DEPLOY_REQUESTED"
-const DEPLOY_SUCCESS = "DEPLOY_SUCCESS"
-const DEPLOY_ERROR = "DEPLOY_ERROR"
+const DEPLOY_REQUESTED = "DEPLOY_REQUESTED";
+const DEPLOY_SUCCESS = "DEPLOY_SUCCESS";
+const DEPLOY_ERROR = "DEPLOY_ERROR";
 
-const DURATION = 7 * 24 * 60 * 60;
+const RESET_STORE = "RESET_STORE";
 
 const initialState = {
     error: null,
@@ -22,8 +23,8 @@ const initialState = {
     accounts: null,
     contract: null,
     networkId: null,
-    recipient: '0x76E7a0aEc3E43211395bBBB6Fa059bD6750F83c3',
-    expDate: Math.floor(Date.now() / 1000) + DURATION,
+    recipient: null,
+    expDate: null,
     isLoading: false,
     isConnected: false,
     deployer: null,
@@ -99,6 +100,17 @@ export default (state = initialState, action) => {
               isDeploying: false,
               isDeployed: false
             }
+        case RESET_STORE:
+            return {
+                ...state,
+                deployer: null,
+                recipient: null,
+                sponsor: null,
+                fundraiser: null,
+                grant: null,
+                contract: null,
+                isDeployed: false
+            }
         default:
             return state;
     }
@@ -107,7 +119,7 @@ export default (state = initialState, action) => {
 export const updateRecipient = (recipient) => {
   return {
     type: UPDATE_RECIPIENT,
-    recipient: recipient
+    recipient
   }
 }
 
@@ -121,7 +133,7 @@ export const updateSponsor = (sponsor) => {
 export const updateExpDate = (expDate) => {
   return {
     type: UPDATE_EXPDATE,
-    expDate: expDate
+    expDate
   }
 }
 
@@ -138,14 +150,14 @@ export const setupWeb3 = () => {
 
             return dispatch({
                 type: WEB3_SETUP_SUCCESS,
-                web3: web3,
-                accounts: accounts,
-                networkId: networkId,
+                web3,
+                accounts,
+                networkId,
             });
         } catch (error) {
             return dispatch({
                 type: WEB3_SETUP_ERROR,
-                error: error
+                error
             });
         }
     };
@@ -164,12 +176,11 @@ export const deploy = () => {
         const expiration = web3Connect.expDate;
         const web3 = web3Connect.web3;
 
-        const abi = FundraiserFactory.abi;
-        const contractAddress = FundraiserFactory.networks['4'].address;
-        const contract = new web3.eth.Contract(abi, contractAddress);
+        const contractAddress = NETWORKS.get(4).factory;
+        const contract = new web3.eth.Contract(FundraiserFactory, contractAddress);
 
         if (web3.utils.isAddress(recipient) && typeof expiration === 'number' && expiration % 1 === 0) {
-            const tx = contract.methods.deploy(recipient, sponsor, expiration).send({
+            const tx = contract.methods.newFundraiser(recipient, sponsor, expiration).send({
                 from: sponsor,
                 gas: 1000000
             });
@@ -189,14 +200,14 @@ export const deploy = () => {
                 dispatch({
                   type: DEPLOY_SUCCESS,
                   addresses,
-                  contract: contract
+                  contract
                 });
             })
         }
       } catch (error) {
           return dispatch({
               type: DEPLOY_ERROR,
-              error: error
+              error
           });
       }
   };

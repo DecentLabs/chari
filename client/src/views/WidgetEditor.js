@@ -69,44 +69,42 @@ class WidgetEditor extends React.Component {
       {value: 'light', name: 'Light theme'}
     ]
 
-    return (
-      <div className={styles.widgetEditor}>
-        <header>
-          <h1>Welcome in campaign editor page!</h1>
-          <p>You can manage your campaign widget from here, customize it and also copy the code necessary to embed it on your website.</p>
-        </header>
+      return (
+          <div className={styles.widgetEditor}>
+              <header>
+                  <h1 className="subtitle">Welcome in campaign editor page!</h1>
+                  <p>You can manage your campaign widget from here, customize it and also copy the code necessary to
+                      embed it on your website.</p>
+              </header>
+              <div className={styles.widget}>
+                <div className={styles.settings}>
+                  <Select options={themeOptions} label="Please select widget theme" onChange={this.selectTheme}></Select>
+                  <div className={styles.colorPickerCont}>
+                    <Button state={this.state.showColorSelector ? 'close' : 'open'} onClick={this.toggleColorSelector} colorSelector colorData={this.state.color}>Please select color</Button>
+                    {this.state.showColorSelector && (
+                      <TwitterPicker
+                        className={styles.picker}
+                        color={ this.state.color }
+                        onChangeComplete={ this.selectColor }
+                      />
+                    )}
+                  </div>
 
-        <div className={styles.widget}>
-          <div className={styles.settings}>
-            <Select options={themeOptions} label="Please select widget theme" onChange={this.selectTheme}></Select>
-            <div className={styles.colorPickerCont}>
-              <Button state={this.state.showColorSelector ? 'close' : 'open'} onClick={this.toggleColorSelector} colorSelector colorData={this.state.color}>Please select color</Button>
-              {this.state.showColorSelector && (
-                <TwitterPicker
-                  className={styles.picker}
-                  color={ this.state.color }
-                  onChangeComplete={ this.selectColor }
-                />
-              )}
-            </div>
+                  <div className={styles.codeContainer}>
+                    <textarea readOnly value="code here2" id="widget-code"></textarea>
+                    <Button copy onClick={this.copyCode}><img src={copy} alt="copy code"/></Button>
+                  </div>
+                </div>
 
-            <div className={styles.codeContainer}>
-              <textarea readOnly value="code here2" id="widget-code"></textarea>
-              <Button copy onClick={this.copyCode}><img src={copy} alt="copy code"/></Button>
-            </div>
+                <div className={styles.iframeContainer}>
+                  {this.state.iframeLoading && (
+                    <LoaderComp subtitle="none"></LoaderComp>
+                  )}
+                  <iframe className={this.state.iframeLoading ? styles.loading : ''} onLoad={this.iframeLoaded} title="Chari-widget" src={iframeUrl}></iframe>
+                </div>
+              </div>
           </div>
-
-          <div className={styles.iframeContainer}>
-            {this.state.iframeLoading && (
-              <LoaderComp subtitle="none"></LoaderComp>
-            )}
-            <iframe className={this.state.iframeLoading ? styles.loading : ''} onLoad={this.iframeLoaded} title="Chari-widget" src={iframeUrl}></iframe>
-          </div>
-        </div>
-
-        <Button>Add fund</Button>
-      </div>
-    )
+      )
   }
 }
 

@@ -58,19 +58,36 @@ An initial sponsor deposits funds for the matching budget, specifies the recipie
 
 [![Build Status](https://travis-ci.org/DecentLabs/DonationMatching.svg?branch=master)](https://travis-ci.org/DecentLabs/DonationMatching)
 
+## install everything
+```
+yarn run update
+```
+
 ## Contracts
 
 ```
-npm install truffle -g
-npm install
-truffle test
+yarn run test
 ```
 
-## Frontend
+If you change anything here or in the "shared" package, you should run ```npm run update```!
+
+
+## Frontend client
 
 ```
-truffle compile
+npm run update
+cd widget
+yarn dev
+```
+in another terminal:
+```
 cd client
-yarn install
 yarn start
+```
+
+## Widget
+```
+npm run update
+cd widget
+yarn dev
 ```

@@ -16,7 +16,7 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "status": "0.0.13",
+    "shared": "../shared",
     "web3": "^1.0.0-beta.37"
   },
   "resolutions": {
@@ -39,7 +39,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "http-proxy-middleware": "^0.19.1",
-    "truffle": "^5.0.25"
+    "http-proxy-middleware": "^0.19.1"
   }
 }
