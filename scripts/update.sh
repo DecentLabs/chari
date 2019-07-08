@@ -1,6 +1,6 @@
 #!/bin/sh
-npm install
-npm run build
+yarn install
+yarn run build
 
 #update client
 cd client

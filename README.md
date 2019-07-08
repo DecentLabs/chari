@@ -60,13 +60,13 @@ An initial sponsor deposits funds for the matching budget, specifies the recipie
 
 ## install everything
 ```
-npm run update
+yarn run update
 ```
 
 ## Contracts
 
 ```
-npm run test
+yarn run test
 ```
 
 If you change anything here or in the "shared" package, you should run ```npm run update```!
