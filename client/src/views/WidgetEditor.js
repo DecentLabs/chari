@@ -47,12 +47,6 @@ class WidgetEditor extends React.Component {
       ]
       const colorOptions = [{value: 'purple', name: 'purple'}, {value: 'green', name: 'green'}] // todo
 
-      const copyCode = () => {
-          const toCopy = document.querySelector('textarea#widget-code')
-          toCopy.select()
-          document.execCommand("copy")
-      }
-
       return (
           <div className={styles.widgetEditor}>
               <header>
@@ -73,7 +67,7 @@ class WidgetEditor extends React.Component {
                       </div>
                   </div>
 
-                  <iframe src="" title="Chari-widget" src={iframeUrl}></iframe>
+                  <iframe title="Chari-widget" src={iframeUrl}></iframe>
               </div>
           </div>
       )

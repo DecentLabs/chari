@@ -12,7 +12,7 @@ const Congrats = (props) => {
 
     return (
         <div>
-            <div className={congratsStyles.imgWrapper}><img src={tick}/></div>
+            <div className={congratsStyles.imgWrapper}><img src={tick} alt="tick"/></div>
             <h1 className="subtitle">Congrats!</h1>
             <p className="big">Your campaign has been successfully created on blockchain.</p>
             <p className="big strong">{fundraiserAddress}</p>
