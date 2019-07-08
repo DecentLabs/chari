@@ -14,7 +14,8 @@ export default connect([
   'theme',
   'fundraiserAddress',
   'hasExpired',
-  'raised'
+  'raised',
+  'matched'
 ])(({
   fundraiserContract,
   fundraiserBalance,
@@ -23,7 +24,8 @@ export default connect([
   theme,
   fundraiserAddress,
   hasExpired,
-  raised
+  raised,
+  matched
 }) => {
   const widgetTheme = THEMES.includes(theme) ? theme : 'light'
 
@@ -31,7 +33,9 @@ export default connect([
     <div class="donation" id="DonationWidget" data-theme={widgetTheme} data-view="donation">
       <Expiration at={expiration}/>
 
-      <div class="raised">{raised} ETH</div>
+      {raised && (raised.value !== null) && (
+        <div class="raised">{raised.value} {raised.token}</div>
+      )}
       <hr/>
       {fundraiserContract && (
         <Link href="/contribution/">DONATE!</Link>

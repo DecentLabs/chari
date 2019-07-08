@@ -6,6 +6,7 @@ import Eth from 'ethjs'
 
 export const store = createStore({
   fundraiserAddress: null,
+  grantAddress: null,
   networkId: null,
   fundraiserContract: null,
   grantContract: null,
@@ -23,11 +24,21 @@ export const store = createStore({
 export const refreshBalance = store.action((state) => {
   const {tokens, fundraiserContract, grantContract} = state
   if (fundraiserContract && grantContract) {
-    Promise.all(tokens.map(token => getBalance(fundraiserContract, token))).then(balances => store.setState({
-      fundraiserBalance:balances
+    Promise.all(tokens.map((token) => {
+      getBalance(fundraiserContract, token).then(balances => store.setState({
+        fundraiserBalance:balances
+      }))
+      getRaised(fundraiserContract, token).then(raised => store.setState({
+        raised: raised
+      }))
     }))
-    Promise.all(tokens.map(token => getBalance(grantContract, token))).then(balances => store.setState({
-      grantBalance: balances
+    Promise.all(tokens.map((token) => {
+      getBalance(grantContract, token).then(balances => store.setState({
+        grantBalance: balances
+      }))
+      getMatched(grantContract, token).then(matched => store.setState({
+        matched: matched
+      }))
     }))
   }
 })
@@ -55,12 +66,12 @@ export const init = store.action((state, fundraiserAddress, networkId) => {
     fundraiserContract.grant().then(result => {
       const grantAddress = result[0]
       const grantContract = new eth.contract(Grant).at(grantAddress)
-      grantContract.matched(grantAddress).then((res) => {
-        store.setState({
-          grantContract: grantContract,
-          matched: res[0].toNumber()
-        });
-      })
+
+      store.setState({
+        grantContract: grantContract,
+        grantAddress: grantAddress
+      });
+
       refreshBalance()
     })
 
@@ -68,16 +79,12 @@ export const init = store.action((state, fundraiserAddress, networkId) => {
       const expiration = result[0]
       store.setState({expiration: expiration.toNumber()})
     })
-    fundraiserContract.raised(fundraiserAddress).then((res) => {
-      store.setState({
-        raised: res[0].toNumber()
-      })
-    })
     fundraiserContract.hasExpired().then((res) => {
       store.setState({
         hasExpired: res[0]
       })
     })
+
     return {
       fundraiserAddress,
       networkId,
@@ -88,20 +95,38 @@ export const init = store.action((state, fundraiserAddress, networkId) => {
   return {}
 })
 
+function getRaised (contract, token) {
+  return contract.raised(token.tokenAddress).then((res) => {
+    const raised = convert(token.decimals, res[0])
+    return {value: raised, token: token.token}
+  })
+}
+
+function getMatched(contract, token) {
+  return contract.matched(token.tokenAddress).then((res) => {
+    const matched = convert(token.decimals, res[0])
+    return { value: matched, token: token.token}
+  })
+}
+
 
 function getBalance(contract, tokenInfo) {
   const {token, tokenAddress, decimals} = tokenInfo
 
   return contract.tokenBalance(tokenAddress).then(result => {
-    let balance = result[0]
-    if (decimals) {
-      let DEC_DIV = decimals
-      if (decimals > 5) {
-        balance = balance.div(new Eth.BN(Math.pow(10, decimals - 5)))
-        DEC_DIV = 5
-      }
-      balance = balance.toNumber() / Math.pow(10, DEC_DIV)
-    }
+    const balance = convert(decimals, result[0])
     return {value: balance, token: token}
   })
+}
+
+function convert (decimals, result) {
+  if (decimals) {
+    let DEC_DIV = decimals
+    if (decimals > 5) {
+      result = result.div(new Eth.BN(Math.pow(10, decimals - 5)))
+      DEC_DIV = 5
+    }
+    result = result.toNumber() / Math.pow(10, DEC_DIV)
+    return result
+  }
 }
