@@ -17,11 +17,10 @@ class NewCampaign extends React.Component {
         {!this.props.isLoading && !this.props.isDeploying && (
           <div>
               <Switch>
-              <Route path="/campaign/deploy" component={CreateContractForm} />
-              <Route path="/campaign/congrats/:address" component={Congrats} />
-              <Route path="/campaign/admin/:address" component={WidgetEditor} />
-                <Route path="/campaign/addfund/:address" component={AddFund} />
-                <Route path="/campaign/details/:address" component={CampaignDetails} />
+                <Route path="/campaign/deploy" component={CreateContractForm} />
+                <Route path="/campaign/:address/details/" component={CampaignDetails} />
+                <Route path="/campaign/:address/admin/" component={WidgetEditor} />
+                <Route path="/campaign/:address/addfund/" component={AddFund} />
               </Switch>
           </div>
         )}
@@ -39,7 +38,7 @@ class NewCampaign extends React.Component {
         )}
 
         {this.props.isDeployed && (
-            <Redirect to={`/campaign/congrats/${this.props.fundraiser}`} />
+            <Redirect to={`/campaign/${this.props.fundraiser}/details`} />
         )}
       </div>
     )

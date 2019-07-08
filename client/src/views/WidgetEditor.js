@@ -1,4 +1,5 @@
 import React from "react"
+import {Link} from "react-router-dom"
 import styles from './../styles/widgetEditor.module.css'
 import cfg from './../shared/cfg.js'
 
@@ -15,7 +16,6 @@ class WidgetEditor extends React.Component {
     this.state = {
       color: 'purple',
       theme: 'light',
-      address: '0xB5E5F24b659bC8872c4f89b127C685b7FC641862',
       network: 4
     }
   }
@@ -39,7 +39,9 @@ class WidgetEditor extends React.Component {
   }
 
   render () {
-      const iframeUrl = `${cfg.WIDGET_BASE_URL}?address=${this.state.address}&network=${this.state.network}&color=${this.state.color}&theme=${this.state.theme}` // todo
+      const address = this.props.match.params.address
+
+      const iframeUrl = `${cfg.WIDGET_BASE_URL}?address=${address}&network=${this.state.network}&color=${this.state.color}&theme=${this.state.theme}` // todo
 
       const themeOptions = [
           {value: 'dark', name: 'Dark theme'},
@@ -56,9 +58,11 @@ class WidgetEditor extends React.Component {
       return (
           <div className={styles.widgetEditor}>
               <header>
-                  <h1 className="subtitle">Welcome in campaign editor page!</h1>
+                  <h1 className="subtitle">Manage your campaign</h1>
+                  <h2 className="subtitle">Edit your widget</h2>
                   <p>You can manage your campaign widget from here, customize it and also copy the code necessary to
                       embed it on your website.</p>
+                  <Link to={`/campaign/${address}/details/`}>Go back to campaign page</Link>
               </header>
 
               <div className={styles.widget}>

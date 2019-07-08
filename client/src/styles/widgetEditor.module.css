@@ -50,3 +50,9 @@
   background-color: #BCBCBC;
   border-radius: 0;
 }
+
+.widgetEditor a {
+  display: flex;
+  justify-content: center;
+  color: #777;
+}

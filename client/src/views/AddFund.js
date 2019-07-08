@@ -2,6 +2,7 @@ import React from 'react';
 import getWeb3 from './../utils/getWeb3';
 
 import Fundraiser from 'shared/abis/Fundraiser.json'
+import { Link } from 'react-router-dom';
 
 
 class AddFund extends React.Component {
@@ -10,6 +11,7 @@ class AddFund extends React.Component {
         this.state = {
             grant: null,
         };
+        this.fundraiserAddress = this.props.match.params.address
     }
 
     componentDidMount () {
@@ -18,8 +20,7 @@ class AddFund extends React.Component {
 
     async getGrantContract() {
         const web3 = await getWeb3();
-        const fundraiserAddress = this.props.match.params.address;
-        const fundraiserContract = new web3.eth.Contract(Fundraiser, fundraiserAddress);
+        const fundraiserContract = new web3.eth.Contract(Fundraiser, this.fundraiserAddress);
         const grantAddress = await fundraiserContract.methods.grant().call();
 
         this.setState({grant: grantAddress});
@@ -31,6 +32,7 @@ class AddFund extends React.Component {
                 <h1 className="subtitle">Dear Sponsor</h1>
                 <p className="big">you can send grant to this address:</p>
                 <p className="big strong">{this.state.grant}</p>
+                <Link to={`/campaign/${this.fundraiserAddress}/details/`}>Go back to campaign page</Link>
             </div>
         );
     }
