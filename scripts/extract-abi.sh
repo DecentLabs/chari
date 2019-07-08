@@ -1,8 +1,8 @@
 #!/bin/bash -e
 mkdir shared/abis
-cd deployments
-for f in *.json
+for f in deployments/*.json
 do
-	jq .abi $f > ../shared/abis/$f
+    FILENAME=`basename $f`
+	node_modules/node-jq/bin/jq .abi deployments/$FILENAME > shared/abis/$FILENAME
 done
 
