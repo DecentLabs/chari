@@ -1,5 +1,4 @@
 import { h } from 'preact'
-import { ticker, label, value, tickerItem } from './style.scss'
 
 export const Ticker = ({children, duration}) => {
   if (duration) {
@@ -27,4 +26,3 @@ export const Ticker = ({children, duration}) => {
       </div>)
   }
 }
-
