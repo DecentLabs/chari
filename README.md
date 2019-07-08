@@ -58,36 +58,50 @@ An initial sponsor deposits funds for the matching budget, specifies the recipie
 
 [![Build Status](https://travis-ci.org/DecentLabs/DonationMatching.svg?branch=master)](https://travis-ci.org/DecentLabs/DonationMatching)
 
+Always stay in the root of the repository!
+
 ## install everything
 ```
-yarn run update
+yarn install
+```
+
+## build everything
+```
+yarn build
+```
+
+## clean everything
+```
+yarn clean
 ```
 
 ## Contracts
 
 ```
-yarn run test
+yarn build:contracts
 ```
-
-If you change anything here or in the "shared" package, you should run ```yarn run update```!
-
 
 ## Frontend client
 
 ```
-yarn run update
-cd widget
-yarn dev
+yarn run:widget
 ```
 in another terminal:
 ```
-cd client
-yarn start
+yarn run:client
 ```
 
 ## Widget
 ```
-yarn run update
-cd widget
-yarn dev
+yarn run:widget
 ```
+
+
+The repository is using the workspace feature of yarn. 
+You can find more information here:
+
+https://yarnpkg.com/lang/en/docs/workspaces/
+
+https://yarnpkg.com/en/docs/cli/workspace
+
+https://yarnpkg.com/en/docs/cli/workspaces

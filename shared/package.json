@@ -4,8 +4,17 @@
   "description": "",
   "main": "constants.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "truffle test",
+    "build": "truffle compile && . scripts/extract-abi.sh",
+    "clean": "rm -rvf abis deployments"
   },
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "openzeppelin-solidity": "^2.3.0",
+    "truffle-hdwallet-provider": "^1.0.12"
+  },
+  "devDependencies": {
+    "node-jq": "^1.9.0",
+    "truffle": "^5.0.26"
+  }
 }

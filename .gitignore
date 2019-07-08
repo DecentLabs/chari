@@ -2,5 +2,5 @@
 node_modules/
 /donation-widget/stats.json
 stats.json
-deployments
+shared/deployments
 shared/abis

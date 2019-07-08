@@ -1,18 +1,16 @@
 {
   "name": "chari",
   "version": "0.0.1",
+  "private": true,
+  "workspaces": {
+    "packages": ["shared", "client","widget"],
+    "nohoist": ["widget/**"]
+  },
   "scripts": {
-    "test": "truffle test",
-    "build": "truffle compile && . scripts/extract-abi.sh",
-    "update": ". scripts/update.sh"
-  },
-  "dependencies": {
-    "dotenv": "^8.0.0",
-    "openzeppelin-solidity": "^2.3.0",
-    "truffle-hdwallet-provider": "^1.0.12"
-  },
-  "devDependencies": {
-    "node-jq": "^1.9.0",
-    "truffle": "^5.0.26"
+    "build:contracts": "yarn workspace shared build",
+    "run:widget": "yarn workspace widget dev",
+    "run:client": "yarn workspace client start",
+    "build": "yarn workspaces run build",
+    "clean": "yarn workspaces run clean"
   }
 }
