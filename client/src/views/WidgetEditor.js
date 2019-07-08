@@ -4,6 +4,7 @@ import cfg from './../shared/cfg.js'
 
 import Button from './../components/button.js'
 import Select from './../components/select.js'
+import LoaderComp from './../components/loaderComp.js'
 import copy from './../assets/copy.svg'
 
 class WidgetEditor extends React.Component {
@@ -11,24 +12,28 @@ class WidgetEditor extends React.Component {
     super(props)
     this.selectTheme = this.selectTheme.bind(this)
     this.selectColor = this.selectColor.bind(this)
+    this.iframeLoaded = this.iframeLoaded.bind(this)
 
     this.state = {
       color: 'purple',
       theme: 'light',
       address: '0xB5E5F24b659bC8872c4f89b127C685b7FC641862',
-      network: 4
+      network: 4,
+      iframeLoading: true
     }
   }
 
   selectTheme (e) {
     this.setState({
-      theme: e.target.value
+      theme: e.target.value,
+      iframeLoading: true
     })
   }
 
   selectColor (e) {
     this.setState({
-      color: e.target.value
+      color: e.target.value,
+      iframeLoading: true
     })
   }
 
@@ -36,6 +41,12 @@ class WidgetEditor extends React.Component {
     const toCopy = document.querySelector('textarea#widget-code')
     toCopy.select()
     document.execCommand("copy")
+  }
+
+  iframeLoaded () {
+    this.setState({
+      iframeLoading: false
+    })
   }
 
   render () {
@@ -65,7 +76,12 @@ class WidgetEditor extends React.Component {
             </div>
           </div>
 
-          <iframe title="Chari-widget" src={iframeUrl}></iframe>
+          <div className={styles.iframeContainer}>
+            {this.state.iframeLoading && (
+              <LoaderComp subtitle="none"></LoaderComp>
+            )}
+            <iframe className={this.state.iframeLoading ? styles.loading : ''} onLoad={this.iframeLoaded} title="Chari-widget" src={iframeUrl}></iframe>
+          </div>
         </div>
 
         <Button>Add fund</Button>
