@@ -20,14 +20,23 @@
   background-color: var(--baseColor);
   color: var(--fontColor);
   padding: 2em;
+  min-height: 400px;
+  box-sizing: border-box;
+  position: relative;
+  height:100%;
+
+  p {
+    margin: 0;
+  }
   .expiration {
-    border-bottom: 1px solid var(--lightGray);
+    border-bottom: 1px solid lightgray;
     margin-bottom: 1em;
 
     .campaignEnds {
       margin-top: 0.5em;
       padding-bottom: 10px;
       color: var(--lightGray);
+      font-size: 0.9em;
     }
 
     .ticker {
@@ -64,40 +73,54 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    .progressCont {
-      position: relative;
-      progress[value] {
-        -webkit-appearance: none;
-        appearance: none;
-        height: 28px;
-        width: 100%;
-      }
-      progress[value]::-webkit-progress-bar {
-        background-color: white;
-        border-radius: 2px;
-        border: 1px solid lightgray;
-      }
-      progress[value]::-webkit-progress-value {
-        border-radius: 2px;
-        background-color: var(--widget-color);
-      }
-      .progressInfo {
-        margin: 0 10px;
-        line-height: 28px;
-      }
+    margin-bottom: 1em;
+    .offer {
+      margin: 0 0 1em 0;
+      font-size: 1.2em;
+      font-weight: bold;
+      // color: var(--midGray);
     }
 
     .raisedCont {
+      border-bottom: 1px solid lightgray;
+      padding-bottom: 1em;
       .raised {
-        font-size: 2.2em;
         text-align: center;
-        font-weight: bolder;
-        color: var(--widget-color);
+        h1 {
+          margin: 0;
+          font-weight: bolder;
+          font-size: 2.2em;
+          color: var(--widget-color);
+        }
+        p {
+          font-size: 1.2em;
+          margin: 0;
+          font-weight: bold;
+        }
       }
     }
   }
 
-
+  .progressCont {
+    position: relative;
+    text-align: center;
+    progress[value] {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 28px;
+      width: 100%;
+      margin: 1em 0;
+    }
+    progress[value]::-webkit-progress-bar {
+      background-color: white;
+      border-radius: 4px;
+      border: 1px solid var(--widget-color);
+    }
+    progress[value]::-webkit-progress-value {
+      border-radius: 2px;
+      background-color: var(--widget-color);
+    }
+  }
 
   label {
     margin-top: 0.5em;
@@ -105,7 +128,7 @@
 
   a {
     box-sizing: border-box;
-    width: 100%;
+    width: calc(100% - 48px);
     height: 56px;
     font-size: 18px;
     display: block;
@@ -117,5 +140,9 @@
     padding: 19px 20px;
     text-decoration: none;
     font-weight: bold;
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    margin-top: 24px;
   }
 }
