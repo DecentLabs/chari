@@ -21,10 +21,12 @@
   color: var(--fontColor);
   padding: 2em;
   .expiration {
-    margin-bottom: 2em;
+    border-bottom: 1px solid var(--lightGray);
+    margin-bottom: 1em;
 
     .campaignEnds {
       margin-top: 0.5em;
+      padding-bottom: 10px;
       color: var(--lightGray);
     }
 
@@ -57,16 +59,51 @@
     }
   }
 
-  .raised {
-    font-size: 2em;
+  .matchDetails {
     text-align: center;
-    font-weight: bold;
-    color: var(--widget-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    .progressCont {
+      position: relative;
+      progress[value] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        -webkit-appearance: none;
+        appearance: none;
+        height: 28px;
+        width: 100%;
+      }
+      progress[value]::-webkit-progress-bar {
+        background-color: white;
+        border-radius: 2px;
+        border: 1px solid lightgray;
+      }
+      progress[value]::-webkit-progress-value {
+        border-radius: 2px;
+        background-color: var(--widget-color);
+      }
+      .progressInfo {
+        position: absolute;
+        left: 0;
+        top: 0px;
+        margin: 0 10px;
+        line-height: 28px;
+      }
+    }
+
+    .raisedCont {
+      .raised {
+        font-size: 2.2em;
+        text-align: center;
+        font-weight: bolder;
+        color: var(--widget-color);
+      }
+    }
   }
 
-  .balanceList {
 
-  }
 
   label {
     margin-top: 0.5em;
