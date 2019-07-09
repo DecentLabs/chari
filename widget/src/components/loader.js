@@ -1,7 +1,7 @@
 import { h } from 'preact'
 import { connect } from 'unistore/preact'
 import { route } from 'preact-router';
-import {ROUTES} from '../../constants.js'
+import {ROUTES} from '../constants.js'
 
 export default connect(['hasExpired'])(({hasExpired}) => {
   if (hasExpired !== null) {
