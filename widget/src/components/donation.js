@@ -4,18 +4,12 @@ import { Link } from 'preact-router/match'
 import Expiration from './expiration.js'
 import {ROUTES} from '../constants.js'
 
-const THEMES = ['light', 'dark']
-
 export default connect([
   'fundraiserContract',
-  'fundraiserBalance',
-  'grantBalance',
   'expiration',
-  'theme',
-  'fundraiserAddress',
-  'hasExpired',
   'raised',
-  'matched'
+  'matched',
+  'grantBalance'
 ])(({
   fundraiserContract,
   expiration,
