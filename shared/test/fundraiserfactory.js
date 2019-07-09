@@ -73,7 +73,8 @@ async function expire(fundraiser) {
 }
 
 contract("Fundraiser", accounts => {
-  it("grant refund first, disburse later", async () => {
+  
+  it("donations < grant, grant refund first, disburse later", async () => {
     const event = await newFundraiser(accounts);
     const fundraiser = await Fundraiser.at(event.fundraiser);
     const grant = await Grant.at(event.grant);
@@ -140,7 +141,7 @@ contract("Fundraiser", accounts => {
     assert.equal(expSponsor, await roundBalance(sponsor));
   });
 
-  it("disburse first, grant refund later", async () => {
+  it("donations < grant, disburse first, grant refund later", async () => {
     const event = await newFundraiser(accounts);
     const fundraiser = await Fundraiser.at(event.fundraiser);
     const grant = await Grant.at(event.grant);
