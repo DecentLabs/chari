@@ -11,8 +11,6 @@ export default connect(['hasExpired'])(({hasExpired}) => {
       route(ROUTES.DONATION)
     }
   } else {
-    return (<div>
-      <h1>LOADING ...</h1>
-    </div>)
+    return (<div></div>)
   }
 })
