@@ -38,10 +38,11 @@ class App extends Component {
       const searchParams = new URLSearchParams(location.search);
       const address = searchParams.get('address')
       const network = searchParams.get('network')
+      const token = searchParams.get('token')
       const color = searchParams.get('color')
       const theme = searchParams.get('theme')
       this.setTheme(color, theme)
-      init(address, network);
+      init(address, network, token);
     }
   }
 
