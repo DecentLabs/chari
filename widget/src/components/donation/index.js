@@ -3,13 +3,13 @@ import { connect } from 'unistore/preact'
 import { Link } from 'preact-router/match'
 import BalanceList from '../balanceList'
 import Expiration from '../expiration'
+import {ROUTES} from '../../constants.js'
 
 const THEMES = ['light', 'dark']
 
 export default connect(['fundraiserContract','fundraiserBalance', 'grantBalance', 'expiration', 'theme'])(({fundraiserContract, fundraiserBalance, grantBalance, expiration, theme}) => {
-  const widgetTheme = THEMES.includes(theme) ? theme : 'light'
   return (
-    <div class="donation" id="DonationWidget" data-theme={widgetTheme} data-view="donation">
+    <div>
       <Expiration at={expiration}/>
 
       <label>Current balance:</label>
@@ -18,7 +18,7 @@ export default connect(['fundraiserContract','fundraiserBalance', 'grantBalance'
       <BalanceList balanceList={grantBalance}/>
       <hr/>
       {fundraiserContract && (
-        <Link href="/contribution/">DONATE!</Link>
+        <Link href={ROUTES.CONTRIBUTION}>DONATE!</Link>
       )}
     </div>
   )
