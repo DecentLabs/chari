@@ -71,9 +71,14 @@ yarn install
 yarn build
 ```
 
-## clean everything
+## clean generated files
 ```
 yarn clean
+```
+
+## clean node modules folders
+```
+yarn clen:modules
 ```
 
 ## Contracts
