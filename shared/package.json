@@ -5,16 +5,16 @@
   "main": "constants.js",
   "scripts": {
     "test": "truffle test",
-    "build": "truffle compile && . scripts/extract-abi.sh",
+    "build": "truffle compile && node scripts/abiextract.js -o ./abis deployments/*.json",
     "clean": "rm -rvf abis deployments"
   },
   "dependencies": {
     "dotenv": "^8.0.0",
     "openzeppelin-solidity": "^2.3.0",
-    "truffle-hdwallet-provider": "^1.0.12"
+    "truffle-hdwallet-provider": "^1.0.12",
+    "yargs": "^13.2.4"
   },
   "devDependencies": {
-    "node-jq": "^1.9.0",
     "truffle": "^5.0.26"
   }
 }
