@@ -37,6 +37,10 @@
   object-fit: contain;
 }
 
+.button.margin {
+  margin: 30px;
+}
+
 .button:hover {
 
 }
