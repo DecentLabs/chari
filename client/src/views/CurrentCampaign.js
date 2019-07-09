@@ -15,7 +15,7 @@ const CurrentCampaign = (props) => (
         <div className={campaignStyles.buttonRow}>
             <Link to={`/campaign/${props.fundraiserAddress}/${props.network}/admin`} className={buttonStyles.button}>Edit your
                 widget</Link>
-            <Link to={`/campaign/${props.fundraiserAddress}/${props.network}/addfund`} className={buttonStyles.button}>Grant as a
+            <Link to={`/campaign/${props.fundraiserAddress}/addfund`} className={buttonStyles.button}>Grant as a
                 sponsor</Link>
         </div>
     </div>

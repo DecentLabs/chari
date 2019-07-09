@@ -19,7 +19,7 @@ class NewCampaign extends React.Component {
                 <Route path="/campaign/deploy" component={CreateContractForm} />
                 <Route path="/campaign/:address/:networkId/details/" component={CampaignDetails} />
                 <Route path="/campaign/:address/:networkId/admin/" component={WidgetEditor} />
-                <Route path="/campaign/:address/:networkId/addfund/" component={AddFund} />
+                <Route path="/campaign/:address/addfund/" component={AddFund} />
               </Switch>
           </div>
         )}
