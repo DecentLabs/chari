@@ -62,7 +62,7 @@ class WidgetEditor extends React.Component {
                   <h2 className="subtitle">Edit your widget</h2>
                   <p>You can manage your campaign widget from here, customize it and also copy the code necessary to
                       embed it on your website.</p>
-                  <Link to={`/campaign/${address}/details/`}>Go back to campaign page</Link>
+                  <Link to={`/campaign/${address}/details/`} className={styles.backLink}>Go back to campaign page</Link>
               </header>
 
               <div className={styles.widget}>

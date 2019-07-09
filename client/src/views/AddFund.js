@@ -1,8 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux'
 
 import Fundraiser from 'shared/abis/Fundraiser.json';
 import { Link } from 'react-router-dom';
 import { setupWeb3 } from '../reducers/web3Connect';
+import styles from './../styles/widgetEditor.module.css'
 
 class AddFund extends React.Component {
     constructor (props) {
@@ -14,7 +16,7 @@ class AddFund extends React.Component {
     }
 
     componentDidMount () {
-        if (this.props.isConnected) {
+        if (!this.props.isConnected) {
             this.props.dispatch(setupWeb3())
         } else {
             this.getGrantContract()
@@ -31,10 +33,10 @@ class AddFund extends React.Component {
     render () {
         return (
             <div>
-                <h1 className="subtitle">Dear Sponsor</h1>
-                <p className="big">you can send grant to this address:</p>
+                <h1 className="subtitle">Manage your campaign</h1>
+                <h2 className="subtitle">As a sponsor you can send grant to this address:</h2>
                 <p className="big strong">{this.state.grantAddress}</p>
-                <Link to={`/campaign/${this.fundraiserAddress}/details/`}>Go back to campaign page</Link>
+                <Link to={`/campaign/${this.fundraiserAddress}/details/`} className={styles.backLink}>Go back to campaign page</Link>
             </div>
         );
     }
@@ -43,7 +45,8 @@ class AddFund extends React.Component {
 
 const mapStateToProps = state => ({
     web3: state.web3Connect.web3,
+    isConnected: state.web3Connect.isConnected
 });
 
 
-export default AddFund
+export default connect(mapStateToProps)(AddFund)

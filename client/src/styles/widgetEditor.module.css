@@ -51,8 +51,8 @@
   border-radius: 0;
 }
 
-.widgetEditor a {
+.backLink {
   display: flex;
   justify-content: center;
-  color: #777;
+  color: #02DB96;
 }
