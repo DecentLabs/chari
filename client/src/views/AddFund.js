@@ -36,7 +36,7 @@ class AddFund extends React.Component {
                 <h1 className="subtitle">Manage your campaign</h1>
                 <h2 className="subtitle">As a sponsor you can send grant to this address:</h2>
                 <p className="big strong">{this.state.grantAddress}</p>
-                <Link to={`/campaign/${this.fundraiserAddress}/details/`} className={styles.backLink}>Go back to campaign page</Link>
+                <Link to={`/campaign/${this.fundraiserAddress}/${this.props.networkId}/details/`} className={styles.backLink}>Go back to campaign page</Link>
             </div>
         );
     }
@@ -45,7 +45,8 @@ class AddFund extends React.Component {
 
 const mapStateToProps = state => ({
     web3: state.web3Connect.web3,
-    isConnected: state.web3Connect.isConnected
+    isConnected: state.web3Connect.isConnected,
+    networkId: state.web3Connect.networkId
 });
 
 
