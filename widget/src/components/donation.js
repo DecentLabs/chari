@@ -56,7 +56,7 @@ export default connect([
           <div class="raisedCont">
             <div class="raised">
               <h1>{_raised.value} {_raised.token}</h1>
-              <p>Raised so far</p>
+              <p>raised so far</p>
             </div>
           </div>
         )}
