@@ -57,8 +57,6 @@ class CampaignDetails extends React.Component {
                 )}
 
                 <p className={campaignStyles.disclaimer}>Bookmark this page to manage your campaign later on.</p>
-                <p>Your contract's address is:</p>
-                <p className="big strong">{this.fundraiserAddress}</p>
 
                 {!this.state.hasExpired && (
                     <CurrentCampaign network={this.networkId} fundraiserAddress={this.fundraiserAddress}/>
