@@ -53,6 +53,10 @@
   background-size: 14px 14px;
 }
 
+.button.margin {
+  margin: 15px;
+}
+
 .button:hover {
 
 }

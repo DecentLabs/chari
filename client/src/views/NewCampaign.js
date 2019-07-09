@@ -6,8 +6,8 @@ import {connect} from 'react-redux'
 import WidgetEditor from './WidgetEditor.js'
 import CreateContractForm from './CreateContractForm.js'
 import AddFund from './AddFund.js'
-import Congrats from './Congrats.js'
 import LoaderComp from './../components/loaderComp.js'
+import CampaignDetails from './CampaignDetails.js'
 
 class NewCampaign extends React.Component {
   render () {
@@ -16,10 +16,10 @@ class NewCampaign extends React.Component {
         {!this.props.isLoading && !this.props.isDeploying && (
           <div>
               <Switch>
-              <Route path="/campaign/deploy" component={CreateContractForm} />
-              <Route path="/campaign/congrats/:address" component={Congrats} />
-              <Route path="/campaign/admin/:address" component={WidgetEditor} />
-              <Route path="/campaign/addfund/:address" component={AddFund} />
+                <Route path="/campaign/deploy" component={CreateContractForm} />
+                <Route path="/campaign/:address/:networkId/details/" component={CampaignDetails} />
+                <Route path="/campaign/:address/:networkId/admin/" component={WidgetEditor} />
+                <Route path="/campaign/:address/addfund/" component={AddFund} />
               </Switch>
           </div>
         )}
@@ -37,7 +37,7 @@ class NewCampaign extends React.Component {
         )}
 
         {this.props.isDeployed && (
-            <Redirect to={`/campaign/congrats/${this.props.fundraiser}`} />
+            <Redirect to={`/campaign/${this.props.fundraiser}/${this.props.networkId}/details`} />
         )}
       </div>
     )
@@ -50,7 +50,8 @@ const mapStateToProps = (state) => {
     isLoading: state.web3Connect.isLoading,
     isDeploying: state.web3Connect.isDeploying,
     isDeployed: state.web3Connect.isDeployed,
-    fundraiser: state.web3Connect.fundraiser
+    fundraiser: state.web3Connect.fundraiser,
+    networkId: state.web3Connect.networkId
   }
 }
 

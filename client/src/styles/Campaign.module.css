@@ -1,0 +1,15 @@
+.buttonRow {
+  display: flex;
+  justify-content: center;
+}
+
+.centerColumn {
+  text-align: center;
+}
+
+.disclaimer {
+  padding: 3px;
+  color: #02DB96;
+  font-size: 18px;
+  font-weight: 700;
+}

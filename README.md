@@ -93,7 +93,7 @@ You should run `yarn build:contracts` to generate the contract abis!
 
 ### client
 ```
-yarn run:widget
+yarn run:client
 ```
 in another terminal:
 ```

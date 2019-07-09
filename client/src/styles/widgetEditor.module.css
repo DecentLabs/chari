@@ -26,8 +26,9 @@
 
 .widgetEditor .widget .iframeContainer {
   position: relative;
-  width: 350px;
-  height: 400px;
+  display: flex;
+  justify-content: center;
+  width: 320px;
 }
 
 .widgetEditor .widget .iframeContainer .spinner {
@@ -40,8 +41,8 @@
 }
 
 .widgetEditor .widget iframe {
-  width: 100%;
-  height: 100%;
+  width: 320px;
+  height: 435px;
   border-radius: 4px;
   border: 1px solid #D5DAE2;
   position: absolute;
@@ -91,4 +92,10 @@
   z-index: 10;
   left: calc((100% - 276px) / 2);
   top: 60px;
+}
+
+.backLink {
+  display: flex;
+  justify-content: center;
+  color: #02DB96;
 }

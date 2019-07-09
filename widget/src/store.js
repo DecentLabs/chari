@@ -63,6 +63,9 @@ export const init = store.action((state, fundraiserAddress, networkId, tokenName
       });
 
       refreshBalance()
+      setInterval(() => {
+        refreshBalance()
+      }, 5000)
     })
 
     fundraiserContract.expiration().then(result => {

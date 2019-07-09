@@ -20,24 +20,50 @@ export default connect([
   fundraiserContract,
   expiration,
   raised,
-  matched
+  matched,
+  grantBalance
 }) => {
   const token = "ETH"
   const _raised = raised ? raised.find((item) => item.token === token) : null
   const _matched = matched ? matched.find((item) => item.token === token) : null
+  const grant = grantBalance ? grantBalance.find((item) => item.token === token) : null
+
+  let progress = null
+
+  if (_matched && _matched.value !== null && grant && grant.value) {
+    progress = (
+      <div class="progressCont">
+        <p>Sponsor offered {grant.value} {grant.token} for matching</p>
+        <progress value={_matched.value} max={grant.value}></progress>
+      </div>
+    )
+  } else {
+    progress = (
+      <div class="progressCont">
+        <p>Waiting for sponsorship grant.</p>
+      </div>
+    )
+  }
 
   return (
     <div>
       <Expiration at={expiration}/>
 
-      {_raised && (_raised.value !== null) && (
-        <div class="raised">{_raised.value} {_raised.token}</div>
-      )}
-      {_matched && (_matched.value !== null) && (
-        <div class="matched">{_matched.value} {_matched.token}</div>
-      )}
+      <div class="matchDetails">
+        <p class="offer">Sponsor doubles every {token} you give.</p>
 
-      <hr/>
+        {_raised && (_raised.value !== null) && (
+          <div class="raisedCont">
+            <div class="raised">
+              <h1>{_raised.value} {_raised.token}</h1>
+              <p>Raised so far</p>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {progress}
+
       {fundraiserContract && (
         <Link href={ROUTES.CONTRIBUTION}>DONATE!</Link>
       )}

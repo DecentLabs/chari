@@ -23,7 +23,8 @@ html, body, #root, .App, .App * {
 }
 
 h1.title,
-h1.subtitle {
+h1.subtitle,
+h2.subtitle {
   font-family: big-caslon-fb, serif;
   font-weight: 400;
   font-style: normal;
@@ -35,6 +36,10 @@ h1.title {
 
 h1.subtitle {
   font-size: 48px;
+}
+
+h2.subtitle {
+  font-size: 32px;
 }
 
 h1, h2, h3, h4, h5, h6, p, a {
