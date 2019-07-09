@@ -7,12 +7,13 @@ import logo from './../assets/text-logo.svg'
 export default function Navigation () {
   return (
       <nav className={styles.navigation}>
-        <div className={styles.left}>
+        <div>
           <NavLink to="/">
             <img src={logo} alt="chari logo" className={styles.logo}/>
           </NavLink>
         </div>
 
+        {/*
         <ul className={styles.right}>
           <li className={styles.link}>
             <NavLink to="/featured">Featured campaigns</NavLink>
@@ -24,6 +25,7 @@ export default function Navigation () {
             <NavLink to="/contact">Contact</NavLink>
           </li>
         </ul>
+        */}
       </nav>
   )
 }

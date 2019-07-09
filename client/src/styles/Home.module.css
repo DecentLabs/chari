@@ -29,7 +29,7 @@
 
 .home dl {
   text-align: left;
-  max-width: 60%;
+  max-width: 500px;
   margin: 60px auto;
   line-height: 1.4em;
 }
@@ -57,7 +57,6 @@
   margin-left: auto;
   margin-right: auto;
   display: block;
-  margin-top: 80px;
 }
 
 .home iframe {
@@ -74,7 +73,7 @@
 .fundraiser {
   background-color: #F5F6F7;
   text-align: left;
-  max-width: 500px;
+  max-width: 400px;
   margin: 60px auto;
   box-shadow: 4px 4px 16px -4px rgba(0,0,0,0.15);
   padding: 16px;

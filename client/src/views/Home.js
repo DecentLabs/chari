@@ -54,7 +54,7 @@ function Home (props) {
         </dd>
       </dl>
 
-      <h1 className="subtitle">Featured Fundraisers</h1>
+      <h1 className="subtitle">Featured Fundraiser</h1>
 
       <div className={styles.fundraiser}>
 
