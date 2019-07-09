@@ -16,7 +16,7 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "shared": "../shared",
+    "shared": "^1.0.0",
     "web3": "^1.0.0-beta.37"
   },
   "resolutions": {
@@ -27,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "compile": "truffle compile"
+    "clean": "rm -rvf build"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -3,6 +3,7 @@ import { connect } from 'unistore/preact'
 import { Link } from 'preact-router/match'
 import BalanceList from '../balanceList'
 import Expiration from '../expiration'
+import {ROUTES} from '../../constants.js'
 
 const THEMES = ['light', 'dark']
 
@@ -34,7 +35,7 @@ export default connect([
   const _matched = matched ? matched.find((item) => item.token === token) : null
 
   return (
-    <div class="donation" id="DonationWidget" data-theme={widgetTheme} data-view="donation">
+    <div>
       <Expiration at={expiration}/>
 
       {_raised && (_raised.value !== null) && (
@@ -46,7 +47,7 @@ export default connect([
 
       <hr/>
       {fundraiserContract && (
-        <Link href="/contribution/">DONATE!</Link>
+        <Link href={ROUTES.CONTRIBUTION}>DONATE!</Link>
       )}
     </div>
   )

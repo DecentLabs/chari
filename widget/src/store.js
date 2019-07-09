@@ -17,7 +17,7 @@ export const store = createStore({
   color: 'pink',
   theme: 'theme-light',
   raised: null,
-  hasExpired: false,
+  hasExpired: null,
   matched: null
 })
 
@@ -41,21 +41,11 @@ export const refreshBalance = store.action((state) => {
   }
 })
 
-export const setTheme = store.action((state, color, theme) => {
-  if (color) {
-    const c = `#${color}`
-    store.setState({color: c})
-    const root = document.documentElement;
-    root.style.setProperty('--widget-color', c);
-  }
-  if (theme) {
-    store.setState({theme: theme})
-  }
-})
-
 export const init = store.action((state, fundraiserAddress, networkId) => {
   const network = parseInt(networkId, 10)
-  if (NETWORKS.has(network)) {
+  if (NETWORKS.has(network) &&
+     (state.networkId !== network || state.fundraiserAddress!== fundraiserAddress)) {
+
     const {url, tokens} = NETWORKS.get(network)
     const provider = new Eth.HttpProvider(url)
     const eth = new Eth(provider)
@@ -74,8 +64,11 @@ export const init = store.action((state, fundraiserAddress, networkId) => {
     })
 
     fundraiserContract.expiration().then(result => {
-      const expiration = result[0]
-      store.setState({expiration: expiration.toNumber()})
+      const expiration = result[0].toNumber()
+      store.setState({
+        expiration: expiration,
+        hasExpired: expiration < (Date.now() /1000)
+      })
     })
     fundraiserContract.hasExpired().then((res) => {
       store.setState({
@@ -85,7 +78,7 @@ export const init = store.action((state, fundraiserAddress, networkId) => {
 
     return {
       fundraiserAddress,
-      networkId,
+      networkId: network,
       fundraiserContract,
       tokens
     }

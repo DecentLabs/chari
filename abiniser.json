@@ -1,7 +1,0 @@
-{
-  "truffleContractFiles": [
-    "Fundraiser.json",
-    "FundraiserFactory.json",
-    "Grant.json"
-  ]
-}
