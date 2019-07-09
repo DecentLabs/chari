@@ -1,9 +1,8 @@
 import { h } from 'preact'
 import { connect } from 'unistore/preact'
 import { Link } from 'preact-router/match'
-import BalanceList from '../balanceList'
-import Expiration from '../expiration'
-import {ROUTES} from '../../constants.js'
+import Expiration from './expiration.js'
+import {ROUTES} from '../constants.js'
 
 const THEMES = ['light', 'dark']
 
@@ -19,17 +18,10 @@ export default connect([
   'matched'
 ])(({
   fundraiserContract,
-  fundraiserBalance,
-  grantBalance,
   expiration,
-  theme,
-  fundraiserAddress,
-  hasExpired,
   raised,
   matched
 }) => {
-  const widgetTheme = THEMES.includes(theme) ? theme : 'light'
-
   const token = "ETH"
   const _raised = raised ? raised.find((item) => item.token === token) : null
   const _matched = matched ? matched.find((item) => item.token === token) : null

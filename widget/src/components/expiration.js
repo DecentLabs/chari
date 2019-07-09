@@ -1,5 +1,5 @@
 import { h, Component } from 'preact'
-import { Ticker } from '../ticker'
+import { Ticker } from './ticker.js'
 
 const DAY = 86400;
 const HOUR = 3600;

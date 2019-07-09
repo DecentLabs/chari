@@ -1,6 +1,6 @@
 import { h } from 'preact'
 
-export const Ticker = ({children, duration}) => {
+export const Ticker = ({duration}) => {
   if (duration) {
     const {days, hours, minutes, seconds} = duration;
     return (
