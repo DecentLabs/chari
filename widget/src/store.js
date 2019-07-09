@@ -50,15 +50,12 @@ export const init = store.action((state, fundraiserAddress, networkId) => {
       refreshBalance()
     })
 
-    fundraiserContract.hasExpired().then(result => {
-      const hasExpired = result[0]
-      store.setState({hasExpired})
-      console.log(hasExpired)
-    })
-
     fundraiserContract.expiration().then(result => {
-      const expiration = result[0]
-      store.setState({expiration: expiration.toNumber()})
+      const expiration = result[0].toNumber()
+      store.setState({
+        expiration: expiration,
+        hasExpired: expiration < (Date.now() /1000)
+      })
     })
     return {
       fundraiserAddress,
