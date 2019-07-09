@@ -17,8 +17,8 @@ class NewCampaign extends React.Component {
           <div>
               <Switch>
                 <Route path="/campaign/deploy" component={CreateContractForm} />
-                <Route path="/campaign/:address/details/" component={CampaignDetails} />
-                <Route path="/campaign/:address/admin/" component={WidgetEditor} />
+                <Route path="/campaign/:address/:networkId/details/" component={CampaignDetails} />
+                <Route path="/campaign/:address/:networkId/admin/" component={WidgetEditor} />
                 <Route path="/campaign/:address/addfund/" component={AddFund} />
               </Switch>
           </div>
@@ -37,7 +37,7 @@ class NewCampaign extends React.Component {
         )}
 
         {this.props.isDeployed && (
-            <Redirect to={`/campaign/${this.props.fundraiser}/details`} />
+            <Redirect to={`/campaign/${this.props.fundraiser}/${this.props.networkId}/details`} />
         )}
       </div>
     )
@@ -50,7 +50,8 @@ const mapStateToProps = (state) => {
     isLoading: state.web3Connect.isLoading,
     isDeploying: state.web3Connect.isDeploying,
     isDeployed: state.web3Connect.isDeployed,
-    fundraiser: state.web3Connect.fundraiser
+    fundraiser: state.web3Connect.fundraiser,
+    networkId: state.web3Connect.networkId
   }
 }
 

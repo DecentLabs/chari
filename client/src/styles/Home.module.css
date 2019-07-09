@@ -50,7 +50,7 @@
   margin-top: 0.5em;
 }
 
-.home .iframeContainer {
+.iframeContainer {
   position: relative;
   width: 350px;
   height: 400px;
@@ -59,7 +59,7 @@
   display: block;
 }
 
-.home iframe {
+.iframeContainer iframe {
   width: 100%;
   height: 100%;
   /*border-radius: 4px;*/
