@@ -46,7 +46,7 @@ async function newFundraiser(accounts) {
   const recipient = accounts[2];
   const donor = accounts[3];
 
-  const now = Math.round(new Date().getTime() / 1000);
+  const now = (await web3.eth.getBlock('latest')).timestamp;
   const expiration = now + DURATION;
 
   const result = await factory.newFundraiser(recipient, sponsor, expiration, {
@@ -76,8 +76,8 @@ contract("Fundraiser", accounts => {
 
     var expFundraiser = { tokenBalance: 0, raised: 0 };
     var expGrant = { tokenBalance: 0, sponsored: 0, matched: 0, refundable: 0 };
-    var expSponsor = 100;
-    var expRecipient = 100;
+    var expSponsor = await roundBalance(accounts[1]);
+    var expRecipient = await roundBalance(accounts[2]);
     await assertFunds(fundraiser, expFundraiser);
     await assertFunds(grant, expGrant);
 
@@ -136,4 +136,78 @@ contract("Fundraiser", accounts => {
     assert.equal(expRecipient, await roundBalance(recipient));
     assert.equal(expSponsor, await roundBalance(sponsor));
   });
+
+  it("XXX: copy of previous test", async () => {
+    const event = await newFundraiser(accounts);
+    const fundraiser = await Fundraiser.at(event.fundraiser);
+    const grant = await Grant.at(event.grant);
+    const sponsor = event.sponsor;
+    const recipient = event.recipient;
+
+    var expFundraiser = { tokenBalance: 0, raised: 0 };
+    var expGrant = { tokenBalance: 0, sponsored: 0, matched: 0, refundable: 0 };
+    var expSponsor = await roundBalance(accounts[1]);
+    var expRecipient = await roundBalance(accounts[2]);
+    await assertFunds(fundraiser, expFundraiser);
+    await assertFunds(grant, expGrant);
+
+    await send(sponsor, event.grant, 30);
+    expSponsor -= 30;
+    expGrant['tokenBalance'] += 30;
+    expGrant['sponsored'] += 30;
+    expGrant['refundable'] += 30;
+    await assertFunds(fundraiser, expFundraiser);
+    await assertFunds(grant, expGrant);
+
+    await send(accounts[3], event.fundraiser, 10);
+    expFundraiser['tokenBalance'] += 10;
+    expFundraiser['raised'] += 2 * 10;
+    expGrant['refundable'] -= 10;
+    expGrant['matched'] += 10;
+    await assertFunds(fundraiser, expFundraiser);
+    await assertFunds(grant, expGrant);
+
+    await send(accounts[4], event.fundraiser, 6);
+    expFundraiser['tokenBalance'] += 6;
+    expFundraiser['raised'] += 2 * 6;
+    expGrant['refundable'] -= 6;
+    expGrant['matched'] += 6;
+    await assertFunds(fundraiser, expFundraiser);
+    await assertFunds(grant, expGrant);
+
+    assert.equal(false, await fundraiser.hasExpired());
+    await advanceTime(DURATION + 1);
+    assert.equal(true, await fundraiser.hasExpired());
+
+
+    assert.equal(expSponsor, await roundBalance(sponsor));
+    await grant.refund(ETH);
+    const refund = expGrant['refundable'];
+    expFundraiser['tokenBalance'] += expGrant['matched'];
+    expGrant['refundable'] = 0;
+    expGrant['tokenBalance'] = 0
+    expSponsor += refund;
+    assert.equal(expSponsor, await roundBalance(sponsor));
+    await assertFunds(fundraiser, expFundraiser);
+    await assertFunds(grant, expGrant);
+
+    assert.equal(expRecipient, await roundBalance(recipient));
+    await fundraiser.disburse(ETH);
+    expRecipient += expFundraiser['tokenBalance']
+    expFundraiser['tokenBalance'] = 0;
+    await assertFunds(fundraiser, expFundraiser)
+    await assertFunds(grant, expGrant)
+    assert.equal(expRecipient, await roundBalance(recipient));
+
+    await fundraiser.disburse(ETH);
+    await grant.refund(ETH);
+    await assertFunds(fundraiser, expFundraiser)
+    await assertFunds(grant, expGrant)
+    assert.equal(expRecipient, await roundBalance(recipient));
+    assert.equal(expSponsor, await roundBalance(sponsor));
+  });
+
+
 });
+
+
