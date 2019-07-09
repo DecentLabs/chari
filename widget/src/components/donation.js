@@ -6,29 +6,26 @@ import {ROUTES} from '../constants.js'
 
 export default connect([
   'fundraiserContract',
+  'grantBalance',
   'expiration',
   'raised',
   'matched',
-  'grantBalance'
+  'selectedToken'
 ])(({
   fundraiserContract,
   expiration,
   raised,
   matched,
-  grantBalance
+  grantBalance,
+  selectedToken
 }) => {
-  const token = "ETH"
-  const _raised = raised ? raised.find((item) => item.token === token) : null
-  const _matched = matched ? matched.find((item) => item.token === token) : null
-  const grant = grantBalance ? grantBalance.find((item) => item.token === token) : null
-
   let progress = null
 
-  if (_matched && _matched.value !== null && grant && grant.value) {
+  if (matched && matched.value !== null && grantBalance && grantBalance.value) {
     progress = (
       <div class="progressCont">
-        <p>Sponsor offered {grant.value} {grant.token} for matching</p>
-        <progress value={_matched.value} max={grant.value}></progress>
+        <p>Sponsor offered {grantBalance.value} {grantBalance.token} for matching</p>
+        <progress value={matched.value} max={grantBalance.value}></progress>
       </div>
     )
   } else {
@@ -44,12 +41,12 @@ export default connect([
       <Expiration at={expiration}/>
 
       <div class="matchDetails">
-        <p class="offer">Sponsor doubles every {token} you give.</p>
+        <p class="offer">Sponsor doubles every {selectedToken.token} you give.</p>
 
-        {_raised && (_raised.value !== null) && (
+        {raised && (raised.value !== null) && (
           <div class="raisedCont">
             <div class="raised">
-              <h1>{_raised.value} {_raised.token}</h1>
+              <h1>{raised.value} {raised.token}</h1>
               <p>raised so far</p>
             </div>
           </div>

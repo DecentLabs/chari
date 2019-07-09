@@ -4,10 +4,10 @@ import { Link } from 'preact-router/match'
 import CopyToClipboard from './copyToClipboard.js'
 import copyIcon from '../assets/copy.svg'
 
-export default connect(['fundraiserAddress','qrcode'])(({fundraiserAddress, qrcode }) => (
+export default connect(['fundraiserAddress','qrcode', 'selectedToken'])(({fundraiserAddress, qrcode, selectedToken}) => (
 
   <div class="contribution">
-    <h1>Send ETH to:</h1>
+    <h1>Send {selectedToken.token} to:</h1>
     <div>
       <span class="address">{fundraiserAddress}</span>
     </div>

@@ -20,33 +20,31 @@ export const store = createStore({
   raised: null,
   hasExpired: null,
   matched: null,
-  widgetToken: null
+  selectedToken: null
 })
 
-
 export const refreshBalance = store.action((state) => {
-  const {tokens, fundraiserContract, grantContract} = state
+  const {fundraiserContract, grantContract, selectedToken} = state
   if (fundraiserContract && grantContract) {
 
-    Promise.all(tokens.map(token => getBalance(fundraiserContract, token))).then(balances => store.setState({
-      fundraiserBalance: balances
-    }))
-    Promise.all(tokens.map(token => getBalance(grantContract, token))).then(balances => store.setState({
-      grantBalance: balances
-    }))
-    Promise.all(tokens.map(token => getRaised(fundraiserContract, token))).then(raised => store.setState({
-      raised: raised
-    }))
-    Promise.all(tokens.map(token => getMatched(grantContract, token))).then(matched => store.setState({
-      matched: matched
-    }))
+    Promise.all([
+      getBalance(fundraiserContract, selectedToken),
+      getBalance(grantContract, selectedToken),
+      getRaised(fundraiserContract, selectedToken),
+      getMatched(grantContract, selectedToken)])
+      .then(balances => store.setState({
+        fundraiserBalance: balances[0],
+        grantBalance: balances[1],
+        raised: balances[2],
+        matched: balances[3]
+      }))
   }
 })
 
-export const init = store.action((state, fundraiserAddress, networkId, tokenName) => {
+export const init = store.action((state, fundraiserAddress, networkId, tokenName = 'ETH') => {
   const network = parseInt(networkId, 10)
   if (NETWORKS.has(network) &&
-     (state.networkId !== network || state.fundraiserAddress!== fundraiserAddress)) {
+    (state.networkId !== network || state.fundraiserAddress !== fundraiserAddress)) {
 
     const {url, tokens} = NETWORKS.get(network)
     const provider = new Eth.HttpProvider(url)
@@ -60,7 +58,7 @@ export const init = store.action((state, fundraiserAddress, networkId, tokenName
       store.setState({
         grantContract: grantContract,
         grantAddress: grantAddress
-      });
+      })
 
       refreshBalance()
       setInterval(() => {
@@ -72,19 +70,22 @@ export const init = store.action((state, fundraiserAddress, networkId, tokenName
       const expiration = result[0].toNumber()
       store.setState({
         expiration: expiration,
-        hasExpired: expiration < (Date.now() /1000)
+        hasExpired: expiration < (Date.now() / 1000)
       })
     })
 
-    QRCode.toDataURL(fundraiserAddress, { version:3}).then(url => {
-      store.setState({ qrcode: url })
+    QRCode.toDataURL(fundraiserAddress, {version: 3}).then(url => {
+      store.setState({qrcode: url})
     })
+
+    const selectedToken = tokens.find(t => t.token === tokenName)
 
     return {
       fundraiserAddress,
       networkId: network,
       fundraiserContract,
-      tokens
+      tokens,
+      selectedToken
     }
   }
   return {}
@@ -97,15 +98,14 @@ function getRaised (contract, token) {
   })
 }
 
-function getMatched(contract, token) {
+function getMatched (contract, token) {
   return contract.matched(token.tokenAddress).then((res) => {
     const matched = convert(token.decimals, res[0])
-    return { value: matched, token: token.token}
+    return {value: matched, token: token.token}
   })
 }
 
-
-function getBalance(contract, tokenInfo) {
+function getBalance (contract, tokenInfo) {
   const {token, tokenAddress, decimals} = tokenInfo
 
   return contract.tokenBalance(tokenAddress).then(result => {
