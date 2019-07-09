@@ -12,6 +12,8 @@ class ExpiredCampaign extends React.Component {
         this.state = {
             grantContract: null,
             account: null,
+            refundTokens: [],
+            disburseTokens: []
         };
         this.disburse = this.disburse.bind(this);
         this.refund = this.refund.bind(this);
@@ -23,48 +25,56 @@ class ExpiredCampaign extends React.Component {
                 const grantContract = new this.props.web3.eth.Contract(Grant, grantAddress);
                 this.setState({grantContract});
             });
+            this.getRefundTokens()
+            this.getDisburseTokens()
+        } else {
+            this.getRefundTokens()
+            this.getDisburseTokens()
         }
     }
 
-    async disburse () {
-        const tokenAddress = await this.getTokenAddress();
-        const raised = await this.props.fundraiserContract.methods.raised(tokenAddress).call();
-
-        if (!raised.isZero()) {
-            const tx = this.props.fundraiserContract.methods.disburse(tokenAddress).send({
-                from: this.props.account,
-                gas: 1000000,
-            });
-
-            console.log(tx, 'disburse');
-        }
-    }
-
-    async refund () {
-        const tokenAddress = await this.getTokenAddress();
-        const refundable = await this.state.grantContract.methods.refundable(tokenAddress).call();
-
-        if (!refundable.isZero()) {
-            const tx = await this.state.grantContract.methods.refund(tokenAddress).send({
-                from: this.props.account,
-                gas: 1000000,
-            });
-            console.log(tx, 'refund');
-        }
-    }
-
-    async getTokenAddress () {
+    async getDisburseTokens () {
         const tokens = NETWORKS.get(this.props.networkId).tokens;
-        let tokenAddress = '';
+        let disburseTokens = [];
 
         for (let i = 0; i < tokens.length; i++) {
-            const value = await this.state.grantContract.methods.sponsored(tokens[i].tokenAddress).call();
-            if (!value.isZero()) {
-                tokenAddress = tokens[i].tokenAddress;
+            const raised = await this.props.fundraiserContract.methods.raised(tokens[i].tokenAddress).call();
+
+            if (!raised.isZero()) {
+                disburseTokens.push(tokens[i])
             }
         }
 
-        return tokenAddress;
+        this.setState({disburseTokens})
+    }
+
+    async refund (tokenAddress) {
+        const tx = await this.state.grantContract.methods.refund(tokenAddress).send({
+            from: this.props.account,
+            gas: 1000000,
+        });
+    }
+
+    async disburse(tokenAddress) {
+        const tx = await this.props.fundraiserContract.methods.disburse(tokenAddress).send({
+            from: this.props.account,
+            gas: 1000000,
+        });
+    }
+
+    async getRefundTokens () {
+        const tokens = NETWORKS.get(this.props.networkId).tokens;
+        let refundTokens = []
+
+        for (let i = 0; i < tokens.length; i++) {
+            const refundable = await this.state.grantContract.methods.refundable(tokens[i].tokenAddress).call();
+
+            if (!refundable.isZero()) {
+                refundTokens.push(tokens[i])
+            }
+        }
+
+        this.setState({refundTokens})
     }
 
     render () {
@@ -72,10 +82,15 @@ class ExpiredCampaign extends React.Component {
             <div>
                 <p>Your contract's address is:</p>
                 <p className="big strong">{this.props.fundraiserAddress}</p>
-                <div className={congratsStyles.buttonRow}>
-                    <Button margin={true} onClick={this.disburse}>Disburse fund</Button>
-                    <Button margin={true} onClick={this.refund}>Refund grant</Button>
-                </div>
+
+                {this.state.disburseTokens.map(i => (
+                    <div>
+                    <Button margin={true} onClick={() => this.disburse(i.tokenAddress)}>Disburse raised fund in {i.token}</Button>
+                    </div>
+                ))}
+                {this.state.refundTokens.map(i => (
+                    <Button margin={true} onClick={() => this.refund(i.tokenAddress)}>Refund grant in {i.token}</Button>
+                ))}
             </div>
         );
     }
