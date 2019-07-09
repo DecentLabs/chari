@@ -21,24 +21,22 @@ export const store = createStore({
   matched: null
 })
 
+
 export const refreshBalance = store.action((state) => {
   const {tokens, fundraiserContract, grantContract} = state
   if (fundraiserContract && grantContract) {
-    Promise.all(tokens.map((token) => {
-      getBalance(fundraiserContract, token).then(balances => store.setState({
-        fundraiserBalance:balances
-      }))
-      getRaised(fundraiserContract, token).then(raised => store.setState({
-        raised: raised
-      }))
+
+    Promise.all(tokens.map(token => getBalance(fundraiserContract, token))).then(balances => store.setState({
+      fundraiserBalance: balances
     }))
-    Promise.all(tokens.map((token) => {
-      getBalance(grantContract, token).then(balances => store.setState({
-        grantBalance: balances
-      }))
-      getMatched(grantContract, token).then(matched => store.setState({
-        matched: matched
-      }))
+    Promise.all(tokens.map(token => getBalance(grantContract, token))).then(balances => store.setState({
+      grantBalance: balances
+    }))
+    Promise.all(tokens.map(token => getRaised(fundraiserContract, token))).then(raised => store.setState({
+      raised: raised
+    }))
+    Promise.all(tokens.map(token => getMatched(grantContract, token))).then(matched => store.setState({
+      matched: matched
     }))
   }
 })
