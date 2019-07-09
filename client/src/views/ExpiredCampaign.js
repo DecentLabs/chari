@@ -56,6 +56,8 @@ class ExpiredCampaign extends React.Component {
         await this.props.fundraiserContract.methods.disburse(tokenAddress).send({
             from: this.props.account,
             gas: 1000000,
+        }).on('error', () => {
+            this.setState({transactionPending: false})
         }).then(() => {
             this.getDisburseTokens()
             this.setState({transactionPending: false})
@@ -83,6 +85,8 @@ class ExpiredCampaign extends React.Component {
         this.state.grantContract.methods.refund(tokenAddress).send({
             from: this.props.account,
             gas: 1000000,
+        }).on('error', () => {
+            this.setState({transactionPending: false})
         }).then(() => {
             this.getRefundTokens()
             this.setState({transactionPending: false})

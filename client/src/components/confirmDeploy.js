@@ -16,7 +16,7 @@ function ConfirmDeploy (props) {
       </div>
       <footer>
         <p>Are you sure want to proceed?</p>
-        <DeployButton></DeployButton>
+        <DeployButton className={styles.button}></DeployButton>
         <Button onClick={props.hide} naked>No, I'm not ready yet.</Button>
       </footer>
     </div>

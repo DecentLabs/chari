@@ -22,7 +22,7 @@
   background: none;
   border-bottom: 1px solid black;
   font-size: 12px;
-  padding: 0;
+  padding: 15px 0 5px;
 }
 
 .button.copy {
@@ -76,5 +76,5 @@ a.button {
   justify-content: center;
   max-width: 240px;
   text-decoration: none;
-  margin: 30px;
+  margin: 10px;
 }
