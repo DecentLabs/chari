@@ -3,6 +3,7 @@ import { connect } from 'unistore/preact'
 import { Link } from 'preact-router/match'
 import Expiration from './expiration.js'
 import {ROUTES} from '../constants.js'
+import {NETWORKS} from 'shared/constants.js'
 
 export default connect([
   'fundraiserContract',
@@ -10,16 +11,20 @@ export default connect([
   'expiration',
   'raised',
   'matched',
-  'selectedToken'
+  'selectedToken',
+  'networkId'
 ])(({
   fundraiserContract,
   expiration,
   raised,
   matched,
   grantBalance,
-  selectedToken
+  selectedToken,
+  networkId
 }) => {
   let progress = null
+
+  const networkName = NETWORKS.get(networkId).name
 
   if (matched && matched.value !== null && grantBalance && grantBalance.value) {
     progress = (
@@ -49,6 +54,7 @@ export default connect([
               <h1>{raised.value} {raised.token}</h1>
               <p>raised so far</p>
             </div>
+            <h2 className="networkTitle">on {networkName}</h2>
           </div>
         )}
       </div>

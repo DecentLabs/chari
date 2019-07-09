@@ -5,4 +5,3 @@ export const ROUTES = {
 }
 
 export const THEMES = ['light', 'dark']
-
