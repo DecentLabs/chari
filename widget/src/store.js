@@ -75,11 +75,6 @@ export const init = store.action((state, fundraiserAddress, networkId, tokenName
         hasExpired: expiration < (Date.now() /1000)
       })
     })
-    fundraiserContract.hasExpired().then((res) => {
-      store.setState({
-        hasExpired: res[0]
-      })
-    })
 
     QRCode.toDataURL(fundraiserAddress, { version:3}).then(url => {
       store.setState({ qrcode: url })
