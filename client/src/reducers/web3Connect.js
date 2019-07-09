@@ -175,8 +175,9 @@ export const deploy = () => {
         const sponsor = web3Connect.sponsor;
         const expiration = web3Connect.expDate;
         const web3 = web3Connect.web3;
+        const networkId = web3Connect.networkId;
 
-        const contractAddress = NETWORKS.get(4).factory;
+        const contractAddress = NETWORKS.get(networkId).factory;
         const contract = new web3.eth.Contract(FundraiserFactory, contractAddress);
 
         if (web3.utils.isAddress(recipient) && typeof expiration === 'number' && expiration % 1 === 0) {
