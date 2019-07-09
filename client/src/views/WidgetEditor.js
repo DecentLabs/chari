@@ -1,5 +1,6 @@
 import React from "react"
 import {TwitterPicker} from 'react-color';
+import {Link} from "react-router-dom"
 import styles from './../styles/widgetEditor.module.css'
 import cfg from './../shared/cfg.js'
 
@@ -72,9 +73,11 @@ class WidgetEditor extends React.Component {
       return (
           <div className={styles.widgetEditor}>
               <header>
-                  <h1 className="subtitle">Welcome in campaign editor page!</h1>
+                  <h1 className="subtitle">Manage your campaign</h1>
+                  <h2 className="subtitle">Edit your widget</h2>
                   <p className={styles.description}>You can manage your campaign widget from here, customize it and also copy the code necessary to
                       embed it on your website.</p>
+                  <Link to={`/campaign/${address}/details/`} className={styles.backLink}>Go back to campaign page</Link>
               </header>
               <div className={styles.widget}>
                 <div className={styles.settings}>

@@ -32,7 +32,8 @@ const initialState = {
     fundraiser: null,
     grant: null,
     isDeploying: false,
-    isDeployed: false
+    isDeployed: false,
+    justDeployed: false
 };
 
 
@@ -91,7 +92,8 @@ export default (state = initialState, action) => {
               grant: action.addresses.grant,
               contract: action.contract,
               isDeploying: false,
-              isDeployed: true
+              isDeployed: true,
+              justDeployed: true
             }
         case DEPLOY_ERROR:
             return {
