@@ -11,7 +11,7 @@ export default function Button (props) {
   return (
     <button style={{borderBottom: `2px solid ${props.colorData}`}}
             data-color={props.colorData}
-            className={classnames(styles.button, styles[props.state], naked, copy, color, margi)}
+            className={classnames(styles.button, styles[props.state], naked, copy, color, margin)}
             onClick={props.onClick}
             disabled={props.disabled}>{props.children}</button>
   )
