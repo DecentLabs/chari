@@ -46,13 +46,8 @@ export default connect([
         {raised && (raised.value !== null) && (
           <div class="raisedCont">
             <div class="raised">
-<<<<<<< HEAD
               <h1>{raised.value} {raised.token}</h1>
-              <p>Raised so far</p>
-=======
-              <h1>{_raised.value} {_raised.token}</h1>
               <p>raised so far</p>
->>>>>>> b394d839f84fe854d839077e403275aa53ff01a8
             </div>
           </div>
         )}
