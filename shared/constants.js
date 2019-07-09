@@ -18,9 +18,15 @@ const AEUR_MAIN = {
   decimals: 2
 }
 
+const DAI_MAIN = {
+  token: 'DAI',
+  tokenAddress: '0x89d24A6b4CcB1B6fAA2625fE562bDD9a23260359',
+  decimals: 18
+}
+
 NETWORKS.set(1, {
   url: 'https://mainnet.infura.io/v3/0aac55d3d6bb4b3498e97cbcf7112f6b',
-  tokens: [ETH, AEUR_MAIN],
+  tokens: [ETH, AEUR_MAIN, DAI_MAIN],
   factory: '0x18662Eef5F00f59A765830B571FAc1d273F4b8D8'
 })
 
