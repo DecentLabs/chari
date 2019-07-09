@@ -78,7 +78,7 @@ yarn clean
 
 ## clean node modules folders
 ```
-yarn clen:modules
+yarn clean:modules
 ```
 
 ## Contracts
