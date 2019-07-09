@@ -35,10 +35,10 @@ class App extends Component {
    */
   handleRoute = () => {
     if(location.search) {
-      const searchParams = new URLSearchParams(location.search);
+      const searchParams = new URLSearchParams(location.search)
       const address = searchParams.get('address')
       const network = searchParams.get('network')
-      const token = searchParams.get('token')
+      const token = searchParams.get('token') || undefined
       const color = searchParams.get('color')
       const theme = searchParams.get('theme')
       this.setTheme(color, theme)
