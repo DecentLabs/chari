@@ -6,7 +6,6 @@ import {connect} from 'react-redux'
 import WidgetEditor from './WidgetEditor.js'
 import CreateContractForm from './CreateContractForm.js'
 import AddFund from './AddFund.js'
-import Congrats from './Congrats.js'
 import LoaderComp from './../components/loaderComp.js'
 import CampaignDetails from './CampaignDetails.js'
 
