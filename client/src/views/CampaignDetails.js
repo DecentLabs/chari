@@ -44,7 +44,7 @@ class CampaignDetails extends React.Component {
 
                 {this.props.justDeployed && (
                     <div>
-                        <div className={campaignStyles.centerColumn}><img src={tick}/></div>
+                        <div className={campaignStyles.centerColumn}><img src={tick} alt="success"/></div>
                         <h2 className="subtitle">Congrats!</h2>
                         <p className="big">Your campaign has been successfully created on blockchain.</p>
                     </div>
