@@ -58,7 +58,7 @@ class WidgetEditor extends React.Component {
     }
 
     copyCode () {
-        const toCopy = document.querySelector('textarea#widget-code');
+        const toCopy = document.querySelector('textarea#chari-widget-code');
         toCopy.select();
         document.execCommand('copy');
     }
@@ -85,6 +85,8 @@ class WidgetEditor extends React.Component {
             name: i.token,
         }));
 
+        const textareaContent = `<iframe src=${iframeUrl} title="chari-widget" width="320px" height="435px" style="border-radius: 4px; border: none"></iframe>`
+
         return (
             <div className={styles.widgetEditor}>
                 <header>
@@ -97,9 +99,14 @@ class WidgetEditor extends React.Component {
                         campaign page</Link>
                 </header>
                 <div className={styles.widget}>
+
                     <div className={styles.settings}>
+                        <Select options={tokenOptions} label="Please select token to pay with"
+                                onChange={this.selectToken}></Select>
+
                         <Select options={themeOptions} label="Please select widget theme"
                                 onChange={this.selectTheme}></Select>
+
                         <div className={styles.colorPickerCont}>
                             <Button state={this.state.showColorSelector ? 'close' : 'open'}
                                     onClick={this.toggleColorSelector} colorSelector colorData={this.state.color}>Please
@@ -112,11 +119,9 @@ class WidgetEditor extends React.Component {
                                 />
                             )}
                         </div>
-                        <Select options={tokenOptions} label="Please select token to pay with"
-                                onChange={this.selectToken}></Select>
 
                         <div className={styles.codeContainer}>
-                            <textarea readOnly value="code here2" id="widget-code"></textarea>
+                            <textarea readOnly value={textareaContent} id="chari-widget-code"></textarea>
                             <Button copy onClick={this.copyCode}><img src={copy} alt="copy code"/></Button>
                         </div>
                     </div>

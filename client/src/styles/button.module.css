@@ -47,6 +47,7 @@
   font-weight: normal;
   padding: 7px;
   background-color: rgba(0, 0, 0, 0);
+  margin: 10px 0;
 }
 .button.colorBtn.close {
   background: url('./../assets/close-button.svg') no-repeat calc(100% - 16px) white;
