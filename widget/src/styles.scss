@@ -1,5 +1,5 @@
 :root {
-  --widget-color: pink;
+  --widget-color: #02DB96;
 
   --fontColor: rgba(0, 0, 0, 0.87);
   --baseColor: #F5F6F7;
@@ -20,9 +20,7 @@
   background-color: var(--baseColor);
   color: var(--fontColor);
   padding: 2em;
-  min-height: 400px;
   box-sizing: border-box;
-  position: relative;
   height:100%;
 
   p {
@@ -30,7 +28,7 @@
   }
   .expiration {
     border-bottom: 1px solid lightgray;
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
 
     .campaignEnds {
       margin-top: 0.5em;
@@ -73,7 +71,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
     .offer {
       margin: 0 0 1em 0;
       font-size: 1.2em;
@@ -86,16 +84,18 @@
       padding-bottom: 1em;
       .raised {
         text-align: center;
+        color: var(--widget-color);
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
         h1 {
           margin: 0;
           font-weight: bolder;
           font-size: 2.2em;
-          color: var(--widget-color);
         }
         p {
           font-size: 1.2em;
           margin: 0;
           font-weight: bold;
+          text-transform: uppercase;
         }
       }
     }
@@ -109,7 +109,7 @@
       appearance: none;
       height: 28px;
       width: 100%;
-      margin: 1em 0;
+      margin: 0.5em 0 1em 0;
     }
     progress[value]::-webkit-progress-bar {
       background-color: white;
@@ -140,6 +140,8 @@
     padding: 19px 20px;
     text-decoration: none;
     font-weight: bold;
+    margin-top: 24px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
     border-width: 1px;
     border-style: solid;
     border-image: initial;
