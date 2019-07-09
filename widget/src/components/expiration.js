@@ -8,10 +8,14 @@ const MINUTE = 60;
 export default class Expiration extends Component {
   state = {time: null}
 
+  setTime = () => this.setState({time: Math.floor(Date.now() / 1000)})
+
   componentDidMount () {
-    this.timer = setInterval(() => {
-      this.setState({time: Math.floor(Date.now() / 1000)})
-    }, 1000)
+    this.timer = setInterval(() => this.setTime(), 1000)
+  }
+
+  componentWillMount() {
+    this.setTime()
   }
 
   componentWillUnmount () {

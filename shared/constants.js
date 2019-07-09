@@ -33,11 +33,13 @@ NETWORKS.set(1, {
 NETWORKS.set(3, {
   url: 'https://ropsten.infura.io/v3/0aac55d3d6bb4b3498e97cbcf7112f6b',
   tokens: [ETH],
-  factory: '0x1329857cDa42634C501C1d5f2757761Ccde07436'
+  factory: '0x1329857cDa42634C501C1d5f2757761Ccde07436',
+  name:'Ropsten testnet'
 })
 
 NETWORKS.set(4, {
   url: 'https://rinkeby.infura.io/v3/0aac55d3d6bb4b3498e97cbcf7112f6b',
   tokens: [ETH, AEUR_RINKEBY],
-  factory: '0x43D5e98C1350DB149f24C4cf9a181e4d7b6fC2d2'
+  factory: '0x43D5e98C1350DB149f24C4cf9a181e4d7b6fC2d2',
+  name:'Rinkeby testnet'
 })
