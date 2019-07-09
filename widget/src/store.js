@@ -41,7 +41,7 @@ export const refreshBalance = store.action((state) => {
   }
 })
 
-export const init = store.action((state, fundraiserAddress, networkId, tokenName = 'ETH') => {
+export const init = store.action((state, fundraiserAddress, networkId, tokenName) => {
   const network = parseInt(networkId, 10)
   if (NETWORKS.has(network) &&
     (state.networkId !== network || state.fundraiserAddress !== fundraiserAddress)) {
@@ -78,7 +78,11 @@ export const init = store.action((state, fundraiserAddress, networkId, tokenName
       store.setState({qrcode: url})
     })
 
-    const selectedToken = tokens.find(t => t.token === tokenName)
+    let selectedToken = tokens.find(t => t.token === tokenName)
+    if(!selectedToken) {
+      selectedToken = tokens.find(t => t.token === 'ETH')
+    }
+
 
     return {
       fundraiserAddress,
