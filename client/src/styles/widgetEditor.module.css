@@ -92,3 +92,9 @@
   left: calc((100% - 276px) / 2);
   top: 60px;
 }
+
+.backLink {
+  display: flex;
+  justify-content: center;
+  color: #02DB96;
+}
