@@ -3,6 +3,7 @@ import { NETWORKS } from 'shared/constants.js'
 import Fundraiser from 'shared/abis/Fundraiser.json'
 import Grant from 'shared/abis/Grant.json'
 import Eth from 'ethjs'
+import QRCode from 'qrcode'
 
 export const store = createStore({
   fundraiserAddress: null,
@@ -18,7 +19,8 @@ export const store = createStore({
   theme: 'theme-light',
   raised: null,
   hasExpired: null,
-  matched: null
+  matched: null,
+  widgetToken: null
 })
 
 
@@ -41,7 +43,7 @@ export const refreshBalance = store.action((state) => {
   }
 })
 
-export const init = store.action((state, fundraiserAddress, networkId) => {
+export const init = store.action((state, fundraiserAddress, networkId, tokenName) => {
   const network = parseInt(networkId, 10)
   if (NETWORKS.has(network) &&
      (state.networkId !== network || state.fundraiserAddress!== fundraiserAddress)) {
@@ -74,6 +76,10 @@ export const init = store.action((state, fundraiserAddress, networkId) => {
       store.setState({
         hasExpired: res[0]
       })
+    })
+
+    QRCode.toDataURL(fundraiserAddress, { version:3}).then(url => {
+      store.setState({ qrcode: url })
     })
 
     return {
