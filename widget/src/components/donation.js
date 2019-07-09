@@ -28,6 +28,10 @@ export default connect([
   const _matched = matched ? matched.find((item) => item.token === token) : null
   const grant = grantBalance ? grantBalance.find((item) => item.token === token) : null
 
+  console.log(grant, 'grant');
+  console.log(_raised, 'raised');
+  console.log(_matched, 'matched');
+
   let progress = null
 
   if (_matched && _matched.value && grant && grant.value) {
@@ -39,12 +43,12 @@ export default connect([
         <p>{_matched.value} {_matched.token} from donors & {_matched.value} {_matched.token} from sponsors</p>
       </div>
     )
-  } else if (grant && grant.value && !_matched && !_matched.value ) {
+  } else if (grant && grant.value ) {
       progress = (
         <div class="progressCont">
           <p>Sponsor donated {grant.value} {grant.token} ...todo text.</p>
           <progress value={grant.value} max={grant.value}></progress>
-          <p>{_matched.value} {_matched.token} matched. Donate to double your money. TODO TEXT</p>
+          <p>Donate to double your money. TODO TEXT</p>
         </div>
       )
   } else {
@@ -70,8 +74,6 @@ export default connect([
         )}
 
       </div>
-
-      <hr/>
 
       {fundraiserContract && (
         <Link href={ROUTES.CONTRIBUTION}>DONATE!</Link>

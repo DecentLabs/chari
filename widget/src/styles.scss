@@ -67,9 +67,6 @@
     .progressCont {
       position: relative;
       progress[value] {
-        position: absolute;
-        top: 0;
-        left: 0;
         -webkit-appearance: none;
         appearance: none;
         height: 28px;
@@ -85,9 +82,6 @@
         background-color: var(--widget-color);
       }
       .progressInfo {
-        position: absolute;
-        left: 0;
-        top: 0px;
         margin: 0 10px;
         line-height: 28px;
       }
