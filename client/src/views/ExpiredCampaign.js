@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import LoaderComp from './../components/loaderComp.js'
+import LoaderComp from './../components/loaderComp.js';
 import Grant from 'shared/abis/Grant.json';
 import Button from '../components/button.js';
 import campaignStyles from '../styles/Campaign.module.css';
-
 
 import { NETWORKS } from '../shared/constants.js';
 
@@ -42,8 +41,6 @@ class ExpiredCampaign extends React.Component {
 
         for (let i = 0; i < tokens.length; i++) {
             const balance = await this.props.fundraiserContract.methods.tokenBalance(tokens[i].tokenAddress).call();
-
-            console.log(balance.toString(), tokens[i].token, 'balance')
 
             if (!balance.isZero()) {
                 disburseTokens.push(tokens[i]);
@@ -95,9 +92,7 @@ class ExpiredCampaign extends React.Component {
     render () {
         return (
             <div>
-                <p>Your contract's address is:</p>
-                <p className="big strong">{this.props.fundraiserAddress}</p>
-
+                <h1>Your campaign has expired.</h1>
                 {this.state.transactionPending && (
                     <LoaderComp/>
                 )}
@@ -114,8 +109,6 @@ class ExpiredCampaign extends React.Component {
                         ))}
                     </div>
                 )}
-
-
             </div>
         );
     }

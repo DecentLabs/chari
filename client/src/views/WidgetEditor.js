@@ -20,7 +20,6 @@ class WidgetEditor extends React.Component {
     this.state = {
       color: '#02DB96',
       theme: 'light',
-      network: 4,
       iframeLoading: true,
       showColorSelector: false
     }
@@ -62,8 +61,9 @@ class WidgetEditor extends React.Component {
 
   render () {
     const address = this.props.match.params.address
+    const networkId = this.props.match.params.networkId
     const color = this.state.color.split('#')[1]
-    const iframeUrl = `${cfg.WIDGET_BASE_URL}?address=${address}&network=${this.state.network}&color=${color}&theme=${this.state.theme}` // todo
+    const iframeUrl = `${cfg.WIDGET_BASE_URL}?address=${address}&network=${networkId}&color=${color}&theme=${this.state.theme}` // todo
 
     const themeOptions = [
       {value: 'dark', name: 'Dark theme'},
@@ -77,7 +77,7 @@ class WidgetEditor extends React.Component {
                   <h2 className="subtitle">Edit your widget</h2>
                   <p className={styles.description}>You can manage your campaign widget from here, customize it and also copy the code necessary to
                       embed it on your website.</p>
-                  <Link to={`/campaign/${address}/details/`} className={styles.backLink}>Go back to campaign page</Link>
+                  <Link to={`/campaign/${address}/${networkId}/details/`} className={styles.backLink}>Go back to campaign page</Link>
               </header>
               <div className={styles.widget}>
                 <div className={styles.settings}>

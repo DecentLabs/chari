@@ -13,6 +13,7 @@ class CampaignDetails extends React.Component {
     constructor (props) {
         super(props);
         this.fundraiserAddress = props.match.params.address;
+        this.networkId = this.props.match.params.networkId;
         this.state = {
             hasExpired: false,
             fundraiserContract: null,
@@ -50,8 +51,12 @@ class CampaignDetails extends React.Component {
                     </div>
                 )}
 
+                <p className={campaignStyles.disclaimer}>Bookmark this page to manage your campaign later on.</p>
+                <p>Your contract's address is:</p>
+                <p className="big strong">{this.fundraiserAddress}</p>
+
                 {!this.state.hasExpired && (
-                    <CurrentCampaign fundraiserAddress={this.fundraiserAddress}/>
+                    <CurrentCampaign network={this.networkId} fundraiserAddress={this.fundraiserAddress}/>
                 )}
 
                 {this.state.hasExpired && (
@@ -68,7 +73,6 @@ const mapStateToProps = state => ({
     web3: state.web3Connect.web3,
     isConnected: state.web3Connect.isConnected,
     justDeployed: state.web3Connect.justDeployed,
-
 });
 
 export default connect(mapStateToProps)(CampaignDetails);
