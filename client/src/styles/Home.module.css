@@ -63,12 +63,23 @@
 .home iframe {
   width: 100%;
   height: 100%;
-  border-radius: 4px;
-  border: 1px solid #D5DAE2;
+  /*border-radius: 4px;*/
+  /*border: 1px solid #D5DAE2;*/
+  border: 0;
   position: absolute;
   left: 0;
   top: 0;
 }
+
+.fundraiser {
+  background-color: #F5F6F7;
+  text-align: left;
+  max-width: 500px;
+  margin: 60px auto;
+  box-shadow: 4px 4px 16px -4px rgba(0,0,0,0.15);
+  padding: 16px;
+}
+
 
 /* .widgetEditor .widget .iframeContainer .spinner {
   position: absolute;

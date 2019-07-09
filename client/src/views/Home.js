@@ -54,8 +54,24 @@ function Home (props) {
         </dd>
       </dl>
 
-      <div className={styles.iframeContainer}>
-        <iframe title="Chari-widget-demo" src={`${cfg.WIDGET_BASE_URL}?address=0xB5E5F24b659bC8872c4f89b127C685b7FC641862&network=4&color=02DB96&theme=light`}></iframe>
+      <h1 className="subtitle">Featured Fundraisers</h1>
+
+      <div className={styles.fundraiser}>
+
+        <h2>Rinkeby Test Campaign</h2>
+
+        <p>
+          <strong>Recipient:</strong> Decent Labs
+          <br/>
+          <strong>Sponsor:</strong> Decent Labs
+        </p>
+
+        <p>Use this campaign to test donations on the Rinkeby testnet.</p>
+
+        <div className={styles.iframeContainer}>
+          <iframe title="Chari-widget-demo" src={`${cfg.WIDGET_BASE_URL}?address=0xB5E5F24b659bC8872c4f89b127C685b7FC641862&network=4&color=02DB96&theme=light`}></iframe>
+        </div>
+
       </div>
     </div>
   )
