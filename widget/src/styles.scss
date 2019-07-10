@@ -1,5 +1,6 @@
 :root {
   --widget-color: #02DB96;
+  --warning: #EB6123;
 
   --fontColor: rgba(0, 0, 0, 0.87);
   --baseColor: #F5F6F7;
@@ -22,6 +23,7 @@
   padding: 2em;
   box-sizing: border-box;
   height:100%;
+  text-align: center;
 
   p {
     margin: 0;
@@ -68,7 +70,16 @@
 
   .networkTitle {
     font-size: 15px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
+    background-color: var(--widget-color);
+    padding: 1px 15px;
+    display: inline-block;
+    border-radius: 2px;
+    width: auto;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+    align-self: center;
   }
 
   .matchDetails {
@@ -79,7 +90,7 @@
     margin-bottom: 1.5em;
     .offer {
       margin: 0 0 1em 0;
-      font-size: 1.1em;
+      font-size: 1.2em;
       font-weight: bold;
       // color: var(--midGray);
     }

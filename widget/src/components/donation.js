@@ -26,27 +26,31 @@ export default connect([
 
   const networkName = NETWORKS.get(networkId).name
 
-  if (matched && matched.value !== null && grantBalance && grantBalance.value) {
+  if (matched && matched.value) {
     progress = (
       <div class="progressCont">
-        <p>The sponsor offered {grantBalance.value} {grantBalance.token} for matching</p>
+        <p>Sponsor matched {matched.value} {matched.token}.</p>
         <progress value={matched.value} max={grantBalance.value}></progress>
       </div>
     )
-  } else {
-    progress = (
-      <div class="progressCont">
-        <p>Waiting for sponsorship grant.</p>
-      </div>
-    )
   }
+  // else {
+  //   progress = (
+  //     <div class="progressCont">
+  //       <p>Waiting for sponsorship grant.</p>
+  //     </div>
+  //   )
+  // }
 
   return (
     <div>
+      {networkId !== 1 && (
+        <div className="networkTitle">On {networkName}</div>
+      )}
       <Expiration at={expiration}/>
 
       <div class="matchDetails">
-        <p class="offer">The sponsor matches every {selectedToken.token} you give.</p>
+        <p class="offer">The sponsor matches every {selectedToken.token} you give, up to {grantBalance ? grantBalance.value : 0} {grantBalance.token}.</p>
 
         {raised && (raised.value !== null) && (
           <div class="raisedCont">
@@ -54,7 +58,6 @@ export default connect([
               <h1>{raised.value} {raised.token}</h1>
               <p>raised so far</p>
             </div>
-            <h2 className="networkTitle">on {networkName}</h2>
           </div>
         )}
       </div>
