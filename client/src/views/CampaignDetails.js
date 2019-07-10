@@ -8,6 +8,7 @@ import CurrentCampaign from './CurrentCampaign.js';
 
 import tick from '../assets/tick.svg';
 import { setupWeb3 } from '../reducers/web3Connect';
+import LoaderComp from '../components/loaderComp';
 
 class CampaignDetails extends React.Component {
     constructor (props) {
@@ -15,6 +16,7 @@ class CampaignDetails extends React.Component {
         this.fundraiserAddress = props.match.params.address;
         this.networkId = this.props.match.params.networkId;
         this.state = {
+            isLoading: true,
             hasExpired: false,
             fundraiserContract: null,
         };
@@ -35,6 +37,7 @@ class CampaignDetails extends React.Component {
         this.setState({
             hasExpired,
             fundraiserContract,
+            isLoading: false
         });
     }
 
@@ -42,6 +45,8 @@ class CampaignDetails extends React.Component {
         return (
             <div>
                 <h1 className="subtitle">Manage your campaign</h1>
+
+                {this.state.isLoading && (<LoaderComp/>)}
 
                 {this.props.justDeployed && (
                     <div>
@@ -52,8 +57,6 @@ class CampaignDetails extends React.Component {
                 )}
 
                 <p className={campaignStyles.disclaimer}>Bookmark this page to manage your campaign later on.</p>
-                <p>Your contract's address is:</p>
-                <p className="big strong">{this.fundraiserAddress}</p>
 
                 {!this.state.hasExpired && (
                     <CurrentCampaign network={this.networkId} fundraiserAddress={this.fundraiserAddress}/>

@@ -56,6 +56,8 @@ class ExpiredCampaign extends React.Component {
         await this.props.fundraiserContract.methods.disburse(tokenAddress).send({
             from: this.props.account,
             gas: 1000000,
+        }).on('error', () => {
+            this.setState({transactionPending: false})
         }).then(() => {
             this.getDisburseTokens()
             this.setState({transactionPending: false})
@@ -83,6 +85,8 @@ class ExpiredCampaign extends React.Component {
         this.state.grantContract.methods.refund(tokenAddress).send({
             from: this.props.account,
             gas: 1000000,
+        }).on('error', () => {
+            this.setState({transactionPending: false})
         }).then(() => {
             this.getRefundTokens()
             this.setState({transactionPending: false})
@@ -92,21 +96,29 @@ class ExpiredCampaign extends React.Component {
     render () {
         return (
             <div>
-                <h1>Your campaign has expired.</h1>
+                <h2 className="subtitle">Congratulations! Your campaign has just finished.</h2>
                 {this.state.transactionPending && (
                     <LoaderComp/>
                 )}
                 {!this.state.transactionPending && (
-                    <div className={campaignStyles.centerColumn}>
-                        {this.state.disburseTokens.map(i => (
-                            <div>
-                                <Button margin={true} onClick={() => this.disburse(i.tokenAddress)}>Disburse raised fund
-                                    in {i.token}</Button>
-                            </div>
-                        ))}
-                        {this.state.refundTokens.map(i => (
-                            <Button margin={true} onClick={() => this.refund(i.tokenAddress)}>Refund grant in {i.token}</Button>
-                        ))}
+                    <div className={campaignStyles.centerRow}>
+                        <div className={campaignStyles.halfColumn}>
+                            <p>If you woud like to disburse funds  to the charity, click here</p>
+                            {this.state.disburseTokens.map(i => (
+                                <div className={campaignStyles.button}>
+                                    <Button margin={true} onClick={() => this.disburse(i.tokenAddress)}>Disburse funds
+                                        in {i.token}</Button>
+                                </div>
+                            ))}
+                        </div>
+                        <div className={campaignStyles.halfColumn}>
+                            <p>If the budget has not been used,  you can refund funds to the sponsor</p>
+                            {this.state.refundTokens.map(i => (
+                                <div className={campaignStyles.button}>
+                                <Button margin={true} onClick={() => this.refund(i.tokenAddress)}>Refund the sponsor in {i.token}</Button>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 )}
             </div>
