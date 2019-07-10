@@ -44,19 +44,19 @@ class CampaignDetails extends React.Component {
     render () {
         return (
             <div>
-                <h1 className="subtitle">Manage your campaign</h1>
+                <h1 className="subtitle">Manage your fundraiser</h1>
 
                 {this.state.isLoading && (<LoaderComp/>)}
 
                 {this.props.justDeployed && (
                     <div>
                         <div className={campaignStyles.centerColumn}><img src={tick} alt="success"/></div>
-                        <h2 className="subtitle">Congrats!</h2>
-                        <p className="big">Your campaign has been successfully created on blockchain.</p>
+                        <h2 className="subtitle">Congratulations!</h2>
+                        <p className="big">Your fundraiser was successfully created on the blockchain.</p>
                     </div>
                 )}
 
-                <p className={campaignStyles.disclaimer}>Bookmark this page to manage your campaign later on.</p>
+                <p className={campaignStyles.disclaimer}>Bookmark this page to manage your fundraiser later on.</p>
 
                 {!this.state.hasExpired && (
                     <CurrentCampaign network={this.networkId} fundraiserAddress={this.fundraiserAddress}/>
