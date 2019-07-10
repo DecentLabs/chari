@@ -44,7 +44,7 @@ export default connect([
       </div>
 
       {fundraiserContract && (
-        <Link href={ROUTES.CONTRIBUTION}>DONATE!</Link>
+        <Link href={ROUTES.CONTRIBUTION}>Contribute to fundraiser!</Link>
       )}
     </div>
   )
