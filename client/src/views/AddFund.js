@@ -33,10 +33,10 @@ class AddFund extends React.Component {
     render () {
         return (
             <div>
-                <h1 className="subtitle">Manage your campaign</h1>
-                <h2 className="subtitle">As a sponsor you can send grant to this address:</h2>
+                <h1 className="subtitle">Manage your fundraiser</h1>
+                <h2 className="subtitle">Transfer the matching grant to this address:</h2>
                 <p className="big strong">{this.state.grantAddress}</p>
-                <Link to={`/campaign/${this.fundraiserAddress}/${this.props.networkId}/details/`} className={styles.backLink}>Go back to campaign page</Link>
+                <Link to={`/campaign/${this.fundraiserAddress}/${this.props.networkId}/details/`} className={styles.backLink}>Back to fundraiser</Link>
             </div>
         );
     }

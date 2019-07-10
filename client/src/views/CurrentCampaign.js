@@ -16,10 +16,9 @@ const CurrentCampaign = (props) => (
                         src={`${cfg.WIDGET_BASE_URL}?address=${props.fundraiserAddress}&network=${props.network}&color=02DB96&theme=light`}></iframe>
             </div>
             <div className={campaignStyles.centerColumn}>
-                <Link to={`/campaign/${props.fundraiserAddress}/${props.network}/admin`} className={buttonStyles.button}>Edit your
+                <Link to={`/campaign/${props.fundraiserAddress}/${props.network}/admin`} className={buttonStyles.button}>Customize
                     widget</Link>
-                <Link to={`/campaign/${props.fundraiserAddress}/addfund`} className={buttonStyles.button}>Grant as a
-                    sponsor</Link>
+                <Link to={`/campaign/${props.fundraiserAddress}/addfund`} className={buttonStyles.button}>Transfer funds</Link>
             </div>
         </div>
     </div>
