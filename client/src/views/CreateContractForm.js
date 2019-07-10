@@ -6,7 +6,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
 
 import Input from './../components/input.js';
-import Button from './../components/button.js';
 import MeCheckbox from '../components/meCheckbox.js';
 import DeployButton from './../components/DeployButton.js'
 
