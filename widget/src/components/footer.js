@@ -1,10 +1,16 @@
 import { h } from 'preact'
 import { connect } from 'unistore/preact'
+import {NETWORKS} from 'shared/constants.js'
 
-export default connect(['fundraiserAddress'])(({fundraiserAddress}) => {
+export default connect(['fundraiserAddress','networkId'])(({fundraiserAddress,networkId}) => {
+  const network = NETWORKS.get(networkId)
+  let etherscanUrl = '';
+  if(network) {
+    etherscanUrl = `${network.etherscan}address/${fundraiserAddress}`;
+  }
   return (
     <div class="footer">
-      <p class="etherscan">View on Etherscan</p>
+      <p class="etherscan"><a href={etherscanUrl} target="_blank">View on Etherscan</a></p>
       <p>Powered by </p>
       <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="34.6667" height="35" fill="rgba(0, 0, 0, 0)"/>
