@@ -61,18 +61,21 @@ export const init = store.action((state, fundraiserAddress, networkId, tokenName
       })
 
       refreshBalance()
-      setInterval(() => {
-        refreshBalance()
-      }, 5000)
-    })
+    }).then(() => fundraiserContract.expiration())
+      .then(result => {
+        const expiration = result[0].toNumber()
+        const hasExpired = expiration < (Date.now() / 1000)
+        store.setState({
+          expiration: expiration,
+          hasExpired
+        })
 
-    fundraiserContract.expiration().then(result => {
-      const expiration = result[0].toNumber()
-      store.setState({
-        expiration: expiration,
-        hasExpired: expiration < (Date.now() / 1000)
+        if(!hasExpired) {
+          setInterval(() => {
+            refreshBalance()
+          }, 5000)
+        }
       })
-    })
 
     QRCode.toDataURL(fundraiserAddress, {version: 3}).then(url => {
       store.setState({qrcode: url})
