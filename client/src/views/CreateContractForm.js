@@ -8,13 +8,12 @@ import DatePicker from 'react-datepicker';
 import Input from './../components/input.js';
 import Button from './../components/button.js';
 import MeCheckbox from '../components/meCheckbox.js';
-import ConfirmDeploy from './../components/confirmDeploy.js';
+import DeployButton from './../components/DeployButton.js'
 
 class CreateContractForm extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            showConfirm: false,
             date: '',
             sponsor: '',
             recipient: '',
@@ -24,11 +23,9 @@ class CreateContractForm extends React.Component {
         };
         this.onCharityAddressChange = this.onCharityAddressChange.bind(this);
         this.onSponsorAddressChange = this.onSponsorAddressChange.bind(this);
-        this.confirmDeploy = this.confirmDeploy.bind(this);
         this.onExpDateChange = this.onExpDateChange.bind(this);
         this.onSponsorMe = this.onSponsorMe.bind(this);
         this.onCharityMe = this.onCharityMe.bind(this);
-        this.hide = this.hide.bind(this);
     }
 
     componentDidMount () {
@@ -76,12 +73,6 @@ class CreateContractForm extends React.Component {
         this.validateDate(date);
     }
 
-    confirmDeploy () {
-        this.setState({
-            showConfirm: true,
-        });
-    }
-
     validateDate (date) {
         const currentDate = Date.now();
         const selectedDate = date.getTime();
@@ -107,12 +98,6 @@ class CreateContractForm extends React.Component {
         } else {
             this.setState({recipientError: false});
         }
-    }
-
-    hide () {
-        this.setState({
-            showConfirm: false,
-        });
     }
 
     render () {
@@ -159,8 +144,7 @@ class CreateContractForm extends React.Component {
 
                         />
                     </form>
-                    <Button onClick={this.confirmDeploy} hide={this.hide} disabled={isValid}>Create</Button>
-                    {this.state.showConfirm && <ConfirmDeploy hide={this.hide}></ConfirmDeploy>}
+                    <DeployButton disabled={isValid}></DeployButton>
                 </div>
             )
         );
