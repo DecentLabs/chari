@@ -6,6 +6,7 @@ import {ROUTES} from '../constants.js'
 import {NETWORKS} from 'shared/constants.js'
 import Network from './network.js'
 import Raised from './raised.js'
+import Footer from './footer.js'
 
 export default connect([
   'fundraiserContract',
@@ -42,10 +43,12 @@ export default connect([
           </div>
         )}
       </div>
-
-      {fundraiserContract && (
-        <Link href={ROUTES.CONTRIBUTION}>Contribute to fundraiser!</Link>
-      )}
+      <div>
+        {fundraiserContract && (
+          <Link href={ROUTES.CONTRIBUTION} class="button">Contribute to fundraiser!</Link>
+        )}
+        <Footer />
+      </div>
     </div>
   )
 })
