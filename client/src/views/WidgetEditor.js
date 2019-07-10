@@ -37,10 +37,12 @@ class WidgetEditor extends React.Component {
     }
 
     selectColor (color) {
-        this.setState({
-            color: color.hex,
-            iframeLoading: true,
-        });
+        if (this.state.color !== color.hex) {
+            this.setState({
+                color: color.hex,
+                iframeLoading: true,
+            });
+        }
     }
 
     selectToken (e) {
