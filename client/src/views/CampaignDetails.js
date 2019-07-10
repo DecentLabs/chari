@@ -6,7 +6,6 @@ import Fundraiser from 'shared/abis/Fundraiser.json';
 
 import ExpiredCampaign from './ExpiredCampaign.js';
 import CurrentCampaign from './CurrentCampaign.js';
-// import Congrats from '../components/Congrats.js'
 
 import tick from '../assets/tick.svg';
 import { setupWeb3 } from '../reducers/web3Connect';
@@ -53,14 +52,15 @@ class CampaignDetails extends React.Component {
     }
 
     render () {
-        const title = this.state.congratsVisible ? 'Congrats!' : 'Manage your fundraiser';
+        const showCongrats = (this.props.justDeployed && this.state.congratsVisible)
+        const title = showCongrats ? 'Congrats!' : 'Manage your fundraiser';
         return (
             <div>
                 <h1 className="subtitle">{title}</h1>
 
                 {this.state.isLoading && (<LoaderComp/>)}
 
-                {this.props.justDeployed && this.state.congratsVisible && (
+                {showCongrats && (
                     <div className={[campaignStyles.centerColumn, campaignStyles.padding].join(' ')}>
                         <img src={tick} alt="success"/>
                         <p className="big">Your campaign has been successfully created on blockchain.</p>
@@ -72,7 +72,7 @@ class CampaignDetails extends React.Component {
                 )}
 
 
-                {!this.state.congratsVisible && !this.state.hasExpired && (
+                {!showCongrats && !this.state.hasExpired && (
                     <CurrentCampaign network={this.networkId} fundraiserAddress={this.fundraiserAddress}/>
                 )}
 
