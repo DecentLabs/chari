@@ -7,7 +7,7 @@ export default class MeCheckbox extends React.Component {
         return (
             <div className={styles.meField}>
                 <input className={styles.meCheckbox} id={id} type="checkbox" onChange={onChange} />
-                <label htmlFor={id}>it's me!</label>
+                <label htmlFor={id}>paste my address</label>
             </div>
         )
     }

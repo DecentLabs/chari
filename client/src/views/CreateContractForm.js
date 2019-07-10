@@ -126,24 +126,28 @@ class CreateContractForm extends React.Component {
                             />
                             <MeCheckbox id="sponsorMe" onChange={this.onSponsorMe}/>
                         </div>
-                        <DatePicker onChange={this.onExpDateChange}
-                                    selected={this.state.date}
-                                    showTimeSelect
-                                    timeFormat="HH:mm"
-                                    timeIntervals={60}
-                                    timeCaption="time"
-                                    dateFormat="dd/MM/yyyy hh:mm aa"
-                                    customInput={<Input name="expiration"
-                                                        label="Choose expiration date"
-                                                        value={this.state.date}
-                                                        placeHolder="Day/Month/Year"
-                                                        error={this.state.dateError}
-                                                        errorLabel="Please select a time in the future"
-                                    />}
+                        <div className={styles.datepicker}>
+                            <DatePicker onChange={this.onExpDateChange}
+                                        selected={this.state.date}
+                                        showTimeSelect
+                                        timeFormat="HH:mm"
+                                        timeIntervals={60}
+                                        timeCaption="time"
+                                        dateFormat="dd/MM/yyyy hh:mm aa"
+                                        customInput={<Input name="expiration"
+                                                            label="Choose expiration date"
+                                                            value={this.state.date}
+                                                            placeHolder="Day/Month/Year"
+                                                            error={this.state.dateError}
+                                                            errorLabel="Please select a time in the future"
+                                        />}
 
-                        />
+                            />
+                        </div>
                     </form>
-                    <DeployButton disabled={isValid}></DeployButton>
+                    <div className={styles.buttonRow}>
+                        <DeployButton className={styles.buttonRow} disabled={isValid}></DeployButton>
+                    </div>
                 </div>
             )
         );
