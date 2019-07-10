@@ -48,6 +48,7 @@
   padding: 7px;
   background-color: rgba(0, 0, 0, 0);
   margin: 10px 0;
+  text-shadow: none;
 }
 .button.colorBtn.close {
   background: url('./../assets/close-button.svg') no-repeat calc(100% - 16px) white;
