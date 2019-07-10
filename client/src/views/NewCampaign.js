@@ -32,7 +32,7 @@ class NewCampaign extends React.Component {
 
         {this.props.isDeploying && (
           <LoaderComp>
-            <h1 className="subtitle">Your campaign is currently being created</h1>
+            <h1 className="subtitle">Your fundraiser is being created</h1>
           </LoaderComp>
         )}
 

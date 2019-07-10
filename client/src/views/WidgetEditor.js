@@ -92,13 +92,13 @@ class WidgetEditor extends React.Component {
         return (
             <div className={styles.widgetEditor}>
                 <header>
-                    <h1 className="subtitle">Manage your campaign</h1>
+                    <h1 className="subtitle">Manage your fundraiser</h1>
                     <h2 className="subtitle">Edit your widget</h2>
-                    <p className={styles.description}>You can manage your campaign widget from here, customize it and
+                    <p className={styles.description}>You can manage your fundraiser widget from here, customize it and
                         also copy the code necessary to
                         embed it on your website.</p>
-                    <Link to={`/campaign/${address}/${networkId}/details/`} className={styles.backLink}>Go back to
-                        campaign page</Link>
+                    <Link to={`/campaign/${address}/${networkId}/details/`} className={styles.backLink}>Back to
+                        fundraiser</Link>
                 </header>
                 <div className={styles.widget}>
 
