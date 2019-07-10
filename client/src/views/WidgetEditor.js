@@ -87,7 +87,7 @@ class WidgetEditor extends React.Component {
             name: i.token,
         }));
 
-        const textareaContent = `<iframe src=${iframeUrl} title="chari-widget" width="320px" height="435px" style="border-radius: 4px; border: none"></iframe>`
+        const textareaContent = `<iframe src="${iframeUrl}" title="chari-widget" width="320px" height="435px" style="border-radius: 4px; border: none"></iframe>`
 
         return (
             <div className={styles.widgetEditor}>
