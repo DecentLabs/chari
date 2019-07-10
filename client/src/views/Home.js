@@ -69,7 +69,7 @@ function Home (props) {
         <p>Use this campaign to test donations on the Rinkeby testnet.</p>
 
         <div className={styles.iframeContainer}>
-          <iframe title="Chari-widget-demo" src={`${cfg.WIDGET_BASE_URL}?address=0xB5E5F24b659bC8872c4f89b127C685b7FC641862&network=4&color=02DB96&theme=light`}></iframe>
+          <iframe title="Chari-widget-demo" src={`${cfg.WIDGET_BASE_URL}?address=0x5Af4F9d7780fBc068f02C5D68F6780DBb654FFD2&network=4&color=02DB96&theme=light`}></iframe>
         </div>
 
       </div>
