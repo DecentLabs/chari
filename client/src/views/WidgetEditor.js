@@ -6,7 +6,6 @@ import cfg from './../shared/cfg.js';
 
 import Button from './../components/button.js';
 import Select from './../components/select.js';
-import LoaderComp from './../components/loaderComp.js';
 import copy from './../assets/copy.svg';
 
 import IframeContainer from './../components/iframeContainer.js'
@@ -68,7 +67,6 @@ class WidgetEditor extends React.Component {
     }
 
     iframeLoaded () {
-        console.log('loaded');
         this.setState({
             iframeLoading: false,
         });
@@ -105,7 +103,7 @@ class WidgetEditor extends React.Component {
                 </header>
                 <div className={styles.widget}>
 
-                    <IframeContainer url={iframeUrl} loading={this.state.iframeLoading} loaded={this.iframeLoaded}></IframeContainer>
+                    <IframeContainer title="Chari-widget" url={iframeUrl} loading={this.state.iframeLoading} loaded={this.iframeLoaded}></IframeContainer>
 
                     <div className={styles.settings}>
                         <Select options={tokenOptions} label="Please select token to pay with"

@@ -6,6 +6,19 @@ import {NavLink} from "react-router-dom"
 import cfg from './../shared/cfg.js'
 
 import Button from './../components/button.js'
+import IframeContainer from './../components/iframeContainer.js'
+
+const iframeContHomeStyles = {
+  width: '100%',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  display: 'block'
+}
+const iframeHomeStyles = {
+  width: '100%',
+  height: '100%',
+  border: 0,
+}
 
 function Home (props) {
   const connectWeb3 = () => {
@@ -68,9 +81,8 @@ function Home (props) {
 
         <p>This fundraiser helps people living in extreme poverty.</p>
 
-        <div className={styles.iframeContainer}>
-          <iframe title="Chari-widget-demo" src={`${cfg.WIDGET_BASE_URL}?address=0x009D88A62945F22ec7df60D34541B5F01cFF23f9&network=1&color=02DB96&theme=light`}></iframe>
-        </div>
+
+        <IframeContainer containerStyles={iframeContHomeStyles} iframeStyles={iframeHomeStyles} title="Chari-widget-demo" url={`${cfg.WIDGET_BASE_URL}?address=0x009D88A62945F22ec7df60D34541B5F01cFF23f9&network=1&color=02DB96&theme=light`}></IframeContainer>
 
       </div>
     </div>
