@@ -1,8 +1,12 @@
 import Web3 from "web3";
 import Portis from '@portis/web3';
 
+const searchParams = new URLSearchParams(window.location.search)
+const portis_network = searchParams.get('portis_network')
 const PORTIS_APP = '98a39edb-e9d0-4b58-96b6-89227c762f7a'
-const PORTIS_NETWORK = 'rinkeby'
+const PORTIS_NETWORK = portis_network || 'mainnet'
+
+console.log('portis network', PORTIS_NETWORK)
 
 
 const makeWeb3 = (provider) => new Web3(provider, null, {
