@@ -1,7 +1,6 @@
 .centerRow {
   display: flex;
   flex-direction: row;
-  margin-top: 4em;
   justify-content: center;
   align-items: flex-start;
 }
@@ -14,6 +13,10 @@
   padding: 20px;
 }
 
+.padding {
+  padding: 20px 0;
+}
+
 .halfColumn {
   width: 50%;
   padding: 5px 20px;
@@ -22,6 +25,10 @@
 
 .halfColumn:first-of-type {
   border-right: 1px solid #BCBCBC;
+}
+
+.halfColumn:only-child {
+  border: none;
 }
 
 .halfColumn p {
@@ -34,7 +41,6 @@
 }
 
 .disclaimer {
-  padding: 3px;
   color: #02DB96;
   font-size: 18px;
   font-weight: 700;

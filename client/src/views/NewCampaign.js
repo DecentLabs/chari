@@ -31,7 +31,7 @@ class NewCampaign extends React.Component {
         )}
 
         {this.props.isDeploying && (
-          <LoaderComp subtitle={this.props.transactionHash ? 'Your contract is being deployed' : null}>
+          <LoaderComp subtitle={this.props.transactionHash ? 'Deploying smart contract to the Ethereum blockchain...' : null}>
             <h1 className="subtitle">Your fundraiser is being created</h1>
           </LoaderComp>
         )}
