@@ -16,8 +16,6 @@
 
 .buttonRow button {
   position: relative;
-  left: 320px;
-  transform: translateX(-50%);
 }
 
 
@@ -38,9 +36,9 @@
 
   .buttonRow button {
     left: 50%;
+    transform: translateX(-50%);
   }
 
-  .datepicker .react-date-picker__wrapper,
   .datepicker > div > div > div {
     width: 100%;
   }
