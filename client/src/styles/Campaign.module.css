@@ -1,7 +1,6 @@
 .centerRow {
   display: flex;
   flex-direction: row;
-  margin-top: 4em;
   justify-content: center;
   align-items: flex-start;
 }
@@ -12,6 +11,10 @@
   justify-content: flex-start;
   align-items: center;
   padding: 20px;
+}
+
+.padding {
+  padding: 20px 0;
 }
 
 .halfColumn {
@@ -38,7 +41,6 @@
 }
 
 .disclaimer {
-  padding: 3px;
   color: #02DB96;
   font-size: 18px;
   font-weight: 700;

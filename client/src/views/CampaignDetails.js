@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 
 import campaignStyles from '../styles/Campaign.module.css';
 import Fundraiser from 'shared/abis/Fundraiser.json';
+
 import ExpiredCampaign from './ExpiredCampaign.js';
 import CurrentCampaign from './CurrentCampaign.js';
+// import Congrats from '../components/Congrats.js'
 
 import tick from '../assets/tick.svg';
 import { setupWeb3 } from '../reducers/web3Connect';
 import LoaderComp from '../components/loaderComp';
+import Button from '../components/button.js'
 
 class CampaignDetails extends React.Component {
     constructor (props) {
@@ -19,7 +22,9 @@ class CampaignDetails extends React.Component {
             isLoading: true,
             hasExpired: false,
             fundraiserContract: null,
+            congratsVisible: true
         };
+        this.hideCongrats = this.hideCongrats.bind(this);
     }
 
     componentDidMount () {
@@ -28,6 +33,12 @@ class CampaignDetails extends React.Component {
         } else {
             this.getExpiration();
         }
+    }
+
+    hideCongrats() {
+        this.setState({
+            congratsVisible: false
+        })
     }
 
     async getExpiration () {
@@ -42,23 +53,26 @@ class CampaignDetails extends React.Component {
     }
 
     render () {
+        const title = this.state.congratsVisible ? 'Congrats!' : 'Manage your fundraiser';
         return (
             <div>
-                <h1 className="subtitle">Manage your fundraiser</h1>
+                <h1 className="subtitle">{title}</h1>
 
                 {this.state.isLoading && (<LoaderComp/>)}
 
-                {this.props.justDeployed && (
-                    <div>
-                        <div className={campaignStyles.centerColumn}><img src={tick} alt="success"/></div>
-                        <h2 className="subtitle">Congratulations!</h2>
-                        <p className="big">Your fundraiser was successfully created on the blockchain.</p>
+                {this.props.justDeployed && this.state.congratsVisible && (
+                    <div className={[campaignStyles.centerColumn, campaignStyles.padding].join(' ')}>
+                        <img src={tick} alt="success"/>
+                        <p className="big">Your campaign has been successfully created on blockchain.</p>
+                        <p className={campaignStyles.disclaimer}>Bookmark this page to manage your fundraiser later on.</p>
+                        <div className={campaignStyles.centerRow}>
+                            <Button onClick={this.hideCongrats}>Manage your fundraiser</Button>
+                        </div>
                     </div>
                 )}
 
-                <p className={campaignStyles.disclaimer}>Bookmark this page to manage your fundraiser later on.</p>
 
-                {!this.state.hasExpired && (
+                {!this.state.congratsVisible && !this.state.hasExpired && (
                     <CurrentCampaign network={this.networkId} fundraiserAddress={this.fundraiserAddress}/>
                 )}
 

@@ -10,7 +10,7 @@ const CurrentCampaign = (props) => (
     <div>
         <p>Your contract's address is:</p>
         <p className="big strong">{props.fundraiserAddress}</p>
-        <div className={campaignStyles.centerRow}>
+        <div className={[campaignStyles.centerRow, campaignStyles.padding].join(' ')}>
             <div className={campaignStyles.iframeContainer}>
                 <iframe title="Chari-widget-demo"
                         src={`${cfg.WIDGET_BASE_URL}?address=${props.fundraiserAddress}&network=${props.network}&color=02DB96&theme=light`}></iframe>
