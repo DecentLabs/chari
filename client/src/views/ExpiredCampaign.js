@@ -97,7 +97,7 @@ class ExpiredCampaign extends React.Component {
             <div>
                 <h2 className="subtitle">Your campaign has ended.</h2>
                 {this.state.transactionPending && (
-                    <LoaderComp/>
+                    <LoaderComp subtitle="none"/>
                 )}
                 {!this.state.transactionPending && (
                     <div className={campaignStyles.centerRow}>

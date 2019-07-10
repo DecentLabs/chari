@@ -20,8 +20,7 @@ class CampaignDetails extends React.Component {
         this.state = {
             isLoading: true,
             hasExpired: false,
-            fundraiserContract: null,
-            congratsVisible: true
+            fundraiserContract: null
         };
         this.hideCongrats = this.hideCongrats.bind(this);
     }
@@ -35,9 +34,7 @@ class CampaignDetails extends React.Component {
     }
 
     hideCongrats() {
-        this.setState({
-            congratsVisible: false
-        })
+        this.props.dispatch({type: 'DEPLOY_FINISH'})
     }
 
     async getExpiration () {
@@ -52,15 +49,14 @@ class CampaignDetails extends React.Component {
     }
 
     render () {
-        const showCongrats = (this.props.justDeployed && this.state.congratsVisible)
-        const title = showCongrats ? 'Congrats!' : 'Manage your fundraiser';
+        const title = this.props.justDeployed ? 'Congrats!' : 'Manage your fundraiser';
         return (
             <div>
                 <h1 className="subtitle">{title}</h1>
 
-                {this.state.isLoading && (<LoaderComp/>)}
+                {this.state.isLoading && (<LoaderComp subtitle="none"/>)}
 
-                {showCongrats && (
+                {this.props.justDeployed && (
                     <div className={[campaignStyles.centerColumn, campaignStyles.padding].join(' ')}>
                         <img src={tick} alt="success"/>
                         <p className="big">Your campaign has been successfully created on blockchain.</p>
@@ -71,15 +67,19 @@ class CampaignDetails extends React.Component {
                     </div>
                 )}
 
+                {!this.state.isLoading && (<div>
+                    {!this.props.justDeployed && !this.state.hasExpired && (
+                        <CurrentCampaign network={this.networkId} fundraiserAddress={this.fundraiserAddress}/>
+                    )}
 
-                {!showCongrats && !this.state.hasExpired && (
-                    <CurrentCampaign network={this.networkId} fundraiserAddress={this.fundraiserAddress}/>
-                )}
+                    {!this.props.justDeployed && this.state.hasExpired && (
+                        <ExpiredCampaign fundraiserAddress={this.fundraiserAddress}
+                                         fundraiserContract={this.state.fundraiserContract}/>
+                    )}
+                </div>)
 
-                {this.state.hasExpired && (
-                    <ExpiredCampaign fundraiserAddress={this.fundraiserAddress}
-                                     fundraiserContract={this.state.fundraiserContract}/>
-                )}
+
+                }
             </div>
 
         );

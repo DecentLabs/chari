@@ -14,6 +14,7 @@ const UPDATE_SPONSOR = "UPDATE_SPONSOR";
 const DEPLOY_REQUESTED = "DEPLOY_REQUESTED";
 const DEPLOY_SUCCESS = "DEPLOY_SUCCESS";
 const DEPLOY_ERROR = "DEPLOY_ERROR";
+const DEPLOY_FINISH = "DEPLOY_FINISH";
 
 const RESET_STORE = "RESET_STORE";
 
@@ -108,6 +109,11 @@ export default (state = initialState, action) => {
               error: action.error,
               isDeploying: false,
               isDeployed: false
+            }
+        case DEPLOY_FINISH:
+            return {
+                ...state,
+                justDeployed: false
             }
         case RESET_STORE:
             return {
