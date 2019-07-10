@@ -4,14 +4,17 @@ import Portis from '@portis/web3';
 const PORTIS_APP = '98a39edb-e9d0-4b58-96b6-89227c762f7a'
 const PORTIS_NETWORK = 'rinkeby'
 
+
+const makeWeb3 = (provider) => new Web3(provider, null, {
+  transactionConfirmationBlocks: 1
+})
+
+
 const getWeb3 = () =>
   new Promise(async (resolve, reject) => {
       // Modern dapp browsers...
       if (window.ethereum) {
-        const options = {
-          transactionConfirmationBlocks: 1
-        };
-        const web3 = new Web3(window.ethereum, null, options);
+        const web3 = makeWeb3(window.ethereum)
         try {
           // Request account access if needed
           await window.ethereum.enable();
@@ -31,8 +34,8 @@ const getWeb3 = () =>
       // Fallback to portis
       else {
         const portis = new Portis(PORTIS_APP, PORTIS_NETWORK)
-        portis.provider.enable()
-        const web3 = new Web3(portis.provider);
+        await portis.provider.enable()
+        const web3 = makeWeb3(portis.provider)
 
         resolve(web3);
       }
