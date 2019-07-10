@@ -15,10 +15,8 @@ class DeployButton extends React.Component {
     }
 
     render() {
-        const disabled = !this.props.web3;
-
         return (<div>
-            <Button onClick={this.deploy} disabled={disabled}>Yes, let's do it!</Button>
+            <Button onClick={this.deploy} disabled={this.props.disabled}>Create</Button>
         </div>)
     }
 }

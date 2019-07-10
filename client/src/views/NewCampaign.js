@@ -31,7 +31,7 @@ class NewCampaign extends React.Component {
         )}
 
         {this.props.isDeploying && (
-          <LoaderComp>
+          <LoaderComp subtitle={this.props.transactionHash ? 'Your contract is being deployed' : null}>
             <h1 className="subtitle">Your fundraiser is being created</h1>
           </LoaderComp>
         )}
@@ -51,7 +51,8 @@ const mapStateToProps = (state) => {
     isDeploying: state.web3Connect.isDeploying,
     isDeployed: state.web3Connect.isDeployed,
     fundraiser: state.web3Connect.fundraiser,
-    networkId: state.web3Connect.networkId
+    networkId: state.web3Connect.networkId,
+    transactionHash: state.web3Connect.transactionHash
   }
 }
 
