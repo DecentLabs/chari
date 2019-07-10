@@ -178,17 +178,19 @@ export const deploy = () => {
         const expiration = web3Connect.expDate;
         const web3 = web3Connect.web3;
         const networkId = web3Connect.networkId;
+        const me = web3Connect.accounts[0]
 
         const contractAddress = NETWORKS.get(networkId).factory;
         const contract = new web3.eth.Contract(FundraiserFactory, contractAddress);
 
         if (web3.utils.isAddress(recipient) && typeof expiration === 'number' && expiration % 1 === 0) {
             const tx = contract.methods.newFundraiser(recipient, sponsor, expiration).send({
-                from: sponsor,
-                gas: 1000000
+                from: me,
+                gas: 2000000
             });
 
             tx.on('error', (e) => {
+              console.log(e)
               dispatch({type: DEPLOY_ERROR});
             }).on('confirmation', (n,r) => console.log(n,r, 'conf'))
             .then((receipt) => {
