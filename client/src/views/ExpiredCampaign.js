@@ -4,8 +4,7 @@ import LoaderComp from './../components/loaderComp.js';
 import Grant from 'shared/abis/Grant.json';
 import Button from '../components/button.js';
 import campaignStyles from '../styles/Campaign.module.css';
-
-import { NETWORKS } from '../shared/constants.js';
+import { NETWORKS } from 'shared/constants.js';
 
 class ExpiredCampaign extends React.Component {
     constructor (props) {

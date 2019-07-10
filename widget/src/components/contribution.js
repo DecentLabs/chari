@@ -20,7 +20,7 @@ export default connect(['fundraiserAddress','qrcode', 'selectedToken'])(({fundra
     </div>
     <div>
       <div class="buttonbar">
-        <Link href="/" class="secondary">Back</Link>
+        <Link href="/" class="secondary button">Back</Link>
         <CopyToClipboard text={fundraiserAddress}>
           Copy address<img class="copyicon" src={copyIcon} style="height:0.8em; vertical-align: middle"/>
         </CopyToClipboard>

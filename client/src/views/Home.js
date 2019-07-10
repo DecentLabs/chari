@@ -58,18 +58,18 @@ function Home (props) {
 
       <div className={styles.fundraiser}>
 
-        <h2>Rinkeby Test Campaign</h2>
+        <h2>Fundraiser for GiveDirectly</h2>
 
         <p>
-          <strong>Recipient:</strong> Decent Labs
+          <strong>Recipient:</strong> <a href="https://www.givedirectly.org">GiveDirectly</a>
           <br/>
-          <strong>Sponsor:</strong> Decent Labs
+          <strong>Sponsor:</strong> <a href="https://decent.org">Decent Labs</a>
         </p>
 
-        <p>Use this campaign to test donations on the Rinkeby testnet.</p>
+        <p>This fundraiser helps people living in extreme poverty.</p>
 
         <div className={styles.iframeContainer}>
-          <iframe title="Chari-widget-demo" src={`${cfg.WIDGET_BASE_URL}?address=0x5Af4F9d7780fBc068f02C5D68F6780DBb654FFD2&network=4&color=02DB96&theme=light`}></iframe>
+          <iframe title="Chari-widget-demo" src={`${cfg.WIDGET_BASE_URL}?address=0x009D88A62945F22ec7df60D34541B5F01cFF23f9&network=1&color=02DB96&theme=light`}></iframe>
         </div>
 
       </div>
