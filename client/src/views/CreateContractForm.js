@@ -116,14 +116,14 @@ class CreateContractForm extends React.Component {
                         <div className={styles.field}>
                             <Input name="charityAddress" label="Enter charity recipient address" placeHolder="0x..."
                                    value={this.state.recipient} onChange={this.onCharityAddressChange}
-                                   error={this.state.recipientError} errorLabel="please add a valid address"
+                                   error={this.state.recipientError} errorLabel="Please specify a valid address"
                             />
                             <MeCheckbox id="charityMe" onChange={this.onCharityMe}/>
                         </div>
                         <div className={styles.field}>
                             <Input name="sponsorAddress" label="Enter sponsor refund address" placeHolder="0x..."
                                    value={this.state.sponsor} onChange={this.onSponsorAddressChange}
-                                   error={this.state.sponsorError} errorLabel="please add a valid address"
+                                   error={this.state.sponsorError} errorLabel="Please specify a valid address"
                             />
                             <MeCheckbox id="sponsorMe" onChange={this.onSponsorMe}/>
                         </div>
@@ -139,7 +139,7 @@ class CreateContractForm extends React.Component {
                                                         value={this.state.date}
                                                         placeHolder="Day/Month/Year"
                                                         error={this.state.dateError}
-                                                        errorLabel="please select a time in the future"
+                                                        errorLabel="Please select a time in the future"
                                     />}
 
                         />
