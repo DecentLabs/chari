@@ -22,47 +22,37 @@ export default connect([
   selectedToken,
   networkId
 }) => {
-  let progress = null
-
   const networkName = NETWORKS.get(networkId).name
-
-  if (matched && matched.value) {
-    progress = (
-      <div class="progressCont">
-        <p>Sponsor matched {matched.value} {matched.token}.</p>
-        <progress value={matched.value} max={grantBalance.value}></progress>
-      </div>
-    )
-  }
-  // else {
-  //   progress = (
-  //     <div class="progressCont">
-  //       <p>Waiting for sponsorship grant.</p>
-  //     </div>
-  //   )
-  // }
+  const showProgress = !!(matched && matched.value)
 
   return (
-    <div>
-      {networkId !== 1 && (
-        <div className="networkTitle">On {networkName}</div>
-      )}
-      <Expiration at={expiration}/>
+    <div class="container">
+      <div>
+        {networkId !== 1 && (
+          <div className="networkTitle">On {networkName}</div>
+        )}
+        <Expiration at={expiration}/>
 
-      <div class="matchDetails">
-        <p class="offer">The sponsor matches every {selectedToken.token} you give, up to {grantBalance ? grantBalance.value : 0} {grantBalance.token}.</p>
+        <div class="matchDetails">
+          <p class="offer">The sponsor matches every {selectedToken.token} you give, up to {grantBalance ? grantBalance.value : 0} {grantBalance.token}.</p>
 
-        {raised && (raised.value !== null) && (
-          <div class="raisedCont">
-            <div class="raised">
-              <h1>{raised.value} {raised.token}</h1>
-              <p>raised so far</p>
+          {raised && (raised.value !== null) && (
+            <div class="raisedCont">
+              <div class="raised">
+                <h1>{raised.value} {raised.token}</h1>
+                <p>raised so far</p>
+              </div>
             </div>
+          )}
+        </div>
+
+        {showProgress && (
+          <div class="progressCont">
+            <p>Sponsor matched {matched.value} {matched.token}.</p>
+            <progress value={matched.value} max={grantBalance.value}></progress>
           </div>
         )}
       </div>
-
-      {progress}
 
       {fundraiserContract && (
         <Link href={ROUTES.CONTRIBUTION}>DONATE!</Link>
