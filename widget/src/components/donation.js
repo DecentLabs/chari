@@ -31,7 +31,7 @@ export default connect([
 
         <div class="matchDetails">
           <p class="offer">The sponsor matches every {selectedToken.token} you give, up to {grantBalance ? grantBalance.value : 0} {grantBalance.token}.</p>
-          <Raised><p>raised so far</p></Raised>
+          <Raised><p>raised together</p></Raised>
           <hr />
         </div>
 
