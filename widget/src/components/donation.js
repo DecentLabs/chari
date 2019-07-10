@@ -5,6 +5,8 @@ import Expiration from './expiration.js'
 import {ROUTES} from '../constants.js'
 import {NETWORKS} from 'shared/constants.js'
 import Network from './network.js'
+import Raised from './raised.js'
+import Footer from './footer.js'
 
 export default connect([
   'fundraiserContract',
@@ -12,18 +14,14 @@ export default connect([
   'expiration',
   'raised',
   'matched',
-  'selectedToken',
-  'networkId'
+  'selectedToken'
 ])(({
   fundraiserContract,
   expiration,
-  raised,
   matched,
   grantBalance,
-  selectedToken,
-  networkId
+  selectedToken
 }) => {
-  const networkName = NETWORKS.get(networkId).name
   const showProgress = !!(matched && matched.value)
 
   return (
@@ -34,15 +32,8 @@ export default connect([
 
         <div class="matchDetails">
           <p class="offer">The sponsor matches every {selectedToken.token} you give, up to {grantBalance ? grantBalance.value : 0} {grantBalance.token}.</p>
-
-          {raised && (raised.value !== null) && (
-            <div class="raisedCont">
-              <div class="raised">
-                <h1>{raised.value} {raised.token}</h1>
-                <p>raised so far</p>
-              </div>
-            </div>
-          )}
+          <Raised><p>raised together</p></Raised>
+          <hr />
         </div>
 
         {showProgress && (
@@ -52,10 +43,12 @@ export default connect([
           </div>
         )}
       </div>
-
-      {fundraiserContract && (
-        <Link href={ROUTES.CONTRIBUTION}>DONATE!</Link>
-      )}
+      <div>
+        {fundraiserContract && (
+          <Link href={ROUTES.CONTRIBUTION}>Contribute to fundraiser!</Link>
+        )}
+        <Footer />
+      </div>
     </div>
   )
 })

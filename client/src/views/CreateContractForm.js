@@ -6,15 +6,13 @@ import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
 
 import Input from './../components/input.js';
-import Button from './../components/button.js';
 import MeCheckbox from '../components/meCheckbox.js';
-import ConfirmDeploy from './../components/confirmDeploy.js';
+import DeployButton from './../components/DeployButton.js'
 
 class CreateContractForm extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            showConfirm: false,
             date: '',
             sponsor: '',
             recipient: '',
@@ -24,11 +22,9 @@ class CreateContractForm extends React.Component {
         };
         this.onCharityAddressChange = this.onCharityAddressChange.bind(this);
         this.onSponsorAddressChange = this.onSponsorAddressChange.bind(this);
-        this.confirmDeploy = this.confirmDeploy.bind(this);
         this.onExpDateChange = this.onExpDateChange.bind(this);
         this.onSponsorMe = this.onSponsorMe.bind(this);
         this.onCharityMe = this.onCharityMe.bind(this);
-        this.hide = this.hide.bind(this);
     }
 
     componentDidMount () {
@@ -76,12 +72,6 @@ class CreateContractForm extends React.Component {
         this.validateDate(date);
     }
 
-    confirmDeploy () {
-        this.setState({
-            showConfirm: true,
-        });
-    }
-
     validateDate (date) {
         const currentDate = Date.now();
         const selectedDate = date.getTime();
@@ -109,12 +99,6 @@ class CreateContractForm extends React.Component {
         }
     }
 
-    hide () {
-        this.setState({
-            showConfirm: false,
-        });
-    }
-
     render () {
         const isValid = this.state.recipient === '' ||
             this.state.sponsor === '' ||
@@ -126,21 +110,21 @@ class CreateContractForm extends React.Component {
         return (
             this.props.isConnected && (
                 <div className={styles.createContractForm}>
-                    <h1 className="subtitle">Hi! You are creating a new campaign</h1>
+                    <h1 className="subtitle">Hi! You are creating a new fundraiser</h1>
                     <form>
                         <div className={styles.field}>
-                            <Input name="sponsorAddress" label="Enter sponsor address" placeHolder="0x..."
-                                   value={this.state.sponsor} onChange={this.onSponsorAddressChange}
-                                   error={this.state.sponsorError} errorLabel="please add a valid address"
-                            />
-                            <MeCheckbox id="sponsorMe" onChange={this.onSponsorMe}/>
-                        </div>
-                        <div className={styles.field}>
-                            <Input name="charityAddress" label="Enter charity address" placeHolder="0x..."
+                            <Input name="charityAddress" label="Enter charity recipient address" placeHolder="0x..."
                                    value={this.state.recipient} onChange={this.onCharityAddressChange}
-                                   error={this.state.recipientError} errorLabel="please add a valid address"
+                                   error={this.state.recipientError} errorLabel="Please specify a valid address"
                             />
                             <MeCheckbox id="charityMe" onChange={this.onCharityMe}/>
+                        </div>
+                        <div className={styles.field}>
+                            <Input name="sponsorAddress" label="Enter sponsor refund address" placeHolder="0x..."
+                                   value={this.state.sponsor} onChange={this.onSponsorAddressChange}
+                                   error={this.state.sponsorError} errorLabel="Please specify a valid address"
+                            />
+                            <MeCheckbox id="sponsorMe" onChange={this.onSponsorMe}/>
                         </div>
                         <DatePicker onChange={this.onExpDateChange}
                                     selected={this.state.date}
@@ -154,13 +138,12 @@ class CreateContractForm extends React.Component {
                                                         value={this.state.date}
                                                         placeHolder="Day/Month/Year"
                                                         error={this.state.dateError}
-                                                        errorLabel="please select a day in the future"
+                                                        errorLabel="Please select a time in the future"
                                     />}
 
                         />
                     </form>
-                    <Button onClick={this.confirmDeploy} hide={this.hide} disabled={isValid}>Create</Button>
-                    {this.state.showConfirm && <ConfirmDeploy hide={this.hide}></ConfirmDeploy>}
+                    <DeployButton disabled={isValid}></DeployButton>
                 </div>
             )
         );

@@ -20,7 +20,7 @@
 #DonationWidget {
   background-color: var(--baseColor);
   color: var(--fontColor);
-  padding: 2em;
+  padding: 2rem 1rem 1rem 1rem;
   box-sizing: border-box;
   height:100%;
   text-align: center;
@@ -95,31 +95,31 @@
     flex-direction: column;
     justify-content: flex-start;
     margin-bottom: 1.5em;
-    .offer {
-      margin: 0 0 1em 0;
-      font-size: 1.2em;
-      font-weight: bold;
-      // color: var(--midGray);
-    }
+  }
 
-    .raisedCont {
-      border-bottom: 1px solid lightgray;
-      padding-bottom: 1em;
-      .raised {
-        text-align: center;
-        color: var(--widget-color);
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
-        h1 {
-          margin: 0;
-          font-weight: bolder;
-          font-size: 2.2em;
-        }
-        p {
-          font-size: 1.2em;
-          margin: 0;
-          font-weight: bold;
-          text-transform: uppercase;
-        }
+  .offer {
+    margin: 0 0 1em 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    // color: var(--midGray);
+  }
+
+  .raisedCont {
+    padding-bottom: 1em;
+    .raised {
+      text-align: center;
+      color: var(--widget-color);
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+      h1 {
+        margin: 0;
+        font-weight: bolder;
+        font-size: 2.2em;
+      }
+      p {
+        font-size: 1.2em;
+        margin: 0;
+        font-weight: bold;
+        text-transform: uppercase;
       }
     }
   }
@@ -152,15 +152,16 @@
   a, button {
     box-sizing: border-box;
     width: 100%;
-    height: 56px;
-    font-size: 18px;
-    display: inline-block;
+    height: 44px;
+    font-size: 1.3em;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--widget-color);
-    border-radius: 4px;
+    border-radius: 40px;
     color: white;
     text-align: center;
-    line-height: 18px;
-    padding: 19px 20px;
+    padding: 0 40px;
     text-decoration: none;
     font-weight: bold;
     margin-top: 1em;
@@ -168,6 +169,7 @@
     border-width: 1px;
     border-style: solid;
     border-image: initial;
+    line-height: 21px;
   }
 
   .secondary {
@@ -200,5 +202,30 @@
     .buttonbar > * {
       flex: 0;
     }
+  }
+
+  hr {
+    border:none;
+    border-bottom: 1px solid lightgray;
+    width:100%;
+    height:0;
+    margin:0;
+  }
+
+  .footer {
+    display:flex;
+    text-align: left;
+    align-items: center;
+    margin-top: 1rem;
+    white-space: pre;
+    font-size: 0.85em;
+  }
+
+  .chari {
+    font-weight: bold;
+  }
+
+  .etherscan {
+    flex:1;
   }
 }

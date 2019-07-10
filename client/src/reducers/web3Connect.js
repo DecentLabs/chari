@@ -5,6 +5,7 @@ import {NETWORKS} from 'shared/constants.js'
 const WEB3_SETUP_REQUESTED = "WEB3_SETUP_REQUESTED";
 const WEB3_SETUP_SUCCESS = "WEB3_SETUP_SUCCESS";
 const WEB3_SETUP_ERROR = "WEB3_SETUP_ERROR";
+const TRANSACTION_HASH = "TRANSACTION_HASH"
 
 const UPDATE_EXPDATE = "UPDATE_EXPDATE";
 const UPDATE_RECIPIENT = "UPDATE_RECIPIENT";
@@ -22,6 +23,7 @@ const initialState = {
     web3: null,
     accounts: null,
     contract: null,
+    transactionHash: null,
     networkId: null,
     recipient: null,
     expDate: null,
@@ -71,6 +73,11 @@ export default (state = initialState, action) => {
             return {
               ...state,
               recipient: action.recipient
+            }
+        case TRANSACTION_HASH:
+            return {
+              ...state,
+              transactionHash: action.hash
             }
         case UPDATE_SPONSOR:
             return {
@@ -193,6 +200,12 @@ export const deploy = () => {
               console.log(e)
               dispatch({type: DEPLOY_ERROR});
             }).on('confirmation', (n,r) => console.log(n,r, 'conf'))
+            .on('transactionHash', (hash) => {
+              dispatch({
+                type: TRANSACTION_HASH,
+                hash: hash
+              })
+            })
             .then((receipt) => {
                 const result = receipt.events.NewFundraiser.returnValues;
                 const addresses = {
