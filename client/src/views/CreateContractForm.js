@@ -111,21 +111,21 @@ class CreateContractForm extends React.Component {
         return (
             this.props.isConnected && (
                 <div className={styles.createContractForm}>
-                    <h1 className="subtitle">Hi! You are creating a new campaign</h1>
+                    <h1 className="subtitle">Hi! You are creating a new fundraiser</h1>
                     <form>
                         <div className={styles.field}>
-                            <Input name="sponsorAddress" label="Enter sponsor address" placeHolder="0x..."
-                                   value={this.state.sponsor} onChange={this.onSponsorAddressChange}
-                                   error={this.state.sponsorError} errorLabel="please add a valid address"
-                            />
-                            <MeCheckbox id="sponsorMe" onChange={this.onSponsorMe}/>
-                        </div>
-                        <div className={styles.field}>
-                            <Input name="charityAddress" label="Enter charity address" placeHolder="0x..."
+                            <Input name="charityAddress" label="Enter charity recipient address" placeHolder="0x..."
                                    value={this.state.recipient} onChange={this.onCharityAddressChange}
                                    error={this.state.recipientError} errorLabel="please add a valid address"
                             />
                             <MeCheckbox id="charityMe" onChange={this.onCharityMe}/>
+                        </div>
+                        <div className={styles.field}>
+                            <Input name="sponsorAddress" label="Enter sponsor refund address" placeHolder="0x..."
+                                   value={this.state.sponsor} onChange={this.onSponsorAddressChange}
+                                   error={this.state.sponsorError} errorLabel="please add a valid address"
+                            />
+                            <MeCheckbox id="sponsorMe" onChange={this.onSponsorMe}/>
                         </div>
                         <DatePicker onChange={this.onExpDateChange}
                                     selected={this.state.date}
@@ -139,7 +139,7 @@ class CreateContractForm extends React.Component {
                                                         value={this.state.date}
                                                         placeHolder="Day/Month/Year"
                                                         error={this.state.dateError}
-                                                        errorLabel="please select a day in the future"
+                                                        errorLabel="please select a time in the future"
                                     />}
 
                         />
