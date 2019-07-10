@@ -13,6 +13,7 @@ Donors can contribute until expiration (also with a simple transfer, no dApp bro
 
 * Smart contract is deployed on the Ethereum mainnet as well as the Ropsten and Rinkeby testnets.
 * Supports fundraisers with ETH and any ERC20 token.
+* Integrates the portis.io wallet for a straightforward UX. MetaMask and other dApp browsers are supported too.
 
 ## Some ideas for further development
 * Support matching ratios other than 1:1. 
@@ -35,7 +36,7 @@ Donors can contribute until expiration (also with a simple transfer, no dApp bro
 
 # Development
 
-[![Build Status](https://travis-ci.org/DecentLabs/DonationMatching.svg?branch=master)](https://travis-ci.org/DecentLabs/DonationMatching)
+[![Build Status](https://travis-ci.org/DecentLabs/chari.svg?branch=master)](https://travis-ci.org/DecentLabs/chari)
 
 Note: run these commands in the repository root, unless stated otherwise. 
 
