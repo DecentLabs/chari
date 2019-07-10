@@ -1,4 +1,4 @@
-[![Alt text](https://img.youtube.com/vi/IfN_VqCQxoo/1.jpg)](https://youtu.be/IfN_VqCQxoo)
+[![Alt text](https://img.youtube.com/vi/IfN_VqCQxoo/0.jpg)](https://youtu.be/IfN_VqCQxoo)
 
 # Chari: Donation Matching on Ethereum
 
