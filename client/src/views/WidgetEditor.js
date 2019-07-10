@@ -9,7 +9,7 @@ import Select from './../components/select.js';
 import LoaderComp from './../components/loaderComp.js';
 import copy from './../assets/copy.svg';
 
-import { NETWORKS } from '../shared/constants.js';
+import { NETWORKS } from 'shared/constants.js';
 
 class WidgetEditor extends React.Component {
     constructor (props) {
