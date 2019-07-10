@@ -8,13 +8,38 @@
   width: 100%;
 }
 
-.datepicker .react-date-picker__wrapper {
-  width: 640px;
-  border: none;
-  border-bottom: 1px solid #000;
-}
-
 .field {
+  width: 100%;
   display: flex;
   align-items: center;
+}
+
+.buttonRow button {
+  position: relative;
+}
+
+
+@media (max-width: 768px) {
+  .createContractForm form {
+    margin-top: 60px;
+  }
+
+  .field {
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+
+  .field > div {
+    width: 100%;
+    margin-bottom: 25px;
+  }
+
+  .buttonRow button {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .datepicker > div > div > div {
+    width: 100%;
+  }
 }

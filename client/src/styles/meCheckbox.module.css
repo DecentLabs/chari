@@ -8,7 +8,7 @@
   appearance: initial;
   width: 15px;
   height: 15px;
-  border-radius: 100%;
+  border-radius: 15px;
   border: 1px solid #797E7C;
   margin-right: 10px;
 }
@@ -17,3 +17,10 @@
   background: #02DB96;
   border-color: #02DB96;
 }
+
+@media (max-width: 768px) {
+  .meField {
+    margin-left: 0;
+  }
+}
+

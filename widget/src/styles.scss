@@ -170,13 +170,14 @@
     font-weight: 600;
     margin-top: 1em;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
-    border-width: 1px;
+    border-width: 0;
     border-style: solid;
     border-image: initial;
     line-height: 21px;
   }
 
   .button.secondary {
+    border-width: 2px;
     border-color: var(--widget-color);
     background-color: transparent;
     color: var(--widget-color);
@@ -225,13 +226,12 @@
     font-size: 0.85em;
 
     svg {
-      width:1.5rem;
-      height:1.5rem;
+      width:5.14em;
+      height:1.5em;
+      #chari_text > path {
+        fill: var(--fontColor);
+      }
     }
-  }
-
-  .chari {
-    font-weight: bold;
   }
 
   .etherscan {

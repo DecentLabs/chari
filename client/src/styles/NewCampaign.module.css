@@ -2,3 +2,9 @@
   text-align: left;
   padding: 50px 15%;
 }
+
+@media (max-width: 768px) {
+  .newCampaign {
+    padding: 50px 10px;
+  }
+}

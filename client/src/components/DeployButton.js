@@ -15,9 +15,7 @@ class DeployButton extends React.Component {
     }
 
     render() {
-        return (<div>
-            <Button onClick={this.deploy} disabled={this.props.disabled}>Create</Button>
-        </div>)
+        return (<Button state="deploy" onClick={this.deploy} disabled={this.props.disabled}>Create</Button>)
     }
 }
 
