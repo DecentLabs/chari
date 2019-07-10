@@ -1,5 +1,7 @@
 import { h, Component } from 'preact'
 import { Ticker } from './ticker.js'
+import { ROUTES } from '../constants.js'
+import { route } from 'preact-router';
 
 const DAY = 86400;
 const HOUR = 3600;
@@ -32,6 +34,8 @@ export default class Expiration extends Component {
         duration.hours = Math.floor( (diff - duration.days * DAY) / HOUR )
         duration.minutes = Math.floor( (diff - duration.days * DAY - duration.hours * HOUR) / MINUTE )
         duration.seconds = diff - duration.days * DAY - duration.hours * HOUR - duration.minutes * MINUTE;
+      } else {
+        route(ROUTES.EXPIRED)
       }
     }
     return (
