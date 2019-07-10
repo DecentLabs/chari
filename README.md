@@ -1,3 +1,5 @@
+[![Alt text](https://img.youtube.com/vi/IfN_VqCQxoo/0.jpg)](https://youtu.be/IfN_VqCQxoo)
+
 # Chari: Donation Matching on Ethereum
 
 Chari provides an Ethereum smart contract and UI components to support donation matching campaigns.
