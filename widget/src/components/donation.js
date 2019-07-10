@@ -12,18 +12,15 @@ export default connect([
   'expiration',
   'raised',
   'matched',
-  'selectedToken',
-  'networkId'
+  'selectedToken'
 ])(({
   fundraiserContract,
   expiration,
   raised,
   matched,
   grantBalance,
-  selectedToken,
-  networkId
+  selectedToken
 }) => {
-  const networkName = NETWORKS.get(networkId).name
   const showProgress = !!(matched && matched.value)
 
   return (
