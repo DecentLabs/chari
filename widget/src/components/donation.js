@@ -29,7 +29,7 @@ export default connect([
   if (matched && matched.value !== null && grantBalance && grantBalance.value) {
     progress = (
       <div class="progressCont">
-        <p>Sponsor offered {grantBalance.value} {grantBalance.token} for matching</p>
+        <p>The sponsor offered {grantBalance.value} {grantBalance.token} for matching</p>
         <progress value={matched.value} max={grantBalance.value}></progress>
       </div>
     )
@@ -46,7 +46,7 @@ export default connect([
       <Expiration at={expiration}/>
 
       <div class="matchDetails">
-        <p class="offer">Sponsor doubles every {selectedToken.token} you give.</p>
+        <p class="offer">The sponsor matches every {selectedToken.token} you give.</p>
 
         {raised && (raised.value !== null) && (
           <div class="raisedCont">
