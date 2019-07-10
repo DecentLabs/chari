@@ -3,10 +3,12 @@ import { connect } from 'unistore/preact'
 import { Link } from 'preact-router/match'
 import CopyToClipboard from './copyToClipboard.js'
 import copyIcon from '../assets/copy.svg'
+import Network from './network.js'
 
 export default connect(['fundraiserAddress','qrcode', 'selectedToken'])(({fundraiserAddress, qrcode, selectedToken}) => (
 
   <div class="contribution">
+    <Network />
     <h1>Send {selectedToken.token} to:</h1>
     <div>
       <span class="address">{fundraiserAddress}</span>

@@ -4,6 +4,7 @@ import { Link } from 'preact-router/match'
 import Expiration from './expiration.js'
 import {ROUTES} from '../constants.js'
 import {NETWORKS} from 'shared/constants.js'
+import Network from './network.js'
 
 export default connect([
   'fundraiserContract',
@@ -28,9 +29,7 @@ export default connect([
   return (
     <div class="container">
       <div>
-        {networkId !== 1 && (
-          <div className="networkTitle">On {networkName}</div>
-        )}
+        <Network />
         <Expiration at={expiration}/>
 
         <div class="matchDetails">
