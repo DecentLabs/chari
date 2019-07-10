@@ -9,6 +9,8 @@ import Select from './../components/select.js';
 import LoaderComp from './../components/loaderComp.js';
 import copy from './../assets/copy.svg';
 
+import IframeContainer from './../components/iframeContainer.js'
+
 import { NETWORKS } from 'shared/constants.js';
 
 class WidgetEditor extends React.Component {
@@ -66,6 +68,7 @@ class WidgetEditor extends React.Component {
     }
 
     iframeLoaded () {
+        console.log('loaded');
         this.setState({
             iframeLoading: false,
         });
@@ -102,6 +105,8 @@ class WidgetEditor extends React.Component {
                 </header>
                 <div className={styles.widget}>
 
+                    <IframeContainer url={iframeUrl} loading={this.state.iframeLoading} loaded={this.iframeLoaded}></IframeContainer>
+
                     <div className={styles.settings}>
                         <Select options={tokenOptions} label="Please select token to pay with"
                                 onChange={this.selectToken}></Select>
@@ -126,14 +131,6 @@ class WidgetEditor extends React.Component {
                             <textarea readOnly value={textareaContent} id="chari-widget-code"></textarea>
                             <Button copy onClick={this.copyCode}><img src={copy} alt="copy code"/></Button>
                         </div>
-                    </div>
-
-                    <div className={styles.iframeContainer}>
-                        {this.state.iframeLoading && (
-                            <LoaderComp subtitle="none"></LoaderComp>
-                        )}
-                        <iframe className={this.state.iframeLoading ? styles.loading : ''} onLoad={this.iframeLoaded}
-                                title="Chari-widget" src={iframeUrl}></iframe>
                     </div>
                 </div>
             </div>
