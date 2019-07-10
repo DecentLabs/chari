@@ -6,7 +6,6 @@ import cfg from './../shared/cfg.js';
 
 import Button from './../components/button.js';
 import Select from './../components/select.js';
-import LoaderComp from './../components/loaderComp.js';
 import copy from './../assets/copy.svg';
 
 import IframeContainer from './../components/iframeContainer.js'
