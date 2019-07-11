@@ -2,7 +2,6 @@ import React from 'react';
 import { TwitterPicker } from 'react-color';
 import { Link } from 'react-router-dom';
 import styles from './../styles/widgetEditor.module.css';
-import cfg from './../shared/cfg.js';
 
 import Button from './../components/button.js';
 import Select from './../components/select.js';
@@ -11,6 +10,7 @@ import copy from './../assets/copy.svg';
 import IframeContainer from './../components/iframeContainer.js'
 
 import { NETWORKS } from 'shared/constants.js';
+import { makeWidgetUrl } from '../utils/makeWidgetUrl.js'
 
 class WidgetEditor extends React.Component {
     constructor (props) {
@@ -76,7 +76,7 @@ class WidgetEditor extends React.Component {
         const address = this.props.match.params.address;
         const networkId = this.props.match.params.networkId;
         const color = this.state.color.split('#')[1];
-        const iframeUrl = `${cfg.WIDGET_BASE_URL}?address=${address}&network=${networkId}&color=${color}&theme=${this.state.theme}&token=${this.state.token}`; // todo
+        const iframeUrl = makeWidgetUrl(address, networkId, color, this.state.theme, this.state.token)
 
         const themeOptions = [
             {value: 'dark', name: 'Dark theme'},

@@ -17,6 +17,7 @@ class CampaignDetails extends React.Component {
         super(props);
         this.fundraiserAddress = props.match.params.address;
         this.networkId = this.props.match.params.networkId;
+        this.token = this.props.match.params.token;
         this.state = {
             isLoading: true,
             hasExpired: false,
@@ -69,7 +70,7 @@ class CampaignDetails extends React.Component {
 
                 {!this.state.isLoading && (<div>
                     {!this.props.justDeployed && !this.state.hasExpired && (
-                        <CurrentCampaign network={this.networkId} fundraiserAddress={this.fundraiserAddress}/>
+                        <CurrentCampaign network={this.networkId} fundraiserAddress={this.fundraiserAddress} token={this.token}/>
                     )}
 
                     {!this.props.justDeployed && this.state.hasExpired && (
