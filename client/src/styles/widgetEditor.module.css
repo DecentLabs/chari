@@ -66,6 +66,15 @@
   top: 60px;
 }
 
+.transfer {
+  display: flex;
+  align-items: flex-start;
+}
+
+.transfer button {
+  white-space: nowrap;
+}
+
 .backLink {
   display: flex;
   justify-content: center;

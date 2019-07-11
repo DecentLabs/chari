@@ -77,6 +77,8 @@ class AddFund extends React.Component {
 
   render () {
     const {address, networkId, color, theme, token} = this.state
+    const placeholder = '0.'.padEnd(Math.min(this.token.decimals, 5)+2,0)
+
     if (parseInt(this.props.networkId, 10) === parseInt(networkId, 10)) {
       return (
         <div>
@@ -85,14 +87,16 @@ class AddFund extends React.Component {
           <p className="big strong">{this.state.grantAddress}</p>
           <Link to={makeClientUrl('details', address, networkId, color, theme, token)} className={styles.backLink}>Back
             to fundraiser</Link>
-          {!this.state.thankyou && this.props.account && this.state.grantAddress && (<div>
-            <p>or</p>
-            <Input name="ethvalue" label="Amount" placeHolder="1" value={this.state.amount}
-                   onChange={this.onEthValueChange} error={this.state.amountError}
-                   errorLabel="Please enter a correct amount"/>
-            <span>{token}</span>
-            <Button onClick={this.transferFunds}>Transfer funds from here!</Button>
-          </div>)}
+          {!this.state.thankyou && this.props.account && this.state.grantAddress && (
+            <div>
+              <p>or</p>
+              <div className={styles.transfer}>
+                <Input name="ethvalue" label="" placeHolder={placeholder} value={this.state.amount}
+                       onChange={this.onEthValueChange} error={this.state.amountError}
+                       errorLabel="Please enter a correct amount"/>
+                <Button onClick={this.transferFunds}>Transfer {token}</Button>
+              </div>
+            </div>)}
         </div>
       )
     } else {
