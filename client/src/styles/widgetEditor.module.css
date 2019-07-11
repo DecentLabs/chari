@@ -69,6 +69,8 @@
 .transfer {
   display: flex;
   align-items: flex-start;
+  max-width: 600px;
+  margin: auto;
 }
 
 .transfer button {
