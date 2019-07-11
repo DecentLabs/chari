@@ -127,7 +127,7 @@ class WidgetEditor extends React.Component {
 
                         <div className={styles.codeContainer}>
                             <textarea readOnly value={textareaContent} id="chari-widget-code"></textarea>
-                            <Button copy onClick={this.copyCode}><img src={copy} alt="copy code"/></Button>
+                            <Button copy onClick={this.copyCode}>Copy embed code<img src={copy} alt="copy code"/></Button>
                         </div>
                     </div>
                 </div>
