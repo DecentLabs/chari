@@ -5,21 +5,23 @@ import { Link } from 'react-router-dom';
 import campaignStyles from '../styles/Campaign.module.css';
 import buttonStyles from '../styles/button.module.css';
 import IframeContainer from './../components/iframeContainer.js'
-import {makeWidgetUrl} from '../utils/makeWidgetUrl.js'
+import { makeClientUrl, makeWidgetUrl } from '../utils/makeUrl.js'
 
-const CurrentCampaign = (props) => (
+const CurrentCampaign = (props) => {
+  const {address, networkId, color, theme, token} = props;
+  return (
     <div>
-        <p>Your contract's address is:</p>
-        <p className="big strong">{props.fundraiserAddress}</p>
-        <div className={[campaignStyles.centerRow, campaignStyles.padding].join(' ')}>
-            <IframeContainer url={makeWidgetUrl(props.fundraiserAddress, props.network, '02DB96&', 'light')}></IframeContainer>
-            <div className={campaignStyles.centerColumn}>
-                <Link to={`/campaign/${props.fundraiserAddress}/${props.network}/admin`} className={buttonStyles.button}>Customize
-                    widget</Link>
-                <Link to={`/campaign/${props.fundraiserAddress}/addfund`} className={buttonStyles.button}>Transfer funds</Link>
-            </div>
+      <p>Your contract's address is:</p>
+      <p className="big strong">{address}</p>
+      <div className={[campaignStyles.centerRow, campaignStyles.padding].join(' ')}>
+        <IframeContainer url={makeWidgetUrl(address, networkId, color, theme, token)}></IframeContainer>
+        <div className={campaignStyles.centerColumn}>
+          <Link to={makeClientUrl('admin', address, networkId, color, theme, token)} className={buttonStyles.button}>Customize widget</Link>
+          <Link to={makeClientUrl('addfund', address, networkId, color, theme, token)} className={buttonStyles.button}>Transfer funds</Link>
         </div>
+      </div>
     </div>
-)
+  )
+}
 
 export default CurrentCampaign
