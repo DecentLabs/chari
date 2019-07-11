@@ -85,8 +85,8 @@ class AddFund extends React.Component {
           <p className="big strong">{this.state.grantAddress}</p>
           <Link to={makeClientUrl('details', address, networkId, color, theme, token)} className={styles.backLink}>Back
             to fundraiser</Link>
-          <p>or</p>
           {!this.state.thankyou && this.props.account && this.state.grantAddress && (<div>
+            <p>or</p>
             <Input name="ethvalue" label="Amount" placeHolder="1" value={this.state.amount}
                    onChange={this.onEthValueChange} error={this.state.amountError}
                    errorLabel="Please enter a correct amount"/>
