@@ -198,6 +198,28 @@
       margin:0.5em 0;
     }
 
+    form {
+      display:flex;
+      align-items: flex-end;
+      button {
+        white-space: nowrap;
+      }
+
+      .space {
+        width:0.5em;
+      }
+
+      input {
+        height: 44px;
+        font-size: 1.3em;
+        box-sizing: border-box;
+        color: var(--widget-color);
+        border: 2px solid var(--widget-color);
+        background-color: transparent;
+        min-width:5em;
+      }
+    }
+
     .buttonbar {
       display:flex;
       justify-content: space-between;
