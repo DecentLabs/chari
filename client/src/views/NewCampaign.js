@@ -8,7 +8,7 @@ import CreateContractForm from './CreateContractForm.js'
 import AddFund from './AddFund.js'
 import LoaderComp from './../components/loaderComp.js'
 import CampaignDetails from './CampaignDetails.js'
-
+import { makeClientUrl } from '../utils/makeUrl.js'
 class NewCampaign extends React.Component {
   render () {
     return (
@@ -17,9 +17,9 @@ class NewCampaign extends React.Component {
           <div>
               <Switch>
                 <Route path="/campaign/deploy" component={CreateContractForm} />
-                <Route path="/campaign/:address/:networkId/:token?/details/" component={CampaignDetails} />
-                <Route path="/campaign/:address/:networkId/:token?/admin/" component={WidgetEditor} />
-                <Route path="/campaign/:address/:token?/addfund/" component={AddFund} />
+                <Route path={makeClientUrl('details',':address', ':networkId', ':color', ':theme' ,':token')} component={CampaignDetails} />
+                <Route path={makeClientUrl('admin',':address', ':networkId', ':color', ':theme' ,':token')} component={WidgetEditor} />
+                <Route path={makeClientUrl('addfund',':address', ':networkId', ':color', ':theme' ,':token')} component={AddFund} />
               </Switch>
           </div>
         )}
@@ -37,7 +37,7 @@ class NewCampaign extends React.Component {
         )}
 
         {this.props.isDeployed && (
-            <Redirect to={`/campaign/${this.props.fundraiser}/${this.props.networkId}/details`} />
+          <Redirect to={makeClientUrl('details',this.props.fundraiser, this.props.networkId)} />
         )}
       </div>
     )
