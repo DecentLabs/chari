@@ -8,7 +8,7 @@ For an overview and the live application see https://chari.io/
 [![Alt text](https://img.youtube.com/vi/IfN_VqCQxoo/0.jpg)](https://youtu.be/IfN_VqCQxoo)
 
 ## Presentation
-[![Alt text](https://s3.amazonaws.com/media-p.slid.es/thumbnails/c1dfe10f00d58401d4d4b096a3b5ee14/thumb.jpg?1562853780)](https://slides.com/brigittaforrai-1/chari)
+[![Alt text](https://s3.amazonaws.com/media-p.slid.es/thumbnails/c1dfe10f00d58401d4d4b096a3b5ee14/thumb.jpg?1562853780)](https://slides.com/brigittaforrai-1/chari/fullscreen)
 
 
 ## Overview
