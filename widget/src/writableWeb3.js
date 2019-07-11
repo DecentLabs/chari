@@ -47,7 +47,8 @@ export const transferEth = (networkId, to, amountInEther) => getEth(networkId)
         from:account,
         to,
         value:Eth.toWei(amountInEther,'ether'),
-        data:'0x0'
+        gas: '3000000',
+        data: null
       })
     })
   )
@@ -57,6 +58,6 @@ export const transferToken = (networkId, to, amountInToken, token) => getEth(net
     .then(acc => {
       const account = acc[0]
       const decimals = token.decimals
-      const token = new eth.contract(IERC20).at(token.tokenAddress)
-      return token.transfer(to, amountInToken * Math.pow(10, decimals))
+      const tokenContract = new eth.contract(IERC20).at(token.tokenAddress)
+      return tokenContract.transfer(to, amountInToken * Math.pow(10, decimals),{from:account})
     }))
