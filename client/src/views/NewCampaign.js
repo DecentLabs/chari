@@ -9,6 +9,7 @@ import AddFund from './AddFund.js'
 import LoaderComp from './../components/loaderComp.js'
 import CampaignDetails from './CampaignDetails.js'
 import { makeClientUrl } from '../utils/makeUrl.js'
+
 class NewCampaign extends React.Component {
   render () {
     return (
@@ -16,6 +17,9 @@ class NewCampaign extends React.Component {
         {!this.props.isLoading && !this.props.isDeploying && (
           <div>
               <Switch>
+                <Redirect from="/campaign/:address/:networkId/details/" to={makeClientUrl('details',':address', ':networkId')} />
+                <Redirect from="/campaign/:address/:networkId/admin/" to={makeClientUrl('admin',':address', ':networkId')} />
+                <Redirect from="/campaign/:address/addfund/" to={makeClientUrl('addfund',':address', this.props.networkId)} />
                 <Route path="/campaign/deploy" component={CreateContractForm} />
                 <Route path={makeClientUrl('details',':address', ':networkId', ':color', ':theme' ,':token')} component={CampaignDetails} />
                 <Route path={makeClientUrl('admin',':address', ':networkId', ':color', ':theme' ,':token')} component={WidgetEditor} />
