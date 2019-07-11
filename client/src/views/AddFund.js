@@ -85,8 +85,6 @@ class AddFund extends React.Component {
           <h1 className="subtitle">Manage your fundraiser</h1>
           <h2 className="subtitle">Transfer the matching grant to this address:</h2>
           <p className="big strong">{this.state.grantAddress}</p>
-          <Link to={makeClientUrl('details', address, networkId, color, theme, token)} className={styles.backLink}>Back
-            to fundraiser</Link>
           {!this.state.thankyou && this.props.account && this.state.grantAddress && (
             <div>
               <p>or</p>
@@ -97,6 +95,8 @@ class AddFund extends React.Component {
                 <Button onClick={this.transferFunds}>Transfer {token}</Button>
               </div>
             </div>)}
+          <Link to={makeClientUrl('details', address, networkId, color, theme, token)} className={styles.backLink}>Back
+            to fundraiser</Link>
         </div>
       )
     } else {
