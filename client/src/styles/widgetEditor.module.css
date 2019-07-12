@@ -46,9 +46,7 @@
 }
 
 .widgetEditor .codeContainer button {
-  background-color: #BCBCBC;
-  border-radius: 0;
-  width: auto
+  margin-top: 20px;
 }
 
 .widgetEditor .codeContainer button img {
@@ -66,6 +64,14 @@
   top: 60px;
 }
 
+.transferCont {
+  margin-top: 60px;
+}
+.transferCont p {
+  margin-bottom: 60px;
+  font-weight: bold;
+}
+
 .transfer {
   display: flex;
   align-items: flex-start;
@@ -75,10 +81,27 @@
 
 .transfer button {
   white-space: nowrap;
+  margin-left: 20px;
 }
 
 .backLink {
   display: flex;
   justify-content: center;
   color: #02DB96;
+}
+
+.thankyou {
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+
+.thankyou img {
+  height: 64px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.thankyou p {
+  font-weight: bold;
 }

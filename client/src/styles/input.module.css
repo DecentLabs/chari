@@ -31,6 +31,10 @@
   outline: none;
 }
 
+input.input:-internal-autofill-selected {
+  background-color: white !important;
+}
+
 .error {
   position: absolute;
   bottom: -20px;

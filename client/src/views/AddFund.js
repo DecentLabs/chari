@@ -10,6 +10,8 @@ import { makeClientUrl } from '../utils/makeUrl.js'
 import Button from '../components/button.js'
 import Input from '../components/input.js'
 import { NETWORKS } from 'shared/constants.js'
+import LoaderComp from './../components/loaderComp.js'
+import tick from './../assets/tick.svg';
 
 class AddFund extends React.Component {
   constructor (props) {
@@ -23,7 +25,9 @@ class AddFund extends React.Component {
       networkId: this.props.match.params.networkId,
       thankyou: false,
       amount: '',
-      amountError: false
+      amountError: false,
+      loading: false,
+      accepted: false
     }
 
     const network = NETWORKS.get(parseInt(this.state.networkId))
@@ -54,9 +58,17 @@ class AddFund extends React.Component {
         web3.eth.sendTransaction({
           from: this.props.account,
           to: this.state.grantAddress,
+          gas:40000,
           value: web3.utils.toWei(this.state.amount)
+        }).on('transactionHash', () => {
+          this.setState({
+            accepted: true
+          })
+        }).then((res) => {
+          this.setState({thankyou: true})
+          this.setState({loading: false})
         })
-        this.setState({thankyou: true})
+        this.setState({loading: true})
       } else if(this.token && this.token.token === this.state.token){
         const tokenAddress = this.token.tokenAddress
         const tokenDecimals = this.token.decimals
@@ -64,8 +76,15 @@ class AddFund extends React.Component {
         tokenContract.methods.transfer(this.state.grantAddress, this.state.amount * Math.pow(10, tokenDecimals))
           .send({
             from: this.props.account
+          }).on('transactionHash', () => {
+            this.setState({
+              accepted: true
+            })
+          }).then((res) => {
+            this.setState({thankyou: true})
+            this.setState({loading: false})
           })
-        this.setState({thankyou: true})
+        this.setState({loading: true})
       }
     }
   }
@@ -85,8 +104,8 @@ class AddFund extends React.Component {
           <h1 className="subtitle">Manage your fundraiser</h1>
           <h2 className="subtitle">Transfer the matching grant to this address:</h2>
           <p className="big strong">{this.state.grantAddress}</p>
-          {!this.state.thankyou && this.props.account && this.state.grantAddress && (
-            <div>
+          {!this.state.thankyou && this.props.account && this.state.grantAddress && !this.state.loading && (
+            <div className={styles.transferCont}>
               <p>or</p>
               <div className={styles.transfer}>
                 <Input name="ethvalue" label="" placeHolder={placeholder} value={this.state.amount}
@@ -95,6 +114,15 @@ class AddFund extends React.Component {
                 <Button onClick={this.transferFunds}>Transfer {token}</Button>
               </div>
             </div>)}
+            {this.state.loading && (
+              <LoaderComp subtitle={this.state.accepted ? 'Grant is being trasferred...' : null}></LoaderComp>
+            )}
+            {this.state.thankyou && (
+              <div className={styles.thankyou}>
+                  <img src={tick} alt="success"/>
+                  <p>Thank you!</p>
+              </div>
+            )}
           <Link to={makeClientUrl('details', address, networkId, color, theme, token)} className={styles.backLink}>Back
             to fundraiser</Link>
         </div>
