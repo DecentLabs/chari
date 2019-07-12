@@ -26,15 +26,13 @@
 }
 
 .button.copy {
-  width: 44px;
-  height: 44px;
-  padding: 11px;
-  border-radius: 4px;
+  background-color: #BCBCBC;
 }
 .button.copy img {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
+  margin-left: 10px;
 }
 
 .button.colorBtn {
