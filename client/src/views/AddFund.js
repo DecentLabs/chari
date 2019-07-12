@@ -53,7 +53,7 @@ class AddFund extends React.Component {
 
   transferFunds = () => {
     const web3 = this.props.web3
-    if (this.state.amount > 0) {
+    if (!this.state.amountError) {
       if (this.state.token === 'ETH') {
         web3.eth.sendTransaction({
           from: this.props.account,
@@ -71,9 +71,8 @@ class AddFund extends React.Component {
         this.setState({loading: true})
       } else if(this.token && this.token.token === this.state.token){
         const tokenAddress = this.token.tokenAddress
-        const tokenDecimals = this.token.decimals
         const tokenContract = new web3.eth.Contract(IERC20, tokenAddress);
-        tokenContract.methods.transfer(this.state.grantAddress, this.state.amount * Math.pow(10, tokenDecimals))
+        tokenContract.methods.transfer(this.state.grantAddress, this.getTokenVal(this.state.amount))
           .send({
             from: this.props.account
           }).on('transactionHash', () => {
@@ -89,9 +88,20 @@ class AddFund extends React.Component {
     }
   }
 
-  onEthValueChange = (e) => {
+  getTokenVal = (val) => {
+    const tokenDecimals = this.token.decimals
+    return Math.floor(val * Math.pow(10, tokenDecimals))
+  }
+
+  amountChange = (e) => {
     const val = e.target.value
-    this.setState({amount: val, amountError: !(parseFloat(val) > 0)})
+    let amount
+    if (this.token.token === 'ETH') {
+      amount = this.state.amount
+    } else {
+      amount = this.getTokenVal(val)
+    }
+    this.setState({amount: val, amountError: !(amount > 0)})
   }
 
   render () {
@@ -109,9 +119,9 @@ class AddFund extends React.Component {
               <p>or</p>
               <div className={styles.transfer}>
                 <Input name="ethvalue" label="" placeHolder={placeholder} value={this.state.amount}
-                       onChange={this.onEthValueChange} error={this.state.amountError}
+                       onChange={this.amountChange} error={this.state.amountError}
                        errorLabel="Please enter a correct amount"/>
-                <Button onClick={this.transferFunds}>Transfer {token}</Button>
+                     <Button onClick={this.transferFunds} disabled={this.state.amountError}>Transfer {token}</Button>
               </div>
             </div>)}
             {this.state.loading && (
