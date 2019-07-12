@@ -2,10 +2,10 @@ import { h, Component } from 'preact'
 import { connect } from 'unistore/preact'
 import { Link } from 'preact-router/match'
 import CopyToClipboard from './copyToClipboard.js'
-import copyIcon from '../assets/copy.svg'
 import Network from './network.js'
 import Footer from './footer.js'
 import { transferEth, transferToken } from '../writableWeb3.js'
+import CopyIcon from './copyIcon.js'
 
 class Contribution extends Component {
   state = { thankyou:false}
@@ -50,7 +50,7 @@ class Contribution extends Component {
           <div class="buttonbar">
             <Link href="/" class="secondary button">Back</Link>
             <CopyToClipboard text={fundraiserAddress}>
-              Copy address<img class="copyicon" src={copyIcon} style="height:0.8em; vertical-align: middle"/>
+              Copy address<CopyIcon/>
             </CopyToClipboard>
           </div>
           <Footer />

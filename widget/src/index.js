@@ -1,4 +1,4 @@
-import { h, Component } from 'preact'
+import { h, Component, render } from 'preact'
 import Donation from './components/donation.js'
 import Contribution from './components/contribution.js'
 import Expired from './components/expired.js'
@@ -8,10 +8,8 @@ import { Provider } from 'unistore/preact'
 import { store, init } from './store.js'
 import { createHashHistory } from 'history';
 import {THEMES, ROUTES} from './constants.js'
-import "./index.css"
+import "./index.scss"
 import "./styles.scss"
-
-let poly = require('preact-cli/lib/lib/webpack/polyfills')
 
 class App extends Component {
 
@@ -60,8 +58,8 @@ class App extends Component {
   }
 }
 
-export default () => (
+render((
   <Provider store={store}>
     <App/>
   </Provider>
-)
+), document.body)

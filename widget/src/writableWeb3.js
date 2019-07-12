@@ -2,7 +2,7 @@ import Eth from 'ethjs'
 import {PORTIS_APP, NETWORKS} from 'shared/constants.js'
 import IERC20 from 'shared/abis/IERC20.json'
 
-const getPortis = (networkId) => new Promise((resolve, reject) => {
+const getPortis = (networkId) => new Promise((resolve) => {
   import('@portis/web3').then(portis => {
     resolve(portis)
   })

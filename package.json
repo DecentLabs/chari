@@ -12,6 +12,6 @@
     "run:client": "yarn workspace client start",
     "build": "yarn workspaces run build",
     "clean": "yarn workspaces run clean",
-    "clean:modules": "rm -rvf node_modules */node_modules"
+    "clean:modules": "rm -rvf node_modules */node_modules yarn.lock"
   }
 }
