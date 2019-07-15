@@ -34,7 +34,7 @@ Donors can contribute until expiration (also with a simple transfer, no dApp bro
 
 * @brigittaforrai – frontend, design
 * @dfogaras – smart contract development
-* @juli_e – frontend
+* @ejulcsi – frontend
 * @krystianzun – design
 * @phraktle – a bit of everything
 * @rszaloki – frontend
