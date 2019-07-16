@@ -2,7 +2,6 @@ import React from 'react';
 import { TwitterPicker } from 'react-color';
 import { Link } from 'react-router-dom';
 import styles from './../styles/widgetEditor.module.css';
-import cfg from './../shared/cfg.js';
 
 import Button from './../components/button.js';
 import Select from './../components/select.js';
@@ -11,6 +10,7 @@ import copy from './../assets/copy.svg';
 import IframeContainer from './../components/iframeContainer.js'
 
 import { NETWORKS } from 'shared/constants.js';
+import { makeClientUrl, makeWidgetUrl } from '../utils/makeUrl.js'
 
 class WidgetEditor extends React.Component {
     constructor (props) {
@@ -20,37 +20,36 @@ class WidgetEditor extends React.Component {
         this.selectToken = this.selectToken.bind(this);
         this.iframeLoaded = this.iframeLoaded.bind(this);
         this.toggleColorSelector = this.toggleColorSelector.bind(this);
-
+        this.history = this.props.history;
         this.state = {
-            color: '#02DB96',
-            theme: 'light',
-            token: '',
+            color: this.props.match.params.color,
+            theme: this.props.match.params.theme,
+            token: this.props.match.params.token,
+            address: this.props.match.params.address,
+            networkId: this.props.match.params.networkId,
             iframeLoading: true,
             showColorSelector: false,
         };
     }
 
+    setHistoryState(o) {
+        const newState = Object.assign(this.state, o)
+        const {address, networkId, color, theme, token} = newState;
+        this.history.push(makeClientUrl('admin',address, networkId, color, theme, token))
+    }
+
     selectTheme (e) {
-        this.setState({
-            theme: e.target.value,
-            iframeLoading: true,
-        });
+        this.setHistoryState({theme: e.target.value})
     }
 
     selectColor (color) {
         if (this.state.color !== color.hex) {
-            this.setState({
-                color: color.hex,
-                iframeLoading: true,
-            });
+            this.setHistoryState({color:color.hex})
         }
     }
 
     selectToken (e) {
-        this.setState({
-            token: e.target.value,
-            iframeLoading: true,
-        });
+        this.setHistoryState({token: e.target.value})
     }
 
     toggleColorSelector () {
@@ -73,10 +72,8 @@ class WidgetEditor extends React.Component {
     }
 
     render () {
-        const address = this.props.match.params.address;
-        const networkId = this.props.match.params.networkId;
-        const color = this.state.color.split('#')[1];
-        const iframeUrl = `${cfg.WIDGET_BASE_URL}?address=${address}&network=${networkId}&color=${color}&theme=${this.state.theme}&token=${this.state.token}`; // todo
+        const {address, networkId, color, theme, token} = this.state;
+        const iframeUrl = makeWidgetUrl(address, networkId, color, theme, token)
 
         const themeOptions = [
             {value: 'dark', name: 'Dark theme'},
@@ -98,23 +95,23 @@ class WidgetEditor extends React.Component {
                     <p className={styles.description}>You can manage your fundraiser widget from here, customize it and
                         also copy the code necessary to
                         embed it on your website.</p>
-                    <Link to={`/campaign/${address}/${networkId}/details/`} className={styles.backLink}>Back to
+                    <Link to={makeClientUrl('details',address, networkId, color, theme, token)} className={styles.backLink}>Back to
                         fundraiser</Link>
                 </header>
                 <div className={styles.widget}>
 
-                    <IframeContainer title="Chari-widget" url={iframeUrl} loading={this.state.iframeLoading} loaded={this.iframeLoaded}></IframeContainer>
+                    <IframeContainer title="Chari-widget" url={iframeUrl} loading={this.state.iframeLoading} loaded={this.iframeLoaded} />
 
                     <div className={styles.settings}>
                         <Select options={tokenOptions} label="Please select token to pay with"
-                                onChange={this.selectToken}></Select>
+                                onChange={this.selectToken} />
 
                         <Select options={themeOptions} label="Please select widget theme"
-                                onChange={this.selectTheme}></Select>
+                                onChange={this.selectTheme} />
 
                         <div className={styles.colorPickerCont}>
                             <Button state={this.state.showColorSelector ? 'close' : 'open'}
-                                    onClick={this.toggleColorSelector} colorSelector colorData={this.state.color}>Please
+                                    onClick={this.toggleColorSelector} colorSelector colorData={'#'+this.state.color}>Please
                                 select color</Button>
                             {this.state.showColorSelector && (
                                 <TwitterPicker
@@ -126,7 +123,7 @@ class WidgetEditor extends React.Component {
                         </div>
 
                         <div className={styles.codeContainer}>
-                            <textarea readOnly value={textareaContent} id="chari-widget-code"></textarea>
+                            <textarea readOnly value={textareaContent} id="chari-widget-code" />
                             <Button copy onClick={this.copyCode}>Copy embed code<img src={copy} alt="copy code"/></Button>
                         </div>
                     </div>
