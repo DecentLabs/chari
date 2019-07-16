@@ -10,17 +10,16 @@ import Footer from './footer.js'
 
 export default connect([
   'fundraiserContract',
-  'grantBalance',
   'expiration',
-  'raised',
   'matched',
-  'selectedToken'
+  'selectedToken',
+  'sponsored'
 ])(({
   fundraiserContract,
   expiration,
   matched,
-  grantBalance,
-  selectedToken
+  selectedToken,
+  sponsored
 }) => {
   const showProgress = !!(matched && matched.value)
 
@@ -31,7 +30,7 @@ export default connect([
         <Expiration at={expiration}/>
 
         <div class="matchDetails">
-          <p class="offer">The sponsor matches every {selectedToken.token} you give, up to {grantBalance ? grantBalance.value : 0} {grantBalance.token}.</p>
+          <p class="offer">The sponsor matches every {selectedToken.token} you give, up to {sponsored ? sponsored.value : 0} {sponsored ? sponsored.token : selectedToken.token}.</p>
           <Raised><p>raised together</p></Raised>
           <hr />
         </div>
@@ -39,7 +38,7 @@ export default connect([
         {showProgress && (
           <div class="progressCont">
             <p>Sponsor matched {matched.value} {matched.token}.</p>
-            <progress value={matched.value} max={grantBalance.value}></progress>
+            <progress value={matched.value} max={(sponsored && sponsored.value) ? sponsored.value : matched.value}></progress>
           </div>
         )}
       </div>

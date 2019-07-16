@@ -10,6 +10,7 @@ export const store = createStore({
   grantAddress: null,
   networkId: null,
   fundraiserContract: null,
+  sponsored: null,
   grantContract: null,
   expiration: 0,
   tokens: [],
@@ -31,12 +32,14 @@ export const refreshBalance = store.action((state) => {
       getBalance(fundraiserContract, selectedToken),
       getBalance(grantContract, selectedToken),
       getRaised(fundraiserContract, selectedToken),
-      getMatched(grantContract, selectedToken)])
-      .then(balances => store.setState({
+      getMatched(grantContract, selectedToken),
+      getSponsored(grantContract, selectedToken)
+    ]).then(balances => store.setState({
         fundraiserBalance: balances[0],
         grantBalance: balances[1],
         raised: balances[2],
-        matched: balances[3]
+        matched: balances[3],
+        sponsored: balances[4]
       }))
   }
 })
@@ -109,6 +112,15 @@ function getMatched (contract, token) {
   return contract.matched(token.tokenAddress).then((res) => {
     const matched = convert(token.decimals, res[0])
     return {value: matched, token: token.token}
+  })
+}
+
+function getSponsored (contract, tokenInfo) {
+  const {token, tokenAddress, decimals} = tokenInfo
+
+  return contract.sponsored(tokenAddress).then(result => {
+    const balance = convert(decimals, result[0])
+    return {value: balance, token: token}
   })
 }
 
