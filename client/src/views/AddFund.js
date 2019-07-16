@@ -50,7 +50,7 @@ class AddFund extends React.Component {
                 </div>
             );
         } else {
-            return (<h1>You are on a wrong network!</h1>)
+            return (<h1 className="subtitle">You are on a wrong network to access this campaign</h1>)
         }
     }
 }

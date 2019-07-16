@@ -57,39 +57,46 @@ class CampaignDetails extends React.Component {
     render () {
         const {address, networkId, color, theme, token} = this.state;
         const title = this.props.justDeployed ? 'Congrats!' : 'Manage your fundraiser';
-        return (
-            <div>
-                <h1 className="subtitle">{title}</h1>
 
-                {this.state.isLoading && (<LoaderComp subtitle="none"/>)}
+        console.log(this.props.networkId, networkId)
+        if (this.props.networkId === parseInt(networkId, 10)) {
+            return (
+                <div>
+                    <h1 className="subtitle">{title}</h1>
 
-                {this.props.justDeployed && (
-                    <div className={[campaignStyles.centerColumn, campaignStyles.padding].join(' ')}>
-                        <img src={tick} alt="success"/>
-                        <p className="big">Your campaign has been successfully created on blockchain.</p>
-                        <p className={campaignStyles.disclaimer}>Bookmark this page to manage your fundraiser later on.</p>
-                        <div className={campaignStyles.centerRow}>
-                            <Button onClick={this.hideCongrats}>Manage your fundraiser</Button>
+                    {this.state.isLoading && (<LoaderComp subtitle="none"/>)}
+
+                    {this.props.justDeployed && (
+                        <div className={[campaignStyles.centerColumn, campaignStyles.padding].join(' ')}>
+                            <img src={tick} alt="success"/>
+                            <p className="big">Your campaign has been successfully created on blockchain.</p>
+                            <p className={campaignStyles.disclaimer}>Bookmark this page to manage your fundraiser later on.</p>
+                            <div className={campaignStyles.centerRow}>
+                                <Button onClick={this.hideCongrats}>Manage your fundraiser</Button>
+                            </div>
                         </div>
-                    </div>
-                )}
-
-                {!this.state.isLoading && (<div>
-                    {!this.props.justDeployed && !this.state.hasExpired && (
-                        <CurrentCampaign address={address} networkId={networkId} color={color} theme={theme} token={token}/>
                     )}
 
-                    {!this.props.justDeployed && this.state.hasExpired && (
-                        <ExpiredCampaign fundraiserAddress={this.fundraiserAddress}
-                                         fundraiserContract={this.state.fundraiserContract}/>
-                    )}
-                </div>)
+                    {!this.state.isLoading && (<div>
+                        {!this.props.justDeployed && !this.state.hasExpired && (
+                            <CurrentCampaign address={address} networkId={networkId} color={color} theme={theme} token={token}/>
+                        )}
+
+                        {!this.props.justDeployed && this.state.hasExpired && (
+                            <ExpiredCampaign fundraiserAddress={this.fundraiserAddress}
+                                             fundraiserContract={this.state.fundraiserContract}/>
+                        )}
+                    </div>)
 
 
-                }
-            </div>
+                    }
+                </div>
 
-        );
+            );
+        } else {
+            return (<h1 className="subtitle">You are on a wrong network to access this campaign</h1>)
+        }
+
     }
 }
 
@@ -97,6 +104,7 @@ const mapStateToProps = state => ({
     web3: state.web3Connect.web3,
     isConnected: state.web3Connect.isConnected,
     justDeployed: state.web3Connect.justDeployed,
+    networkId: state.web3Connect.networkId
 });
 
 export default connect(mapStateToProps)(CampaignDetails);
