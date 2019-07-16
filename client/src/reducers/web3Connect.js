@@ -10,6 +10,7 @@ const TRANSACTION_HASH = "TRANSACTION_HASH"
 const UPDATE_EXPDATE = "UPDATE_EXPDATE";
 const UPDATE_RECIPIENT = "UPDATE_RECIPIENT";
 const UPDATE_SPONSOR = "UPDATE_SPONSOR";
+const UPDATE_ACCOUNT = "UPDATE_ACCOUNT"
 
 const DEPLOY_REQUESTED = "DEPLOY_REQUESTED";
 const DEPLOY_SUCCESS = "DEPLOY_SUCCESS";
@@ -126,6 +127,12 @@ export default (state = initialState, action) => {
                 contract: null,
                 isDeployed: false
             }
+        case UPDATE_ACCOUNT: {
+          return {
+            ...state,
+            accounts: action.accounts
+          }
+        }
         default:
             return state;
     }
@@ -159,6 +166,14 @@ export const setupWeb3 = () => {
         });
 
         try {
+
+          window.ethereum.on('accountsChanged', (e) => {
+            return dispatch({
+                type: UPDATE_ACCOUNT,
+                accounts: e
+            });
+          })
+
           const web3 = await getWeb3();
           const accounts = await web3.eth.getAccounts();
           const networkId = await web3.eth.net.getId();
