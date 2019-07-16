@@ -17,7 +17,13 @@ class CampaignDetails extends React.Component {
         super(props);
         this.fundraiserAddress = props.match.params.address;
         this.networkId = this.props.match.params.networkId;
+        this.token = this.props.match.params.token;
         this.state = {
+            color: this.props.match.params.color,
+            theme: this.props.match.params.theme,
+            token: this.props.match.params.token,
+            address: this.props.match.params.address,
+            networkId: this.props.match.params.networkId,
             isLoading: true,
             hasExpired: false,
             fundraiserContract: null
@@ -49,6 +55,7 @@ class CampaignDetails extends React.Component {
     }
 
     render () {
+        const {address, networkId, color, theme, token} = this.state;
         const title = this.props.justDeployed ? 'Congrats!' : 'Manage your fundraiser';
         return (
             <div>
@@ -69,7 +76,7 @@ class CampaignDetails extends React.Component {
 
                 {!this.state.isLoading && (<div>
                     {!this.props.justDeployed && !this.state.hasExpired && (
-                        <CurrentCampaign network={this.networkId} fundraiserAddress={this.fundraiserAddress}/>
+                        <CurrentCampaign address={address} networkId={networkId} color={color} theme={theme} token={token}/>
                     )}
 
                     {!this.props.justDeployed && this.state.hasExpired && (

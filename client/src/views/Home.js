@@ -67,7 +67,24 @@ function Home (props) {
         </dd>
       </dl>
 
-      <h1 className="subtitle">Featured Fundraiser</h1>
+      <h1 className="subtitle">Featured Fundraisers</h1>
+
+      <div className={styles.fundraiser}>
+
+        <h2>Fundraiser for Archive.org</h2>
+
+        <p>
+          <strong>Recipient:</strong> <a href="https://www.archive.org">The Internet Archive</a>
+          <br/>
+          <strong>Sponsor:</strong> <a href="https://decent.org">Decent Labs</a>
+        </p>
+
+        <p>The Internet Archive is a small non-profit library with a huge mission: to give everyone access to all knowledge, forever. For free.</p>
+
+        <IframeContainer containerStyles={iframeContHomeStyles} iframeStyles={iframeHomeStyles} title="Chari-widget-demo" url={`${cfg.WIDGET_BASE_URL}?address=0x4a3De18552C740977E82ecF9FF2B826aD9Ba2305&network=1&color=02DB96&theme=light`}></IframeContainer>
+
+      </div>
+
 
       <div className={styles.fundraiser}>
 
@@ -85,6 +102,7 @@ function Home (props) {
         <IframeContainer containerStyles={iframeContHomeStyles} iframeStyles={iframeHomeStyles} title="Chari-widget-demo" url={`${cfg.WIDGET_BASE_URL}?address=0x009D88A62945F22ec7df60D34541B5F01cFF23f9&network=1&color=02DB96&theme=light`}></IframeContainer>
 
       </div>
+
     </div>
   )
 }

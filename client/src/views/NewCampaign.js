@@ -8,6 +8,7 @@ import CreateContractForm from './CreateContractForm.js'
 import AddFund from './AddFund.js'
 import LoaderComp from './../components/loaderComp.js'
 import CampaignDetails from './CampaignDetails.js'
+import { makeClientUrl } from '../utils/makeUrl.js'
 
 class NewCampaign extends React.Component {
   render () {
@@ -16,10 +17,13 @@ class NewCampaign extends React.Component {
         {!this.props.isLoading && !this.props.isDeploying && (
           <div>
               <Switch>
+                <Redirect from="/campaign/:address/:networkId/details/" to={makeClientUrl('details',':address', ':networkId')} />
+                <Redirect from="/campaign/:address/:networkId/admin/" to={makeClientUrl('admin',':address', ':networkId')} />
+                <Redirect from="/campaign/:address/addfund/" to={makeClientUrl('addfund',':address', this.props.networkId)} />
                 <Route path="/campaign/deploy" component={CreateContractForm} />
-                <Route path="/campaign/:address/:networkId/details/" component={CampaignDetails} />
-                <Route path="/campaign/:address/:networkId/admin/" component={WidgetEditor} />
-                <Route path="/campaign/:address/addfund/" component={AddFund} />
+                <Route path={makeClientUrl('details',':address', ':networkId', ':color', ':theme' ,':token')} component={CampaignDetails} />
+                <Route path={makeClientUrl('admin',':address', ':networkId', ':color', ':theme' ,':token')} component={WidgetEditor} />
+                <Route path={makeClientUrl('addfund',':address', ':networkId', ':color', ':theme' ,':token')} component={AddFund} />
               </Switch>
           </div>
         )}
@@ -37,7 +41,7 @@ class NewCampaign extends React.Component {
         )}
 
         {this.props.isDeployed && (
-            <Redirect to={`/campaign/${this.props.fundraiser}/${this.props.networkId}/details`} />
+          <Redirect to={makeClientUrl('details',this.props.fundraiser, this.props.networkId)} />
         )}
       </div>
     )

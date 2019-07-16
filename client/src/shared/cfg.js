@@ -7,3 +7,8 @@ const cfg = {
 }
 
 export default cfg
+
+
+export const URL_DEFAULTS={
+  networkId:1, color:'02DB96', theme:'light', token:'ETH'
+}

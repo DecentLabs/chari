@@ -31,12 +31,11 @@
 .widgetEditor textarea {
   width: 100%;
   height: 200px;
-  border: 1px solid #D5DAE2;
   padding: 20px;
   background: #F8F9FA;
   border: 1px solid #D5DAE2;
   border-radius: 4px;
-  display: inline-block;
+  display: block;
   border-top-left-radius: 0;
   font-size: 0.8em;
 }
@@ -47,11 +46,13 @@
 }
 
 .widgetEditor .codeContainer button {
-  position: absolute;
-  top: 0;
-  left: -44px;
   background-color: #BCBCBC;
   border-radius: 0;
+  width: auto
+}
+
+.widgetEditor .codeContainer button img {
+  vertical-align: text-top;
 }
 
 .widgetEditor .colorPickerCont {
