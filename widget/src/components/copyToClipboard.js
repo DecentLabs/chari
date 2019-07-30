@@ -14,7 +14,7 @@ export default class CopyToClipboard extends Component {
   render({children}) {
     return (
       <span class="copy-to-clipboard">
-        <button onClick={this.copy}>{children}</button>
+        <button onClick={this.copy} class="button secondary">{children}</button>
       </span>
     )
   }

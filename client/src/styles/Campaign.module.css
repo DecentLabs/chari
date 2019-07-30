@@ -6,6 +6,10 @@
   flex-wrap: wrap;
 }
 
+.centerRow button {
+  margin-top: 40px;
+}
+
 .centerColumn {
   display: flex;
   flex-direction: column;
@@ -16,6 +20,10 @@
 
 .padding {
   padding: 20px 0;
+}
+
+.centerColumn.padding img {
+  margin-bottom: 20px;
 }
 
 .halfColumn {

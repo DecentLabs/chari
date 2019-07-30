@@ -104,10 +104,10 @@ class WidgetEditor extends React.Component {
 
                     <div className={styles.settings}>
                         <Select options={tokenOptions} label="Please select token to pay with"
-                                onChange={this.selectToken} />
+                                onChange={this.selectToken} value={this.state.token}/>
 
                         <Select options={themeOptions} label="Please select widget theme"
-                                onChange={this.selectTheme} />
+                                onChange={this.selectTheme} value={this.state.theme}/>
 
                         <div className={styles.colorPickerCont}>
                             <Button state={this.state.showColorSelector ? 'close' : 'open'}
@@ -116,7 +116,7 @@ class WidgetEditor extends React.Component {
                             {this.state.showColorSelector && (
                                 <TwitterPicker
                                     className={styles.picker}
-                                    color={this.state.color}
+                                    color={'#'+this.state.color}
                                     onChangeComplete={this.selectColor}
                                 />
                             )}

@@ -1,6 +1,6 @@
 export default (config, env, helpers) => {
-  delete config.entry.polyfills;
-  config.output.filename = "[name].js"
+//  delete config.entry.polyfills;
+//  config.output.filename = "[name].js"
   config.output.publicPath = "/widget/"
   config.node.process = true
   config.node.Buffer = true

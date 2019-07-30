@@ -57,9 +57,7 @@ class CampaignDetails extends React.Component {
     render () {
         const {address, networkId, color, theme, token} = this.state;
         const title = this.props.justDeployed ? 'Congrats!' : 'Manage your fundraiser';
-
-        console.log(this.props.networkId, networkId)
-        if (this.props.networkId === parseInt(networkId, 10)) {
+        if (parseInt(this.props.networkId, 10) === parseInt(networkId, 10)) {
             return (
                 <div>
                     <h1 className="subtitle">{title}</h1>
@@ -91,12 +89,10 @@ class CampaignDetails extends React.Component {
 
                     }
                 </div>
-
             );
         } else {
             return (<h1 className="subtitle">You are on a wrong network to access this campaign</h1>)
         }
-
     }
 }
 

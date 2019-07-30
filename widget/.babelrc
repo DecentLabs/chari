@@ -1,9 +1,22 @@
 {
-  "env": {
-    "test": {
-      "presets": [
-        ["preact-cli/babel", { "modules": "commonjs" }]
-      ]
-    }
-  }
+  "presets": [
+    [
+      "@babel/preset-env",{
+        "useBuiltIns": "usage",
+        "shippedProposals": true,
+        "corejs":3,
+        "modules": false
+    }]
+  ],
+  "plugins": [
+    ["@babel/plugin-transform-react-jsx", { "pragma":"h" }],
+    "@babel/plugin-proposal-class-properties",
+    ["@babel/plugin-transform-runtime", {
+      "absoluteRuntime": false,
+      "corejs": 3,
+      "helpers": true,
+      "regenerator": true,
+      "useESModules": true
+    }]
+  ]
 }
