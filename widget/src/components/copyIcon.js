@@ -1,9 +1,9 @@
 import { h } from 'preact'
 
 export default () => (
-<div style="height:0.8em; vertical-align: middle">
+<div style="height:20px; width: 20px; vertical-align: middle">
   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 488.3 488.3" style="enable-background:new 0 0 488.3 488.3;">
-		<g fill="white">
+		<g fill="#02DB96">
 			<path
         d="M314.25,85.4h-227c-21.3,0-38.6,17.3-38.6,38.6v325.7c0,21.3,17.3,38.6,38.6,38.6h227c21.3,0,38.6-17.3,38.6-38.6V124
 			C352.75,102.7,335.45,85.4,314.25,85.4z M325.75,449.6c0,6.4-5.2,11.6-11.6,11.6h-227c-6.4,0-11.6-5.2-11.6-11.6V124

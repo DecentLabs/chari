@@ -31,9 +31,13 @@ class Contribution extends Component {
     return (
       <div class="contribution container">
         <div>
+          <Link class="button secondary link" href="/">‹</Link>
           <Network />
           <h1>Send {selectedToken.token} to:</h1>
-          <div>
+          <div style={{display: 'flex', alignItems: 'center'}}>
+            <CopyToClipboard text={fundraiserAddress} _class="copy">
+              <CopyIcon/>
+            </CopyToClipboard>
             <span class="address">{fundraiserAddress}</span>
           </div>
           <div><img src={qrcode} class="qrcode" /></div>
@@ -46,15 +50,7 @@ class Contribution extends Component {
               <button>Transfer {selectedToken.token}</button>
             </form>) : undefined}
         </div>
-        <div>
-          <div class="buttonbar">
-            <Link href="/" class="secondary button">Back</Link>
-            <CopyToClipboard text={fundraiserAddress}>
-              Copy address<CopyIcon/>
-            </CopyToClipboard>
-          </div>
           <Footer />
-        </div>
       </div>
     )
   }

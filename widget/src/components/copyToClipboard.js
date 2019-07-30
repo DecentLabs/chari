@@ -11,10 +11,11 @@ export default class CopyToClipboard extends Component {
     document.body.removeChild(el);
   }
 
-  render({children}) {
+  render({children, _class}) {
+    const buttonClass = _class ? `button ${_class}` : 'button secondary'
     return (
       <span class="copy-to-clipboard">
-        <button onClick={this.copy} class="button secondary">{children}</button>
+        <button onClick={this.copy} class={buttonClass}>{children}</button>
       </span>
     )
   }
