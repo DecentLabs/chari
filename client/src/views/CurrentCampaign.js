@@ -12,7 +12,7 @@ const CurrentCampaign = (props) => {
   return (
     <div>
       <p>Your contract's address is:</p>
-      <p className="big strong">{address}</p>
+      <p className="big strong address">{address}</p>
       <div className={[campaignStyles.centerRow, campaignStyles.padding].join(' ')}>
         <IframeContainer url={makeWidgetUrl(address, networkId, color, theme, token)}></IframeContainer>
         <div className={campaignStyles.centerColumn}>
