@@ -96,7 +96,7 @@ class AddFund extends React.Component {
     const val = e.target.value
     let amount
     if (this.token.token === 'ETH') {
-      amount = this.state.amount
+      amount = parseFloat(val)
     } else {
       amount = this.getTokenVal(val)
     }
