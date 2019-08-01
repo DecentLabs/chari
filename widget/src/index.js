@@ -21,6 +21,7 @@ class App extends Component {
       store.setState({color: c})
       const root = document.documentElement;
       root.style.setProperty('--widget-color', c);
+      root.style.setProperty('--widget-color-opac', c + '25');
     }
     if (theme) {
       this.setState({theme: theme})
