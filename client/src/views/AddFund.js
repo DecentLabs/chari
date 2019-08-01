@@ -38,13 +38,9 @@ class AddFund extends React.Component {
   componentDidMount () {
     if (!this.props.isConnected) {
       this.props.dispatch(setupWeb3())
+    } else {
+      this.getGrantContract()
     }
-  }
-
-  componentDidUpdate () {
-      if(!this.state.grantAddress) {
-        this.getGrantContract()
-      }
   }
 
   async getGrantContract () {
@@ -56,10 +52,10 @@ class AddFund extends React.Component {
 
   transferFunds = () => {
     const web3 = this.props.web3
-    if (!this.state.amountError) {
+    if (!this.state.amountError && this.props.accounts) {
       if (this.state.token === 'ETH') {
         web3.eth.sendTransaction({
-          from: this.props.account,
+          from: this.props.accounts[0],
           to: this.state.grantAddress,
           gas:40000,
           value: web3.utils.toWei(this.state.amount)
@@ -77,7 +73,7 @@ class AddFund extends React.Component {
         const tokenContract = new web3.eth.Contract(IERC20, tokenAddress);
         tokenContract.methods.transfer(this.state.grantAddress, this.getTokenVal(this.state.amount))
           .send({
-            from: this.props.account
+            from: this.props.accounts[0]
           }).on('transactionHash', () => {
             this.setState({
               accepted: true
@@ -117,7 +113,8 @@ class AddFund extends React.Component {
           <h1 className="subtitle">Manage your fundraiser</h1>
           <h2 className="subtitle">Transfer the matching grant to this address:</h2>
           <p className="big strong">{this.state.grantAddress}</p>
-          {!this.state.thankyou && this.props.account && this.state.grantAddress && !this.state.loading && (
+
+          {!this.state.thankyou && this.props.accounts && this.props.accounts[0] && this.state.grantAddress && !this.state.loading && (
             <div className={styles.transferCont}>
               <p>or</p>
               <div className={styles.transfer}>
@@ -154,7 +151,7 @@ const mapStateToProps = state => ({
   web3: state.web3Connect.web3,
   isConnected: state.web3Connect.isConnected,
   networkId: state.web3Connect.networkId,
-  account: state.web3Connect.accounts && state.web3Connect.accounts[0]
+  accounts: state.web3Connect.accounts
 })
 
 export default connect(mapStateToProps)(AddFund)

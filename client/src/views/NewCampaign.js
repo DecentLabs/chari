@@ -11,6 +11,7 @@ import CampaignDetails from './CampaignDetails.js'
 import { makeClientUrl } from '../utils/makeUrl.js'
 
 class NewCampaign extends React.Component {
+
   render () {
     return (
       <div className={styles.newCampaign}>
@@ -50,7 +51,6 @@ class NewCampaign extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    isConnected: state.web3Connect.isConnected,
     isLoading: state.web3Connect.isLoading,
     isDeploying: state.web3Connect.isDeploying,
     isDeployed: state.web3Connect.isDeployed,
