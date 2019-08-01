@@ -29,16 +29,14 @@ export default connect([
         <Network />
         <Expiration at={expiration}/>
 
-        <div class="matchDetails">
-          <p class="offer">The sponsor matches every {selectedToken.token} you give,<br/>up to {sponsored ? sponsored.value : 0} {sponsored ? sponsored.token : selectedToken.token}.</p>
-          <Raised><p>raised together</p></Raised>
-          <hr />
-        </div>
+        <p class="offer">The sponsor matches every {selectedToken.token} you give,<br/>up to {sponsored ? sponsored.value : 0} {sponsored ? sponsored.token : selectedToken.token}.</p>
+        <Raised><span> raised together</span></Raised>
 
         {showProgress && (
           <div class="progressCont">
-            <p>Sponsor matched {matched.value} {matched.token}.</p>
             <progress value={matched.value} max={(sponsored && sponsored.value) ? sponsored.value : matched.value}></progress>
+            <p>Sponsor matched {matched.value} {matched.token}.</p>
+            <hr/>
           </div>
         )}
       </div>

@@ -22,10 +22,7 @@
   margin: 20px auto;
   width: 100%;
   justify-content: space-between;
-}
-
-.widgetEditor .widget .settings {
-  width: 50%;
+  flex-wrap: wrap;
 }
 
 .widgetEditor textarea {

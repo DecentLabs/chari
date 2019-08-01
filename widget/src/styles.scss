@@ -45,8 +45,8 @@
     margin-bottom: 1.5em;
 
     .campaignEnds {
-      margin-top: 0.5em;
-      padding-bottom: 10px;
+      margin-top: 10px;
+      padding-bottom: 20px;
       color: var(--lightGray);
       font-size: 0.9em;
     }
@@ -99,32 +99,32 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-bottom: 1.5em;
   }
 
   .offer {
     margin: 0 0 1em 0;
     font-size: 1em;
     font-weight: bold;
-    // color: var(--midGray);
+    /* color: var(--midGray); */
   }
 
   .raisedCont {
-    padding-bottom: 1em;
+    padding-top: 1em;
     .raised {
       text-align: center;
       color: var(--widget-color);
       /* text-shadow: 1px 1px 2px rgba(0,0,0,0.05); */
       h1 {
         margin: 0;
-        font-weight: bolder;
-        font-size: 1.7em;
+        font-weight: bold;
+        font-size: 1.2em;
+        display: inline-block;
       }
-      p {
+      span {
         font-size: 1.2em;
         margin: 0;
         font-weight: bold;
-        /* text-transform: uppe rcase; */
+        text-transform: uppercase;
       }
     }
   }
@@ -135,19 +135,26 @@
     progress[value] {
       -webkit-appearance: none;
       appearance: none;
-      height: 40px;
+      height: 30px;
       width: 100%;
-      margin: 0.5em 0 1em 0;
+      margin: 0.5em 0;
     }
     progress[value]::-webkit-progress-bar {
       background-color: var(--widget-color-opac);
-      border-radius: 40px;
+      border-radius: 30px;
       /* border: 1px solid var(--widget-color); */
     }
     progress[value]::-webkit-progress-value {
       border-radius: 2px;
       background-color: var(--widget-color);
       border-radius: 40px;
+    }
+    p {
+      font-size: 0.9em;
+      color: var(--lightGray)
+    }
+    hr {
+      margin-top: 20px;
     }
   }
 
