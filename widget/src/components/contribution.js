@@ -42,7 +42,9 @@ class Contribution extends Component {
           </div>
           <div><img src={qrcode} class="qrcode" /></div>
           <hr/>
-          {thankyou}
+          {thankyou && (
+            <p class="donationThankyou">Thank you!</p>
+          )}
           {!thankyou ? (
             <form onSubmit={this.submitHandler} action="javascript:;">
               <input type="text" placeholder="0"/>
