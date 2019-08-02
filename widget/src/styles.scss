@@ -4,8 +4,8 @@
   --warning: #EB6123;
 
   --fontColor: rgba(0, 0, 0, 0.87);
-  --baseColor: white;
-  --lightColor: #F5F6F7;
+  --baseColor: #F5F6F7;
+  --lightColor: white;
   --midGray: rgba(0, 0, 0, 0.5);
   --lightGray: #9BA5AE;
 }
@@ -226,12 +226,12 @@
       position: absolute;
       left: 0;
       top: -1.8em;
-      width: 40px;
-      height: 40px;
+      width: 30px;
+      height: 30px;
       font-size: 2.5em;
-      line-height: 1.1;
+      line-height: 0.75;
       display: inline-block;
-      padding: 0 10px;
+      padding: 0 5px;
     }
 
     .copy-to-clipboard {
@@ -259,14 +259,14 @@
         height: 44px;
         font-size: 1.3em;
         box-sizing: border-box;
-        color: var(--widget-color);
+        color: var(--lightcolor);
         border: 2px solid var(--widget-color);
         background-color: transparent;
         width: 100%;
-        color: black;
         padding: 10px 25px;
         border-radius: 40px;
         margin-top: 1em;
+        outline: none;
       }
     }
 
