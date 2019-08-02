@@ -18,6 +18,35 @@
   --lightGray: rgba(255, 255, 255, 0.7);
 }
 
+$startFixedChars     : 7;
+$endFixedChars       : 5;
+$fontFaceScaleFactor : 0.5;
+$startWidth : 0.5em * $fontFaceScaleFactor * ($startFixedChars);
+$endWidth   : 0.5em * $fontFaceScaleFactor * $endFixedChars + 3;
+
+.addressCont {
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+  max-width: 100%;
+}
+.address {
+  display: inline-block;
+  vertical-align: bottom;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.address.first {
+  text-overflow: ellipsis;
+  max-width: calc(100% - #{$endWidth});
+  min-width: $startWidth;
+}
+.address.last {
+  direction: rtl;
+  max-width: calc(100% - #{$startWidth});
+}
+
+
 #DonationWidget {
   background-color: var(--baseColor);
   color: var(--fontColor);
@@ -206,13 +235,6 @@
     position: relative;
     .address {
       font-size: 1.4em;
-      max-width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      display: inline-block;
-      padding-right: 10px;
-      box-sizing: border-box;
     }
 
     .donationThankyou {

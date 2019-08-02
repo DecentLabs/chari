@@ -77,12 +77,24 @@ p.big {
   font-weight: 700;
 }
 
+/* .addressCont {
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+}
+
 .address {
-  max-width: 100%;
-  text-overflow: ellipsis;
+  display: inline-block;
+  vertical-align: bottom;
   white-space: nowrap;
   overflow: hidden;
 }
+.address.first {
+  text-overflow: ellipsis;
+}
+.address.last {
+  direction: rtl;
+} */
 
 code {
   font-family: 'Inter var', sans-serif;

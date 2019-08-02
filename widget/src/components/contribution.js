@@ -6,6 +6,7 @@ import Network from './network.js'
 import Footer from './footer.js'
 import { transferEth, transferToken } from '../writableWeb3.js'
 import CopyIcon from './copyIcon.js'
+import cutAddress from 'shared/scripts/cutAddress.js'
 
 class Contribution extends Component {
   state = { thankyou:false}
@@ -28,17 +29,21 @@ class Contribution extends Component {
   }
 
   render({fundraiserAddress, qrcode, selectedToken},{thankyou}) {
+    const address = cutAddress(fundraiserAddress)
     return (
       <div class="contribution container">
         <div>
           <Link class="button secondary link" href="/">‹</Link>
           <Network />
           <h1>Send {selectedToken.token} to:</h1>
-          <div style={{display: 'flex', alignItems: 'center'}}>
+          <div style={{display: 'flex', alignItems: 'center', justifyContent:'center'}}>
+            <div class="addressCont">
+              <span class="address first">{address.start}</span>
+              <span class="address last">{address.end}</span>
+            </div>
             <CopyToClipboard text={fundraiserAddress} _class="copy">
               <CopyIcon/>
             </CopyToClipboard>
-            <span class="address">{fundraiserAddress}</span>
           </div>
           <div><img src={qrcode} class="qrcode" /></div>
           <hr/>

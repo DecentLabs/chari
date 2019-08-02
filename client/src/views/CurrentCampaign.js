@@ -6,13 +6,22 @@ import campaignStyles from '../styles/Campaign.module.css';
 import buttonStyles from '../styles/button.module.css';
 import IframeContainer from './../components/iframeContainer.js'
 import { makeClientUrl, makeWidgetUrl } from '../utils/makeUrl.js'
+import cutAddress from 'shared/scripts/cutAddress.js'
+
+import './../styles/address.scss'
 
 const CurrentCampaign = (props) => {
   const {address, networkId, color, theme, token} = props;
+  const _address = cutAddress(address)
+
   return (
     <div>
       <p>Your contract's address is:</p>
-      <p className="big strong address">{address}</p>
+      <div className="addressCont">
+        <span className="big strong address first">{_address.start}</span>
+        <span className="big strong address last">{_address.end}</span>
+      </div>
+
       <div className={[campaignStyles.centerRow, campaignStyles.padding].join(' ')}>
         <IframeContainer url={makeWidgetUrl(address, networkId, color, theme, token)}></IframeContainer>
         <div className={campaignStyles.centerColumn}>
