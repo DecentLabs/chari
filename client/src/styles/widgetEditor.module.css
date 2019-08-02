@@ -74,11 +74,14 @@
   align-items: flex-start;
   max-width: 600px;
   margin: auto;
+  flex-wrap: wrap;
+  margin-bottom: 2em;
 }
 
 .transfer button {
   white-space: nowrap;
-  margin-left: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .backLink {

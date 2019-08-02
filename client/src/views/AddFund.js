@@ -12,6 +12,7 @@ import Input from '../components/input.js'
 import { NETWORKS } from 'shared/constants.js'
 import LoaderComp from './../components/loaderComp.js'
 import tick from './../assets/tick.svg';
+import cutAddress from 'shared/scripts/cutAddress'
 
 class AddFund extends React.Component {
     constructor (props) {
@@ -105,14 +106,22 @@ class AddFund extends React.Component {
 
   render () {
     const {address, networkId, color, theme, token} = this.state
-    const placeholder = '0.'.padEnd(Math.min(this.token.decimals, 5)+2,0)
+    const placeholder = `${token} amount`
+    console.log(this.state.grantAddress);
+    const _grantAddress = this.state.grantAddress ? cutAddress(this.state.grantAddress) : null
 
     if (parseInt(this.props.networkId, 10) === parseInt(networkId, 10)) {
       return (
         <div>
           <h1 className="subtitle">Manage your fundraiser</h1>
           <h2 className="subtitle">Transfer the matching grant to this address:</h2>
-          <p className="big strong">{this.state.grantAddress}</p>
+
+          {_grantAddress && (
+            <div className="addressCont">
+              <span className="big strong address first">{_grantAddress.start}</span>
+              <span className="big strong address last">{_grantAddress.end}</span>
+            </div>
+          )}
 
           {!this.state.thankyou && this.props.accounts && this.props.accounts[0] && this.state.grantAddress && !this.state.loading && (
             <div className={styles.transferCont}>
@@ -121,7 +130,7 @@ class AddFund extends React.Component {
                 <Input name="ethvalue" label="" placeHolder={placeholder} value={this.state.amount}
                        onChange={this.amountChange} error={this.state.amountError}
                        errorLabel="Please enter a correct amount"/>
-                     <Button onClick={this.transferFunds} disabled={this.state.amountError}>Transfer {token}</Button>
+                <Button onClick={this.transferFunds} disabled={this.state.amountError}>Transfer {token}</Button>
               </div>
             </div>)}
             {this.state.loading && (

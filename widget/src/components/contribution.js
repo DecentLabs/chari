@@ -35,7 +35,7 @@ class Contribution extends Component {
         <div>
           <Link class="button secondary link" href="/">‹</Link>
           <Network />
-          <h1>Send {selectedToken.token} to:</h1>
+          <h2>Send {selectedToken.token} to:</h2>
           <div style={{display: 'flex', alignItems: 'center', justifyContent:'center'}}>
             <div class="addressCont">
               <span class="address first">{address.start}</span>
@@ -45,6 +45,7 @@ class Contribution extends Component {
               <CopyIcon/>
             </CopyToClipboard>
           </div>
+          <p class="fundraiserAddress">Fundraiser address</p>
           <div><img src={qrcode} class="qrcode" /></div>
           <hr/>
           {thankyou && (
@@ -52,7 +53,7 @@ class Contribution extends Component {
           )}
           {!thankyou ? (
             <form onSubmit={this.submitHandler} action="javascript:;">
-              <input type="text" placeholder="0"/>
+              <input type="text" placeholder={`${selectedToken.token} amount`}/>
               <div class="space"></div>
               <button>Transfer {selectedToken.token}</button>
             </form>) : undefined}
