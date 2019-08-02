@@ -8,6 +8,9 @@ $endWidth   : 1em * $fontFaceScaleFactor * $endFixedChars + 3;
   white-space: nowrap;
   overflow: hidden;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .address {
   display: inline-block;

@@ -14,6 +14,11 @@ import LoaderComp from './../components/loaderComp.js'
 import tick from './../assets/tick.svg';
 import cutAddress from 'shared/scripts/cutAddress'
 
+import buttonStyles from '../styles/button.module.css';
+import copy from 'shared/scripts/copyToClipBoard.js'
+import copyIcon from './../assets/copy-color.svg'
+import classnames from 'classnames'
+
 class AddFund extends React.Component {
     constructor (props) {
         super(props);
@@ -107,7 +112,6 @@ class AddFund extends React.Component {
   render () {
     const {address, networkId, color, theme, token} = this.state
     const placeholder = `${token} amount`
-    console.log(this.state.grantAddress);
     const _grantAddress = this.state.grantAddress ? cutAddress(this.state.grantAddress) : null
 
     if (parseInt(this.props.networkId, 10) === parseInt(networkId, 10)) {
@@ -120,6 +124,11 @@ class AddFund extends React.Component {
             <div className="addressCont">
               <span className="big strong address first">{_grantAddress.start}</span>
               <span className="big strong address last">{_grantAddress.end}</span>
+              <span class="copy-to-clipboard">
+                <button onClick={e => {copy(this.state.grantAddress)}} className={classnames(buttonStyles.button, buttonStyles.copy, buttonStyles.small)}>
+                  <img src={copyIcon} alt="copy"/>
+                </button>
+              </span>
             </div>
           )}
 
