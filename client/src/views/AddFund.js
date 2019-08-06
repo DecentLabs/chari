@@ -12,10 +12,10 @@ import Input from '../components/input.js'
 import { NETWORKS } from 'shared/constants.js'
 import LoaderComp from './../components/loaderComp.js'
 import tick from './../assets/tick.svg';
-import {cutAddress} from 'shared/scripts/cutAddress'
+import {cutAddress} from './../utils/cutAddress.js'
 
 import buttonStyles from '../styles/button.module.css';
-import {copyToClipboard} from 'shared/scripts/copyToClipboard.js'
+import {copyToClipboard} from './../utils/copyToClipboard.js'
 import CopyIcon from './../components/copyIcon.js'
 import classnames from 'classnames'
 
