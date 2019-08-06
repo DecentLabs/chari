@@ -1,5 +1,5 @@
 import { h, Component } from 'preact'
-import copy from 'shared/scripts/copyToClipboard'
+import {copyToClipboard} from 'shared/scripts/copyToClipboard'
 
 export default class CopyToClipboard extends Component {
 
@@ -7,7 +7,7 @@ export default class CopyToClipboard extends Component {
     const buttonClass = _class ? `button ${_class}` : 'button secondary'
     return (
       <span class="copy-to-clipboard">
-        <button onClick={e => {copy(this.props.text)}} class={buttonClass}>{children}</button>
+        <button onClick={e => {copyToClipboard(this.props.text)}} class={buttonClass}>{children}</button>
       </span>
     )
   }

@@ -6,7 +6,7 @@ import Network from './network.js'
 import Footer from './footer.js'
 import { transferEth, transferToken } from '../writableWeb3.js'
 import CopyIcon from './copyIcon.js'
-import cutAddress from 'shared/scripts/cutAddress.js'
+import {cutAddress} from 'shared/scripts/cutAddress.js'
 
 class Contribution extends Component {
   state = { thankyou:false}

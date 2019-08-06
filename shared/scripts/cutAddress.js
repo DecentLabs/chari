@@ -1,4 +1,4 @@
-export default function (address) {
+function cutAddress (address) {
   if (address) {
     const addressEnd = address.substring(address.length - 4)
     const addressStart = address.slice(0, 6)
@@ -7,4 +7,8 @@ export default function (address) {
       end: addressEnd
     }
   }
+}
+
+export {
+  cutAddress
 }
