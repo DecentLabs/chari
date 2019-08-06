@@ -1,9 +1,7 @@
 export default function (address) {
   if (address) {
-    const n = 4
-    const cutAt = address.length - n
-    const addressEnd = address.substring(cutAt)
-    const addressStart = address.slice(0, n)
+    const addressEnd = address.substring(address.length - 4)
+    const addressStart = address.slice(0, 6)
     return {
       start: addressStart,
       end: addressEnd
