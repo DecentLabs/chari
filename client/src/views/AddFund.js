@@ -12,10 +12,10 @@ import Input from '../components/input.js'
 import { NETWORKS } from 'shared/constants.js'
 import LoaderComp from './../components/loaderComp.js'
 import tick from './../assets/tick.svg';
-import cutAddress from 'shared/scripts/cutAddress'
+import {cutAddress} from 'shared/scripts/cutAddress'
 
 import buttonStyles from '../styles/button.module.css';
-import copy from 'shared/scripts/copyToClipboard.js'
+import {copyToClipboard} from 'shared/scripts/copyToClipboard.js'
 import CopyIcon from './../components/copyIcon.js'
 import classnames from 'classnames'
 
@@ -147,7 +147,7 @@ class AddFund extends React.Component {
                 </div>
               )}
               <span className="copy-to-clipboard">
-                <button onClick={e => {copy(this.state.grantAddress)}} className={classnames(buttonStyles.button, buttonStyles.copy, buttonStyles.small)}>
+                <button onClick={e => {copyToClipboard(this.state.grantAddress)}} className={classnames(buttonStyles.button, buttonStyles.copy, buttonStyles.small)}>
                   <CopyIcon/>
                 </button>
               </span>

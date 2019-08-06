@@ -6,8 +6,8 @@ import campaignStyles from '../styles/Campaign.module.css';
 import buttonStyles from '../styles/button.module.css';
 import IframeContainer from './../components/iframeContainer.js'
 import { makeClientUrl, makeWidgetUrl } from '../utils/makeUrl.js'
-import cutAddress from 'shared/scripts/cutAddress.js'
-import copy from 'shared/scripts/copyToClipboard.js'
+import {cutAddress} from 'shared/scripts/cutAddress.js'
+import {copyToClipboard} from 'shared/scripts/copyToClipboard.js'
 import CopyIcon from './../components/copyIcon.js'
 import classnames from 'classnames'
 
@@ -44,7 +44,7 @@ class CurrentCampaign extends React.Component {
             </div>
           )}
           <span className="copy-to-clipboard">
-            <button onClick={e => {copy(address)}} className={classnames(buttonStyles.button, buttonStyles.copy, buttonStyles.small)}>
+            <button onClick={e => {copyToClipboard(address)}} className={classnames(buttonStyles.button, buttonStyles.copy, buttonStyles.small)}>
               <CopyIcon></CopyIcon>
             </button>
           </span>
