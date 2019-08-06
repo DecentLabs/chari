@@ -15,7 +15,7 @@ import tick from './../assets/tick.svg';
 import cutAddress from 'shared/scripts/cutAddress'
 
 import buttonStyles from '../styles/button.module.css';
-import copy from 'shared/scripts/copyToClipBoard.js'
+import copy from 'shared/scripts/copyToClipboard.js'
 import CopyIcon from './../components/copyIcon.js'
 import classnames from 'classnames'
 
