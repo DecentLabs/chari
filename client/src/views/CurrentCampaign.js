@@ -8,7 +8,7 @@ import IframeContainer from './../components/iframeContainer.js'
 import { makeClientUrl, makeWidgetUrl } from '../utils/makeUrl.js'
 import cutAddress from 'shared/scripts/cutAddress.js'
 import copy from 'shared/scripts/copyToClipBoard.js'
-import copyIcon from './../assets/copy-color.svg'
+import CopyIcon from './../components/copyIcon.js'
 import classnames from 'classnames'
 
 import './../styles/address.scss'
@@ -25,7 +25,7 @@ const CurrentCampaign = (props) => {
         <span className="big strong address last">{_address.end}</span>
         <span class="copy-to-clipboard">
           <button onClick={e => {copy(address)}} className={classnames(buttonStyles.button, buttonStyles.copy, buttonStyles.small)}>
-            <img src={copyIcon} alt="copy"/>
+            <CopyIcon></CopyIcon>
           </button>
         </span>
       </div>

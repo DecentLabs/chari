@@ -28,11 +28,8 @@
 .button.copy {
   background-color: #BCBCBC;
 }
-.button.copy img {
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
-  margin-left: 10px;
+.button.copy:active svg g {
+  fill: black;
 }
 .button.copy.small {
   padding: 0;
@@ -43,9 +40,6 @@
   align-items: center;
   justify-content: center;
   display: inline-block;
-}
-.button.copy.small img {
-  margin-left: 0;
 }
 
 .button.colorBtn {

@@ -212,6 +212,7 @@ $endWidth   : 0.5em * $fontFaceScaleFactor * $endFixedChars + 3;
     border-style: solid;
     border-image: initial;
     line-height: 21px;
+    outline: none;
   }
 
   .button.secondary {
@@ -228,6 +229,9 @@ $endWidth   : 0.5em * $fontFaceScaleFactor * $endFixedChars + 3;
     padding: 0;
     background-color: rgba(0, 0, 0, 0);
     margin-top: 0;
+  }
+  .button.copy:active svg g {
+    fill: var(--fontColor);
   }
 
   .contribution {

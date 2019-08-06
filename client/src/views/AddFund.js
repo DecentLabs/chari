@@ -16,7 +16,7 @@ import cutAddress from 'shared/scripts/cutAddress'
 
 import buttonStyles from '../styles/button.module.css';
 import copy from 'shared/scripts/copyToClipBoard.js'
-import copyIcon from './../assets/copy-color.svg'
+import CopyIcon from './../components/copyIcon.js'
 import classnames from 'classnames'
 
 class AddFund extends React.Component {
@@ -126,7 +126,7 @@ class AddFund extends React.Component {
               <span className="big strong address last">{_grantAddress.end}</span>
               <span class="copy-to-clipboard">
                 <button onClick={e => {copy(this.state.grantAddress)}} className={classnames(buttonStyles.button, buttonStyles.copy, buttonStyles.small)}>
-                  <img src={copyIcon} alt="copy"/>
+                  <CopyIcon/>
                 </button>
               </span>
             </div>
@@ -143,7 +143,7 @@ class AddFund extends React.Component {
               </div>
             </div>)}
             {this.state.loading && (
-              <LoaderComp subtitle={this.state.accepted ? 'Grant is being trasferred...' : null} />
+              <LoaderComp subtitle={this.state.accepted ? 'Grant is being transferred...' : null} />
             )}
             {this.state.thankyou && (
               <div className={styles.thankyou}>
