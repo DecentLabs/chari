@@ -33,7 +33,8 @@ class AddFund extends React.Component {
             amount: '',
             amountError: false,
             loading: false,
-            accepted: false
+            accepted: false,
+            smallScreen: window.innerWidth < 550
         };
 
         const network = NETWORKS.get(parseInt(this.state.networkId))
@@ -42,11 +43,24 @@ class AddFund extends React.Component {
         }
   }
   componentDidMount () {
+    this.mounted = true
     if (!this.props.isConnected) {
       this.props.dispatch(setupWeb3())
     } else {
       this.getGrantContract()
     }
+
+    window.addEventListener('resize', () => {
+      if (this.mounted) {
+        this.setState({
+          smallScreen: window.innerWidth < 550
+        })
+      }
+    })
+  }
+
+  componentWillUnmount () {
+    this.mounted = false
   }
 
   async getGrantContract () {
@@ -112,7 +126,7 @@ class AddFund extends React.Component {
   render () {
     const {address, networkId, color, theme, token} = this.state
     const placeholder = `${token} amount`
-    const _grantAddress = this.state.grantAddress ? cutAddress(this.state.grantAddress) : null
+    const _grantAddress = (this.state.smallScreen && this.state.grantAddress) ? cutAddress(this.state.grantAddress) : null
 
     if (parseInt(this.props.networkId, 10) === parseInt(networkId, 10)) {
       return (
@@ -120,17 +134,24 @@ class AddFund extends React.Component {
           <h1 className="subtitle">Manage your fundraiser</h1>
           <h2 className="subtitle">Transfer the matching grant to this address:</h2>
 
-          {_grantAddress && (
             <div className="addressCont">
-              <span className="big strong address first">{_grantAddress.start}</span>
-              <span className="big strong address last">{_grantAddress.end}</span>
-              <span class="copy-to-clipboard">
+              {_grantAddress && (
+                <div>
+                  <span className="big strong address">{`${_grantAddress.start}...`}</span>
+                  <span className="big strong address">{_grantAddress.end}</span>
+                </div>
+              )}
+              {!_grantAddress && address && (
+                <div>
+                  <span className="big strong address">{address}</span>
+                </div>
+              )}
+              <span className="copy-to-clipboard">
                 <button onClick={e => {copy(this.state.grantAddress)}} className={classnames(buttonStyles.button, buttonStyles.copy, buttonStyles.small)}>
                   <CopyIcon/>
                 </button>
               </span>
             </div>
-          )}
 
           {!this.state.thankyou && this.props.accounts && this.props.accounts[0] && this.state.grantAddress && !this.state.loading && (
             <div className={styles.transferCont}>

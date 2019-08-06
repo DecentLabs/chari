@@ -37,8 +37,8 @@ class Contribution extends Component {
           <Network />
           <h2>Send {selectedToken.token} to:</h2>
           <div style={{display: 'flex', alignItems: 'center', justifyContent:'center'}}>
-            <div class="addressCont">
-              <span class="address first">{address.start}</span>
+            <div class="addressCont" style={{marginLeft: 10}}>
+              <span class="address first">{`${address.start}...`}</span>
               <span class="address last">{address.end}</span>
             </div>
             <CopyToClipboard text={fundraiserAddress} _class="copy">
