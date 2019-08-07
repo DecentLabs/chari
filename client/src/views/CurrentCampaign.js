@@ -6,8 +6,8 @@ import campaignStyles from '../styles/Campaign.module.css';
 import buttonStyles from '../styles/button.module.css';
 import IframeContainer from './../components/iframeContainer.js'
 import { makeClientUrl, makeWidgetUrl } from '../utils/makeUrl.js'
-import {cutAddress} from './../utils/cutAddress.js'
-import {copyToClipboard} from './../utils/copyToClipboard.js'
+import {cutAddress} from 'shared/utils/cutAddress.js'
+import {copyToClipboard} from 'shared/utils/copyToClipboard.js'
 import CopyIcon from './../components/copyIcon.js'
 import classnames from 'classnames'
 

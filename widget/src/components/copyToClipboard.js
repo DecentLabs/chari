@@ -1,5 +1,5 @@
 import { h, Component } from 'preact'
-import {copyToClipboard} from './../utils/copyToClipboard'
+import { copyToClipboard } from 'shared/utils/copyToClipboard'
 
 export default class CopyToClipboard extends Component {
 
