@@ -8,6 +8,8 @@ import cfg from './../shared/cfg.js'
 import Button from './../components/button.js'
 import IframeContainer from './../components/iframeContainer.js'
 
+import hospischool from './../assets/korhazsuli.jpeg'
+
 const iframeContHomeStyles = {
   width: '100%',
   marginLeft: 'auto',
@@ -42,30 +44,83 @@ function Home (props) {
         <Button onClick={connectWeb3}>Create a fundraising campaign</Button>
       </NavLink>
 
-      <dl>
-        <dt>What is donation matching?</dt>
-        <dd>
-          <a rel="noopener noreferrer" target="_blank" href="https://en.wikipedia.org/wiki/Matching_funds">
-          Matching grants</a> are a great way to raise funds for a charitable cause.
-          A sponsor deposits a budget to match donations 1:1.
-          Thus <strong>donors double the impact</strong> of their contributions.
-          When the fundraiser ends, the charity gets twice the donations
-          and any remaining budget is returned to the sponsor.
-        </dd>
+      <section className="benefits">
+        <h1 className="subtitle">Benefits of Chari</h1>
+        <div>
+          <h3>Charities can reach a new class of sponsors and donors.</h3>
+          <p>
+            Aliquam rutrum arcu at odio bibendum, vitae pulvinar massa lobortis. Ut dapibus accumsan urna, sit amet gravida leo.
+          </p>
+        </div>
+        <div className="divider"></div>
 
-        <dt>What is Chari?</dt>
-        <dd>
-          <strong>A smart contract</strong>.
-          The Chari smart contract manages the sponsor grant and donations on
-          the <a rel="noopener noreferrer" target="_blank" href="https://en.wikipedia.org/wiki/Ethereum">Ethereum blockchain</a>.
-          This means there is no need for a trusted third party to coordinate the fundraising
-          and each participant can be certain their funds are managed safely.
-        </dd>
-        <dd>
-          <strong>A donation widget</strong>.
+        <div>
+          <h3>No trusted 3rd party needed</h3>
+          <p>
+            Phasellus nunc dolor, scelerisque a rhoncus ac, fringilla ut purus. Duis urna risus, commodo nec interdum eget, ultrices ac nunc. Proin auctor nisi turpis, sit amet congue tortor mollis vitae.
+          </p>
+        </div>
+        <div className="divider"></div>
+
+        <div>
+          <h3>Sponsor funds are fully commited, up-front.</h3>
+          <p>
+            Ut lacinia neque vel posuere tincidunt. Etiam tincidunt diam at tincidunt aliquam. Maecenas quis augue nec ipsum egestas viverra et nec leo. Morbi hendrerit, enim ut varius commodo, lacus lectus lobortis nibh, eu efficitur lectus leo vitae nisi
+          </p>
+        </div>
+        <div className="divider"></div>
+
+        <div>
+          <h3>Dramatically lower fundraising costs</h3>
+          <p>Chari dramatically lower fundraising costs, there’s just a minimal gas cost of transfers.</p>
+          <p>Typical overhead of charity fundraising is 4-8%:</p>
+          <ul>
+            <li>Administration fee (3.5-5%)</li>
+            <li>Payment fees (0.5-3%)</li>
+          </ul>
+        </div>
+      </section>
+
+
+      <section className="chari">
+        <h1 className="subtitle">What is Chari?</h1>
+        <p className="strong">A smart contract.</p>
+        <p>
+          The Chari smart contract manages the sponsor grant and donations on the Ethereum blockchain.
+          This means there is no need for a trusted third party to coordinate the fundraising and each participant can be certain their funds are managed safely.
+        </p>
+
+        <p className="strong">A donation widget.</p>
+        <p>
           Easily embed a Chari donation component into the landing page of your fundraiser campaign.
-        </dd>
-      </dl>
+        </p>
+
+        <div className="divider"></div>
+        <h2>What is donation matching?</h2>
+
+        <p>
+          Matching grants are a great way to raise funds for a charitable cause.
+          A sponsor deposits a budget to match donations 1:1. Thus donors double the impact of their contributions.
+        </p>
+        <p>
+          When the fundraiser ends, the charity gets twice the donations and any remaining budget is returned to the sponsor.
+        </p>
+      </section>
+
+
+      <section className="expert">
+        <h1 className="subtitle">Subject matter expert testimonial</h1>
+        <a href="https://korhazsuli.com/" target="_blank"><img className="hospischool-logo" alt="hospischool-logo" src={hospischool}/></a>
+        <div className="quote">
+          <p>"Crypto fundraising opens access to a new world of potential sponsors and donors. Chari provides a safe platform for donations: no 3rd party to manage funds, no chance of corruption. I like how simple it is and the fact there’s no overhead on funding.''</p>
+          <span>- Reka Berczeledi, HospiSchool</span>
+          <a href="https://korhazsuli.com/" target="_blank">https://korhazsuli.com/</a>
+        </div>
+
+        <p>HospiSchool supports long-term hospitalized children continue education with the help of student volunteers.</p>
+      </section>
+
+
 
       <h1 className="subtitle">Featured Fundraisers</h1>
 

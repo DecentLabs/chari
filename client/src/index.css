@@ -67,10 +67,13 @@ h6 {
 }
 p {
   font-size: 14px;
-
+  line-height: 150%;
 }
 p.big {
   font-size: 20px;
+}
+p.strong {
+  color: black;
 }
 
 .strong {
@@ -87,4 +90,75 @@ code {
   font-family: 'Inter var', sans-serif;
   font-size: 12px;
   color: #797E7C;
+}
+
+section {
+  max-width: 780px;
+  width: 100%;
+  margin: 150px auto;
+}
+
+section.chari h3, section.chari p {
+  text-align: left;
+}
+
+section.expert p:last-child {
+  max-width: 600px;
+  margin: 40px auto;
+}
+
+section .subtitle {
+  margin-bottom: 50px;
+}
+
+section p {
+  color: #797E7C;
+}
+
+.divider {
+  width: 25px;
+  height: 25px;
+  background-image: url('./assets/coin-divider.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 30px auto;
+}
+
+ul {
+  display: inline-block;
+  text-align: left;
+}
+
+li {
+  color: #797E7C;
+  font-size: 14px;
+}
+
+.hospischool-logo {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+}
+
+.quote p {
+  font-style: italic;
+  font-size: 16px;
+  color: black;
+  font-weight: 600;
+}
+.quote a, .quote span {
+  font-size: 14px;
+  display: block;
+  text-align: right;
+  margin-right: 20px;
+}
+.quote a {
+  color: #02DB96;
+  font-weight: normal;
+  background-color: white;
+}
+.quote span {
+  margin-top: 40px;
+  margin-bottom: 5px;
+  font-weight: 600;
 }
