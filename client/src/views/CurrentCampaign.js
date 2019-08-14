@@ -52,7 +52,7 @@ class CurrentCampaign extends React.Component {
 
 
         <div className={[campaignStyles.centerRow, campaignStyles.padding].join(' ')}>
-          <IframeContainer url={makeWidgetUrl(address, networkId, color, theme, token)}></IframeContainer>
+          <IframeContainer address={address} networkId={networkId} url={makeWidgetUrl(address, networkId, color, theme, token)}></IframeContainer>
           <div className={campaignStyles.centerColumn}>
             <Link to={makeClientUrl('admin', address, networkId, color, theme, token)} className={buttonStyles.button}>Customize widget</Link>
             <Link to={makeClientUrl('addfund', address, networkId, color, theme, token)} className={buttonStyles.button}>Transfer funds</Link>

@@ -100,7 +100,7 @@ class WidgetEditor extends React.Component {
                 </header>
                 <div className={styles.widget}>
 
-                    <IframeContainer title="Chari-widget" url={iframeUrl} loading={this.state.iframeLoading} loaded={this.iframeLoaded} />
+                    <IframeContainer address={address} networkId={networkId} title="Chari-widget" url={iframeUrl} loading={this.state.iframeLoading} loaded={this.iframeLoaded} />
 
                     <div className={styles.settings}>
                         <Select options={tokenOptions} label="Please select token to pay with"

@@ -1,11 +1,20 @@
 import React from 'react'
 import styles from './../styles/iframeContainer.module.css'
-
+import {hasExpired} from './../utils/getWeb3.js'
+import classnames from 'classnames'
 import LoaderComp from './loaderComp.js'
 
 class IframeContainer extends React.Component {
   state = {
-    loading: true
+    loading: true,
+    hasExpired: null
+  }
+
+  componentDidMount = async () => {
+    const expired = await hasExpired(parseInt(this.props.networkId), this.props.address)
+    this.setState({
+      hasExpired: expired
+    })
   }
 
   loaded = () => {
@@ -24,12 +33,16 @@ class IframeContainer extends React.Component {
       loaded = this.props.loaded
     }
 
+    const expiredClass = this.state.hasExpired ? styles.expired : 'null'
+    const loadingClass = loading ? styles.loading : ''
+
+
     return (
-      <div className={styles.iframeContainer} style={this.props.containerStyles}>
+      <div className={classnames(expiredClass, styles.iframeContainer)} style={this.props.containerStyles}>
           {loading && (
               <LoaderComp subtitle="none"></LoaderComp>
           )}
-          <iframe className={loading ? styles.loading : ''} onLoad={loaded}
+          <iframe className={loadingClass} onLoad={loaded}
                   title={this.props.title || 'Chari-widget'} src={this.props.url}
                   style={this.props.iframeStyles}></iframe>
       </div>

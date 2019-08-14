@@ -162,3 +162,13 @@ li {
   margin-bottom: 5px;
   font-weight: 600;
 }
+
+.featured {
+  max-width: 860px;
+}
+
+.featured > div:first-of-type {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}

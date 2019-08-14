@@ -20,11 +20,18 @@
   height: 100%;
   border-radius: 4px;
   border: 1px solid #D5DAE2;
-  position: absolute;
-  left: 0;
-  top: 0;
+  height: 480px;
+  position: relative;
 }
 
 .iframeContainer iframe.loading {
   visibility: hidden;
+}
+
+.iframeContainer.expired {
+  height: auto;
+}
+
+.iframeContainer.expired iframe{
+  height: 300px;
 }

@@ -18,7 +18,6 @@ const iframeContHomeStyles = {
 }
 const iframeHomeStyles = {
   width: '100%',
-  height: '100%',
   border: 0,
 }
 
@@ -110,54 +109,60 @@ function Home (props) {
 
       <section className="expert">
         <h1 className="subtitle">Subject matter expert testimonial</h1>
-        <a href="https://korhazsuli.com/" target="_blank"><img className="hospischool-logo" alt="hospischool-logo" src={hospischool}/></a>
+        <a href="https://korhazsuli.com/" target="_blank" rel="noopener noreferrer"><img className="hospischool-logo" alt="hospischool-logo" src={hospischool}/></a>
         <div className="quote">
           <p>"Crypto fundraising opens access to a new world of potential sponsors and donors. Chari provides a safe platform for donations: no 3rd party to manage funds, no chance of corruption. I like how simple it is and the fact there’s no overhead on funding.''</p>
           <span>- Reka Berczeledi, HospiSchool</span>
-          <a href="https://korhazsuli.com/" target="_blank">https://korhazsuli.com/</a>
+          <a href="https://korhazsuli.com/" target="_blank" rel="noopener noreferrer">https://korhazsuli.com/</a>
         </div>
 
         <p>HospiSchool supports long-term hospitalized children continue education with the help of student volunteers.</p>
       </section>
 
 
+      <section className="featured">
+        <h1 className="subtitle">Featured Fundraisers</h1>
 
-      <h1 className="subtitle">Featured Fundraisers</h1>
+        <div>
+          <div className={styles.fundraiser}>
+            <div>
+              <h2>Archive.org</h2>
+              <p>
+                <strong>Recipient:</strong> <a href="https://www.archive.org">The Internet Archive</a>
+                <br/>
+                <strong>Sponsor:</strong> <a href="https://decent.org">Decent Labs</a>
+              </p>
+              <p>The Internet Archive is a small non-profit library with a huge mission: to give everyone access to all knowledge, forever. For free.</p>
+            </div>
 
-      <div className={styles.fundraiser}>
+            <IframeContainer title="Chari-widget-demo"
+                             address="0x4a3De18552C740977E82ecF9FF2B826aD9Ba2305"
+                             networkId="1"
+                             containerStyles={iframeContHomeStyles}
+                             iframeStyles={iframeHomeStyles}
+                             url={`${cfg.WIDGET_BASE_URL}?address=0x4a3De18552C740977E82ecF9FF2B826aD9Ba2305&network=1&color=02DB96&theme=light`}></IframeContainer>
+          </div>
 
-        <h2>Fundraiser for Archive.org</h2>
+          <div className={styles.fundraiser}>
+            <div>
+              <h2>GiveDirectly</h2>
+              <p>
+                <strong>Recipient:</strong> <a href="https://www.givedirectly.org">GiveDirectly</a>
+                <br/>
+                <strong>Sponsor:</strong> <a href="https://decent.org">Decent Labs</a>
+              </p>
+              <p>This fundraiser helps people living in extreme poverty.</p>
+            </div>
 
-        <p>
-          <strong>Recipient:</strong> <a href="https://www.archive.org">The Internet Archive</a>
-          <br/>
-          <strong>Sponsor:</strong> <a href="https://decent.org">Decent Labs</a>
-        </p>
-
-        <p>The Internet Archive is a small non-profit library with a huge mission: to give everyone access to all knowledge, forever. For free.</p>
-
-        <IframeContainer containerStyles={iframeContHomeStyles} iframeStyles={iframeHomeStyles} title="Chari-widget-demo" url={`${cfg.WIDGET_BASE_URL}?address=0x4a3De18552C740977E82ecF9FF2B826aD9Ba2305&network=1&color=02DB96&theme=light`}></IframeContainer>
-
-      </div>
-
-
-      <div className={styles.fundraiser}>
-
-        <h2>Fundraiser for GiveDirectly</h2>
-
-        <p>
-          <strong>Recipient:</strong> <a href="https://www.givedirectly.org">GiveDirectly</a>
-          <br/>
-          <strong>Sponsor:</strong> <a href="https://decent.org">Decent Labs</a>
-        </p>
-
-        <p>This fundraiser helps people living in extreme poverty.</p>
-
-
-        <IframeContainer containerStyles={iframeContHomeStyles} iframeStyles={iframeHomeStyles} title="Chari-widget-demo" url={`${cfg.WIDGET_BASE_URL}?address=0x009D88A62945F22ec7df60D34541B5F01cFF23f9&network=1&color=02DB96&theme=light`}></IframeContainer>
-
-      </div>
-
+            <IframeContainer title="Chari-widget-demo"
+                             address="0x009D88A62945F22ec7df60D34541B5F01cFF23f9"
+                             networkId="1"
+                             containerStyles={iframeContHomeStyles}
+                             iframeStyles={iframeHomeStyles}
+                             url={`${cfg.WIDGET_BASE_URL}?address=0x009D88A62945F22ec7df60D34541B5F01cFF23f9&network=1&color=02DB96&theme=light`}></IframeContainer>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
