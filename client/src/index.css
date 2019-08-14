@@ -111,7 +111,7 @@ section .subtitle {
   margin-bottom: 50px;
 }
 
-section p {
+section > p {
   color: #797E7C;
   margin: 0;
   line-height: 150%;
