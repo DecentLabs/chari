@@ -113,6 +113,8 @@ section .subtitle {
 
 section p {
   color: #797E7C;
+  margin: 0;
+  line-height: 150%;
 }
 
 .divider {
@@ -132,6 +134,7 @@ ul {
 li {
   color: #797E7C;
   font-size: 14px;
+  line-height: 150%;
 }
 
 .hospischool-logo {

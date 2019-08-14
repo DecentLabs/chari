@@ -48,23 +48,7 @@ function Home (props) {
         <div>
           <h3>Charities can reach a new class of sponsors and donors.</h3>
           <p>
-            Aliquam rutrum arcu at odio bibendum, vitae pulvinar massa lobortis. Ut dapibus accumsan urna, sit amet gravida leo.
-          </p>
-        </div>
-        <div className="divider"></div>
-
-        <div>
-          <h3>No trusted 3rd party needed</h3>
-          <p>
-            Phasellus nunc dolor, scelerisque a rhoncus ac, fringilla ut purus. Duis urna risus, commodo nec interdum eget, ultrices ac nunc. Proin auctor nisi turpis, sit amet congue tortor mollis vitae.
-          </p>
-        </div>
-        <div className="divider"></div>
-
-        <div>
-          <h3>Sponsor funds are fully commited, up-front.</h3>
-          <p>
-            Ut lacinia neque vel posuere tincidunt. Etiam tincidunt diam at tincidunt aliquam. Maecenas quis augue nec ipsum egestas viverra et nec leo. Morbi hendrerit, enim ut varius commodo, lacus lectus lobortis nibh, eu efficitur lectus leo vitae nisi
+            Aliquam rutrum arcu at odio bibendum, vitae pulvinar massa lobortis. <br/> Ut dapibus accumsan urna, sit amet gravida leo.
           </p>
         </div>
         <div className="divider"></div>
@@ -76,6 +60,18 @@ function Home (props) {
           <ul>
             <li>Administration fee (3.5-5%)</li>
             <li>Payment fees (0.5-3%)</li>
+          </ul>
+          <div className="divider"></div>
+        </div>
+
+        <div>
+          <h3>Secure</h3>
+          <p>
+            Chari provides maximum security to the whole process of your fundraiser. <br/>
+          </p>
+          <ul>
+            <li>No trusted 3rd party needed</li>
+            <li>Sponsor funds are fully commited, up-front</li>
           </ul>
         </div>
       </section>
@@ -108,7 +104,6 @@ function Home (props) {
 
 
       <section className="expert">
-        <h1 className="subtitle">Subject matter expert testimonial</h1>
         <a href="https://korhazsuli.com/" target="_blank" rel="noopener noreferrer"><img className="hospischool-logo" alt="hospischool-logo" src={hospischool}/></a>
         <div className="quote">
           <p>"Crypto fundraising opens access to a new world of potential sponsors and donors. Chari provides a safe platform for donations: no 3rd party to manage funds, no chance of corruption. I like how simple it is and the fact there’s no overhead on funding.''</p>
