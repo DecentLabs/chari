@@ -33,7 +33,7 @@ class IframeContainer extends React.Component {
       loaded = this.props.loaded
     }
 
-    const expiredClass = this.state.hasExpired ? styles.expired : 'null'
+    const expiredClass = this.state.hasExpired ? styles.expired : ''
     const loadingClass = loading ? styles.loading : ''
 
 

@@ -113,24 +113,27 @@
     margin: 0 0 1em 0;
     font-size: 1em;
     font-weight: bold;
-    /* color: var(--midGray); */
+  }
+
+  .container p.offer {
+    margin-bottom: 0.5em;
   }
 
   .raisedCont {
     padding-top: 1em;
+
     .raised {
       text-align: center;
       color: var(--widget-color);
-      /* text-shadow: 1px 1px 2px rgba(0,0,0,0.05); */
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
       h1 {
         margin: 0;
         font-weight: bold;
-        font-size: 1.2em;
+        font-size: 1.3em;
         display: inline-block;
       }
-      span {
-        font-size: 1.2em;
-        margin: 0;
+      .expired-raised {
+        margin: 0 0 12px 0;
         font-weight: bold;
         text-transform: uppercase;
       }
@@ -149,8 +152,7 @@
     }
     progress[value]::-webkit-progress-bar {
       background-color: var(--widget-color-opac);
-      border-radius: 30px;
-      /* border: 1px solid var(--widget-color); */
+      border-radius: 40px;
     }
     progress[value]::-webkit-progress-value {
       border-radius: 2px;
@@ -315,7 +317,6 @@
       }
     }
   }
-
   .etherscan {
     flex:1;
   }
