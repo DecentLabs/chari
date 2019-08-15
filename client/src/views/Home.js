@@ -50,9 +50,6 @@ function Home (props) {
         <h1 className="subtitle">Benefits of Chari</h1>
         <div>
           <h2>Charities can reach a new class of sponsors and donors.</h2>
-          <p className="big">
-            Aliquam rutrum arcu at odio bibendum, vitae pulvinar massa lobortis. <br/> Ut dapibus accumsan urna, sit amet gravida leo.
-          </p>
         </div>
         <div className="divider"></div>
 
