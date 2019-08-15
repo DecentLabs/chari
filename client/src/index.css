@@ -1,12 +1,11 @@
 body {
   margin: 0;
-  padding: 0;
   font-family: 'Inter var', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: white;
   color: #001A12;
-  padding:100px 20px 20px 20px;
+  padding:100px 20px 0px 20px;
 }
 
 html, body, .App, #root {
@@ -35,7 +34,7 @@ h1.title {
 }
 
 h1.subtitle {
-  font-size: 48px;
+  font-size: 46px;
 }
 
 h2.subtitle {
@@ -94,27 +93,50 @@ code {
 
 section {
   max-width: 780px;
-  width: 100%;
-  margin: 150px auto;
+  width: calc(100% - 40px);
+  margin: 200px auto;
 }
 
-section.chari h3, section.chari p {
+.home section h1 {
+  position: relative;
+}
+
+.home section h1:before {
+  content: "";
+  width: 50px;
+  height: 25px;
+  position: absolute;
+  background-image: url('./assets/bird-01.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  left: calc(50% - 25px);
+  top: -40px;
+}
+
+section.benefits {
+  margin-top: 260px;
+}
+
+section.chari p {
   text-align: left;
 }
+section.chari p.strong {
+  margin: 20px 0;
+}
 
-section.expert p:last-child {
+section.chari > div:first-of-type {
+  margin-bottom: 40px;
+}
+
+
+section.social-proof p:last-child {
   max-width: 600px;
   margin: 40px auto;
 }
 
 section .subtitle {
-  margin-bottom: 50px;
-}
-
-section > p {
-  color: #797E7C;
-  margin: 0;
-  line-height: 150%;
+  margin-bottom: 60px;
 }
 
 .divider {
@@ -123,24 +145,36 @@ section > p {
   background-image: url('./assets/coin-divider.svg');
   background-size: contain;
   background-repeat: no-repeat;
-  margin: 30px auto;
+  margin: 60px auto;
 }
 
 ul {
   display: inline-block;
-  text-align: left;
+  text-align: center;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 li {
   color: #797E7C;
-  font-size: 14px;
+  font-size: 20px;
   line-height: 150%;
+  list-style-type: none;
 }
 
-.hospischool-logo {
+.logo {
+  margin: 0 auto;
+}
+.logo.hospischool-logo {
+  margin-top: 60px;
   width: 80px;
   height: 80px;
-  margin: 0 auto;
+}
+.logo.gitcoin-logo {
+  margin-bottom: 20px;
+  width: 60px;
+  height: 60px;
 }
 
 .quote p {
@@ -155,10 +189,11 @@ li {
   text-align: right;
   margin-right: 20px;
 }
-.quote a {
+.quote a, .social-proof a {
   color: #02DB96;
   font-weight: normal;
   background-color: white;
+  text-decoration: none;
 }
 .quote span {
   margin-top: 40px;

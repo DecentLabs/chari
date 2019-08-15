@@ -4,11 +4,14 @@ import {connect} from 'react-redux'
 import {setupWeb3} from './../reducers/web3Connect.js'
 import {NavLink} from "react-router-dom"
 import cfg from './../shared/cfg.js'
+import classnames from 'classnames'
 
 import Button from './../components/button.js'
 import IframeContainer from './../components/iframeContainer.js'
 
 import hospischool from './../assets/korhazsuli.jpeg'
+import gitcoinLogo from './../assets/gitcoin.png'
+import award from './../assets/medal-2.svg'
 
 const iframeContHomeStyles = {
   width: '100%',
@@ -29,7 +32,7 @@ function Home (props) {
   }
 
   return (
-    <div className={styles.home}>
+    <div className={classnames(styles.home, 'home')}>
       <header>
         <h1 className="title">A match made in crypto</h1>
         <p className="big">
@@ -46,17 +49,19 @@ function Home (props) {
       <section className="benefits">
         <h1 className="subtitle">Benefits of Chari</h1>
         <div>
-          <h3>Charities can reach a new class of sponsors and donors.</h3>
-          <p>
+          <h2>Charities can reach a new class of sponsors and donors.</h2>
+          <p className="big">
             Aliquam rutrum arcu at odio bibendum, vitae pulvinar massa lobortis. <br/> Ut dapibus accumsan urna, sit amet gravida leo.
           </p>
         </div>
         <div className="divider"></div>
 
         <div>
-          <h3>Dramatically lower fundraising costs</h3>
-          <p>Chari dramatically lower fundraising costs, there’s just a minimal gas cost of transfers.</p>
-          <p>Typical overhead of charity fundraising is 4-8%:</p>
+          <h2>Dramatically lower fundraising costs</h2>
+          <p className="big">
+            Chari dramatically lower fundraising costs, there’s just a minimal gas cost of transfers.
+            Typical overhead of charity fundraising is 4-8%:
+          </p>
           <ul>
             <li>Administration fee (3.5-5%)</li>
             <li>Payment fees (0.5-3%)</li>
@@ -65,9 +70,9 @@ function Home (props) {
         </div>
 
         <div>
-          <h3>Secure</h3>
-          <p>
-            Chari provides maximum security to the whole process of your fundraiser. <br/>
+          <h2>Secure</h2>
+          <p className="big">
+            Chari provides maximum security to the whole process of your fundraiser: <br/>
           </p>
           <ul>
             <li>No trusted 3rd party needed</li>
@@ -79,39 +84,31 @@ function Home (props) {
 
       <section className="chari">
         <h1 className="subtitle">What is Chari?</h1>
-        <p className="strong">A smart contract.</p>
-        <p>
-          The Chari smart contract manages the sponsor grant and donations on the Ethereum blockchain.
-          This means there is no need for a trusted third party to coordinate the fundraising and each participant can be certain their funds are managed safely.
-        </p>
+        <div>
+          <p className="strong big">A smart contract.</p>
+          <p className="big">
+            The Chari smart contract manages the sponsor grant and donations on the Ethereum blockchain.
+            This means there is no need for a trusted third party to coordinate the fundraising and each participant can be certain their funds are managed safely.
+          </p>
+        </div>
 
-        <p className="strong">A donation widget.</p>
-        <p>
-          Easily embed a Chari donation component into the landing page of your fundraiser campaign.
-        </p>
+        <div>
+          <p className="strong big">A donation widget.</p>
+          <p className="big">
+            Easily embed a Chari donation component into the landing page of your fundraiser campaign.
+          </p>
+        </div>
 
         <div className="divider"></div>
         <h2>What is donation matching?</h2>
 
-        <p>
+        <p className="big">
           Matching grants are a great way to raise funds for a charitable cause.
           A sponsor deposits a budget to match donations 1:1. Thus donors double the impact of their contributions.
         </p>
-        <p>
+        <p className="big">
           When the fundraiser ends, the charity gets twice the donations and any remaining budget is returned to the sponsor.
         </p>
-      </section>
-
-
-      <section className="expert">
-        <a href="https://korhazsuli.com/" target="_blank" rel="noopener noreferrer"><img className="hospischool-logo" alt="hospischool-logo" src={hospischool}/></a>
-        <div className="quote">
-          <p>"Crypto fundraising opens access to a new world of potential sponsors and donors. Chari provides a safe platform for donations: no 3rd party to manage funds, no chance of corruption. I like how simple it is and the fact there’s no overhead on funding.''</p>
-          <span>- Reka Berczeledi, HospiSchool</span>
-          <a href="https://korhazsuli.com/" target="_blank" rel="noopener noreferrer">https://korhazsuli.com/</a>
-        </div>
-
-        <p>HospiSchool supports long-term hospitalized children continue education with the help of student volunteers.</p>
       </section>
 
 
@@ -158,6 +155,25 @@ function Home (props) {
           </div>
         </div>
       </section>
+
+      <section className="social-proof">
+        <h1 className="subtitle">Chari is social proof</h1>
+        <img className="logo gitcoin-logo" src={award} alt="gitcoin-logo"></img>
+        <p className="big">
+          Chari was awarded as the best blockchain based application at <a href="https://gitcoin.co/" target="_blank" rel="noopener noreferrer">GITCOIN</a>'s international <a href="https://gitcoin.co/hackathon/beyondblockchain" target="_blank" rel="noopener noreferrer">Beyond Blockchain hackhaton</a> (<a href="https://www.portis.io/" target="_blank" rel="noopener noreferrer">Portis</a> UX bounty).
+        </p>
+
+
+        <a href="https://korhazsuli.com/" target="_blank" rel="noopener noreferrer"><img className="hospischool-logo logo" alt="hospischool-logo" src={hospischool}/></a>
+        <div className="quote">
+          <p>"Crypto fundraising opens access to a new world of potential sponsors and donors. Chari provides a safe platform for donations: no 3rd party to manage funds, no chance of corruption. I like how simple it is and the fact there’s no overhead on funding.''</p>
+          <span>- Reka Berczeledi, HospiSchool</span>
+          <a href="https://korhazsuli.com/" target="_blank" rel="noopener noreferrer">https://korhazsuli.com/</a>
+        </div>
+
+        <p>HospiSchool supports long-term hospitalized children continue education with the help of student volunteers.</p>
+      </section>
+
     </div>
   )
 }
