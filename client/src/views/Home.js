@@ -92,7 +92,7 @@ function Home (props) {
         <div>
           <p className="strong big">A donation widget.</p>
           <p className="big">
-            Easily embed a Chari donation component into the landing page of your fundraiser campaign.
+            You can easily embed a Chari donation component into the landing page of your fundraiser campaign.
           </p>
         </div>
 
@@ -101,7 +101,7 @@ function Home (props) {
 
         <p className="big">
           Matching grants are a great way to raise funds for a charitable cause.
-          A sponsor deposits a budget to match donations 1:1. Thus donors double the impact of their contributions.
+          A sponsor deposits a budget to match donations 1:1. So the donors will double the impact of their contributions.
         </p>
         <p className="big">
           When the fundraiser ends, the charity gets twice the donations and any remaining budget is returned to the sponsor.
@@ -168,7 +168,7 @@ function Home (props) {
           <a href="https://korhazsuli.com/" target="_blank" rel="noopener noreferrer">https://korhazsuli.com/</a>
         </div>
 
-        <p>HospiSchool supports long-term hospitalized children continue education with the help of student volunteers.</p>
+        <p>HospiSchool supports long-term hospitalized children to continue education with the help of student volunteers.</p>
       </section>
 
     </div>
