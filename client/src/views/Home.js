@@ -10,7 +10,6 @@ import Button from './../components/button.js'
 import IframeContainer from './../components/iframeContainer.js'
 
 import hospischool from './../assets/korhazsuli.jpeg'
-import gitcoinLogo from './../assets/gitcoin.png'
 import award from './../assets/medal-2.svg'
 
 const iframeContHomeStyles = {
