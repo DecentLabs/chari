@@ -30,7 +30,7 @@ export default connect([
         <Expiration at={expiration}/>
 
         <p class="offer">The sponsor matches every {selectedToken.token} you give,<br/>up to {sponsored ? sponsored.value : 0} {sponsored ? sponsored.token : selectedToken.token}.</p>
-        <Raised><span> raised together</span></Raised>
+        <Raised><p>Raised together</p></Raised>
 
         {showProgress && (
           <div class="progressCont">

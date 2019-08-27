@@ -6,7 +6,7 @@
   background-position: center 50%;
   min-height: 100%;
   padding-top: 40px;
-  margin-bottom: 60px;
+  padding-bottom: 60px;
 }
 .home header {
   max-width: 70%;
@@ -54,7 +54,12 @@
   background-color: #F5F6F7;
   text-align: left;
   max-width: 400px;
-  margin: 60px auto;
+  margin: 10px 10px 40px 10px;
   box-shadow: 4px 4px 16px -4px rgba(0,0,0,0.15);
   padding: 16px;
+  box-sizing: border-box;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
