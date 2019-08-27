@@ -100,7 +100,7 @@ class WidgetEditor extends React.Component {
                 </header>
                 <div className={styles.widget}>
 
-                    <IframeContainer title="Chari-widget" url={iframeUrl} loading={this.state.iframeLoading} loaded={this.iframeLoaded} />
+                    <IframeContainer address={address} networkId={networkId} title="Chari-widget" url={iframeUrl} loading={this.state.iframeLoading} loaded={this.iframeLoaded} />
 
                     <div className={styles.settings}>
                         <Select options={tokenOptions} label="Please select token to pay with"
@@ -124,7 +124,7 @@ class WidgetEditor extends React.Component {
 
                         <div className={styles.codeContainer}>
                             <textarea readOnly value={textareaContent} id="chari-widget-code" />
-                            <Button copy onClick={this.copyCode}>Copy embed code<img src={copy} alt="copy code"/></Button>
+                            <Button copy onClick={this.copyCode}>Copy embed code <img width="18" height="18" src={copy} alt="copy code"/></Button>
                         </div>
                     </div>
                 </div>

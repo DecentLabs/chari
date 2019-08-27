@@ -1,6 +1,7 @@
 import Web3 from "web3";
 import Portis from '@portis/web3';
-import {PORTIS_APP} from 'shared/constants.js'
+import {PORTIS_APP, NETWORKS} from 'shared/constants.js'
+import Fundraiser from 'shared/abis/Fundraiser.json'
 
 const searchParams = new URLSearchParams(window.location.search)
 const portis_network = searchParams.get('portis_network')
@@ -8,6 +9,21 @@ const PORTIS_NETWORK = portis_network || 'mainnet'
 
 console.log('portis network', PORTIS_NETWORK)
 
+const readOnlyWeb3 = new Map();
+
+export const hasExpired = async (networkId, address) => {
+  let web3 = readOnlyWeb3.get(networkId);
+  if(!web3) {
+    const url = NETWORKS.get(networkId).url
+    web3 = new Web3(url);
+    readOnlyWeb3.set(networkId, web3)
+  }
+
+  const contract = new web3.eth.Contract(Fundraiser, address)
+  const result = await contract.methods.hasExpired().call();
+
+  return result;
+}
 
 const makeWeb3 = (provider) => new Web3(provider, null, {
   transactionConfirmationBlocks: 1
