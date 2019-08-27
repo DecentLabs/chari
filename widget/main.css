@@ -1,0 +1,262 @@
+html, body {
+  font-family: 'Inter var', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-size: 12px; }
+
+[data-view] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+  padding: 1em; }
+
+:root {
+  --widget-color: #02DB96;
+  --widget-color-opac: #02DB9625;
+  --warning: #EB6123;
+  --fontColor: rgba(0, 0, 0, 0.87);
+  --baseColor: #F5F6F7;
+  --lightColor: white;
+  --midGray: rgba(0, 0, 0, 0.5);
+  --lightGray: #9BA5AE; }
+
+[data-theme="dark"] {
+  --fontColor: #ffffff;
+  --baseColor: #343434;
+  --lightColor: rgba(255, 255, 255, 0.1);
+  --midGray: rgba(100, 100, 100, 1);
+  --lightGray: rgba(255, 255, 255, 0.7); }
+
+.addressCont {
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+  max-width: 100%; }
+
+#DonationWidget {
+  background-color: var(--baseColor);
+  color: var(--fontColor);
+  padding: 3rem 1rem 1rem 1rem;
+  box-sizing: border-box;
+  height: 100%;
+  text-align: center; }
+  #DonationWidget a, #DonationWidget a:visited, #DonationWidget a:active {
+    color: var(--fontColor); }
+  #DonationWidget .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; }
+  #DonationWidget p {
+    margin: 0; }
+  #DonationWidget .expiration {
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 1.5em; }
+    #DonationWidget .expiration .campaignEnds {
+      margin-top: 10px;
+      padding-bottom: 20px;
+      color: var(--lightGray);
+      font-size: 0.9em; }
+    #DonationWidget .expiration .ticker {
+      display: flex;
+      text-align: center;
+      justify-content: space-between;
+      width: 100%;
+      overflow: auto; }
+      #DonationWidget .expiration .ticker .value {
+        font-size: 3em;
+        display: block;
+        font-weight: bold; }
+      #DonationWidget .expiration .ticker .label {
+        display: block;
+        color: var(--lightGray); }
+      #DonationWidget .expiration .ticker .tickerItem {
+        background-color: var(--lightColor);
+        border-radius: 4px;
+        padding: 1em;
+        width: 64px;
+        height: 56px;
+        margin: 0; }
+  #DonationWidget .networkTitle {
+    font-size: 15px;
+    margin-bottom: 15px;
+    background-color: var(--widget-color);
+    padding: 1px 15px;
+    display: inline-block;
+    border-radius: 2px;
+    width: auto;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+    align-self: center; }
+  #DonationWidget .matchDetails {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; }
+  #DonationWidget .offer {
+    margin: 0 0 1em 0;
+    font-size: 1em;
+    font-weight: bold; }
+  #DonationWidget .container p.offer {
+    margin-bottom: 0.5em; }
+  #DonationWidget .raisedCont {
+    padding-top: 1em; }
+    #DonationWidget .raisedCont .raised {
+      text-align: center;
+      color: var(--widget-color);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05); }
+      #DonationWidget .raisedCont .raised h1 {
+        margin: 0;
+        font-weight: bold;
+        font-size: 1.3em;
+        display: inline-block; }
+      #DonationWidget .raisedCont .raised .expired-raised {
+        margin: 0 0 12px 0;
+        font-weight: bold;
+        text-transform: uppercase; }
+  #DonationWidget .progressCont {
+    position: relative;
+    text-align: center; }
+    #DonationWidget .progressCont progress[value] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+           appearance: none;
+      height: 30px;
+      width: 100%;
+      margin: 0.5em 0; }
+    #DonationWidget .progressCont progress[value]::-webkit-progress-bar {
+      background-color: var(--widget-color-opac);
+      border-radius: 40px; }
+    #DonationWidget .progressCont progress[value]::-webkit-progress-value {
+      border-radius: 2px;
+      background-color: var(--widget-color);
+      border-radius: 40px; }
+    #DonationWidget .progressCont p {
+      font-size: 0.9em;
+      color: var(--lightGray); }
+    #DonationWidget .progressCont hr {
+      margin-top: 20px; }
+  #DonationWidget label {
+    margin-top: 0.5em; }
+  #DonationWidget a.button, #DonationWidget button {
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    font-size: 1.3em;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--widget-color);
+    border-radius: 40px;
+    color: white;
+    text-align: center;
+    padding: 0 15px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 1em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+    border-width: 0;
+    border-style: solid;
+    border-image: initial;
+    line-height: 21px;
+    outline: none; }
+  #DonationWidget .button.secondary {
+    border-width: 2px;
+    border-color: var(--widget-color);
+    background-color: transparent;
+    color: var(--widget-color); }
+  #DonationWidget .button.copy {
+    border-radius: 5px;
+    border-width: 0;
+    height: 30px;
+    width: 30px;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0);
+    margin-top: 0; }
+  #DonationWidget .button.copy:active svg g {
+    fill: var(--fontColor); }
+  #DonationWidget .contribution {
+    text-align: center;
+    position: relative; }
+    #DonationWidget .contribution .address {
+      font-size: 1.4em; }
+    #DonationWidget .contribution .fundraiserAddress {
+      color: var(--lightGray);
+      margin-top: -2px;
+      margin-bottom: 5px; }
+    #DonationWidget .contribution .donationThankyou {
+      margin-top: 1em;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: var(--widget-color); }
+    #DonationWidget .contribution .link {
+      position: absolute;
+      left: 0;
+      top: -1.8em;
+      width: 30px;
+      height: 30px;
+      font-size: 2.5em;
+      line-height: 0.75;
+      display: inline-block;
+      padding: 0 5px; }
+    #DonationWidget .contribution .copy-to-clipboard {
+      white-space: nowrap; }
+    #DonationWidget .contribution .qrcode {
+      margin: 1em 0;
+      width: 40%; }
+    #DonationWidget .contribution form {
+      display: flex;
+      align-items: flex-end;
+      flex-direction: column; }
+      #DonationWidget .contribution form button {
+        white-space: nowrap; }
+      #DonationWidget .contribution form .space {
+        width: 0.5em; }
+      #DonationWidget .contribution form input {
+        height: 44px;
+        font-size: 1.3em;
+        box-sizing: border-box;
+        color: var(--lightcolor);
+        border: 2px solid var(--widget-color);
+        background-color: transparent;
+        width: 100%;
+        padding: 10px 25px;
+        border-radius: 40px;
+        margin-top: 1em;
+        outline: none; }
+    #DonationWidget .contribution .buttonbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: normal; }
+    #DonationWidget .contribution .buttonbar > * {
+      flex: 0; }
+  #DonationWidget hr {
+    border: none;
+    border-bottom: 1px solid lightgray;
+    width: 100%;
+    height: 0;
+    margin: 0; }
+  #DonationWidget .footer {
+    display: flex;
+    text-align: left;
+    align-items: center;
+    margin-top: 1rem;
+    white-space: pre;
+    font-size: 0.85em; }
+    #DonationWidget .footer svg {
+      width: 5.14em;
+      height: 1.5em; }
+      #DonationWidget .footer svg #chari_text > path {
+        fill: var(--fontColor); }
+  #DonationWidget .etherscan {
+    flex: 1; }
+
+
+/*# sourceMappingURL=main.css.map*/
