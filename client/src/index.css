@@ -183,7 +183,7 @@ li {
   color: black;
   font-weight: 600;
 }
-.quote a, .quote span {
+.quote span {
   font-size: 14px;
   display: block;
   text-align: right;

@@ -47,34 +47,40 @@ function Home (props) {
       </NavLink>
 
       <section className="benefits">
-        <h1 className="subtitle">Benefits of Chari</h1>
+        <h1 className="subtitle">Why use Chari?</h1>
         <div>
-          <h2>Charities can reach a new class of sponsors and donors.</h2>
+          <h2>A different audience</h2>
+          <p className="big">
+            Reach a new class of sponsors and donors
+            <br/>
+            in the world of magic internet money.
+          </p>
         </div>
         <div className="divider"></div>
 
         <div>
-          <h2>Dramatically lower fundraising costs</h2>
+          <h2>Zero fees</h2>
           <p className="big">
-            Chari dramatically lower fundraising costs, there’s just a minimal gas cost of transfers.
-            Typical overhead of charity fundraising is 4-8%:
+            Fundraising platforms typically charge a 4-8% fee on donations.
+            <br/>
+            Chari charges nothing<sup>*</sup>, so more goes to the cause!
+            <br/>
           </p>
-          <ul>
-            <li>Administration fee (3.5-5%)</li>
-            <li>Payment fees (0.5-3%)</li>
-          </ul>
+          <small>
+            <sup>*</sup> Ethereum transactions do incur a small fee, typically less than 0.1%.
+          </small>
           <div className="divider"></div>
         </div>
 
         <div>
-          <h2>Secure</h2>
+          <h2>Safe and secure</h2>
           <p className="big">
-            Chari provides maximum security to the whole process of your fundraiser: <br/>
+            Chari provides maximum security for the fundraising process.
+            <br/>
+            There's no need for a trusted third party, all funds 
+            <br/>
+            are managed by a smart contract.
           </p>
-          <ul>
-            <li>No trusted 3rd party needed</li>
-            <li>Sponsor funds are fully commited, up-front</li>
-          </ul>
         </div>
       </section>
 
@@ -154,18 +160,18 @@ function Home (props) {
       </section>
 
       <section className="social-proof">
-        <h1 className="subtitle">Chari is social proof</h1>
         <img className="logo gitcoin-logo" src={award} alt="gitcoin-logo"></img>
         <p className="big">
-          Chari was awarded as the best blockchain based application at <a href="https://gitcoin.co/" target="_blank" rel="noopener noreferrer">GITCOIN</a>'s international <a href="https://gitcoin.co/hackathon/beyondblockchain" target="_blank" rel="noopener noreferrer">Beyond Blockchain hackhaton</a> (<a href="https://www.portis.io/" target="_blank" rel="noopener noreferrer">Portis</a> UX bounty).
+          Chari was awarded for best user experience
+          <br/>
+          at <a href="https://gitcoin.co/" target="_blank" rel="noopener noreferrer">Gitcoin</a>'s international <a href="https://gitcoin.co/hackathon/beyondblockchain" target="_blank" rel="noopener noreferrer">Beyond Blockchain</a> hackhaton.
         </p>
 
 
         <a href="https://korhazsuli.com/" target="_blank" rel="noopener noreferrer"><img className="hospischool-logo logo" alt="hospischool-logo" src={hospischool}/></a>
         <div className="quote">
           <p>"Crypto fundraising opens access to a new world of potential sponsors and donors. Chari provides a safe platform for donations: no 3rd party to manage funds, no chance of corruption. I like how simple it is and the fact there’s no overhead on funding.''</p>
-          <span>- Reka Berczeledi, HospiSchool</span>
-          <a href="https://korhazsuli.com/" target="_blank" rel="noopener noreferrer">https://korhazsuli.com/</a>
+          <span>- Réka Berczelédi, <a href="https://korhazsuli.com/" target="_blank" rel="noopener noreferrer">HospiSchool</a></span>
         </div>
 
         <p>HospiSchool supports long-term hospitalized children to continue education with the help of student volunteers.</p>
